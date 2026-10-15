@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore KICKS football tournaments, match formats and team registration."
+    />
+    <title>Tournaments | KICKS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/fields.css" />
+    <link rel="stylesheet" href="../../css/tournaments.css?v=accounts-7" />
+    
+    <script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/data-store.js?v=review-20261015" defer></script>
+<script src="../../js/account.js?v=review-20261015" defer></script>
+<script src="../../js/tournaments.js?v=readable-nav-1" defer></script>
+    <link rel="stylesheet" href="../../css/creative.css?v=cleanup-1" />
+  <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
+<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
+<script src="../../js/theme.js?v=readable-nav-1"></script>
+<link rel="stylesheet" href="../../css/footer.css?v=shared-1">
+<link rel="stylesheet" href="../../css/checkout.css?v=1">
+<script src="../../js/checkout.js?v=1" defer></script>
+<link rel="stylesheet" href="../../css/meetings.css?v=1">
+<script src="../../js/meetings.js?v=1" defer></script>
+<script src="../../js/tournament-meetings.js?v=1" defer></script>
+</head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../../index.html"
+          ><img
+            src="../../assets/logo/kicks-logo.png"
+            alt=""
+            class="navbar-logo"
+          /><span class="navbar-brand-text">KICKS</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Fields/fields.html">Fields</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../OpenGames/open-games.html"
+                >Open Games</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="tournaments.html"
+                >Tournaments</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../About/about.html">About</a>
+            </li>
+          <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
+</ul>
+        </div>
+      </div>
+    </nav>
+    <main id="mainContent">
+      <section class="container cup-detail">
+        <nav class="cup-breadcrumb" aria-label="Breadcrumb">
+          <a href="tournaments.html">← All tournaments</a>
+        </nav>
+        <div id="cupMissing" class="empty-state" hidden>
+          <h1>Tournament not found</h1>
+          <p>Choose a tournament from our catalogue.</p>
+          <a href="tournaments.html">Explore tournaments →</a>
+        </div>
+        <div id="cupContent" hidden>
+          <p class="eyebrow">YOUR TEAM. YOUR CHALLENGE.</p>
+          <h1 id="cupTitle"></h1>
+          <p id="cupLocation" class="cup-subtitle"></p>
+          
+          <div class="cup-detail-layout">
+            <div>
+              <div class="cup-cover">
+                <img id="cupPhoto" alt="" /><span
+                  ><i class="bi bi-trophy" aria-hidden="true"></i> PLAY FOR THE
+                  MOMENT</span
+                >
+              </div>
+              <section class="cup-panel">
+                <h2>The tournament at a glance</h2>
+                <div id="cupFacts" class="cup-facts"></div>
+              </section>
+              <section class="cup-panel">
+                <h2>The format</h2>
+                <p id="cupSystem"></p>
+                <p>
+                  Teams compete at one venue. A live match schedule and draw
+                  will be published when tournament management is connected.
+                </p>
+                <a id="cupFieldLink" class="cup-text-link"
+                  >View field details →</a
+                >
+              </section>
+              <section class="cup-panel">
+                <h2>What you're playing for</h2>
+                <div class="cup-prize">
+                  <i class="bi bi-trophy" aria-hidden="true"></i>
+                  <div>
+                    <strong id="cupPrize"></strong
+                    ><span>Winner’s prize</span>
+                  </div>
+                </div>
+              </section>
+              <section class="cup-panel" id="cupMeetings" hidden></section>
+              <section class="cup-panel">
+                <h2>Before you register</h2>
+                <ul>
+                  <li>
+                    One registration per team. The captain is the main contact.
+                  </li>
+                  <li>
+                    Bring a complete squad and suitable football footwear.
+                  </li>
+                  <li>Arrive 30 minutes before the opening match.</li>
+                  <li>Respect officials, opponents and the venue.</li>
+                </ul>
+                
+              </section>
+            </div>
+            <aside class="cup-registration">
+              <p class="eyebrow">TAKE YOUR PLACE</p>
+              <p class="cup-entry">
+                <strong id="cupFee"></strong> JD <span>/ team</span>
+              </p>
+              <p id="cupAvailability" role="status"></p>
+              <progress
+                id="cupProgress"
+                aria-label="Registered teams"
+              ></progress>
+              <p id="cupTeamCount"></p>
+              <form id="teamForm" novalidate>
+                <label for="teamName">Team name</label
+                ><input
+                  id="teamName"
+                  maxlength="60"
+                  required
+                  autocomplete="off"
+                  placeholder="Your team name"
+                  aria-describedby="teamError"
+                />
+                <p id="teamError" class="cup-error"></p>
+                <label for="captainName">Captain name</label
+                ><input
+                  id="captainName"
+                  maxlength="100"
+                  required
+                  autocomplete="name"
+                  placeholder="Team captain"
+                  aria-describedby="captainError"
+                />
+                <p id="captainError" class="cup-error"></p>
+                <label for="captainEmail">Captain email</label
+                ><input
+                  id="captainEmail"
+                  type="email"
+                  maxlength="254"
+                  required
+                  autocomplete="email"
+                  placeholder="captain@example.com"
+                  aria-describedby="emailError"
+                />
+                <p id="emailError" class="cup-error"></p>
+                <button id="teamSubmit" class="apply-filters">
+                  Register team ↗
+                </button>
+                <p id="teamStatus" class="cup-error" role="status"></p>
+                
+              </form>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <dialog id="teamDialog" aria-labelledby="teamDialogTitle">
+        <form method="dialog">
+          <button class="dialog-close" aria-label="Close registration confirmation">
+            ×
+          </button>
+        </form>
+        <div class="cup-dialog-icon">
+          <i class="bi bi-trophy" aria-hidden="true"></i>
+        </div>
+        <p class="eyebrow">YOUR NEXT CHALLENGE</p>
+        <h2 id="teamDialogTitle">Team registered</h2>
+        <p id="teamPreview"></p>
+        
+        <form method="dialog">
+          <button class="apply-filters">Back to tournament</button>
+        </form>
+      </dialog>
+      <noscript
+        ><div class="container empty-state">
+          <h2>Tournaments</h2>
+          <p>Enable JavaScript to view tournament data.</p>
+        </div></noscript
+      >
+    </main>
+    <footer class="kicks-footer" aria-label="KICKS footer">
+  <div class="kf-inner">
+    <div class="kf-grid">
+      <div class="kf-intro">
+        <a class="kf-brand" href="../../index.html">KICKS</a>
+        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <nav aria-label="Footer explore">
+          <a href="../../index.html">Home</a>
+          <a href="../../Pages/Fields/fields.html">Fields</a>
+          <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Footer company">
+          <a href="../../Pages/Contact/contact.html">Contact Us</a>
+          <a href="../../Pages/About/about.html">About</a>
+          <a href="../../index.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="kf-contact">
+        <h2>Get in Touch</h2>
+        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
+      </div>
+    </div>
+    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
+  </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+</body>
+</html>

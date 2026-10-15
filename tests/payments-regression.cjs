@@ -1,0 +1,20 @@
+// Isolated business rules: no real accounts, charges or browser storage.
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+let saved=null;const ctx={structuredClone,Event,window:{dispatchEvent(){}},localStorage:{getItem:()=>saved,setItem:(key,value)=>{saved=value;}}};vm.createContext(ctx);for(const file of ['admin-account','data-store'])vm.runInContext(fs.readFileSync('js/'+file+'.js','utf8'),ctx);const s=ctx.window.KicksStore;
+const owner=s.save('users',{name:'Owner',role:'owner',status:'Active'}),player=s.save('users',{name:'Player',email:'player@test.local',role:'player',status:'Active'}),other=s.save('users',{name:'Other',email:'other@test.local',role:'player',status:'Active'});
+assert.throws(()=>s.save('fields',{name:'Unpaid',ownerId:owner.id,price:30}),/payment/);
+const field=s.save('fields',{name:'Test',ownerId:owner.id,price:30},{method:'Visa demo',amount:5});assert.equal(s.list('payments').at(-1).commission,5);
+assert.throws(()=>s.book(player.id,field.id,'2100-01-01','18:00',{method:'Visa demo',amount:25}),/price changed/);
+assert.equal(s.list('bookings').length,0);
+const booking=s.book(player.id,field.id,'2100-01-01','18:00',{method:'Visa demo',amount:30});assert.equal(booking.commission,3);assert.equal(booking.ownerNet,27);
+assert.throws(()=>s.book(other.id,field.id,'2100-01-01','18:00',{method:'Visa demo',amount:30}),/slot/);
+const cancelled=s.save('bookings',{...booking,status:'Cancelled'});assert.equal(cancelled.paymentStatus,'Refunded (demo)');assert.throws(()=>s.save('bookings',{...cancelled,status:'Confirmed'}),/refunded/);
+const game=s.save('games',{title:'Paid game',fieldId:field.id,date:'2100-01-02',time:'18:00',price:4,capacity:1,joined:0});
+assert.throws(()=>s.join(player.id,'games',game.id,{payment:{method:'Visa demo',amount:3}}),/fee changed/);
+const entry=s.join(player.id,'games',game.id,{payment:{method:'Visa demo',amount:4}});assert.throws(()=>s.join(other.id,'games',game.id,{payment:{method:'Visa demo',amount:4}}),/full/);
+assert.throws(()=>s.leave(other.id,'memberships',entry.id),/belong/);s.leave(player.id,'memberships',entry.id);assert.equal(s.find('games',game.id).joined,0);
+s.join(player.id,'games',game.id,{payment:{method:'Visa demo',amount:4}});assert.equal(s.list('memberships').length,1);s.remove('games',game.id);assert.equal(s.list('payments').filter(p=>p.collection==='memberships'&&p.status==='Paid (demo)').length,0);
+const cup=s.save('tournaments',{name:'Paid cup',fieldId:field.id,date:'2100-01-03',time:'18:00',fee:60,capacity:8,teams:0});assert.throws(()=>s.join(player.id,'tournaments',cup.id,{teamName:'',payment:{method:'Visa demo',amount:60}}),/team/);
+s.join(player.id,'tournaments',cup.id,{teamName:'Test Team',payment:{method:'Visa demo',amount:60}});s.remove('tournaments',cup.id);assert.equal(s.list('registrations').length,0);assert.equal(s.list('payments').filter(p=>p.collection==='registrations'&&p.status==='Paid (demo)').length,0);
+assert.throws(()=>s.submitFeedback({name:'A',email:'bad',message:'short',rating:0}),/valid/);assert.equal(s.escape('<img onerror="x">'), '&lt;img onerror=&quot;x&quot;&gt;');
+console.log('PASS: listing fees, stale prices, revenue splits, booking conflicts, refunds, capacity, rejoining, linked deletion and feedback validation.');

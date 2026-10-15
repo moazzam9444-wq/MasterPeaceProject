@@ -1,0 +1,8 @@
+KICKS Matchday visual assets
+Created with OpenAI Imagegen on 2026-10-12 for this project.
+kicks-matchday-ai: fictional footballer and stadium, generated photograph-style image.
+kicks-ball-ai: generated transparent football cutout.
+WebP files are optimized copies used by the homepage.
+Motion is a layered Canvas animation controlled by scroll, not generated video.
+The original PNG files are retained for future editing.
+field1-home.webp through field4-home.webp are optimized homepage thumbnails of the existing field photographs; their originals remain unchanged.

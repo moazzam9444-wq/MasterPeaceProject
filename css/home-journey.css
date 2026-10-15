@@ -1,0 +1,219 @@
+/* The KICKS Matchday AI scene, homepage only. */
+.home-page .hero {
+  --shot-nav-height: 77px;
+  --shot-copy: 1;
+  --shot-shade: 1;
+  --shot-finale: 0;
+  --shot-progress: 0;
+  display: block;
+  height: auto;
+  min-height: 620px;
+  overflow: hidden;
+  background: #071712;
+}
+.home-page .hero-stage {
+  position: relative;
+  height: calc(100svh - var(--shot-nav-height));
+  min-height: 620px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.home-page .hero.shot-ready { height: 440svh; min-height: 0; overflow: visible; }
+.home-page .shot-ready .hero-stage { position: sticky; top: var(--shot-nav-height); min-height: 0; }
+.home-page .hero-background {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #071712 url("../assets/images/kicks-matchday-ai.webp") center / cover;
+  transform: scaleX(-1);
+}
+.home-page .hero-real-shot {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.home-page .shot-ready .hero-real-shot { opacity: 1; }
+.home-page .shot-midline {
+  position: absolute; left: 5.8%; top: 26%; z-index: 3; color: #fff;
+  opacity: var(--shot-middle, 0); pointer-events: none;
+  transform: translateY(calc(20px * (1 - var(--shot-middle, 0))));
+  text-shadow: 0 3px 32px #00150dcc;
+}
+.home-page .shot-midline p { font-size: 9px; font-weight: 600; letter-spacing: 2px; margin-bottom: 22px; }
+.home-page .shot-midline strong { font-family: var(--font-heading); font-size: clamp(58px, 7vw, 105px); line-height: .98; letter-spacing: -2px; }
+.home-page .shot-midline em { font-style: normal; color: #93f3b5; }
+.home-page .hero-stage::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, #02140d55, transparent 35%, transparent 65%, #02140dd9);
+  box-shadow: inset 0 0 130px #00110b55;
+}
+.home-page .shot-film-label {
+  position: absolute; top: 24px; left: 5.8%; right: 5.8%; z-index: 3;
+  display: flex; align-items: center; gap: 10px; color: #e8f2ed;
+  font-size: 9px; letter-spacing: 2.3px; font-weight: 600;
+}
+.home-page .shot-film-label > span { width: 5px; height: 5px; border-radius: 50%; background: #8af3b1; }
+.home-page .shot-film-label small { margin-left: auto; font-size: inherit; }
+.home-page .shot-chapters {
+  position: absolute; right: 5.8%; top: 50%; z-index: 3; display: grid; gap: 25px;
+  color: #ffffff80; font-size: 10px; letter-spacing: 2px;
+}
+.home-page .shot-chapters span { display: flex; align-items: center; gap: 12px; }
+.home-page .shot-chapters b { font-size: 9px; font-weight: 500; }
+.home-page [data-shot-phase="set"] .shot-chapters span:nth-child(1),
+.home-page [data-shot-phase="strike"] .shot-chapters span:nth-child(2),
+.home-page [data-shot-phase="score"] .shot-chapters span:nth-child(3) { color: #adffcc; }
+.home-page .hero-overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, #04100ff0, #04100fb5 32%, #04100f20 62%, transparent 80%);
+  opacity: var(--shot-shade);
+  pointer-events: none;
+}
+.home-page .hero-container {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 90px;
+  pointer-events: none;
+}
+.home-page .hero-content {
+  width: 48%;
+  max-width: 650px;
+  margin: 0;
+  animation: none;
+  opacity: var(--shot-copy);
+  transform: translateY(var(--shot-copy-lift, 0px));
+  pointer-events: auto;
+}
+.home-page .hero-content h1 { font-size: clamp(64px, 7vw, 110px); text-shadow: 0 4px 30px #0005; }
+.home-page .hero-description { max-width: 390px; }
+.home-page .shot-finale {
+  position: absolute;
+  z-index: 3;
+  top: 24%;
+  right: auto;
+  left: 5.8%;
+  text-align: left;
+  color: #fff;
+  opacity: var(--shot-finale);
+  transform: translateY(calc(24px * (1 - var(--shot-finale))));
+  pointer-events: none;
+  text-shadow: 0 2px 18px #00150d;
+}
+.home-page .shot-finale strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(72px, 8vw, 115px);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -3px;
+}
+.home-page .shot-finale strong span { color: #7aefab; }
+.home-page .shot-finale > p:not(.shot-eyebrow) { margin: 15px 0 18px; font-size: 15px; color: #dceee4; }
+.home-page .shot-eyebrow { margin-bottom: 14px; font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #b5f5cb; }
+.home-page .shot-finale .btn { pointer-events: auto; }
+.home-page .shot-hud {
+  position: absolute;
+  z-index: 4;
+  bottom: 26px;
+  left: max(155px, calc((100% - 1320px) / 2));
+  right: max(90px, calc((100% - 1320px) / 2));
+  display: grid;
+  grid-template-columns: 1fr minmax(80px, 200px) 1fr;
+  align-items: center;
+  gap: 30px;
+  color: #d7eee1;
+  font-size: 11px;
+}
+.home-page .shot-hud[hidden] { display: none; }
+.home-page .shot-instruction { display: flex; align-items: center; gap: 10px; }
+.home-page .shot-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #80eeb0; box-shadow: 0 0 10px #80eeb066; }
+.home-page .shot-progress { height: 2px; overflow: hidden; border-radius: 8px; background: #ffffff35; }
+.home-page .shot-progress span { display: block; height: 100%; background: #90f4ba; transform: scaleX(var(--shot-progress)); transform-origin: left; }
+.home-page .shot-hud a { justify-self: end; color: #d7eee1; text-decoration: none; }
+.home-page .shot-hud a:hover { color: #fff; }
+.home-page .shot-hud a span { padding-left: 8px; }
+@media (max-width: 991px) {
+  .home-page .hero-content { width: 51%; }
+  .home-page .hero-content h1 { font-size: clamp(52px, 8vw, 78px); }
+}
+@media (max-width: 767px) {
+  .home-page .hero.shot-ready { height: 370svh; }
+  .home-page .hero-container { align-items: flex-start; padding: 72px 24px 80px; }
+  .home-page .hero-content { width: 100%; max-width: 440px; text-align: left; margin: 0; }
+  .home-page .hero-content h1 { font-size: clamp(42px, 11vw, 66px); margin-bottom: 16px; }
+  .home-page .hero-label { font-size: 9px; margin-bottom: 14px; }
+  .home-page .hero-description { font-size: 13px; line-height: 1.7; max-width: 290px; margin-bottom: 20px; }
+  .home-page .hero-buttons { justify-content: flex-start; gap: 10px; }
+  .home-page .hero-buttons .btn { padding: 12px 18px; font-size: 12px; }
+  .home-page .hero-background { background: #061710 url("../assets/images/kicks-matchday-ai.webp") center bottom / auto 56% no-repeat; }
+  .home-page .shot-ready .hero-background { background-image: none; }
+  .home-page .hero-real-shot { height: 100%; top: 0; bottom: 0; mask-image: none; }
+  .home-page .hero-overlay { background: linear-gradient(180deg, #04100fe8, #04100f00 63%); }
+  .home-page .hero-stage::after { box-shadow: none; background: linear-gradient(180deg, transparent 35%, #06171000 52%, #06171000 75%, #061710 90%); }
+  .home-page .shot-film-label { top: 24px; left: 24px; right: 24px; font-size: 8px; letter-spacing: 1.3px; }
+  .home-page .shot-film-label small { display: none; }
+  .home-page .shot-chapters { display: none; }
+  .home-page .shot-hud { bottom: 74px; right: 20px; left: 20px; grid-template-columns: 1fr auto; gap: 14px; font-size: 10px; }
+  .home-page .shot-progress { grid-column: 1 / -1; grid-row: 2; }
+  .home-page .shot-finale { top: 16%; left: 24px; }
+  .home-page .shot-finale strong { font-size: 64px; }
+  .home-page .shot-midline { top: 18%; left: 24px; }
+  .home-page .shot-midline strong { font-size: 51px; }
+  .home-page .shot-midline p { max-width: 230px; line-height: 1.8; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .hero.shot-ready { height: auto; min-height: 620px; overflow: hidden; }
+  .home-page .shot-ready .hero-stage { position: relative; top: auto; min-height: 620px; }
+  .home-page .hero-content { opacity: 1; transform: none; }
+  .home-page .hero-overlay { opacity: 1; }
+  .home-page .shot-finale, .home-page .shot-hud, .home-page .shot-midline { display: none; }
+}
+/* Homepage photographic scroll chapters. */
+.home-page .matchday-scenes{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;opacity:calc(var(--scene-gallery,0) * (1 - var(--scene-ending,0)));background:#102c20;clip-path:inset(calc((1 - var(--scene-gallery,0)) * 50%) 0)}
+.home-page .matchday-word{position:absolute;top:5%;left:-3%;color:#bceac812;font:700 clamp(120px,22vw,350px)/1 var(--font-heading);letter-spacing:-8px;transform:translateX(calc(var(--scene-travel,0) * -90px))}
+.home-page .matchday-photo{position:absolute;width:23%;height:55%;top:25%;border:1px solid #d9f7e838;border-radius:12px;overflow:hidden;box-shadow:0 25px 70px #0006}
+.home-page .matchday-photo img{width:100%;height:100%;object-fit:cover;transform:scale(calc(1.2 - var(--scene-travel,0) * .14))}
+.home-page .matchday-photo span{position:absolute;inset:auto 0 0;background:linear-gradient(transparent,#061c13e8);padding:50px 20px 22px;color:#fff;font-size:11px;letter-spacing:3px}
+.home-page .photo-one{left:49%;transform:translate(calc((1 - var(--scene-gallery,0)) * 100vw),calc(var(--scene-travel,0) * -65px)) rotate(-9deg)}
+.home-page .photo-two{left:66%;top:18%;transform:translateY(calc((1 - var(--scene-gallery,0)) * 100vh + var(--scene-travel,0) * 45px)) rotate(6deg)}
+.home-page .photo-three{left:82%;top:31%;transform:translateX(calc((1 - var(--scene-gallery,0)) * 150vw)) rotate(13deg)}
+.home-page .matchday-ending{position:absolute;z-index:2;inset:0;pointer-events:none;overflow:hidden;clip-path:circle(calc(var(--scene-ending,0) * 150%) at 76% 52%);opacity:var(--scene-ending,0)}
+.home-page .matchday-ending img{width:100%;height:100%;object-fit:cover;transform:scale(calc(1.3 - var(--scene-ending,0) * .3))}
+.home-page .matchday-ending::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#051d16ed,#051d1660 65%,#051d1620)}
+@media(max-width:767px){
+.home-page .matchday-word{top:45%;font-size:110px;letter-spacing:-3px}
+.home-page .matchday-photo{width:48%;height:35%;top:54%}
+.home-page .photo-one{left:-12%}.home-page .photo-two{left:29%;top:50%}.home-page .photo-three{left:70%;top:57%}
+.home-page .matchday-photo span{font-size:8px;padding:35px 12px 16px;letter-spacing:1px}
+.home-page .matchday-ending::after{background:linear-gradient(180deg,#051d16eb,#051d1645)}
+}
+@media(prefers-reduced-motion:reduce){.home-page :is(.matchday-scenes,.matchday-ending){display:none}}
+.home-page .shot-chapters{opacity:calc(1 - var(--scene-gallery,0))}
+@media(max-width:767px){
+.home-page .matchday-photo{height:29%;top:51%}
+.home-page .photo-two{top:48%}.home-page .photo-three{top:53%}
+}
+@media(max-width:767px) and (prefers-reduced-motion:no-preference){
+.home-page :is(.field-card,.game-card,.tournament-card,.why-card,.step-card){translate:0 calc((1 - var(--card-entry,1)) * 48px);rotate:0deg}
+}
+/* Consistent campaign photography: pitch, teammates, kickoff. */
+.home-page .matchday-photo{border-color:#d9f7e84d;border-radius:16px}
+.home-page .photo-one img{object-position:85% 65%}
+.home-page .photo-two img{object-position:50% 45%}
+.home-page .photo-three img{object-position:50% 62%}
+.home-page .matchday-photo span{font-size:9px;letter-spacing:2px}
+.home-page .matchday-ending img{object-position:60% 55%}
+@media(max-width:767px){.home-page .matchday-photo span{font-size:7px;letter-spacing:.7px;padding-left:10px;padding-right:10px}}
+
+@media(max-width:767px){.home-page .matchday-ending img{object-position:78% 55%}}

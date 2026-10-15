@@ -1,0 +1,131 @@
+/* Short entrances and playful interactions, only on the home page. */
+.home-page .home-reading-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #148d4b, #8bf4b2); transform-origin: left; z-index: 1100; pointer-events: none; }
+.home-page .creative-band { overflow: hidden; }
+.home-page .creative-band > .container { display: block; max-width: none; padding-inline: 0; overflow: hidden; }
+.home-page .home-ribbon-track { display: flex; width: max-content; }
+.home-page .home-ribbon-group { display: flex; align-items: center; justify-content: space-around; gap: clamp(24px, 5vw, 90px); min-width: 100vw; padding-inline: 32px; flex-shrink: 0; }
+.home-page .home-ribbon-group span { white-space: nowrap; }
+.home-page .home-about-visual { overflow: hidden; }
+.home-page .home-about-visual img { transform: translateY(var(--about-depth, 0px)) scale(1.09); }
+.home-page .section-header h2 { text-wrap: balance; }
+.home-page .section-header h2::after { content: ""; display: block; width: 52px; height: 3px; border-radius: 4px; margin: 18px auto 0; background: linear-gradient(90deg,#169a50,#8be8af); transform-origin: center; }
+.home-page .final-cta { position: relative; overflow: hidden; isolation: isolate; }
+.home-page .final-cta::before { content: ""; position: absolute; z-index: -1; width: 500px; height: 500px; border: 1px solid #8af2ab30; border-radius: 50%; left: -220px; top: -170px; box-shadow: 0 0 0 70px #8af2ab09, 0 0 0 140px #8af2ab06; }
+.home-page .step-card { position: relative; overflow: hidden; }
+.home-page .step-card::after { content: ""; position: absolute; right: -36px; bottom: -36px; width: 110px; height: 110px; border-radius: 50%; border: 1px solid #198b4930; pointer-events: none; }
+.home-page .section-header:has(.home-section-label) { column-gap: 32px; row-gap: 14px; }
+.home-page .section-header .home-section-label { grid-column: 1 / -1; justify-self: start; max-width: none; color: #28724a; letter-spacing: 2px; font-size: 10px; font-weight: 700; }
+.home-page .section-header h2::after { margin-left: 0; }
+.home-page .field-image-wrapper { height: 230px; background: #123627; }
+.home-page .field-image-wrapper .field-image { width: 100%; height: 100%; object-fit: cover; transform: translateY(var(--card-depth, 0px)) scale(1.14); }
+.home-page .field-card { border-radius: 22px; }
+.home-page .open-games-section { background: #0c2319; position: relative; isolation: isolate; overflow: hidden; }
+.home-page .open-games-section::before { content: ""; pointer-events: none; position: absolute; z-index: -1; width: 460px; height: 460px; border: 1px solid #9df4bd1c; border-radius: 50%; right: -130px; top: -220px; box-shadow: 0 0 0 65px #9df4bd09, 0 0 0 130px #9df4bd05; }
+.home-page .open-games-section .section-header h2 { color: #fff; }
+.home-page .open-games-section .section-header p { color: #b9cfc1; }
+.home-page .open-games-section .section-header .home-section-label { color: #91e9ae; }
+.home-page .open-games-section .game-card { background: #f9fcfa; }
+.home-page .open-games-section .view-all-btn { border-color: #a5eac0; color: #c5f6d7; }
+.home-page .tournaments-section { background: #f2f6f0; }
+.home-page .tournament-card { border-top: 3px solid #30975b; }
+.home-page .tournament-icon { transition: transform .45s ease; }
+.home-page .home-about { padding-top: 110px; padding-bottom: 110px; }
+.home-page .home-about-visual { border-radius: 30px 30px 80px 30px; }
+html[data-theme="dark"] .home-page .open-games-section .game-card { background: var(--theme-card); }
+/* Each part of the homepage has its own small football detail. */
+.home-page .home-about-visual { position: relative; }
+.home-page .home-about-visual::after { content: "MATCHDAY / KICKS"; position: absolute; top: 22px; right: 22px; padding: 9px 13px; border: 1px solid #ffffff65; border-radius: 30px; color: #fff; background: #12322270; backdrop-filter: blur(8px); font-size: 9px; letter-spacing: 1.5px; }
+.home-page .home-about-values span { transition: translate .25s, box-shadow .25s; }
+.home-page .home-about-values span:hover { translate: 0 -3px; box-shadow: 0 6px 14px #174b2310; }
+.home-page .game-card { position: relative; overflow: hidden; }
+.home-page .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg,#27a25c,#9be5b6); transform: scaleX(.15); transform-origin: left; transition: transform .55s ease; }
+.home-page .game-card:hover::before, .home-page .game-card:focus-within::before { transform: scaleX(1); }
+.home-page .tournaments-section #home-tournaments-grid { counter-reset: home-cup; }
+.home-page .tournament-card { position: relative; isolation: isolate; counter-increment: home-cup; }
+.home-page .tournament-card::after { content: counter(home-cup, decimal-leading-zero); position: absolute; z-index: -1; top: 14px; right: 24px; color: #3384540d; font: 700 104px/.9 var(--font-heading); pointer-events: none; }
+.home-page .why-card { position: relative; overflow: hidden; transition: background .35s, border-color .35s; }
+.home-page .why-card::after { content: ""; position: absolute; bottom: 0; left: 24px; right: 24px; height: 2px; background: #8ce9ac; transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+.home-page .why-card:hover { background: #ffffff06; border-color: #81c89a; }
+.home-page .why-card:hover::after { transform: scaleX(1); }
+.home-page .why-icon { border-radius: 50%; box-shadow: 0 0 0 6px #80c99b08; }
+.home-page .how-it-works-section .step-card { border-top: 0; overflow: hidden; }
+.home-page .step-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #c7d8cb; }
+.home-page .step-card.section-enter::before { background: linear-gradient(90deg,#258c4e,#9ad4ad); }
+.home-page .step-number { transition: color .3s, transform .3s; }
+.home-page .step-card:hover .step-number { color: #31854f; transform: translateY(-4px); }
+.home-page .final-cta { background: linear-gradient(115deg,#163f2b,#24583c); }
+.home-page .final-cta::after { content: ""; position: absolute; z-index: -1; width: 320px; height: 320px; border: 1px solid #c6edce24; border-radius: 50%; right: -110px; bottom: -190px; background: transparent; box-shadow: 0 0 0 45px #c6edce08; }
+.home-page .faq-list details { padding: 20px 18px; margin-bottom: 10px; border: 1px solid #d0ded5; border-radius: 14px; background: #ffffff70; transition: background .25s, border-color .25s, box-shadow .25s; }
+.home-page .faq-list details[open] { background: #f1f8f2; border-color: #a1c8ac; box-shadow: inset 3px 0 #439363; }
+.home-page .faq-list details[open] summary { color: #21623a; }
+html[data-theme="dark"] .home-page .faq-list details[open] { background: #1b3223; }
+html[data-theme="dark"] .home-page .faq-list details[open] summary { color: #b1edc1; }
+@media(max-width:767px){
+ .home-page .section-header:has(.home-section-label){grid-template-columns:1fr;gap:14px}
+ .home-page .section-header:has(.home-section-label)>p{justify-self:start}
+ .home-page .field-image-wrapper{height:245px}
+ .home-page .home-about{padding-top:72px;padding-bottom:72px}
+}
+@media(prefers-reduced-motion:no-preference){
+ .home-page .section-enter{animation:home-rise .85s cubic-bezier(.2,.7,.25,1) both;animation-delay:var(--home-delay,0ms)}
+ .home-page .home-ribbon-track{animation:home-ribbon 28s linear infinite}
+ .home-page .creative-band:hover .home-ribbon-track{animation-play-state:paused}
+ .home-page .section-header.section-enter h2::after{animation:home-line .9s .2s both}
+ .home-page .final-cta::before{animation:home-orbit 12s ease-in-out infinite alternate}
+ .home-page .field-card img,.home-page .game-card img,.home-page .tournament-card img{transition:transform .7s cubic-bezier(.2,.7,.25,1)}
+ .home-page .image-moving .field-image{animation:home-card-drift 10s ease-in-out infinite alternate}
+ .home-page .row>:nth-child(even) .image-moving .field-image{animation-direction:alternate-reverse}
+ .home-page .field-image-wrapper::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,#ffffff18 48%,transparent 65%);transform:translateX(-120%);pointer-events:none;transition:transform .85s ease}
+ .home-page .home-about-visual.section-enter{animation:home-image .95s cubic-bezier(.2,.7,.25,1) both}
+ .home-page .row>:nth-child(2){--home-delay:80ms}
+ .home-page .row>:nth-child(3){--home-delay:160ms}
+ .home-page .row>:nth-child(4){--home-delay:240ms}
+ .home-page .home-about-visual.section-enter{animation-name:home-image}
+ .home-page .home-about-copy.section-enter{animation-delay:100ms}
+ .home-page .creative-band.section-enter i{animation:home-turn .9s .2s ease-out both}
+ .home-page .step-card.section-enter .step-number,.home-page .why-card.section-enter .why-icon{animation:home-pop .5s .2s both}
+ .home-page .step-card.section-enter::before{animation:home-step-line 1s cubic-bezier(.2,.7,.25,1) both;animation-delay:var(--home-delay,0ms)}
+ .home-page .faq-list details[open]>p{animation:home-answer .3s ease-out both}
+ .home-page .play-link span,.home-page .why-icon,.home-page .step-icon{transition:transform .25s ease}
+ @keyframes home-rise{from{opacity:.35;translate:0 22px}to{opacity:1;translate:0 0}}
+ @keyframes home-ribbon{to{transform:translateX(-50%)}}
+ @keyframes home-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+ @keyframes home-image{from{opacity:.3;clip-path:inset(0 14% 0 0 round 24px);translate:-24px 0}to{opacity:1;clip-path:inset(0 round 24px);translate:0 0}}
+ @keyframes home-orbit{to{translate:55px 35px}}
+ @keyframes home-card-drift{from{object-position:40% 42%;scale:1}to{object-position:60% 58%;scale:1.035}}
+ @keyframes home-slide{from{opacity:.4;translate:-24px 0}to{opacity:1;translate:0 0}}
+ @keyframes home-turn{from{transform:rotate(-90deg)}to{transform:rotate(0)}}
+ @keyframes home-pop{0%{transform:scale(.8)}65%{transform:scale(1.08)}100%{transform:scale(1)}}
+ @keyframes home-float{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -10px;rotate:3deg}}
+ @keyframes home-step-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+ @keyframes home-answer{from{opacity:.3;translate:0 -5px}to{opacity:1;translate:0 0}}
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .home-page .field-card,.home-page .game-card,.home-page .tournament-card,.home-page .why-card,.home-page .step-card{transition:transform .25s,box-shadow .25s,border-color .25s}
+ .home-page .field-card:hover,.home-page .game-card:hover,.home-page .tournament-card:hover{transform:translateY(-5px)}
+ .home-page .field-card:hover .field-image{transform:translateY(var(--card-depth,0px)) scale(1.19)}
+ .home-page .field-card:hover .field-image-wrapper::after{transform:translateX(120%)}
+ .home-page .tournament-card:hover .tournament-icon{transform:rotate(-8deg) scale(1.12)}
+ .home-page .why-card:hover .why-icon,.home-page .step-card:hover .step-icon{transform:rotate(-6deg) scale(1.08)}
+ .home-page .play-link:hover span{transform:translate(3px,-3px)}
+}
+@media(max-width:767px){.home-page .row>*{--home-delay:0ms}}
+@media(prefers-reduced-motion:reduce){.home-page .home-about-visual img{transform:none}.home-page .home-ribbon-group[aria-hidden]{display:none}}
+@media(prefers-reduced-motion:reduce){.home-page .game-card::before,.home-page .why-card::after,.home-page .step-number,.home-page .home-about-values span{transition:none}}
+/* Motion follows the scroll in both directions, without changing the page layout. */
+@media(prefers-reduced-motion:no-preference){
+.home-page main>section:not(.hero){--section-reveal:1;--section-drift:0}
+.home-page .section-header h2{clip-path:inset(0 calc((1 - var(--section-reveal,1)) * 100%) 0 0);translate:calc(var(--section-drift,0) * -18px) 0}
+.home-page :is(.field-card,.game-card,.tournament-card,.why-card,.step-card){--card-entry:1;translate:calc((1 - var(--card-entry)) * var(--card-direction,1) * 28px) calc((1 - var(--card-entry)) * 65px);rotate:calc((1 - var(--card-entry)) * var(--card-direction,1) * 4deg);opacity:calc(.25 + var(--card-entry) * .75)}
+.home-page .home-about-visual{clip-path:inset(0 calc((1 - var(--section-reveal,1)) * 40%) 0 0 round 24px)}
+.home-page .home-about-copy{translate:calc(var(--section-drift,0) * 24px) 0}
+.home-page .step-card::before{scale:var(--card-entry,1) 1;transform-origin:left}
+.home-page .final-cta h2{scale:calc(.85 + var(--section-reveal,1) * .15);translate:0 calc(var(--section-drift,0) * -30px)}
+.home-page .kicks-faq .faq-list{translate:0 calc(var(--section-drift,0) * 16px)}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+.home-page :is(.why-card,.step-card):hover{background-image:radial-gradient(220px circle at var(--spot-x,50%) var(--spot-y,50%),#85dba325,transparent 75%)}
+}
+/* Clip decorative travel at the page edge without creating a nested scroller. */
+.home-page main{overflow-x:clip}
+@media(max-width:767px){.home-page .home-about-copy{translate:0 0}}

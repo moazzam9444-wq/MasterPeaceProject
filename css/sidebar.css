@@ -1,0 +1,124 @@
+/* Shared sidebar for player, field owner and admin dashboards. */
+.dash-layout{grid-template-columns:260px minmax(0,1fr)}
+.dash-sidebar{padding:30px 18px 20px;background:linear-gradient(170deg,#163c2a 0%,#10291e 65%,#0d231a 100%);border-right:1px solid #284937;scrollbar-width:thin;scrollbar-color:#456c53 transparent}
+.dash-brand{padding:0 16px 24px;border-bottom:1px solid #ffffff12}
+.dash-brand img{width:40px}.dash-brand span{font-size:32px}
+.side-label{margin:25px 16px 13px;color:#9dbba8;font-size:9px;letter-spacing:1.8px}
+#dashNav{gap:7px}
+#dashNav a{position:relative;padding:9px 12px;border:1px solid transparent;border-radius:13px;gap:12px;min-height:48px;transition:background .2s,border-color .2s;color:#b8cfc0}
+#dashNav a .sidebar-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#ffffff06;color:#a5c6b0;flex-shrink:0}
+#dashNav .sidebar-icon svg{width:19px;height:19px}
+#dashNav a .sidebar-link-label{width:auto;font:500 12px/1.5 'Inter',sans-serif;color:inherit}
+#dashNav a:hover{background:#ffffff08;border-color:#ffffff0b;color:white}
+#dashNav a[aria-current]{background:#d3f7df;color:#163d28;border-color:#d3f7df;box-shadow:0 5px 15px #00000012}
+#dashNav a[aria-current] .sidebar-icon{color:#17783e;background:#163d280b}
+#dashNav a[aria-current]::after{content:"";width:5px;height:5px;border-radius:50%;background:#218c4d;margin-left:auto}
+.sidebar-profile{margin:30px 4px 0;padding:13px 10px;border:1px solid #ffffff16;border-radius:14px;display:flex;align-items:center;gap:10px;text-decoration:none;color:#eaf5ee;background:#ffffff05}
+.sidebar-profile img{width:36px;height:36px;border-radius:11px;object-fit:cover;flex-shrink:0}
+.sidebar-profile span{min-width:0;flex:1}.sidebar-profile strong{display:block;font-size:11px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sidebar-profile small{display:block;color:#9cbda7;font-size:9px;text-transform:capitalize;margin-top:4px}
+.sidebar-profile b{font-size:15px;font-weight:400;color:#a7c8b2}
+.sidebar-profile:hover{border-color:#90c9a455;color:#fff}
+.side-bottom{margin-top:auto;padding:24px 14px 0}.side-bottom>.side-dot,.side-bottom>strong,.side-bottom>p{display:none}
+.side-bottom a{margin:0;padding:10px 0;font-size:10px;color:#a6c2b0}
+.sidebar-logout{padding:10px 0;margin-top:4px;color:#c0d6c7;font-size:10px}
+.dash-sidebar :focus-visible{outline:2px solid #a7eabf;outline-offset:4px}
+@media(max-width:1100px) and (min-width:768px){.dash-layout{grid-template-columns:225px minmax(0,1fr)}.dash-sidebar{padding:26px 12px 18px}}
+@media(max-width:767px){.dash-layout{grid-template-columns:minmax(0,1fr)}.dash-sidebar{padding:18px 16px 12px;height:auto;position:static}.dash-brand{padding:0 0 14px;border:0}.dash-brand img{width:30px}.dash-brand span{font-size:26px}.side-label,.sidebar-profile,.side-bottom{display:none}#dashNav{flex-direction:row;gap:8px;padding:0 0 6px;overflow-x:auto}#dashNav a{padding:8px 12px;min-height:42px;flex-shrink:0;gap:7px}#dashNav a .sidebar-icon{width:22px;height:22px;background:transparent}#dashNav .sidebar-icon svg{width:17px;height:17px}#dashNav a .sidebar-link-label{font-size:10px}#dashNav a[aria-current]::after{display:none}}
+@media(prefers-reduced-motion:reduce){#dashNav a{transition:none}}
+
+#dashNav a[aria-current] .sidebar-link-label{color:#163d28}
+
+/* Keep the account and exit controls visible; only the menu scrolls. */
+@media(min-width:768px){
+  .dash-sidebar{overflow:hidden;padding-top:24px;padding-bottom:16px}
+  .dash-brand{padding-bottom:20px;flex-shrink:0}
+  .side-label{margin-top:20px;margin-bottom:12px;flex-shrink:0}
+  #dashNav{flex:1;min-height:0;overflow-y:auto;gap:5px;padding:2px 4px 8px}
+  #dashNav a{min-height:44px;padding:7px 10px;flex-shrink:0}
+  .sidebar-profile{margin-top:16px;flex-shrink:0}
+  .side-bottom{margin-top:0;padding-top:12px;flex-shrink:0}
+}
+@media(prefers-reduced-motion:no-preference){
+  #dashNav .sidebar-icon{transition:background .2s,translate .2s}
+  #dashNav a:hover .sidebar-icon{translate:2px 0}
+  .sidebar-profile{transition:background .2s,border-color .2s}
+}
+.sidebar-profile .sidebar-initial{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:11px;background:#d3f7df;color:#163d28;font-size:15px;font-weight:700}
+/* Sidebar inspired by the supplied clean, icon-led reference. */
+.dash-layout{grid-template-columns:250px minmax(0,1fr)}
+.dash-sidebar{background:#fff;color:#23352a;padding:25px 18px 18px;border-right:1px solid #e5ece7;box-shadow:3px 0 18px #173c2906;scrollbar-color:#c8d7cd transparent}
+.dash-brand{padding:0 13px 20px;border-bottom:1px solid #edf1ee;gap:8px}
+.dash-brand img{width:35px}.dash-brand span{font-size:29px;color:#142a1d}
+.side-label{margin:23px 13px 10px;color:#94a69a;font-size:9px;font-weight:700;letter-spacing:1.6px}
+#dashNav{gap:5px;padding:2px 0}
+#dashNav a{min-height:46px;padding:8px 12px;border:1px solid transparent;border-radius:10px;gap:12px;color:#5f6f65;transition:background .18s,border-color .18s,color .18s}
+#dashNav a .sidebar-icon{width:32px;height:32px;border-radius:9px;background:transparent;color:#74857a}
+#dashNav .sidebar-icon svg{width:19px;height:19px}
+#dashNav a .sidebar-link-label{font-size:12px;font-weight:500;color:inherit}
+#dashNav a:hover{background:#f5f9f6;border-color:#edf3ef;color:#245c3a}
+#dashNav a[aria-current]{background:#e9f6ec;border-color:#e1f1e5;color:#176b37;box-shadow:none}
+#dashNav a[aria-current] .sidebar-icon{background:#d9efdf;color:#176b37}
+#dashNav a[aria-current]::after{content:"";width:6px;height:6px;border-radius:50%;background:#24904b;margin-left:auto}
+.sidebar-profile{margin:14px 0 0;padding:11px 9px;border:1px solid #e9efeb;border-radius:11px;color:#314337;background:#fafcfb;gap:9px}
+.sidebar-profile:hover{border-color:#c9dfcf;background:#f4faf5;color:#214d30}
+.sidebar-profile img{width:34px;height:34px;border-radius:50%}
+.sidebar-profile strong{font-size:11px;color:#26382b}
+.sidebar-profile small{color:#829187;font-size:9px}
+.sidebar-profile b{color:#809186;font-size:13px}
+.sidebar-profile .sidebar-initial{width:34px;height:34px;flex-basis:34px;border-radius:50%;background:#e3f3e7;color:#1c7540}
+.side-bottom{padding:13px 10px 0}
+.side-bottom a{padding:11px 4px;color:#66786c;font-size:10px}
+.side-bottom a:hover{color:#1b7840}
+.sidebar-logout{width:100%;margin-top:3px;padding:11px 4px;text-align:left;color:#7c665f;border-top:1px solid #edf1ee}
+.sidebar-logout:hover{color:#b34b40}
+.dash-sidebar :focus-visible{outline:2px solid #25874a;outline-offset:2px}
+@media(min-width:768px){
+ .dash-sidebar{padding-top:22px;padding-bottom:14px}
+ .dash-brand{padding-bottom:18px}
+ .side-label{margin-top:19px;margin-bottom:9px}
+ #dashNav{gap:4px;padding:0 2px 6px}
+ #dashNav a{min-height:43px;padding:6px 9px}
+ .sidebar-profile{margin-top:12px}
+ .side-bottom{padding-top:10px}
+}
+@media(max-width:1100px) and (min-width:768px){.dash-layout{grid-template-columns:225px minmax(0,1fr)}.dash-sidebar{padding-left:13px;padding-right:13px}}
+@media(max-width:767px){
+ .dash-sidebar{background:#fff;padding:15px 15px 10px;border-right:0;border-bottom:1px solid #e5ece7;box-shadow:0 3px 16px #173c2908}
+ .dash-brand{padding:0 0 11px;border-bottom:1px solid #edf1ee}
+ .dash-brand img{width:29px}.dash-brand span{font-size:25px}
+ #dashNav{gap:5px;padding:7px 0 4px}
+ #dashNav a{min-height:39px;padding:6px 10px;border-radius:9px}
+ #dashNav a .sidebar-icon{width:20px;height:20px}
+ #dashNav .sidebar-icon svg{width:16px;height:16px}
+ #dashNav a[aria-current]::after{display:none}
+}
+@media(prefers-reduced-motion:reduce){#dashNav a,.sidebar-profile{transition:none}}
+/* A gentle KICKS green gradient through the dashboard sidebar. */
+.dash-sidebar{background:linear-gradient(165deg,#205236 0%,#17472e 55%,#123a25 100%);border-right-color:#2c6242;box-shadow:3px 0 20px #10291e12;scrollbar-color:#60916c transparent}
+.dash-brand{border-color:#ffffff20}
+.dash-brand span{color:#f1faf3}
+.side-label{color:#a9cfb3}
+#dashNav a{color:#d0e1d4}
+#dashNav a .sidebar-icon{color:#b2d4bb}
+#dashNav a:hover{background:#ffffff10;border-color:#ffffff14;color:#fff}
+#dashNav a[aria-current]{background:#d9f3df;border-color:#d9f3df;color:#17472e}
+#dashNav a[aria-current] .sidebar-icon{background:#c5ebce;color:#176838}
+#dashNav a[aria-current]::after{background:#24874a}
+.sidebar-profile{background:#ffffff0b;border-color:#ffffff20;color:#f1faf3}
+.sidebar-profile:hover{background:#ffffff14;border-color:#ffffff44;color:#fff}
+.sidebar-profile strong{color:#f1faf3}
+.sidebar-profile small,.sidebar-profile b{color:#b2d0b9}
+.sidebar-profile .sidebar-initial{background:#d9f3df;color:#176838}
+.side-bottom a{color:#c3d8c8}
+.side-bottom a:hover{color:#fff}
+.sidebar-logout{color:#d8c9c5;border-color:#ffffff20}
+.sidebar-logout:hover{color:#ffd2c9}
+.dash-sidebar :focus-visible{outline-color:#b3f2c4}
+@media(max-width:767px){.dash-layout{grid-template-columns:minmax(0,1fr)}.dash-sidebar{background:linear-gradient(165deg,#205236 0%,#17472e 58%,#123a25 100%);border-color:#2c6242}}
+
+/* Keep the selected section bright and readable against the green sidebar. */
+#dashNav a[aria-current]{background:#fff;border-color:#fff;color:#17472e;box-shadow:0 5px 16px #09251622}
+#dashNav a[aria-current] .sidebar-icon{background:#edf6ef;color:#176838}
+#dashNav a[aria-current] .sidebar-link-label{color:#17472e}
+#dashNav a[aria-current]::after{background:#24874a}

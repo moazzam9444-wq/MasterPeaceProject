@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sign in to your KICKS account." />
+    <title>Join the team | KICKS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/auth.css?v=button-2" />
+    <script src="../../js/admin-account.js?v=restored-1" defer></script>
+    <script src="../../js/data-store.js?v=review-20261015" defer></script>
+    <script src="../../js/account.js?v=review-20261015" defer></script>
+    <script src="../../js/auth.js?v=card-turn-2" defer></script>
+    <link rel="stylesheet" href="../../css/account.css?v=accounts-7" />
+  <link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
+<script src="../../js/theme.js?v=readable-nav-1"></script>
+<link rel="stylesheet" href="../../css/login-style.css?v=navbar-9">
+<script src="../../js/auth-scene.js?v=1" defer></script>
+</head>
+  <body class="auth-page login-page register-page">
+    <a class="auth-skip" href="#authForm">Skip to form</a>
+    <div class="auth-stadium" aria-hidden="true"></div>
+    <header class="auth-top">
+      <a class="back-home" href="../../index.html">← Home</a>
+    </header>
+    <main class="auth-shell">
+<section class="auth-panel" aria-labelledby="formTitle">
+        <div class="form-wrap">
+          <a class="auth-card-brand" href="../../index.html" aria-label="KICKS home"><img src="../../assets/logo/kicks-logo.png" alt="" width="50"><span>KICKS</span></a>
+          <h1 id="formTitle">Create your account</h1>
+          <p class="form-intro" id="formIntro">Welcome back to KICKS.</p>
+
+          <form id="authForm" novalidate>
+            <fieldset class="role-fieldset">
+              <legend>Account type</legend>
+              <div class="role-options">
+                <label
+                  ><input
+                    type="radio"
+                    name="role"
+                    value="player"
+                    checked
+                  /><span><strong>Player</strong></span></label
+                ><label
+                  ><input type="radio" name="role" value="owner" /><span
+                    ><strong>Field owner</strong></span
+                  ></label
+                >
+              </div>
+            </fieldset>
+
+            <div id="adminNotice" class="admin-notice" hidden>
+              Admin accounts are assigned by KICKS.
+            </div>
+            <div id="nameGroup" class="input-group" hidden>
+              <label for="fullName">Full name</label
+              ><input
+                id="fullName"
+                name="fullName"
+                autocomplete="name"
+                maxlength="100"
+                aria-describedby="nameError"
+                placeholder="Your full name"
+              />
+              <p class="field-error" id="nameError"></p>
+            </div>
+            <div class="input-group">
+              <label for="email">Email address</label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="username"
+                required
+                maxlength="254"
+                placeholder="you@example.com"
+                aria-describedby="emailError"
+              />
+              <p class="field-error" id="emailError"></p>
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <div class="password-input">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                  placeholder="Enter your password"
+                  aria-describedby="passwordHint passwordError"
+                /><button
+                  class="password-toggle"
+                  type="button"
+                  data-password="password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p id="passwordHint" class="input-hint" hidden>
+                Use at least 8 characters, including a letter and a number.
+              </p>
+              <p class="field-error" id="passwordError"></p>
+            </div>
+            <div id="confirmGroup" class="input-group" hidden>
+              <label for="confirmPassword">Confirm password</label>
+              <div class="password-input">
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="Re-enter your password"
+                  aria-describedby="confirmError"
+                /><button
+                  class="password-toggle"
+                  type="button"
+                  data-password="confirmPassword"
+                  aria-label="Show confirm password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <p class="field-error" id="confirmError"></p>
+            </div>
+            <div id="loginExtras" hidden></div>
+            <button id="submitAuth" class="submit-auth" type="submit">
+              <span id="submitLabel">Log in as player</span
+              ><span aria-hidden="true">↗</span>
+            </button>
+            <p
+              id="formStatus"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+          <p class="switch-copy" id="switchCopy">
+            New to the team? <a href="register.html">Create an account →</a>
+          </p>
+        </div>
+      </section>
+    </main>
+  <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+</body>
+</html>

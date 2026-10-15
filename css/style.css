@@ -1,0 +1,183 @@
+/* =========================
+   Global Variables
+========================= */ html {
+  scroll-behavior: smooth;
+}
+:root {
+  /* Colors */ --primary-color: #16a34a;
+  --primary-hover: #15803d;
+  --dark-color: #0f172a;
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --active-color: #dcfce7;
+  --soft-green: #f0fdf4;
+  --hero-color: #0f231d;
+  --accent-light: #4ade80;
+  --border-color: #e2e8f0;
+  --button-color: #15803d;
+  /* Fonts */ --font-primary: "Inter", sans-serif;
+  --font-heading: "Oswald", sans-serif;
+  --font-sport: "Oswald", sans-serif;
+}
+/* =========================
+   Reset
+========================= */ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* =========================
+   Body
+========================= */ body {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+/* =========================
+   Navbar
+========================= */ /* =========================
+   Navbar
+========================= */ .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  transition: 0.3s;
+}
+/* Logo */ .navbar-logo {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+/* Navbar Links */ .navbar .nav-link {
+  position: relative;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 12px !important;
+  transition: 0.3s;
+}
+.navbar .nav-link:hover {
+  color: var(--primary-color);
+}
+.navbar .nav-link.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+/* Green Line */ .navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+.navbar .nav-link:hover::after, .navbar .nav-link.active::after {
+  width: 55%;
+}
+/* Login Button */ .navbar .btn-success {
+  padding: 9px 20px;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.navbar .btn-success:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+/* Navbar After Scroll */ .navbar.navbar-scrolled {
+  padding: 8px 0;
+  background-color: #ffffff;
+  box-shadow: 0 6px 25px rgba(15, 23, 42, 0.1);
+}
+/* Section Scroll Position */ section[id] {
+  scroll-margin-top: 90px;
+}
+/* Mobile */ @media (max-width: 991px) {
+  .navbar-collapse {
+    padding-top: 15px;
+  }
+  .navbar-nav {
+    text-align: center;
+  }
+  .navbar .btn-success {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+.navbar-logo {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.navbar-brand-text {
+  font-family: var(--font-sport);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--dark-color);
+}
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+}
+.back-to-top.show {
+  display: flex;
+}
+.back-to-top:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+}
+.back-to-top.show {
+  display: flex;
+}
+/* =========================
+   Scroll Progress
+========================= */ /* Shared typography, contrast and keyboard access for every page. */ body {
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea {
+  font: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--primary-hover);
+  outline-offset: 4px;
+}
+.navbar .btn-success {
+  background-color: var(--button-color);
+  border-color: var(--button-color);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

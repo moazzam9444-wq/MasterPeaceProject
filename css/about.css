@@ -1,0 +1,225 @@
+.about-hero {
+  background: #eaf3ee;
+  color: #173a29;
+  padding: 88px 0 96px;
+  overflow: hidden;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  align-items: center;
+}
+.about-hero h1 {
+  font: 600 clamp(3rem, 5.6vw, 5.4rem)/1.04 "Oswald", sans-serif;
+  max-width: 620px;
+  margin: 18px 0 25px;
+}
+.about-hero p:not(.eyebrow) {
+  color: #566b60;
+  font-size: 18px;
+  max-width: 500px;
+  line-height: 1.8;
+}
+.about-button {
+  display: inline-flex;
+  padding: 15px 23px;
+  background: #16803f;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 18px;
+  transition: transform 0.2s, background 0.2s;
+}
+.about-button:hover {
+  background: #116632;
+  color: #fff;
+  transform: translateY(-3px);
+}
+.about-playbook {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid #d1e2d7;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 24px 70px #163a2612;
+}
+.playbook-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6eee8;
+  color: #668071;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+.playbook-step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 42px 1fr 20px;
+  gap: 14px;
+  align-items: center;
+  min-height: 94px;
+  border-bottom: 1px solid #e6eee8;
+}
+.playbook-step:last-of-type { border-bottom: 0; }
+.playbook-step > span {
+  color: #16803f;
+  font: 500 24px "Oswald", sans-serif;
+}
+.playbook-step strong, .playbook-step small { display: block; }
+.playbook-step strong { color: #173a29; font-size: 15px; }
+.playbook-step small { margin-top: 5px; color: #718077; font-size: 12px; }
+.playbook-step i { color: #7a9b85; font-style: normal; }
+.playbook-mark {
+  position: absolute;
+  right: -12px;
+  bottom: -93px;
+  color: #f2f7f3;
+  font: italic 700 260px/.8 "Oswald", sans-serif;
+  pointer-events: none;
+}
+.about-story {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin: 20px 0 45px;
+}
+.about-story h2, .about-roles h2, .about-contact h2 {
+  font: 600 clamp(2rem, 3.5vw, 3.5rem)/1.15 "Oswald";
+  color: #152f31;
+}
+.story-grid p {
+  color: #64746f;
+  line-height: 1.85;
+}
+.about-values, .about-role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.about-values article {
+  border-top: 2px solid #d3e5db;
+  padding: 27px 16px 0 0;
+}
+.about-values span {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #168552;
+  font-weight: 700;
+}
+.about-values h3 {
+  font: 500 27px "Oswald";
+  margin: 16px 0;
+}
+.about-values p {
+  color: #64746f;
+  line-height: 1.8;
+}
+.about-roles {
+  padding: 75px 0;
+  background: #eaf3ee;
+}
+.about-role-grid {
+  margin-top: 36px;
+}
+.about-role-grid a {
+  background: white;
+  padding: 30px;
+  border: 1px solid #dce9e1;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #213b35;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.about-role-grid a:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 45px #153a3212;
+}
+.about-role-grid span {
+  font: 500 40px "Oswald";
+  color: #9bc4b0;
+}
+.about-role-grid h3 {
+  font: 500 28px "Oswald";
+  margin: 18px 0;
+}
+.about-role-grid p {
+  color: #64746f;
+  line-height: 1.8;
+}
+.about-role-grid strong {
+  font-size: 13px;
+  color: #168552;
+}
+.about-demo {
+  font-size: 12px;
+  color: #60746b;
+  margin: 28px 0 0;
+}
+.about-contact {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 50px;
+  padding-top: 85px;
+  padding-bottom: 85px;
+}
+.about-contact small {
+  display: block;
+  color: #64746f;
+}
+.about-contact p {
+  overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .about-grid > div {
+    animation: aboutEnter 0.65s both;
+  }
+  .about-grid > div + div {
+    animation-delay: 0.12s;
+  }
+  @keyframes aboutEnter {
+    from {
+      opacity: 0;
+      translate: 0 20px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .about-hero {
+    padding: 45px 0 60px;
+  }
+  .about-grid, .story-grid, .about-contact {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .about-playbook { padding: 22px; }
+  .about-values, .about-role-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-story {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+  .about-contact {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+  .playbook-step { min-height: 84px; }
+  .about-roles {
+    padding: 50px 0;
+  }
+}

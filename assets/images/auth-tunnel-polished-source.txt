@@ -1,0 +1,7 @@
+Asset: assets/images/auth-tunnel-polished.webp
+Edited with the built-in OpenAI image generation tool on 2026-10-13.
+Edit target: assets/images/auth-tunnel.webp. The original is retained.
+Fictional promotional stadium; used only on login and registration.
+
+Final prompt:
+Edit the supplied football stadium entrance tunnel photograph for a premium KICKS login and registration background. Preserve the SAME camera angle, composition, tunnel geometry, right-of-center stadium opening, visible pitch and crowd, and emerald floor-edge strip lights. Refine this exact scene, do not replace it with a different concept. Make the dark walls look like elegant clean charcoal architectural panels with subtle natural texture rather than heavy dirty concrete. Add restrained warm-white recessed ceiling strip illumination following existing perspective lines. Improve the stadium light clarity and beautiful soft volumetric light entering from the opening, with very subtle haze. Refine floor reflections into smooth satin reflections, keep the floor believable, reduce harsh grain and crushed shadows, use rich deep forest greens and neutral charcoal with luminous white highlights. Keep the middle-left area dark and calm for an opaque login card overlay. Photorealistic premium sports campaign image, high detail, natural cinematic contrast, no overexposure. No people, balls, text, logos, watermarks, fantasy rings, neon sci-fi, or CGI appearance.

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore football fields across Jordan. Compare pitches by location, format and price with KICKS.">
+    <title>Explore Fields | KICKS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fields.css">
+    
+<script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/data-store.js?v=review-20261015" defer></script>
+<script src="../../js/account.js?v=review-20261015" defer></script>
+<script src="../../js/fields.js?v=readable-nav-1" defer></script>
+<link rel="stylesheet" href="../../css/creative.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/account.css?v=accounts-7">
+<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
+<script src="../../js/theme.js?v=readable-nav-1"></script>
+<link rel="stylesheet" href="../../css/footer.css?v=shared-1">
+</head>
+<body>
+<a class="skip-link" href="#results">Skip to fields</a>
+<nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../../index.html"><img src="../../assets/logo/kicks-logo.png" alt="" class="navbar-logo"><span class="navbar-brand-text">KICKS</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav mx-auto gap-lg-2">
+                <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="fields.html" aria-current="page">Fields</a></li>
+                <li class="nav-item"><a class="nav-link" href="../OpenGames/open-games.html">Open Games</a></li>
+                <li class="nav-item"><a class="nav-link" href="../Tournaments/tournaments.html">Tournaments</a></li>
+                <li class="nav-item"><a class="nav-link" href="../About/about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
+</ul>
+        </div>
+    </div>
+</nav>
+<main>
+    <section class="fields-hero">
+        <div class="pitch-art" aria-hidden="true"><div></div></div>
+        <div class="container hero-inner">
+            <p class="eyebrow"><span></span> YOUR NEXT MATCH STARTS HERE</p>
+            <h1>Find your <span>perfect field.</span></h1>
+            <p class="hero-copy">Your team. Your city. Your pitch.<br>Discover a great place to play and make the next match happen.</p>
+            <form id="searchForm" class="field-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <label for="fieldSearch" class="visually-hidden">Search field name or location</label>
+                <input type="search" id="fieldSearch" placeholder="Search by field name or location…" autocomplete="off">
+                <button type="submit">Find a field <span aria-hidden="true">→</span></button>
+            </form>
+            <div class="hero-tags"><span><i class="bi bi-geo-alt" aria-hidden="true"></i> Pitches across Jordan</span><span><i class="bi bi-people" aria-hidden="true"></i> 5v5, 6v6 &amp; 7v7</span><span><i class="bi bi-sun" aria-hidden="true"></i> Play your way</span></div>
+        </div>
+    </section>
+    <section class="catalog-section container" aria-label="Field catalogue">
+        <div class="catalog-intro"><div><p class="eyebrow">FIND YOUR HOME GROUND</p><h2>A pitch for every team.</h2></div><p>From a quick kickabout to your weekly rivalry.<br>Find the space that fits your game.</p></div>
+        
+        <button id="filterToggle" class="filter-toggle" aria-expanded="false" aria-controls="filterPanel"><i class="bi bi-sliders" aria-hidden="true"></i> Show / hide filters</button>
+        <div class="catalog-layout">
+            <aside id="filterPanel" class="filter-panel" aria-label="Filter fields">
+                <div class="filter-heading"><h2><i class="bi bi-sliders" aria-hidden="true"></i> Filters</h2><button type="button" class="text-button" data-clear>Reset</button></div>
+                <form id="filterForm">
+                    <div class="filter-group"><label for="location">Location</label><select id="location" name="location"><option value="">All locations</option><option>Amman</option>
+<option>Irbid</option>
+<option>Zarqa</option>
+<option>Ajloun</option>
+<option>Jerash</option>
+<option>Mafraq</option>
+<option>Balqa</option>
+<option>Madaba</option>
+<option>Karak</option>
+<option>Tafilah</option>
+<option>Ma'an</option>
+<option>Aqaba</option></select></div>
+                    <fieldset class="filter-group"><legend>Field type</legend><div class="type-options"><label><input type="radio" name="type" value="" checked><span>All</span></label><label><input type="radio" name="type" value="5v5"><span>5v5</span></label><label><input type="radio" name="type" value="6v6"><span>6v6</span></label><label><input type="radio" name="type" value="7v7"><span>7v7</span></label></div></fieldset>
+                    <fieldset class="filter-group"><legend>Price per hour <small>(JD)</small></legend><div class="price-inputs"><div><label for="minPrice">Min</label><input id="minPrice" name="min" type="number" min="0" step="1" placeholder="0"></div><span aria-hidden="true">–</span><div><label for="maxPrice">Max</label><input id="maxPrice" name="max" type="number" min="0" step="1" placeholder="Any"></div></div></fieldset>
+                    <fieldset class="filter-group"><legend>Availability</legend><label class="check-option"><input type="checkbox" name="now" value="yes"> Available now</label><label class="check-option"><input type="checkbox" name="today" value="yes"> Available today</label></fieldset>
+                    <fieldset class="filter-group"><legend>Minimum rating</legend><label class="check-option"><input type="radio" name="rating" value="" checked> Any rating</label><label class="check-option"><input type="radio" name="rating" value="4"> <span class="star">★</span> 4 stars &amp; up</label><label class="check-option"><input type="radio" name="rating" value="3"> <span class="star">★</span> 3 stars &amp; up</label></fieldset>
+                    <button type="submit" class="apply-filters">Apply filters <span aria-hidden="true">→</span></button><button type="button" class="clear-filters" data-clear>Clear all filters</button>
+                </form>
+                <div class="filter-tip"><i class="bi bi-people" aria-hidden="true"></i><strong>One player short?</strong><p>Find your next team in an open game.</p><a href="../OpenGames/open-games.html">Explore open games →</a></div>
+            </aside>
+            <div id="results" class="results">
+                <div class="results-toolbar"><div role="status" aria-live="polite"><h2 id="resultsCount"></h2><p id="activeFilters"></p></div><div class="sort-control"><label for="sortFields">Sort by</label><select id="sortFields"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Top rated</option></select></div></div>
+                <div id="fieldGrid" class="field-grid"></div>
+                <div id="emptyState" class="empty-state" hidden><i class="bi bi-search" aria-hidden="true"></i><h3>No fields found</h3><p>Try another location, a wider price range, or a different name.</p><button type="button" class="apply-filters" data-clear>Clear search &amp; filters</button></div>
+                <noscript><p>Enable JavaScript to explore the catalogue and use filters.</p></noscript>
+                <div class="results-bottom"><p id="resultsRange"></p><nav id="pagination" class="pagination-controls" aria-label="Field results pages"></nav></div>
+            </div>
+        </div>
+    </section>
+    <section class="fields-cta container"><div class="cta-icon"><i class="bi bi-people" aria-hidden="true"></i></div><div><p class="eyebrow">MORE THAN A PITCH</p><h2>Got the energy. Need a team?</h2><p>Meet new players and find your next match with KICKS.</p></div><a href="../OpenGames/open-games.html">Explore open games <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer class="kicks-footer" aria-label="KICKS footer">
+  <div class="kf-inner">
+    <div class="kf-grid">
+      <div class="kf-intro">
+        <a class="kf-brand" href="../../index.html">KICKS</a>
+        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <nav aria-label="Footer explore">
+          <a href="../../index.html">Home</a>
+          <a href="../../Pages/Fields/fields.html">Fields</a>
+          <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Footer company">
+          <a href="../../Pages/Contact/contact.html">Contact Us</a>
+          <a href="../../Pages/About/about.html">About</a>
+          <a href="../../index.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="kf-contact">
+        <h2>Get in Touch</h2>
+        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
+      </div>
+    </div>
+    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+</body>
+</html>
+
+

@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore the pitch, amenities and booking schedule."
+    />
+    <title>Field Details | KICKS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/fields.css" />
+    <link rel="stylesheet" href="../../css/field-details.css?v=accounts-7" />
+    
+    <script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/data-store.js?v=review-20261015" defer></script>
+<script src="../../js/account.js?v=review-20261015" defer></script>
+<script src="../../js/field-details.js?v=readable-nav-1" defer></script>
+    <link rel="stylesheet" href="../../css/creative.css?v=cleanup-1" />
+  <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
+<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
+<script src="../../js/theme.js?v=readable-nav-1"></script>
+<link rel="stylesheet" href="../../css/footer.css?v=shared-1">
+</head>
+  <body>
+    <a class="skip-link" href="#fieldContent">Skip to field details</a>
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../../index.html"
+          ><img
+            src="../../assets/logo/kicks-logo.png"
+            alt=""
+            class="navbar-logo"
+          /><span class="navbar-brand-text">KICKS</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="fields.html"
+                aria-current="location"
+                >Fields</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../OpenGames/open-games.html"
+                >Open Games</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Tournaments/tournaments.html"
+                >Tournaments</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../About/about.html">About</a>
+            </li>
+          <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
+</ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container detail-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a><span aria-hidden="true">/</span
+        ><a href="fields.html">Fields</a><span aria-hidden="true">/</span
+        ><span id="breadcrumbName">Field details</span>
+      </nav>
+      <div id="missingField" class="empty-state" hidden>
+        <h1>Field not found</h1>
+        <p>This field is not in our catalogue.</p>
+        <a class="nav-play" href="fields.html">Explore all fields →</a>
+      </div>
+      <div id="fieldContent" hidden>
+        <header class="detail-heading">
+          <div>
+            <p class="eyebrow">YOUR NEXT HOME GROUND</p>
+            <h1 id="fieldName"></h1>
+            <p class="detail-location">
+              <i class="bi bi-geo-alt" aria-hidden="true"></i>
+              <span id="fieldLocation"></span
+              ><span class="heading-rating"
+                ><i class="bi bi-star-fill" aria-hidden="true"></i>
+                <span id="fieldRating"></span> <small>Rating</small></span
+              >
+            </p>
+          </div>
+          <a href="fields.html" class="back-fields">← All fields</a>
+        </header>
+        
+        <div class="detail-layout">
+          <div class="detail-main">
+            <button
+              id="enlargePhoto"
+              class="pitch-photo"
+              aria-label="Enlarge field photo"
+            >
+              <img id="fieldPhoto" alt="" /><span
+                ><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> View
+                photo</span
+              >
+            </button>
+            <div class="pitch-facts">
+              <div>
+                <i class="bi bi-people" aria-hidden="true"></i
+                ><span>Match format</span><strong id="fieldFormat"></strong>
+              </div>
+              <div>
+                <i class="bi bi-grid-3x3" aria-hidden="true"></i
+                ><span>Playing surface</span><strong>Artificial turf</strong>
+              </div>
+              <div>
+                <i class="bi bi-lightbulb" aria-hidden="true"></i
+                ><span>Evening games</span><strong>Floodlit pitch</strong>
+              </div>
+            </div>
+            <section class="detail-panel">
+              <p class="eyebrow">THE SPACE TO PLAY</p>
+              <h2>About this field</h2>
+              <p id="fieldDescription"></p>
+              <p>
+                Bring your team, pick a time and enjoy the game. Choose an available time below to book your session.
+              </p>
+            </section>
+            <section class="detail-panel">
+              <h2>Everything for your match</h2>
+              <p class="section-caption">
+                Amenities — confirm facilities with the venue before
+                visiting.
+              </p>
+              <div class="amenity-grid"></div>
+            </section>
+            <section class="detail-panel">
+              <h2>Find your way here</h2>
+              <div class="location-card">
+                <div class="location-icon">
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <strong id="mapLocation"></strong>
+                  <p>
+                    Area only. An exact venue address will be added with live
+                    field data.
+                  </p>
+                </div>
+              </div>
+              <a
+                id="mapLink"
+                class="map-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Explore this area on Google Maps ↗</a
+              >
+            </section>
+            <section class="detail-panel rules-panel">
+              <h2>Before you play</h2>
+              <ul>
+                <li>Arrive a little early so your match can start on time.</li>
+                <li>Use footwear suitable for artificial turf.</li>
+                <li>Keep the pitch clean and respect other players.</li>
+              </ul>
+              <p>
+                You can manage your booking from your dashboard.
+              </p>
+            </section>
+          </div>
+          <aside class="booking-card" aria-label="Field booking">
+            <p class="eyebrow">MAKE TIME FOR YOUR GAME</p>
+            <div class="booking-price">
+              <strong id="hourlyPrice"></strong
+              ><span>JD <small>/ hour</small></span>
+            </div>
+            <p class="booking-subtitle">Your pitch. Your next match.</p>
+            <form id="bookingForm">
+              <label for="bookingDate">Choose a date</label
+              ><input type="date" id="bookingDate" required />
+              <fieldset>
+                <legend>Choose a time <small>(Amman time)</small></legend>
+                <p class="slot-note">
+                  One-hour slots · shaded slots are unavailable.
+                </p>
+                <div id="timeSlots" class="time-slots"></div>
+              </fieldset>
+              <p
+                id="slotStatus"
+                class="slot-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+              <div class="booking-summary">
+                <div><span>Duration</span><strong>1 hour</strong></div>
+                <div>
+                  <span>Selected time</span><strong id="selectedTime">—</strong>
+                </div>
+                <div class="booking-total">
+                  <span>Your total</span><strong id="bookingTotal"></strong>
+                </div>
+              </div>
+              <button
+                id="bookButton"
+                class="apply-filters"
+                type="submit"
+                disabled
+              >
+                Continue to Visa <span aria-hidden="true">→</span>
+              </button>
+              
+            </form>
+            <div class="booking-help">
+              <strong>Need a team first?</strong
+              ><a href="../OpenGames/open-games.html">Find an open game →</a>
+            </div>
+          </aside>
+        </div>
+        <section class="more-fields">
+          <div>
+            <p class="eyebrow">KEEP EXPLORING</p>
+            <h2>Another pitch. Same passion.</h2>
+            <p>Find a field that fits your team and your budget.</p>
+          </div>
+          <a class="nav-play" href="fields.html">Browse all fields ↗</a>
+        </section>
+      </div>
+      <noscript
+        ><div class="empty-state">
+          <h1>Field details</h1>
+          <p>Enable JavaScript to load the field and its schedule.</p>
+          <a href="fields.html">Back to fields</a>
+        </div></noscript
+      >
+    </main>
+    <footer class="kicks-footer" aria-label="KICKS footer">
+  <div class="kf-inner">
+    <div class="kf-grid">
+      <div class="kf-intro">
+        <a class="kf-brand" href="../../index.html">KICKS</a>
+        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <nav aria-label="Footer explore">
+          <a href="../../index.html">Home</a>
+          <a href="../../Pages/Fields/fields.html">Fields</a>
+          <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Footer company">
+          <a href="../../Pages/Contact/contact.html">Contact Us</a>
+          <a href="../../Pages/About/about.html">About</a>
+          <a href="../../index.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="kf-contact">
+        <h2>Get in Touch</h2>
+        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
+      </div>
+    </div>
+    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
+  </div>
+</footer>
+    <dialog id="photoDialog" aria-label="Field photo">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close photo">×</button>
+      </form>
+      <img id="largePhoto" alt="" />
+    </dialog>
+    <dialog id="paymentDialog" aria-labelledby="paymentDialogTitle">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close payment">×</button>
+      </form>
+      <p class="eyebrow">DEMO CHECKOUT</p>
+      <h2 id="paymentDialogTitle">Pay with Visa</h2>
+      <div class="visa-demo-card"><strong>VISA</strong><span>•••• •••• •••• 4242</span><small>DEMO CARD · NO REAL PAYMENT</small></div>
+      <div class="payment-breakdown">
+        <div><span>Amount due</span><strong id="paymentAmount"></strong></div>
+      </div>
+      <p class="payment-notice">This is a local demonstration. No card details are collected and no money moves.</p>
+      <div class="payment-actions">
+        <form method="dialog"><button class="payment-cancel">Cancel</button></form>
+        <button id="completeDemoPayment" class="apply-filters" type="button">Simulate Visa payment</button>
+      </div>
+    </dialog>
+    <dialog id="bookingDialog" aria-labelledby="bookingDialogTitle">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close booking confirmation">
+          ×
+        </button>
+      </form>
+      <div class="confirmation-icon">
+        <i class="bi bi-calendar-check" aria-hidden="true"></i>
+      </div>
+      <p class="eyebrow">YOUR MATCH PLAN</p>
+      <h2 id="bookingDialogTitle">Booking confirmed</h2>
+      <p id="bookingPreview"></p>
+      
+      <form method="dialog">
+        <button class="apply-filters">Back to field</button>
+      </form>
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+</body>
+</html>

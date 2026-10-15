@@ -1,0 +1,154 @@
+/* Shared theme. Original light colours remain unchanged. */
+:root{--theme-bg:#f8fafc;--theme-card:#fff;--theme-soft:#edf6ef;--theme-text:#173a29;--theme-muted:#64748b;--theme-line:#dce7df}
+html[data-theme="dark"]{color-scheme:dark;--theme-bg:#0c1511;--theme-card:#15231b;--theme-soft:#1e3226;--theme-text:#e8f4ec;--theme-muted:#a8bdae;--theme-line:#304739;--background-color:var(--theme-bg);--surface-color:var(--theme-card);--text-primary:var(--theme-text);--text-secondary:var(--theme-muted);--dark-color:var(--theme-text);--active-color:#203e2b;--soft-green:#11231a;--primary-color:#4ade80;--primary-hover:#86efac;--border-color:var(--theme-line);--surface-line:var(--theme-line);--surface-shadow:0 10px 30px #0002;--focus-color:#86efac}
+.theme-toggle{position:fixed;bottom:20px;left:20px;z-index:1100;display:flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--theme-line);border-radius:30px;background:var(--theme-card);color:var(--theme-text);box-shadow:0 5px 22px #0002;font:600 11px/1.5 'Inter',sans-serif;cursor:pointer}
+.theme-toggle>span:first-child{font-size:19px;line-height:1}
+.theme-toggle:hover{border-color:#4b9b65}
+html[data-theme="dark"] body{background:var(--theme-bg);color:var(--theme-text)}
+html[data-theme="dark"] :is(.navbar,.auth-panel,.avatar-menu,.dash-panel,.stat-card,.catalog-card,.match-card,.cup-card,.field-card,.game-card,.tournament-card,.detail-panel,.cup-panel,.cup-registration,.booking-panel,.filter-panel,.filters-panel,.filters-sidebar,.filters,.pitch-facts,.why-card,.step-card,.faq-list details,.about-values article,.about-role-grid a,dialog){background:var(--theme-card);border-color:var(--theme-line);color:var(--theme-text)}
+html[data-theme="dark"] .about-playbook{background:var(--theme-card);border-color:var(--theme-line);color:var(--theme-text)}
+html[data-theme="dark"] .about-playbook .playbook-step strong{color:var(--theme-text)}
+html[data-theme="dark"] .about-playbook .playbook-step small{color:var(--theme-muted)}
+html[data-theme="dark"] .about-playbook .playbook-heading,html[data-theme="dark"] .about-playbook .playbook-step{border-color:var(--theme-line)}
+html[data-theme="dark"] .about-playbook .playbook-mark{color:#1a2b20}
+html[data-theme="dark"] .about-hero{background:#11271d;color:var(--theme-text)}
+html[data-theme="dark"] .about-hero p:not(.eyebrow){color:var(--theme-muted)}
+html[data-theme="dark"] :is(.detail-page,.cup-detail,.fields-content,.fields-catalog,.games-content,.matches-section,.cup-listing,.about-story,.about-roles,.home-about,.kicks-faq,.how-it-works-section,.home-page .featured-fields,.home-page .open-games-section,.home-page .tournaments-section){background:var(--theme-bg)}
+html[data-theme="dark"] :is(.home-about-values span,.location-card,.game-info-item,.cup-facts>div,.cup-card-date,.cup-card-prize,.role-options,.chart-period select,.home-empty,.avatar-button,.password-settings,.nav-play){background:var(--theme-soft);border-color:var(--theme-line);color:var(--theme-text)}
+html[data-theme="dark"] :is(h1,h2,h3,h4,h5,label,legend,.stat-card strong,.avatar-link,.activity-row strong,.overview-item strong,.pitch-facts strong,.cup-facts strong,.cup-card-bottom strong,.catalog-card h3,.match-card h3,.cup-card h3,.field-card h3,.game-card h3,.tournament-card h3,.about-role-grid h3,.location-card strong){color:var(--theme-text)}
+html[data-theme="dark"] :is(.form-intro,.switch-copy,.field-location,.field-details,.game-field,.game-date,.game-info-item span,.players-label,.cup-subtitle,.cup-card-location,.cup-card-date,.section-caption,.empty-dashboard,.overview-item small,.stat-card small,.stat-top,.avatar-link small,.chart-footnote,.chart-empty,.activity-row small,.profile-avatar-editor small,.field-photo-editor small,.password-settings p,.detail-panel p,.detail-panel li,.cup-panel p,.cup-panel li,.about-story p,.about-role-grid p,.home-about-copy p,.faq-intro p,.section-header p,.why-card p,.step-card p,.form-field small){color:var(--theme-muted)}
+html[data-theme="dark"] :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){background:var(--theme-bg);color:var(--theme-text);border-color:var(--theme-line);color-scheme:dark}
+html[data-theme="dark"] input::placeholder,html[data-theme="dark"] textarea::placeholder{color:#94aa9c}
+html[data-theme="dark"] :is(table,td,th,.activity-row,.overview-item,.password-settings,.cup-card-bottom){border-color:var(--theme-line)}
+html[data-theme="dark"] .chart-live{background:var(--theme-soft);color:#9ee8b4}
+html[data-theme="dark"] .chart-summary strong,html[data-theme="dark"] .chart-legend strong{color:var(--theme-text)}
+html[data-theme="dark"] .chart-summary>span,html[data-theme="dark"] .chart-legend li,html[data-theme="dark"] .chart-month{color:var(--theme-muted)}
+html[data-theme="dark"] .chart-month,html[data-theme="dark"] .booking-donut>div{background:var(--theme-card)}
+html[data-theme="dark"] .chart-track{border-color:var(--theme-line)}
+html[data-theme="dark"] .booking-chart{background:repeating-linear-gradient(to top,transparent 0,transparent 47px,var(--theme-line) 48px,transparent 49px)}
+html[data-theme="dark"] .chart-bar>span{color:var(--theme-text)}
+html[data-theme="dark"] th{background:var(--theme-soft);color:var(--theme-muted)}
+html[data-theme="dark"] td{color:var(--theme-text)}
+html[data-theme="dark"] tbody tr:hover{background:var(--theme-soft)}
+html[data-theme="dark"] :is(.avatar-menu a,.avatar-menu button,.switch-copy a,.breadcrumbs a,.cup-breadcrumb a,.map-link,.panel-heading a,.dash-eyebrow,.play-link){color:#86efac}
+html[data-theme="dark"] :is(.avatar-menu a:hover,.avatar-menu button:hover,.role-options input:checked+span){background:var(--theme-soft);color:#86efac}
+html[data-theme="dark"] .role-options label>span{color:var(--theme-muted)}
+html[data-theme="dark"] .navbar-toggler{background:#d5eadb;border-color:#d5eadb}
+html[data-theme="dark"] .navbar-brand-text{color:var(--theme-text)}
+html[data-theme="dark"] .faq-list summary{color:var(--theme-text)}
+html[data-theme="dark"] .profile-view-heading{border-color:var(--theme-line)}
+html[data-theme="dark"] .profile-detail{background:var(--theme-soft);border-color:var(--theme-line)}
+html[data-theme="dark"] .profile-detail strong{color:var(--theme-text)}
+html[data-theme="dark"] .profile-detail span,html[data-theme="dark"] .profile-view-heading p,html[data-theme="dark"] .profile-view-actions p{color:var(--theme-muted)}
+html[data-theme="dark"] .profile-role{background:var(--theme-soft);color:#a5edbb}
+html[data-theme="dark"] .profile-view-heading,.profile-view-actions{border-color:var(--theme-line)}
+html[data-theme="dark"] .faq-list p{color:var(--theme-muted)}
+html[data-theme="dark"] .home-about-copy h2 em{color:#86efac}
+html[data-theme="dark"] .home-page .hero-primary-btn{background:var(--button-color);border-color:var(--button-color)}
+html[data-theme="dark"] .home-page .field-card .field-btn,
+html[data-theme="dark"] .home-page .game-card .join-game-btn,
+html[data-theme="dark"] .home-page .tournament-card .tournament-btn,
+html[data-theme="dark"] .home-page .cta-primary-btn{background:#15803d;border-color:#15803d;color:#fff}
+html[data-theme="dark"] .card-emblem{background:var(--theme-soft);border-color:var(--theme-line)}
+html[data-theme="dark"] .field-btn,html[data-theme="dark"] .game-status,html[data-theme="dark"] .tournament-status{background:var(--theme-soft);color:#86efac}
+html[data-theme="dark"] .status-pill{background:#224330;color:#bbf7d0}
+html[data-theme="dark"] .status-pill.muted{background:#303831;color:#bac6be}
+html[data-theme="dark"] .auth-panel .input-group:focus-within label{color:#86efac}
+html[data-theme="dark"] .auth-panel .password-toggle{color:#86efac}
+html[data-theme="dark"] .auth-panel .field-error,html[data-theme="dark"] .auth-panel .form-status{color:#ffb8b8}
+/* Preserve white lettering on dark football banners and the sidebar. */
+html[data-theme="dark"] :is(.hero,.fields-hero,.games-hero,.cup-hero,.about-hero,.final-cta,.dash-sidebar) :is(h1,h2,h3){color:#f1faf4}
+html[data-theme="dark"] .dash-sidebar .sidebar-profile strong{color:#eaf5ee}
+@media(max-width:767px){.theme-toggle{left:12px;bottom:12px;padding:9px 12px}.theme-toggle>span:last-child{font-size:10px}}
+@media(prefers-reduced-motion:no-preference){.theme-toggle{transition:background .2s,color .2s,border-color .2s}}
+html[data-theme="dark"] :is(.catalog-location,.amenities,.results-toolbar p,.results-toolbar small,.card-bottom p>span,.card-bottom small,.match-location,.match-schedule,.match-players,.match-bottom p>span,.match-bottom small,.cup-card-bottom p span,.filter-group small,.filter-group legend,.sort-control,.result-summary){color:var(--theme-muted)}
+html[data-theme="dark"] :is(.catalog-location i,.match-location i,.amenities i,.match-schedule i){color:#86efac}
+html[data-theme="dark"] :is(.card-bottom,.match-bottom,.filter-group,.filter-heading){border-color:var(--theme-line)}
+html[data-theme="dark"] :is(.type-options label>span,.pagination button){background:var(--theme-soft);color:var(--theme-text);border-color:var(--theme-line)}
+html[data-theme="dark"] :is(.card-bottom strong,.match-bottom strong,.cup-card-prize strong){color:var(--theme-text)}
+html[data-theme="dark"] .theme-toggle{border-color:#577d63}
+html[data-theme="dark"] .dash-sidebar{background:#111d16;border-color:#293d30;box-shadow:3px 0 18px #0002;color:#e8f4ec}
+html[data-theme="dark"] .dash-brand{border-color:#293d30}
+html[data-theme="dark"] .dash-brand span,html[data-theme="dark"] .sidebar-profile strong{color:#e8f4ec}
+html[data-theme="dark"] #dashNav a{color:#bdcec2}
+html[data-theme="dark"] #dashNav a:hover{background:#1b2c21;border-color:#2e4836;color:#d8f4e0}
+html[data-theme="dark"] #dashNav a[aria-current]{background:#1d3826;border-color:#2a5136;color:#a6efbd}
+html[data-theme="dark"] #dashNav a[aria-current] .sidebar-icon{background:#24462f;color:#9ee8b4}
+html[data-theme="dark"] .sidebar-profile{background:#17251b;border-color:#304638;color:#dcece1}
+html[data-theme="dark"] .sidebar-profile small{color:#a8bdae}
+html[data-theme="dark"] .side-bottom a,html[data-theme="dark"] .sidebar-logout{color:#b2c3b7;border-color:#293d30}
+html[data-theme="dark"] .sidebar-logout:hover{color:#ffaaa0}
+@media(max-width:767px){html[data-theme="dark"] .dash-sidebar{background:#111d16;border-color:#293d30}}
+body[data-dashboard]>.theme-toggle{left:auto;right:20px}
+html[data-theme="dark"] .dash-sidebar{background:linear-gradient(165deg,#153a27 0%,#102e1e 58%,#0b2116 100%);border-color:#284b34}
+html[data-theme="dark"] #dashNav a[aria-current]{background:#fff;border-color:#fff;color:#17472e}
+html[data-theme="dark"] #dashNav a[aria-current] .sidebar-icon{background:#edf6ef;color:#176838}
+html[data-theme="dark"] #dashNav a[aria-current] .sidebar-link-label{color:#17472e}
+
+/* Dark surfaces for booking, catalogue controls and dashboard tools. */
+html[data-theme="dark"] :is(.booking-card,.join-card,.game-filters,.cup-filters,.hero-spotlight,.field-search,.games-hero-search,.discover-card,.empty-state) {
+  background:var(--theme-card);color:var(--theme-text);border-color:var(--theme-line);
+}
+html[data-theme="dark"] :is(.filter-tip,.fields-cta,.match-schedule,.spotlight-team,.match-facts>div,.cup-prize,.match-format,.cup-format,.spotlight-type,.preview-note,.stat-icon) {
+  background:var(--theme-soft);color:var(--theme-text);border-color:var(--theme-line);
+}
+html[data-theme="dark"] :is(.fields-cta p,.results-count,.results-toolbar>div,.spotlight-team p>span,.spotlight-bottom p>span,.spotlight-caption,.cup-card-prize span,.cup-facts span,.cup-prize span,.cup-entry>span,#cupAvailability,#cupTeamCount,.view-heading p,.overview-time,.danger-zone p,.discover-card p,#confirmText,.chart-period,.feedback-actions small) {
+  color:var(--theme-muted);
+}
+html[data-theme="dark"] :is(.text-button,.clear-filters,.cup-level,.cup-text-link,.home-section-label,.about-role-grid a>span,.about-role-grid a>b,.about-role-grid article>span,.about-role-grid article>a,.contact-note>span,.checkout-eyebrow) {
+  color:#95e5b1;
+}
+html[data-theme="dark"] .about-role-grid :is(span,a){color:#95e5b1}
+html[data-theme="dark"] :is(.spotlight-team strong,.spotlight-bottom strong,.match-format,.cup-format){color:var(--theme-text)}
+html[data-theme="dark"] :is(.apply-filters,.field-search button,.games-hero-search button,.btn-primary,.join-match,.time-slots input:checked+span) {
+  background:#16743c;border-color:#25874a;color:#fff;
+}
+html[data-theme="dark"] :is(.apply-filters,.field-search button,.games-hero-search button,.btn-primary,.join-match):hover {
+  background:#1b8145;border-color:#4fb477;color:#fff;
+}
+html[data-theme="dark"] :is(.view-field,.filter-toggle,.pagination-controls button,.photo-count,.dialog-close,.dialog-header button,.quick-links a,.dash-btn.secondary) {
+  background:var(--theme-soft);border-color:var(--theme-line);color:var(--theme-text);
+}
+html[data-theme="dark"] .pagination-controls button[aria-current],
+html[data-theme="dark"] .type-options input:checked+span {
+  background:#285537;border-color:#8bd8a5;color:#e9fff0;
+}
+html[data-theme="dark"] .time-slots span{background:var(--theme-bg);color:var(--theme-text);border-color:#52735e}
+html[data-theme="dark"] .time-slots input:disabled+span{background:#26352d;color:#aabdb1;border-color:#3b5042}
+html[data-theme="dark"] :is(.quick-links a:hover,.overview-table tbody tr:hover){background:var(--theme-soft)}
+html[data-theme="dark"] :is(.quick-links a span,.stat-icon){color:#95e5b1}
+html[data-theme="dark"] :is(.field-error,.cup-error,.editor-error,.meeting-dialog [role="alert"]){color:#ffb4b4}
+html[data-theme="dark"] :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){border-color:#52735e}
+html[data-theme="dark"] :is(.auth-skip,.dash-skip,.skip-link){background:var(--theme-card);color:#b3f7cb;border:1px solid var(--theme-line)}
+html[data-theme="dark"] :is(input[type="checkbox"],input[type="radio"],progress){accent-color:#86dfaa}
+html[data-theme="dark"] :is(button,a,input,select,textarea,summary):focus-visible{outline:3px solid #95e5b1;outline-offset:3px}
+html[data-theme="dark"] .contact-method:hover{color:#b3f7cb}
+html[data-theme="dark"] :is(.more-fields,.table-wrap){background:var(--theme-card);border-color:var(--theme-line)}
+html[data-theme="dark"] .pitch-photo>span{background:var(--theme-soft);color:var(--theme-text)}
+html[data-theme="dark"] :is(.filter-tip p,.spotlight-date,.spotlight-location,.spotlight-date span,.more-fields p,.cup-card-prize small,.booking-donut>div>span){color:var(--theme-muted)}
+html[data-theme="dark"] :is(.filter-tip a,.cup-filters button){color:#95e5b1}
+html[data-theme="dark"] #resultsCount{color:var(--theme-muted)}
+html[data-theme="dark"] .booking-donut strong{color:var(--theme-text)}
+html[data-theme="dark"] .chart-bar>span{background:var(--theme-card);color:var(--theme-text);border-radius:4px;padding:2px 4px}
+html[data-theme="dark"] .avatar-link>span{background:var(--theme-soft);color:#b3f7cb}
+html[data-theme="dark"] .empty-dashboard{background:var(--theme-card);border-color:var(--theme-line);color:var(--theme-muted)}
+html[data-theme="dark"] #resultsRange{color:var(--theme-muted)}
+html[data-theme="dark"] .meeting-room-panel li span{color:var(--theme-muted)}
+html[data-theme="dark"] :is(.about-values article>span,.about-role-grid strong){color:#95e5b1}
+html[data-theme="dark"] .home-page .section-header .home-section-label{color:#95e5b1}
+html[data-theme="dark"] .back-to-top{background:#16743c;color:#fff;border:1px solid #62bd84}
+html[data-theme="dark"] .row-actions button{background:var(--theme-soft);color:var(--theme-text);border-color:var(--theme-line)}
+html[data-theme="dark"] .row-actions button[data-delete]{color:#ffb4b4}
+html[data-theme="dark"] .auth-panel .input-group input[aria-invalid="true"],
+html[data-theme="dark"] #teamForm input[aria-invalid="true"]{border-color:#ffb4b4}
+
+/* Theme control belongs to the navigation, rather than covering page content. */
+.navbar .theme-toggle,.dash-top .theme-toggle,.login-page .auth-top .theme-toggle{
+  position:static;flex-shrink:0;box-shadow:none;white-space:nowrap;
+}
+.navbar .theme-toggle{margin-left:18px;padding:8px 12px}
+.dash-top .theme-toggle,.login-page .auth-top .theme-toggle{margin-left:auto}
+.dash-top .theme-toggle{margin-right:16px}
+@media(max-width:991px){.navbar .theme-toggle{margin:14px 0 0}.navbar .navbar-account{margin-left:0}}
+@media(min-width:992px) and (max-width:1199px){.navbar .theme-toggle{margin-left:10px;padding:8px}.navbar .navbar-account{margin-left:10px}.navbar .nav-link{font-size:12px}}
+@media(max-width:600px){.dash-top .theme-toggle{margin-right:0;padding:9px}.dash-top .theme-toggle>span:last-child{display:none}}

@@ -1,0 +1,58 @@
+/* Shared spacing and interaction details. No changes to booking or account logic. */
+:root{--surface-line:#dce7df;--surface-shadow:0 10px 30px #173c2908;--focus-color:#16803f}
+html{scroll-padding-top:100px;scrollbar-color:#98b6a3 #f1f6f3}
+body{overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+main section[id]{scroll-margin-top:100px}
+::selection{background:#c6f2d5;color:#123b27}
+a,button,input,select,textarea,summary{-webkit-tap-highlight-color:transparent}
+:where(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--focus-color);outline-offset:4px}
+.navbar{transition:box-shadow .25s,background-color .25s;border-bottom:1px solid var(--surface-line)}
+.navbar.navbar-scrolled{box-shadow:0 5px 22px #173c290c}
+.field-card,.game-card,.tournament-card,.why-card,.step-card,.detail-panel,.dash-panel{border-color:var(--surface-line);box-shadow:var(--surface-shadow)}
+.field-card,.game-card,.tournament-card{border-radius:20px;overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.field-card:hover,.game-card:hover,.tournament-card:hover{box-shadow:0 16px 36px #173c2912;border-color:#9ccbae}
+.detail-panel,.dash-panel{border-radius:18px}
+.field-image img,.field-card img{transition:transform .6s ease}
+@media(hover:hover) and (pointer:fine){.field-card:hover img{transform:scale(1.025)}}
+.field-card a,.game-card a,.tournament-card a,.dash-btn,.account-login{transition:background-color .2s,box-shadow .2s}
+input,select,textarea{transition:border-color .2s,box-shadow .2s}
+input:hover,select:hover,textarea:hover{border-color:#9cbea8}
+.table-wrap{scrollbar-width:thin;scrollbar-color:#adc8b7 transparent}
+.home-page .section-header{row-gap:16px}
+.home-page .featured-fields,.home-page .open-games-section,.home-page .tournaments-section{padding-top:80px;padding-bottom:80px}
+.home-empty{padding:35px!important;background:linear-gradient(120deg,#f0f8f3,#fff);border:1px dashed #bbd6c5}
+.faq-list details[open]{border-bottom-color:#7dad8e}
+.home-about,.kicks-faq{isolation:isolate}
+@media(prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .section-enter{animation:section-arrive .65s cubic-bezier(.2,.65,.3,1) both}
+  @keyframes section-arrive{from{opacity:.25;translate:0 16px}to{opacity:1;translate:0 0}}
+}
+@media(max-width:767px){
+  html{scroll-padding-top:85px}
+  main section[id]{scroll-margin-top:85px}
+  .home-page .featured-fields,.home-page .open-games-section,.home-page .tournaments-section{padding-top:52px;padding-bottom:52px}
+  .field-card,.game-card,.tournament-card,.detail-panel,.dash-panel{border-radius:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.section-enter{animation:none!important}.navbar,.field-card,.game-card,.tournament-card,.field-image img,.field-card img{transition:none!important}}
+
+.catalog-card,.match-card,.cup-card{border-radius:20px;border-color:var(--surface-line);box-shadow:var(--surface-shadow);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.catalog-card:hover,.match-card:hover,.cup-card:hover{box-shadow:0 16px 36px #173c2912;border-color:#9ccbae}
+@media(prefers-reduced-motion:reduce){.catalog-card,.match-card,.cup-card{transition:none}}
+
+/* Small responses to interaction, without continuous movement. */
+@media(prefers-reduced-motion:no-preference){
+  .section-enter{animation-duration:.48s}
+  @keyframes section-arrive{from{opacity:.5;translate:0 10px}to{opacity:1;translate:0 0}}
+  .dash-top{animation:section-arrive .4s ease-out both}
+  dialog[open]{animation:section-arrive .22s ease-out both}
+  .faq-list details[open]>:not(summary){animation:section-arrive .25s ease-out both}
+  .dash-btn,.account-login{transition:background-color .2s,box-shadow .2s,translate .2s}
+  .dash-btn:active,.account-login:active{translate:0 1px}
+}
+@media(hover:hover) and (pointer:fine){
+  .dash-btn:hover,.account-login:hover{box-shadow:0 4px 12px #173c2918}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}

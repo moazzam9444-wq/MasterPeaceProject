@@ -1,0 +1,974 @@
+/* A calm hero: a single entrance, with no looping or pointer animation. */ .hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  background: var(--hero-color);
+  isolation: isolate;
+}
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background: #0b2019 url("../assets/images/hero-stadium.png") center / cover no-repeat;
+  opacity: 1;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(90deg,#0b2019d9 0%,#0b2019a8 37%,#0b201957 68%,#0b201940 100%);
+}
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+.hero-content {
+  color: white;
+  max-width: 620px;
+}
+.hero-label {
+  color: #86efac;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 6.5vw, 88px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+.hero h1 span {
+  color: var(--accent-light);
+}
+.hero-description {
+  color: #c3d2cb;
+  font-size: 17px;
+  max-width: 410px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-buttons .btn {
+  padding: 13px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.hero-primary-btn {
+  background: var(--button-color);
+  color: white;
+  border: 1px solid var(--button-color);
+}
+.hero-primary-btn:hover {
+  background: #166534;
+  border-color: #166534;
+  color: white;
+}
+.hero-secondary-btn {
+  border: 1px solid #a5b9ae;
+  color: white;
+  background: #ffffff05;
+}
+.hero-secondary-btn:hover {
+  background: white;
+  border-color: white;
+  color: var(--dark-color);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-content {
+    animation: hero-enter 0.65s ease-out both;
+  }
+}
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 991px) {
+  .hero {
+    min-height: 560px;
+  }
+  .hero-container {
+    gap: 25px;
+  }
+  .hero h1 {
+    font-size: 64px;
+  }
+}
+@media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+  }
+  .hero-container {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 54px;
+    padding-bottom: 40px;
+    gap: 30px;
+  }
+  .hero-content {
+    text-align: center;
+    margin: auto;
+  }
+  .hero h1 {
+    font-size: clamp(52px, 12vw, 70px);
+  }
+  .hero-label {
+    font-size: 10px;
+  }
+  .hero-description {
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .hero-buttons .btn {
+    padding: 12px 18px;
+  }
+  .hero-overlay { background:linear-gradient(180deg,#0b201980 0%,#0b2019c9 76%); }
+}
+.section-header {
+  margin-bottom: 40px;
+}
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* =========================
+   Featured Football Fields
+========================= */ .featured-fields {
+  padding: 80px 0;
+  background-color: var(--surface-color);
+}
+.featured-fields .section-header {
+  margin-bottom: 45px;
+}
+.featured-fields .section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.featured-fields .section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* Field Card */ .field-card {
+  height: 100%;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.field-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+/* Field Image */ .field-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.field-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.field-card:hover .field-image {
+  transform: scale(1.07);
+}
+/* Price */ .field-price {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+/* Card Body */ .field-card-body {
+  padding: 20px;
+}
+.field-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.field-location {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.field-location i {
+  color: var(--primary-color);
+  margin-right: 4px;
+}
+/* Field Details */ .field-details {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.field-details i {
+  color: var(--primary-color);
+  margin-right: 4px;
+}
+/* View Field Button */ .field-btn {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.field-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* View All Fields */ .fields-view-all {
+  margin-top: 40px;
+}
+.view-all-btn {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.view-all-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* =========================
+   Open Games Section
+========================= */ .open-games-section {
+  padding: 80px 0;
+  background-color: var(--soft-green);
+}
+.open-games-section .section-header {
+  margin-bottom: 45px;
+}
+.open-games-section .section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.open-games-section .section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* =========================
+   Game Card
+========================= */ .game-card {
+  height: 100%;
+  background-color: var(--surface-color);
+  border: 1px solid var(--active-color);
+  border-radius: 14px;
+  padding: 25px;
+  transition: 0.3s;
+}
+.game-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+/* =========================
+   Card Header
+========================= */ .game-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.game-status {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.game-date {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.game-date i {
+  margin-right: 4px;
+}
+/* =========================
+   Game Title
+========================= */ .game-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+/* =========================
+   Field Location
+========================= */ .game-field {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+.game-field i {
+  color: var(--primary-color);
+  margin-right: 4px;
+}
+/* =========================
+   Game Information
+========================= */ .game-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.game-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+.game-info-item > i {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+.game-info-item div {
+  display: flex;
+  flex-direction: column;
+}
+.game-info-item span {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.game-info-item strong {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+/* =========================
+   Players
+========================= */ .players-info {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.players-label {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.players-count {
+  margin-top: 2px;
+}
+.players-count strong {
+  font-size: 17px;
+  color: var(--text-primary);
+}
+.players-count span {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.spots-left {
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+/* =========================
+   Progress
+========================= */ .players-progress {
+  width: 100%;
+  height: 7px;
+  background-color: var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.players-progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+}
+/* =========================
+   Join Button
+========================= */ .join-game-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.join-game-btn:hover {
+  background-color: var(--primary-hover);
+  color: white;
+}
+/* =========================
+   View All Open Games
+========================= */ .games-view-all {
+  margin-top: 40px;
+}
+.view-all-games-btn {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  background-color: transparent;
+  transition: 0.3s;
+}
+.view-all-games-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* =========================
+   Upcoming Tournaments
+========================= */ .tournaments-section {
+  padding: 80px 0;
+  background-color: var(--surface-color);
+}
+.tournaments-section .section-header {
+  margin-bottom: 45px;
+}
+.tournaments-section .section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.tournaments-section .section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* Tournament Card */ .tournament-card {
+  height: 100%;
+  padding: 25px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  transition: 0.3s;
+}
+.tournament-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+/* Top Area */ .tournament-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.tournament-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  font-size: 22px;
+}
+.tournament-status {
+  padding: 6px 10px;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+/* Title */ .tournament-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+/* Location */ .tournament-location {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+.tournament-location i {
+  color: var(--primary-color);
+  margin-right: 4px;
+}
+/* Information Grid */ .tournament-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.tournament-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+.tournament-info-item > i {
+  color: var(--primary-color);
+  font-size: 19px;
+}
+.tournament-info-item div {
+  display: flex;
+  flex-direction: column;
+}
+.tournament-info-item span {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.tournament-info-item strong {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+/* Button */ .tournament-btn {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--dark-color);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.tournament-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* View All */ .tournaments-view-all {
+  margin-top: 40px;
+}
+.view-all-tournaments-btn {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.view-all-tournaments-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+/* =========================
+   Why Choose KICKS
+========================= */ .why-kicks-section {
+  padding: 80px 0;
+  background-color: var(--background-color);
+}
+.why-kicks-section .section-header {
+  margin-bottom: 45px;
+}
+.why-kicks-section .section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.why-kicks-section .section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* Why Card */ .why-card {
+  height: 100%;
+  text-align: center;
+  padding: 30px 24px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  transition: 0.3s;
+}
+.why-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.07);
+}
+/* Icon */ .why-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  font-size: 23px;
+}
+/* Text */ .why-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.why-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+/* =========================
+   How It Works
+========================= */ .how-it-works-section {
+  padding: 80px 0;
+  background-color: var(--surface-color);
+}
+.how-it-works-section .section-header {
+  margin-bottom: 50px;
+}
+.how-it-works-section .section-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.how-it-works-section .section-header p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+/* Step Card */ .step-card {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  padding: 35px 25px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+}
+/* Step Number */ .step-number {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+/* Step Icon */ .step-icon {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background-color: var(--active-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  font-size: 27px;
+}
+/* Text */ .step-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.step-card p {
+  max-width: 280px;
+  margin: auto;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+/* =========================
+   Final CTA
+========================= */ .final-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 95px 0;
+  background: radial-gradient( circle at 20% 30%, rgba(22, 163, 74, 0.35), transparent 35% ), radial-gradient( circle at 85% 70%, rgba(34, 197, 94, 0.18), transparent 30% ), linear-gradient(135deg, #0f172a 0%, #123524 50%, #15803d 100%);
+}
+.final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+.final-cta::after {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+.final-cta .container {
+  position: relative;
+  z-index: 1;
+}
+.cta-content {
+  max-width: 700px;
+  margin: auto;
+  color: white;
+}
+.cta-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  color: var(--active-color);
+}
+.cta-content h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.cta-content > p:not(.cta-label) {
+  color: var(--active-color);
+  font-size: 17px;
+  margin-bottom: 28px;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+/* Primary CTA */ .cta-primary-btn {
+  background-color: white;
+  color: var(--primary-hover);
+  font-weight: 600;
+  padding: 11px 22px;
+}
+.cta-primary-btn:hover {
+  background-color: var(--dark-color);
+  color: white;
+}
+/* Secondary CTA */ .cta-secondary-btn {
+  border: 1px solid white;
+  color: white;
+  font-weight: 600;
+  padding: 11px 22px;
+}
+.cta-secondary-btn:hover {
+  background-color: white;
+  color: var(--primary-hover);
+}
+/* =========================
+   Footer
+========================= */ .footer {
+  padding: 65px 0 25px;
+  background-color: var(--dark-color);
+  color: white;
+}
+/* Brand */ .footer-brand h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.footer-brand p {
+  max-width: 320px;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+/* Social Icons */ .footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e293b;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.footer-social a:hover {
+  background-color: var(--primary-color);
+}
+/* Footer Links */ .footer h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+/* Contact */ .footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+.footer-contact i {
+  color: var(--primary-color);
+}
+/* Bottom */ .footer-bottom {
+  margin-top: 45px;
+  padding-top: 20px;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+}
+.footer-bottom p {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+/* =========================
+   Responsive
+========================= */ @media (max-width: 768px) {
+  .section-header h2, .featured-fields .section-header h2, .open-games-section .section-header h2, .tournaments-section .section-header h2, .why-kicks-section .section-header h2, .how-it-works-section .section-header h2 {
+    font-size: 30px;
+  }
+  .cta-content h2 {
+    font-size: 32px;
+  }
+  .field-details, .players-info {
+    gap: 10px;
+  }
+}
+/* Consistent type hierarchy and quieter surfaces throughout the home page. */ .section-header h2, .featured-fields .section-header h2, .open-games-section .section-header h2, .tournaments-section .section-header h2, .why-kicks-section .section-header h2, .how-it-works-section .section-header h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+}
+.section-header p {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.field-card h3, .game-card h3, .tournament-card h3, .why-card h3, .step-card h3 {
+  font-family: var(--font-primary);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.field-card, .game-card, .tournament-card, .why-card, .step-card {
+  border-color: var(--border-color);
+  box-shadow: 0 3px 12px #0f172a03;
+}
+.open-games-section {
+  background: var(--background-color);
+}
+.why-kicks-section {
+  background: var(--soft-green);
+}
+.step-card {
+  background: var(--background-color);
+}
+.field-location i, .field-details i, .field-btn, .view-all-btn, .view-all-games-btn, .view-all-tournaments-btn, .game-status, .spots-left, .tournament-status {
+  color: var(--primary-hover);
+}
+.join-game-btn {
+  background: var(--button-color);
+}
+.field-btn:hover, .view-all-btn:hover, .view-all-games-btn:hover, .view-all-tournaments-btn:hover {
+  color: white;
+  background: var(--primary-hover);
+}
+.final-cta {
+  background: var(--hero-color);
+  padding: 70px 0;
+}
+.final-cta::before, .final-cta::after {
+  display: none;
+}
+.cta-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 500;
+}
+.cta-content > p:not(.cta-label) {
+  color: #c3d2cb;
+  font-size: 15px;
+}
+.cta-label {
+  color: #86efac;
+  font-size: 11px;
+}
+.footer-brand h3 {
+  font-family: var(--font-sport);
+  letter-spacing: 1px;
+}
+.footer-bottom p {
+  color: #94a3b8;
+}
+@media (max-width: 767px) {
+  .featured-fields, .open-games-section, .tournaments-section, .why-kicks-section, .how-it-works-section {
+    padding: 54px 0;
+  }
+  .cta-buttons {
+    flex-wrap: wrap;
+  }
+  .footer {
+    padding-top: 45px;
+  }
+}

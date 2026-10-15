@@ -1,0 +1,32 @@
+/* Original HTML/CSS interpretations of Bento, spotlight and FAQ patterns.
+   Inspiration: https://21st.dev/community/components — no React dependencies. */
+.home-about{padding:85px 0;background:#fff;scroll-margin-top:85px}
+.home-about-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.home-about-visual{position:relative;overflow:hidden;border-radius:24px;background:#173c29}
+.home-about-visual img{display:block;width:100%;height:370px;object-fit:cover;opacity:.85}
+.home-about-visual span{position:absolute;bottom:25px;left:25px;padding:12px 18px;border:1px solid #ffffff66;border-radius:30px;background:#153b29cc;color:#fff;font-size:11px;letter-spacing:2px}
+.home-about-copy h2{font-family:var(--font-sport,'Oswald',sans-serif);font-size:clamp(34px,4vw,52px);line-height:1.2;color:#173c29;margin:18px 0}
+.home-about-copy h2 em{font-style:normal;color:#16803f}
+.home-about-copy p{font-size:14px;line-height:1.9;color:#607266;margin-bottom:22px;max-width:500px}
+.home-about-values{display:flex;flex-wrap:wrap;gap:12px 20px;margin-bottom:28px;color:#315d43;font-size:11px}
+.home-about-values i{margin-right:5px}
+@media(max-width:767px){.home-about{padding:55px 0}.home-about-layout{grid-template-columns:1fr;gap:32px}.home-about-visual img{height:250px}}
+.play-link{color:inherit;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:24px;margin-top:auto}
+.play-link span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #9bb8a7;border-radius:50%;transition:transform .2s,background .2s}
+.play-link:hover{color:inherit}.play-link:hover span{transform:translate(2px,-2px);background:#86efac30}
+.play-link:focus-visible,.faq-list summary:focus-visible{outline:3px solid #16a34a;outline-offset:6px}
+.home-page .hero-primary-btn,.home-page .hero-secondary-btn{border-radius:40px;transition:background .2s,box-shadow .2s}
+.home-page .hero-primary-btn:hover{box-shadow:0 0 0 5px #86efac18}
+.kicks-faq{padding:90px 0;background:#f0f5f2;border-top:1px solid #dde7e0}
+.faq-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+.faq-intro h2{font-family:var(--font-sport,'Oswald',sans-serif);font-size:clamp(34px,4vw,52px);line-height:1.15;margin:18px 0;color:#173c29}
+.faq-intro p{font-size:14px;color:#617469;margin-bottom:26px}
+.faq-list details{border-bottom:1px solid #d0ded5;padding:22px 0}
+.faq-list details:first-child{padding-top:0}
+.faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:14px;font-weight:600;line-height:1.6;color:#173c29}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary span{font-size:24px;font-weight:400;flex-shrink:0;transition:transform .2s}
+.faq-list details[open] summary span{transform:rotate(45deg)}
+.faq-list details p{font-size:13px;line-height:1.9;color:#596e61;margin:16px 35px 0 0;max-width:520px}
+@media(max-width:767px){.faq-layout{grid-template-columns:1fr}.faq-layout{gap:38px}.kicks-faq{padding:60px 0}}
+@media(prefers-reduced-motion:reduce){.play-link span,.faq-list summary span,.home-page .hero-buttons .btn{transition:none}}

@@ -1,0 +1,16 @@
+KICKS homepage scroll campaign
+Generated with the built-in OpenAI image generation tool on 2026-10-12.
+These are fictional promotional scenes, not photos of bookable listed fields.
+Existing listing photographs and booking data were not changed.
+
+Final workspace assets:
+assets/images/matchday-pitch.webp
+assets/images/matchday-team.webp
+assets/images/matchday-kickoff.webp
+
+Prompt set:
+1. Photorealistic premium sports editorial photograph for KICKS local football booking website. Landscape 16:9 composition, spectacular but believable intimate five-a-side football pitch at blue hour, emerald natural-looking artificial turf, crisp white center line leads from foreground toward a small white goal positioned right of center, elegant floodlights, faint mist lit by lights, dark forest green and cool charcoal palette, luminous whites, subtle film grain, realistic turf texture. Not a giant arena, aspirational neighborhood football facility. Left third darker negative space for white website headline. NO text, logos, watermarks, no people. High-end cinematic real camera photograph, NOT illustration or 3D render.
+
+2. Photorealistic premium football editorial portrait photograph, vertical 3:4. Five young adult Middle Eastern amateur football teammates in a tight pre-match huddle on a realistic five-a-side pitch under floodlights, viewed slightly from behind at waist height, dark emerald and off-white unbranded jerseys, hands on shoulders, candid energy and friendship. Faces mostly turned into huddle, anatomically correct arms. Beautiful luminous stadium bokeh, subtle humid evening atmosphere, forest green and charcoal palette matching a cinematic football campaign, restrained grain, natural real skin and fabric. Full bodies not necessary, keep huddle centered with room at edges for crop. No text, logos, watermarks, no fantasy, not CGI.
+
+3. Photorealistic premium sports advertising portrait photograph vertical 3:4. Ground-level close-up of an unbranded black football boot resting lightly on a richly textured white-and-black football on emerald football turf, adult footballer's lower calf and ankle in dark green sock, tiny dew droplets on grass and ball, warm white floodlight edge lighting, dreamy distant goal net softly blurred in background, evening forest green and charcoal palette, genuine stitched leather and rubber detail, calm anticipation before kickoff. Ball centered in lower middle with ample crop space, realistic boot and ankle proportions, NO glowing rings, NO special effects, NO text or logos, no watermark, no illustration or CGI.

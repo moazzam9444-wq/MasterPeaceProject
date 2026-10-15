@@ -1,0 +1,466 @@
+/* KICKS visual identity. Presentation only; existing data and page scripts stay independent. */ :root {
+  --creative-accent: #86efac;
+  --creative-ink: #11271d;
+  --creative-paper: #f8faf9;
+  --creative-line: #dce5dc;
+}
+body {
+  background: var(--creative-paper);
+}
+.nav-play {
+  border: 1px solid #dce9d8;
+}
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+.creative-band {
+  background: #183c29;
+  color: #d5efde;
+  border-bottom: 1px solid #2b513a;
+}
+.creative-band .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.creative-band span {
+  font-family: var(--font-sport);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+}
+.creative-band i {
+  font-size: 12px;
+}
+.home-page .hero {
+  min-height: 660px;
+  background: var(--creative-ink);
+}
+.home-page .hero h1 {
+  font-size: clamp(66px, 7.4vw, 108px);
+  letter-spacing: -2px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.home-page .hero h1 span {
+  color: var(--creative-accent);
+}
+.home-page .hero-label {
+  display: inline-block;
+  font-size: 10px;
+  padding: 7px 12px;
+  border: 1px solid #b4d7b84d;
+  border-radius: 3px;
+  color: #cce6cd;
+}
+.home-page .hero-primary-btn {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: white;
+}
+.home-page .hero-primary-btn:hover {
+  background: #166534;
+  border-color: #166534;
+  color: white;
+}
+.home-page .hero-buttons .btn {
+  padding: 14px 25px;
+}
+.home-page .section-header {
+  text-align: left !important;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 30px;
+  align-items: end;
+  margin-bottom: 35px;
+}
+.home-page .section-header h2 {
+  font-size: clamp(32px, 3.6vw, 48px);
+  max-width: 560px;
+  margin: 0;
+  line-height: 1.15;
+}
+.home-page .section-header p {
+  margin: 0;
+  max-width: 380px;
+  justify-self: end;
+  font-size: 13px;
+}
+.home-page .featured-fields {
+  background: white;
+}
+.home-page .field-card {
+  border-radius: 12px;
+  border-color: var(--creative-line);
+}
+.home-page .field-image-wrapper {
+  height: 210px;
+}
+.home-page .field-image {
+  height: 100%;
+  object-fit: cover;
+}
+.home-page .field-price {
+  background: var(--creative-accent);
+  color: var(--creative-ink);
+  font-size: 11px;
+}
+.home-page .field-btn {
+  background: var(--creative-ink);
+  color: white;
+  font-size: 12px;
+}
+.home-page .field-btn:hover {
+  background: var(--primary-hover);
+}
+.home-page .open-games-section {
+  background: #f0f7f2;
+}
+.home-page .game-card {
+  border-radius: 12px;
+  background: white;
+  padding: 25px;
+}
+.home-page .game-card .join-game-btn,
+.home-page .tournament-card .tournament-btn {
+  background: var(--creative-ink);
+  color: #fff;
+}
+.home-page .game-card .join-game-btn:hover,
+.home-page .tournament-card .tournament-btn:hover {
+  background: #15803d;
+  color: #fff;
+}
+.home-page .game-card-header {
+  border-bottom: 1px solid var(--creative-line);
+  padding-bottom: 18px;
+}
+.home-page .game-card h3 {
+  font-family: var(--font-sport);
+  font-size: 26px;
+  font-weight: 500;
+}
+.home-page .game-info-item {
+  background: var(--creative-paper);
+}
+.home-page .join-game-btn {
+  background: var(--creative-ink);
+  font-size: 13px;
+}
+.home-page .join-game-btn:hover {
+  background: var(--primary-hover);
+}
+.home-page .tournament-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px 22px 5px 5px;
+  border-top: 3px solid var(--creative-accent);
+}
+.home-page .tournament-card h3 {
+  font-family: var(--font-sport);
+  font-size: 26px;
+  font-weight: 500;
+}
+.home-page .tournament-icon {
+  background: var(--creative-accent);
+  color: var(--creative-ink);
+}
+.home-page .why-kicks-section {
+  background: var(--creative-ink);
+}
+.home-page .why-kicks-section .section-header h2 {
+  color: white;
+}
+.home-page .why-kicks-section .section-header p {
+  color: #bbcec1;
+}
+.home-page .why-card {
+  background: transparent;
+  border-color: #3a5343;
+  box-shadow: none;
+  text-align: left;
+  padding: 25px;
+}
+.home-page .why-card h3 {
+  color: #fff;
+  font-size: 17px;
+}
+.home-page .why-card p {
+  color: #bbcec1;
+  font-size: 12px;
+}
+.home-page .why-icon {
+  margin: 0 0 20px;
+  background: #284632;
+  color: var(--creative-accent);
+  border-radius: 8px;
+}
+.home-page .how-it-works-section {
+  background: var(--creative-paper);
+}
+.home-page .step-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #cad7cb;
+  text-align: left;
+  padding: 35px 20px 20px 0;
+}
+.home-page .step-number {
+  top: 20px;
+  right: 10px;
+  left: auto;
+  background: none;
+  color: #bdcfbd;
+  font-family: var(--font-sport);
+  font-size: 48px;
+  width: auto;
+  height: auto;
+}
+.home-page .step-icon {
+  margin: 0 0 20px;
+  background: var(--creative-accent);
+  color: var(--creative-ink);
+  border-radius: 9px;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+}
+.home-page .step-card p {
+  margin: 0;
+  font-size: 13px;
+}
+.home-page .final-cta {
+  background: var(--creative-ink);
+}
+.home-page .cta-content {
+  color: white;
+}
+.home-page .cta-label, .home-page .cta-content > p:not(.cta-label) {
+  color: #c3d9cb;
+}
+.home-page .cta-content h2 {
+  font-size: clamp(38px, 5vw, 60px);
+  text-transform: uppercase;
+}
+.home-page .cta-primary-btn {
+  background: #15803d;
+  border-color: #15803d;
+  color: white;
+}
+.home-page .cta-secondary-btn {
+  border-color: #89a493;
+  color: white;
+}
+.home-page .cta-secondary-btn:hover {
+  background: var(--creative-ink);
+  color: white;
+}
+.footer, .fields-footer {
+  background: #0e1b15;
+}
+.footer-brand h3, .footer-wordmark {
+  font-style: italic;
+}
+.footer-base, .footer-bottom {
+  border-color: #2b3e30;
+}
+/* The catalogue hero has a stadium backdrop; games keep their own editorial hero. */ .fields-hero:not(.games-hero) {
+  background: var(--creative-ink);
+}
+.fields-hero:not(.games-hero)::before {
+  background: linear-gradient(90deg, #11271dfa 0%, #11271de8 48%, #11271d66 100%), url("../assets/images/hero-stadium.png") right center / cover no-repeat;
+}
+.fields-hero:not(.games-hero) .pitch-art {
+  display: none;
+}
+.fields-hero:not(.games-hero) h1 {
+  font-size: clamp(42px, 5.5vw, 72px);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.fields-hero:not(.games-hero) h1 span {
+  color: var(--creative-accent);
+}
+.fields-hero:not(.games-hero) .eyebrow {
+  color: #86efac;
+}
+.catalog-intro h2 {
+  font-size: clamp(28px, 3vw, 38px);
+}
+.catalog-image {
+  height: 190px;
+}
+.catalog-card {
+  border-color: var(--creative-line);
+  border-radius: 10px;
+}
+.catalog-card .view-field {
+  background: var(--creative-ink);
+  color: white;
+}
+.catalog-card .view-field:hover {
+  background: var(--primary-hover);
+}
+.filter-panel {
+  border-radius: 5px 18px 5px 5px;
+  border-color: var(--creative-line);
+}
+.fields-cta, .more-fields {
+  background: #edf8f0;
+  border-color: #d5ebdb;
+  border-radius: 5px 22px 5px 5px;
+}
+.fields-cta h2 {
+  font-size: 30px;
+}
+/* Game cards echo match tickets, while the hero stays light and welcoming. */ .games-hero {
+  background: #f0f7f2;
+}
+.games-kicker {
+  color: #36552c;
+}
+.games-hero h1 {
+  font-size: clamp(46px, 5.3vw, 74px);
+}
+.spotlight-sticker {
+  background: var(--creative-accent);
+}
+.hero-spotlight {
+  border-radius: 8px 20px 8px 8px;
+}
+.spotlight-bottom a {
+  color: var(--creative-ink);
+  background: var(--creative-accent);
+  padding: 9px 12px;
+  border-radius: 5px;
+}
+.match-card {
+  border-radius: 8px;
+  border-color: var(--creative-line);
+}
+.match-schedule {
+  background: #f3f8f4;
+}
+.match-bottom {
+  border-top: 1px dashed #cbd7cd;
+}
+.match-bottom a {
+  background: var(--creative-ink);
+  color: white;
+}
+.match-level {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+.game-filters {
+  border-radius: 5px 18px 5px 5px;
+}
+/* Details are the quieter part of the journey, with clear booking summaries. */ .detail-heading h1, .games-detail h1 {
+  font-size: clamp(38px, 4.7vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.7px;
+}
+.pitch-facts {
+  background: #edf6f0;
+  border-color: #d5e5da;
+}
+.pitch-facts > div {
+  border-color: #d1e2d6;
+}
+.booking-card, .join-card {
+  border-radius: 5px 18px 5px 5px;
+  border-top: 4px solid var(--creative-accent);
+}
+.booking-price strong, .join-price strong {
+  font-family: var(--font-sport);
+  font-size: 46px;
+  font-weight: 500;
+}
+.booking-total {
+  border-top-style: dashed !important;
+}
+.detail-panel h2, .game-info-panel h2 {
+  letter-spacing: -0.3px;
+}
+.location-card {
+  background: #edf6f0;
+  border-color: #d5e5da;
+}
+@media (max-width: 1199px) {
+  .games-hero h1 {
+    font-size: 60px;
+  }
+}
+@media (max-width: 991px) {
+  .games-hero h1 {
+    font-size: 46px;
+  }
+  .home-page .hero {
+    min-height: 580px;
+  }
+  .home-page .hero h1 {
+    font-size: 76px;
+  }
+  .creative-band span {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+@media (max-width: 767px) {
+  .home-page .hero {
+    min-height: 0;
+  }
+  .home-page .hero h1 {
+    font-size: clamp(60px, 14vw, 82px);
+  }
+  .creative-band .container {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .creative-band span {
+    font-size: 10px;
+    letter-spacing: 0.6px;
+  }
+  .creative-band i {
+    font-size: 8px;
+  }
+  .home-page .section-header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .home-page .section-header p {
+    justify-self: start;
+    max-width: 100%;
+  }
+  .home-page .section-header h2 {
+    font-size: 34px;
+  }
+  .home-page .field-image-wrapper {
+    height: 220px;
+  }
+  .home-page .why-card {
+    padding: 23px;
+  }
+  .home-page .step-card {
+    padding: 28px 65px 20px 0;
+  }
+  .home-page .step-card p {
+    max-width: 100%;
+  }
+  .games-hero h1 {
+    font-size: clamp(44px, 9vw, 62px);
+  }
+  .fields-cta h2 {
+    font-size: 26px;
+  }
+  .catalog-image {
+    height: 190px;
+  }
+}

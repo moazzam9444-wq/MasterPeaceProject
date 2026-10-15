@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Find open football matches across Jordan, compare player spots and explore match details."
+    />
+    <title>Open Games | KICKS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/fields.css" />
+    <link rel="stylesheet" href="../../css/open-games.css?v=accounts-7" />
+    
+    <script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/data-store.js?v=review-20261015" defer></script>
+<script src="../../js/account.js?v=review-20261015" defer></script>
+<script src="../../js/open-games.js?v=readable-nav-1" defer></script>
+    <link rel="stylesheet" href="../../css/creative.css?v=cleanup-1" />
+  <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
+<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
+<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
+<script src="../../js/theme.js?v=readable-nav-1"></script>
+<link rel="stylesheet" href="../../css/footer.css?v=shared-1">
+<link rel="stylesheet" href="../../css/checkout.css?v=1">
+<script src="../../js/checkout.js?v=1" defer></script>
+</head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center gap-2"
+          href="../../index.html"
+          ><img
+            src="../../assets/logo/kicks-logo.png"
+            alt=""
+            class="navbar-logo"
+          /><span class="navbar-brand-text">KICKS</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Fields/fields.html">Fields</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="open-games.html"
+                >Open Games</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Tournaments/tournaments.html"
+                >Tournaments</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html#why-kicks">About</a>
+            </li>
+          <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
+</ul>
+        </div>
+      </div>
+    </nav>
+    <main id="mainContent">
+      <div id="gamesListing">
+        <section class="games-hero" aria-labelledby="gamesHeroTitle">
+          <div class="container games-hero-layout">
+            <div class="games-hero-copy">
+              <p class="games-kicker">
+                <span aria-hidden="true">●</span> SHOW UP. FIND YOUR PEOPLE.
+              </p>
+              <h1 id="gamesHeroTitle">
+                Come solo.<br /><span>Leave a teammate.</span>
+              </h1>
+              <p class="games-hero-description">
+                The best games start with new faces. Find your match, take your
+                spot and make the pitch your meeting place.
+              </p>
+              <div class="games-hero-benefits">
+                <span
+                  ><i class="bi bi-people" aria-hidden="true"></i> No team
+                  needed</span
+                ><span
+                  ><i class="bi bi-lightning-charge" aria-hidden="true"></i>
+                  Just bring your game</span
+                >
+              </div>
+              <form id="gameSearchForm" class="games-hero-search" role="search">
+                <label class="visually-hidden" for="gameSearch"
+                  >Search games or fields</label
+                ><i class="bi bi-search" aria-hidden="true"></i
+                ><input
+                  type="search"
+                  id="gameSearch"
+                  placeholder="Find a game, field or city…"
+                /><button>
+                  Find my game <span aria-hidden="true">↗</span>
+                </button>
+              </form>
+              <p class="games-hero-caption">
+                Pick your match below. All kickoff times are in Amman time.
+              </p>
+            </div>
+            <div class="spotlight-wrap">
+              <span class="spotlight-sticker" aria-hidden="true"
+                >YOUR NEXT<br />KICKABOUT ↙</span
+              >
+              <article
+                id="heroSpotlight"
+                class="hero-spotlight"
+                aria-label="Featured match"
+                hidden
+              ></article>
+              <noscript
+                ><img
+                  class="spotlight-fallback"
+                  src="../../assets/images/field3.jpg"
+                  alt="Players enjoying a football match"
+              /></noscript>
+              <p class="spotlight-caption">
+                <span aria-hidden="true">↗</span> New faces. Same love for
+                football.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="container games-section" aria-label="Open matches">
+          <div class="catalog-intro">
+            <div>
+              <p class="eyebrow">THERE'S A PLACE FOR YOU</p>
+              <h2>Find your next kickabout.</h2>
+            </div>
+            <p>
+              A friendly match or a little competition.<br />Pick your game and
+              bring your energy.
+            </p>
+          </div>
+          
+          <form id="gameFilters" class="game-filters">
+            <div>
+              <label for="gameCity">City</label
+              ><select id="gameCity" name="city">
+                <option value="">All cities</option>
+                <option>Amman</option>
+<option>Irbid</option>
+<option>Zarqa</option>
+<option>Ajloun</option>
+<option>Jerash</option>
+<option>Mafraq</option>
+<option>Balqa</option>
+<option>Madaba</option>
+<option>Karak</option>
+<option>Tafilah</option>
+<option>Ma'an</option>
+<option>Aqaba</option>
+              </select>
+            </div>
+            <div>
+              <label for="gameDate">Date</label
+              ><input id="gameDate" name="date" type="date" />
+            </div>
+            <div>
+              <label for="gameFormat">Match format</label
+              ><select id="gameFormat" name="format">
+                <option value="">All formats</option>
+                <option>5v5</option>
+                <option>6v6</option>
+                <option>7v7</option>
+              </select>
+            </div>
+            <div>
+              <label for="gameLevel">Level</label
+              ><select id="gameLevel" name="level">
+                <option value="">Any level</option>
+                <option>All levels</option>
+                <option>Intermediate</option>
+                <option>Competitive</option>
+              </select>
+            </div>
+            <label class="spots-check"
+              ><input type="checkbox" id="spotsOnly" name="spots" /> Spots
+              available</label
+            ><button class="reset-games" type="button" data-reset>
+              Clear filters
+            </button>
+          </form>
+          <div class="results-toolbar">
+            <div role="status" aria-live="polite">
+              <h2 id="gameCount"></h2>
+              <p>Find a match that fits your day.</p>
+            </div>
+            <div class="sort-control">
+              <label for="gameSort">Sort by</label
+              ><select id="gameSort">
+                <option value="soonest">Soonest first</option>
+                <option value="price">Lowest price</option>
+                <option value="spots">Most spots left</option>
+              </select>
+            </div>
+          </div>
+          <div id="gamesGrid" class="games-grid"></div>
+          <div id="gamesEmpty" class="empty-state" hidden>
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <h3>No matches found</h3>
+            <p>Try a different date, city or match format.</p>
+            <button type="button" class="apply-filters" data-reset>
+              Clear search &amp; filters
+            </button>
+          </div>
+        </section>
+        <section class="fields-cta container">
+          <div class="cta-icon">
+            <i class="bi bi-calendar-check" aria-hidden="true"></i>
+          </div>
+          <div>
+            <p class="eyebrow">ALREADY HAVE YOUR TEAM?</p>
+            <h2>Your crew. Your own pitch.</h2>
+            <p>Find a field for your next team match.</p>
+          </div>
+          <a href="../Fields/fields.html">Explore fields ↗</a>
+        </section>
+      </div>
+      <section id="gameDetail" class="container games-detail" hidden>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="open-games.html">← All open games</a>
+        </nav>
+        <div id="missingGame" class="empty-state" hidden>
+          <h1>Game not found</h1>
+          <p>This match isn't in the catalogue.</p>
+          <a href="open-games.html">Explore open games</a>
+        </div>
+        <div id="gameDetailContent" hidden>
+          <p class="eyebrow">MEET ON THE PITCH</p>
+          <h1 id="gameTitle"></h1>
+          <p id="gameSubtitle" class="game-subtitle"></p>
+          
+          <div class="game-detail-layout">
+            <div>
+              <img id="gameImage" class="game-detail-image" alt="" />
+              <section class="game-info-panel">
+                <h2>The match plan</h2>
+                <div id="matchFacts" class="match-facts"></div>
+              </section>
+              <section class="game-info-panel">
+                <h2>Good football starts with good company.</h2>
+                <p>
+                  Come ready for a friendly, organised match. Teams are balanced
+                  at the pitch, and every player gets a chance to be part of the
+                  game.
+                </p>
+                <ul>
+                  <li>Arrive 15 minutes early for a warm-up.</li>
+                  <li>
+                    Bring water and footwear suitable for artificial turf.
+                  </li>
+                  <li>Play fair, respect everyone and enjoy the match.</li>
+                </ul>
+                <a id="gameFieldLink" class="field-detail-link"
+                  >Explore this field →</a
+                >
+                
+              </section>
+            </div>
+            <aside class="join-card">
+              <p class="eyebrow">ONE MATCH. NEW TEAMMATES.</p>
+              <div class="join-price">
+                <strong id="gamePrice"></strong> JD <span>/ player</span>
+              </div>
+              <p id="joinStatus" role="status"></p>
+              <div id="joinProgress"></div>
+              <p id="joinPlayers"></p>
+              <div class="join-summary">
+                <span>Match duration</span><strong>1 hour</strong>
+              </div>
+              <button id="previewJoin" class="apply-filters" type="button">
+                Join game →
+              </button>
+              
+              <a href="open-games.html" class="other-games"
+                >Find another game →</a
+              >
+            </aside>
+          </div>
+        </div>
+      </section>
+      <noscript
+        ><div class="container empty-state">
+          <h2>Open games</h2>
+          <p>Enable JavaScript to explore matches.</p>
+        </div></noscript
+      >
+    </main>
+    <footer class="kicks-footer" aria-label="KICKS footer">
+  <div class="kf-inner">
+    <div class="kf-grid">
+      <div class="kf-intro">
+        <a class="kf-brand" href="../../index.html">KICKS</a>
+        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <nav aria-label="Footer explore">
+          <a href="../../index.html">Home</a>
+          <a href="../../Pages/Fields/fields.html">Fields</a>
+          <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Footer company">
+          <a href="../../Pages/Contact/contact.html">Contact Us</a>
+          <a href="../../Pages/About/about.html">About</a>
+          <a href="../../index.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="kf-contact">
+        <h2>Get in Touch</h2>
+        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
+      </div>
+    </div>
+    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
+  </div>
+</footer>
+    <dialog id="joinDialog" aria-labelledby="joinDialogTitle">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close join confirmation">×</button>
+      </form>
+      <div class="join-icon">
+        <i class="bi bi-people" aria-hidden="true"></i>
+      </div>
+      <p class="eyebrow">YOUR NEXT MATCH</p>
+      <h2 id="joinDialogTitle">You joined the game</h2>
+      <p id="joinPreviewText"></p>
+      
+      <form method="dialog">
+        <button class="apply-filters">Back to match</button>
+      </form>
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+</body>
+</html>

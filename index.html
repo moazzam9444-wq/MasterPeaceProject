@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Book football fields, join open games, and compete in tournaments with KICKS."
+    />
+    <title>KICKS | Football Field Booking</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css?v=review-20261015" />
+    <link rel="stylesheet" href="css/creative.css?v=cleanup-1" />
+    <link rel="stylesheet" href="css/components.css?v=cleanup-1" />
+    <link rel="stylesheet" href="css/account.css?v=accounts-7" />
+    <link rel="stylesheet" href="css/site-polish.css?v=cleanup-1" />
+    <link rel="stylesheet" href="css/home-motion.css?v=scroll-scenes-4" />
+    <link rel="stylesheet" href="css/home-journey.css?v=scroll-scenes-4" />
+    <link rel="stylesheet" href="css/theme.css?v=navbar-3" />
+    <script src="js/theme.js?v=readable-nav-1"></script>
+  <link rel="stylesheet" href="css/footer.css?v=shared-1">
+</head>
+  <body class="home-page">
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+          <img
+            src="assets/logo/kicks-logo.png"
+            alt="KICKS Logo"
+            class="navbar-logo"
+          />
+          <span class="navbar-brand-text">KICKS</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Pages/Fields/fields.html">Fields</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Pages/OpenGames/open-games.html"
+                >Open Games</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Pages/Tournaments/tournaments.html"
+                >Tournaments</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Pages/About/about.html">About</a>
+            </li>
+          <li class="nav-item"><a class="nav-link" href="Pages/Contact/contact.html">Contact Us</a></li>
+</ul>
+          <a href="Pages/Auth/login.html" class="btn btn-success ms-lg-3"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="homeTitle">
+        <div class="hero-stage">
+          <div class="hero-background" aria-hidden="true"></div>
+          <canvas id="heroMatchdayCanvas" class="hero-real-shot" aria-hidden="true"></canvas>
+          <div class="hero-overlay" aria-hidden="true"></div>
+          <div class="shot-film-label" aria-hidden="true"><span></span> KICKS / MATCHDAY <small>YOUR GAME. YOUR MOMENT.</small></div>
+          <div class="container hero-container">
+            <div class="hero-content">
+              <p class="hero-label">YOUR GAME. YOUR WAY.</p>
+              <h1 id="homeTitle">BOOK. PLAY.<br /><span>CONNECT.</span></h1>
+              <p class="hero-description">
+                Find football fields, join open games, and compete in tournaments.
+              </p>
+              <div class="hero-buttons">
+                <a class="btn hero-primary-btn" href="Pages/Fields/fields.html"
+                  >Book a Field</a
+                >
+                <a
+                  class="btn hero-secondary-btn"
+                  href="Pages/OpenGames/open-games.html"
+                  >Join a Game</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="matchday-scenes" aria-hidden="true">
+            <div class="matchday-word">MATCHDAY</div>
+            <div class="matchday-photo photo-one"><img src="assets/images/matchday-pitch.webp" alt="" decoding="async" /><span>01 / YOUR PITCH.</span></div>
+            <div class="matchday-photo photo-two"><img src="assets/images/matchday-team.webp" alt="" decoding="async" /><span>02 / YOUR PEOPLE.</span></div>
+            <div class="matchday-photo photo-three"><img src="assets/images/matchday-kickoff.webp" alt="" decoding="async" /><span>03 / YOUR MOMENT.</span></div>
+          </div>
+          <div class="matchday-ending" aria-hidden="true"><img src="assets/images/matchday-pitch.webp" alt="" decoding="async" /></div>
+          <div class="shot-midline" aria-hidden="true"><p>ONE GAME. ENDLESS CONNECTIONS.</p><strong>FIND YOUR<br /><em>PEOPLE.</em></strong></div>
+          <div class="shot-finale" aria-hidden="true" inert>
+            <p class="shot-eyebrow">THE PITCH IS WAITING.</p>
+            <strong>GAME<br />ON<span>.</span></strong>
+            <p>Your next match starts here.</p>
+            <a class="btn hero-primary-btn" href="Pages/Fields/fields.html">Find Your Pitch</a>
+          </div>
+          <div class="shot-hud" hidden>
+            <div class="shot-instruction"><span class="shot-live-dot"></span><span id="shotInstruction">Scroll slowly. Feel the game.</span></div>
+            <div class="shot-progress" aria-hidden="true"><span></span></div>
+            <a href="#about-us">Skip to explore <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="shot-chapters" aria-hidden="true"><span>01 <b>ARRIVE</b></span><span>02 <b>FEEL IT</b></span><span>03 <b>PLAY</b></span></div>
+        </div>
+      </section>
+
+      <section
+        class="home-about"
+        id="about-us"
+        aria-labelledby="homeAboutTitle"
+      >
+        <div class="container home-about-layout">
+          <div class="home-about-visual">
+            <img
+              src="assets/images/hero-stadium.png"
+              alt="Football pitch ready for the next match"
+            /><span>MORE THAN A MATCH.</span>
+          </div>
+          <div class="home-about-copy">
+            <p class="eyebrow">01 / THE CONNECTION</p>
+            <h2 id="homeAboutTitle">Football brings us <em>together.</em></h2>
+            <p>
+              Need a pitch? Short a player? Ready for a tournament? Find your
+              next game here and bring your friends.
+            </p>
+            <div class="home-about-values">
+              <span
+                ><i class="bi bi-geo-alt" aria-hidden="true"></i>Local
+                pitches</span
+              ><span
+                ><i class="bi bi-people" aria-hidden="true"></i>New
+                teammates</span
+              ><span
+                ><i class="bi bi-trophy" aria-hidden="true"></i>Team
+                spirit</span
+              >
+            </div>
+            <a class="play-link" href="Pages/About/about.html"
+              >More about KICKS <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="creative-band" aria-label="The KICKS way">
+        <div class="container">
+          <span>FIND YOUR PITCH</span
+          ><i class="bi bi-asterisk" aria-hidden="true"></i
+          ><span>MEET YOUR TEAM</span
+          ><i class="bi bi-asterisk" aria-hidden="true"></i
+          ><span>MAKE IT A MATCH</span>
+        </div>
+      </div>
+
+      <section
+        class="featured-fields"
+        id="fields"
+        aria-labelledby="fieldsTitle"
+      >
+        <div class="container">
+          <div class="section-header text-center">
+            <p class="home-section-label">02 / YOUR HOME GROUND</p>
+            <h2 id="fieldsTitle">Find your pitch</h2>
+            <p>Pick a field, grab your friends, and play.</p>
+          </div>
+          <div class="row g-4" id="home-fields-grid"></div>
+          <div class="fields-view-all text-center">
+            <a class="view-all-btn" href="Pages/Fields/fields.html"
+              >View All Fields</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="open-games-section"
+        id="open-games"
+        aria-labelledby="gamesTitle"
+      >
+        <div class="container">
+          <div class="section-header text-center">
+            <p class="home-section-label">03 / FIND YOUR PEOPLE</p>
+            <h2 id="gamesTitle">Looking for a Game?</h2>
+            <p>Join an open match, meet new players, and get in the game.</p>
+          </div>
+          <div class="row g-4" id="home-open-games-grid"></div>
+          <div class="games-view-all text-center">
+            <a class="view-all-games-btn" href="Pages/OpenGames/open-games.html"
+              >View All Open Games</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="tournaments-section"
+        id="tournaments"
+        aria-labelledby="tournamentsTitle"
+      >
+        <div class="container">
+          <div class="section-header text-center">
+            <p class="home-section-label">04 / CHASE THE WIN</p>
+            <h2 id="tournamentsTitle">Upcoming Tournaments</h2>
+            <p>Build your team, join the competition, and play for the win.</p>
+          </div>
+          <div class="row g-4" id="home-tournaments-grid"></div>
+          <div class="tournaments-view-all text-center">
+            <a
+              class="view-all-tournaments-btn"
+              href="Pages/Tournaments/tournaments.html"
+              >View All Tournaments</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="why-kicks-section"
+        id="why-kicks"
+        aria-labelledby="whyTitle"
+      >
+        <div class="container">
+          <div class="section-header text-center">
+            <h2 id="whyTitle">Why Choose KICKS?</h2>
+            <p>Everything you need for a better football experience.</p>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+              <article class="why-card">
+                <div class="why-icon"><i class="bi bi-calendar-check"></i></div>
+                <h3>Easy Booking</h3>
+                <p>
+                  Find available fields and book your match quickly and easily.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="why-card">
+                <div class="why-icon"><i class="bi bi-people"></i></div>
+                <h3>Open Games</h3>
+                <p>Join matches, meet new players, and never miss a game.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="why-card">
+                <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+                <h3>Trusted Fields</h3>
+                <p>
+                  Explore football fields with clear details, prices, and
+                  availability.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="why-card">
+                <div class="why-icon"><i class="bi bi-trophy"></i></div>
+                <h3>Tournaments</h3>
+                <p>
+                  Register your team and compete in exciting football
+                  tournaments.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works-section" id="how-it-works" aria-labelledby="howTitle">
+        <div class="container">
+          <div class="section-header text-center">
+            <h2 id="howTitle">How It Works</h2>
+            <p>Get on the field in just three simple steps.</p>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <article class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon"><i class="bi bi-search"></i></div>
+                <h3>Find a Field</h3>
+                <p>
+                  Explore football fields and choose the one that fits your
+                  game.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon"><i class="bi bi-calendar3"></i></div>
+                <h3>Choose Date &amp; Time</h3>
+                <p>Select the day and time that works best for you.</p>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon"><i class="bi bi-check2-circle"></i></div>
+                <h3>Book &amp; Play</h3>
+                <p>Confirm your booking, grab your team, and play.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" aria-labelledby="ctaTitle">
+        <div class="container text-center">
+          <div class="cta-content">
+            <p class="cta-label">READY TO PLAY?</p>
+            <h2 id="ctaTitle">Ready for your next match?</h2>
+            <p>Find a field, join a game, and make your next match happen.</p>
+            <div class="cta-buttons">
+              <a class="btn cta-primary-btn" href="Pages/Fields/fields.html"
+                >Book a Field</a
+              ><a
+                class="btn cta-secondary-btn"
+                href="Pages/OpenGames/open-games.html"
+                >Join an Open Game</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kicks-faq" id="faq" aria-labelledby="faqTitle">
+        <div class="container faq-layout">
+          <div class="faq-intro">
+            <p class="eyebrow">BEFORE THE WHISTLE</p>
+            <h2 id="faqTitle">
+              Got questions?<br /><span>Simple answers.</span>
+            </h2>
+            <p>Less guessing. More time on the pitch.</p>
+            <a class="play-link" href="Pages/About/about.html"
+              >Meet KICKS <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>
+                Do I need an account to explore KICKS?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                You can browse fields, games, and tournaments before signing in.
+                An account is needed to book or join.
+              </p>
+            </details>
+            <details>
+              <summary>
+                How do I book a football field?<span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Choose a field, check its details, and select an available time
+                to make your booking.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Can I join without having a full team?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                Yes. Open Games lets you join a match as an individual player
+                while places are available.
+              </p>
+            </details>
+            <details>
+              <summary>
+                How do tournament entries work?<span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Open a tournament to see its format, entry fee, schedule, and
+                registration details.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Can I list my own football field?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                Field owners can sign in to manage their fields and publish
+                their details.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="kicks-footer" aria-label="KICKS footer">
+  <div class="kf-inner">
+    <div class="kf-grid">
+      <div class="kf-intro">
+        <a class="kf-brand" href="index.html">KICKS</a>
+        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <nav aria-label="Footer explore">
+          <a href="index.html">Home</a>
+          <a href="Pages/Fields/fields.html">Fields</a>
+          <a href="Pages/OpenGames/open-games.html">Open Games</a>
+          <a href="Pages/Tournaments/tournaments.html">Tournaments</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <nav aria-label="Footer company">
+          <a href="Pages/Contact/contact.html">Contact Us</a>
+          <a href="Pages/About/about.html">About</a>
+          <a href="index.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="kf-contact">
+        <h2>Get in Touch</h2>
+        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
+      </div>
+    </div>
+    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
+  </div>
+</footer>
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Back to top"
+    >
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="js/admin-account.js?v=accounts-7" defer></script>
+    <script src="js/data-store.js?v=review-20261015" defer></script>
+    <script src="js/account.js?v=review-20261015" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/home-data.js?v=matchday-1" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/home-matchday.js?v=scroll-scenes-4" defer></script>
+    <script src="js/home-cinema.js?v=scroll-scenes-4" defer></script>
+    <script src="js/site-polish.js?v=cleanup-1" defer></script>
+  </body>
+</html>
+
+

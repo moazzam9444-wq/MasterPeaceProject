@@ -1,0 +1,44 @@
+/* Shared footer for every page, including auth and role dashboards. */
+.kicks-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 58px 24px 76px;
+  background: linear-gradient(120deg, #203f31, #183326);
+  color: #d6e5dc;
+  border-top: 1px solid #71978245;
+  font-family: var(--font-body, "Inter", sans-serif);
+  text-align: left;
+}
+.kicks-footer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  right: -100px;
+  top: -145px;
+  border: 1px solid #b6ddc522;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.kicks-footer .kf-inner { max-width: 1140px; margin: 0 auto; }
+.kicks-footer .kf-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; }
+.kicks-footer .kf-brand { display: inline-block; margin-bottom: 14px; color: #f4fbf6; font: 700 32px/1.2 var(--font-heading, "Oswald", sans-serif); text-decoration: none; }
+.kicks-footer h2 { margin: 0 0 18px; color: #f4fbf6; font: 600 14px/1.4 var(--font-body, "Inter", sans-serif); }
+.kicks-footer p { max-width: 330px; margin: 0; color: #c6d9cd; font-size: 13px; line-height: 1.9; }
+.kicks-footer nav { display: flex; flex-direction: column; align-items: flex-start; gap: 11px; }
+.kicks-footer nav a { color: #d6e5dc; font-size: 13px; line-height: 1.5; text-decoration: none; text-underline-offset: 5px; }
+.kicks-footer a:hover { color: #a4ebbb; text-decoration: underline; }
+.kicks-footer a:focus-visible { outline: 2px solid #a4ebbb; outline-offset: 5px; border-radius: 2px; }
+.kicks-footer .kf-location { display: flex; align-items: center; gap: 8px; }
+.kicks-footer .kf-location svg { width: 17px; height: 17px; color: #9dd6af; flex-shrink: 0; }
+.kicks-footer .kf-bottom { margin-top: 38px; padding-top: 20px; border-top: 1px solid #b9d7c12b; }
+.kicks-footer .kf-bottom p { max-width: none; font-size: 12px; }
+.dash-main > .kicks-footer { margin-top: 36px; border-radius: 18px; }
+@media (max-width: 767px) {
+  .kicks-footer { padding: 42px 24px 85px; }
+  .kicks-footer .kf-grid { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
+  .kicks-footer .kf-intro, .kicks-footer .kf-contact { grid-column: 1 / -1; }
+  .kicks-footer .kf-bottom { margin-top: 30px; }
+}
