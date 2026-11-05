@@ -1,3 +1,4 @@
+(async () => {
 // Run: node tests/accounts-regression.cjs
 // All records below exist only in an isolated test context.
 const assert = require("node:assert/strict");
@@ -44,31 +45,15 @@ const context = {
     addEventListener() {},
   },
 };
-vm.createContext(context);
+vm.createContext(require('./helpers/web-locks.cjs').install(context));
 vm.runInContext(fs.readFileSync("js/admin-account.js", "utf8"), context);
 vm.runInContext(fs.readFileSync("js/data-store.js", "utf8"), context);
-assert.equal(context.window.KicksStore.list("fields").length, 9);
-assert.equal(context.window.KicksStore.list("games").length, 6);
-assert.equal(context.window.KicksStore.list("tournaments").length, 3);
-const seeded = JSON.parse(stored);
-assert.ok(
-  seeded.games.every(
-    (game) =>
-      seeded.fields.some((field) => field.id === game.fieldId) &&
-      game.joined === 0,
-  ),
-);
-assert.ok(
-  seeded.tournaments.every(
-    (cup) =>
-      seeded.fields.some((field) => field.id === cup.fieldId) &&
-      cup.teams === 0,
-  ),
-);
+// A clean browser has no automatic venues or events, including after reload.
+assert.equal(context.window.KicksStore.list("fields").length, 0);
+assert.equal(context.window.KicksStore.list("games").length, 0);
+assert.equal(context.window.KicksStore.list("tournaments").length, 0);
 vm.runInContext(fs.readFileSync("js/data-store.js", "utf8"), context);
-assert.equal(context.window.KicksStore.list("fields").length, 9);
-// Run account tests on an isolated empty catalogue marked as already provisioned.
-stored = JSON.stringify({ ...seeded, fields: [], games: [], tournaments: [] });
+assert.equal(context.window.KicksStore.list("fields").length, 0);
 context.KicksStore = context.window.KicksStore;
 vm.runInContext(fs.readFileSync("js/account.js", "utf8"), context);
 const store = context.KicksStore,
@@ -105,6 +90,13 @@ const store = context.KicksStore,
     password: "Testpass123!",
     role: "player",
   });
+  assert.equal(player.status, "Pending");
+  assert.equal(auth.current(), null);
+  await assert.rejects(auth.login("player@test.local", "Testpass123!"), /awaiting administrator/);
+  (await require('./helpers/test-actor.cjs').save(context,"users", {...store.find("users", player.id), status: "Rejected"}));
+  await assert.rejects(auth.login("player@test.local", "Testpass123!"), /rejected/);
+  (await require('./helpers/test-actor.cjs').save(context,"users", {...store.find("users", player.id), status: "Active"}));
+  await auth.login("player@test.local", "Testpass123!");
   assert.equal(auth.current().id, player.id);
   assert(!stored.includes("Testpass123!"));
   assert.equal(auth.current().passwordHash, undefined);
@@ -113,6 +105,11 @@ const store = context.KicksStore,
   context.location.search = "?returnTo=" + encodeURIComponent("/Pages/Fields/field-details.html?id=1");
   auth.afterLogin(player);
   assert.equal(navigation, "http://127.0.0.1:4173/Pages/Fields/field-details.html?id=1");
+  for(const target of ['/Pages/Teams/teams.html?team=host','/Pages/Challenges/challenges.html?id=1']) {
+    context.location.search='?returnTo='+encodeURIComponent(target);
+    auth.afterLogin(player);
+    assert(navigation.endsWith(target));
+  }
   for (const target of ["https://example.com/", "//example.com/", "javascript:alert(1)", "/Pages/Dashboard/admin.html"]) {
     context.location.search = "?returnTo=" + encodeURIComponent(target);
     auth.afterLogin(player);
@@ -131,25 +128,42 @@ const store = context.KicksStore,
   assert.equal(auth.current(), null);
   await assert.rejects(auth.login("player@test.local", "Wrongpass123!"));
   await assert.rejects(auth.login("missing@test.local", "Testpass123!"));
+  await assert.rejects(auth.register({name:"No proof", email:"no-proof@test.local", password:"Testowner123!", role:"owner"}), /license/);
   const owner = await auth.register({
+    ownershipProof: {name:"license.pdf", size:4, data:"data:application/pdf;base64,dGVzdA=="},
     name: "Test Owner",
     email: "owner@test.local",
     password: "Testowner123!",
     role: "owner",
   });
   auth.logout();
+  assert.equal(owner.status, "Pending");
+  await assert.rejects(auth.login("owner@test.local", "Testowner123!"), /awaiting administrator/);
+  (await require('./helpers/test-actor.cjs').save(context,"users", {...store.find("users", owner.id), status: "Active"}));
   const signedInOwner = await auth.login("owner@test.local", "Testowner123!");
   assert.equal(signedInOwner.role, "owner");
+  (await assert.rejects(async () => (await auth.setAccountActive(player.id, false)), /Administrator/));
+  session.set("kicks-session-v2", "1");
+  (await assert.rejects(async () => (await auth.setAccountActive(1, false)), /own administrator/));
+  const countBeforeDeactivation = store.list("users").length;
+  (await auth.setAccountActive(owner.id, false));
+  assert.equal(store.list("users").length, countBeforeDeactivation);
+  session.set("kicks-session-v2", String(owner.id));
+  assert.equal(auth.current(), null);
+  await assert.rejects(auth.login("owner@test.local", "Testowner123!"), /inactive/);
+  session.set("kicks-session-v2", "1");
+  (await auth.setAccountActive(owner.id, true));
+  await auth.login("owner@test.local", "Testowner123!");
   auth.afterLogin(signedInOwner);
   assert.equal(navigation, "http://127.0.0.1:4173/Pages/Dashboard/owner.html");
   assert.equal(auth.requireRole("admin"), null);
   assert.match(navigation, /owner.html$/);
-  const field = store.save("fields", {
+  const field = (await require('./helpers/test-actor.cjs').save(context,"fields", {
     name: "Test Pitch",
     ownerId: owner.id,
     city: "Amman",
     price: 25,
-  }, { method: "Visa demo", amount: store.settings().listingFee });
+  }, { method: "Visa demo", amount: store.settings().listingFee }));
   const signedInPlayer = await auth.login("player@test.local", "Testpass123!");
   assert.equal(signedInPlayer.role, "player");
   auth.afterLogin(signedInPlayer);
@@ -166,93 +180,108 @@ const store = context.KicksStore,
     "Testpass123!",
     "Changedpass123!",
   );
-  store.save("users", {
+  (await store.save("users", {
     ...store.find("users", player.id),
     ...credentials,
     phone: "+962790000000",
     address: "Amman",
-  });
+  }));
   auth.logout();
   await assert.rejects(auth.login("player@test.local", "Testpass123!"));
   await auth.login("player@test.local", "Changedpass123!");
   assert.equal(auth.current().phone, "+962790000000");
-  const booking = store.book(player.id, field.id, "2100-01-01", "18:00", { method: "Visa demo", amount: 25 });
+  const booking = (await store.book(player.id, field.id, "2100-01-01", "18:00", { method: "Visa demo", amount: 25 }));
   assert.equal(booking.price, 25);
   assert.equal(booking.status, "Confirmed");
-  assert.throws(
-    () => store.book(player.id, field.id, "2100-01-01", "18:00"),
+  (await assert.rejects(
+    async () => (await store.book(player.id, field.id, "2100-01-01", "18:00")),
     /slot/,
-  );
-  assert.throws(
-    () => store.book(owner.id, field.id, "2100-01-01", "19:00"),
+  ));
+  (await assert.rejects(
+    async () => (await store.book(owner.id, field.id, "2100-01-01", "19:00")),
     /player/,
-  );
-  assert.throws(
-    () => store.book(player.id, field.id, "2000-01-01", "18:00"),
+  ));
+  (await assert.rejects(
+    async () => (await store.book(player.id, field.id, "2000-01-01", "18:00")),
     /future/,
-  );
-  assert.throws(() => store.remove("fields", field.id), /bookings/);
-  const game = store.save("games", {
+  ));
+  (await assert.rejects(async () => (await require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("fields", field.id))), /bookings/));
+  const game = (await require('./helpers/test-actor.cjs').save(context,"games", {
     title: "Test Game",
     fieldId: field.id,
     date: "2100-01-01",
     time: "20:00",
+    durationMinutes: 60,
     joined: 0,
     capacity: 1,
     price: 0,
-  });
-  store.join(player.id, "games", game.id);
+  }));
+  (await store.join(player.id, "games", game.id, {position:"Defender"}));
   assert.equal(store.find("games", game.id).joined, 1);
-  assert.throws(() => store.join(player.id, "games", game.id), /already/);
-  const cup = store.save("tournaments", {
+  (await assert.rejects(async () => (await store.join(player.id, "games", game.id, {position:"Defender",position:"Defender"})), /already/));
+  const cup = (await require('./helpers/test-actor.cjs').save(context,"tournaments", {
     name: "Test Cup",
     fieldId: field.id,
     date: "2100-01-02",
     time: "20:00",
+    durationMinutes: 180,
     teams: 0,
     capacity: 8,
     fee: 0,
-  });
-  store.join(player.id, "tournaments", cup.id, { teamName: "Test Team" });
+  }));
+
+  (await require('./helpers/test-actor.cjs').save(context,'fields',{...field,type:'5v5'}));
+  const squadMembers=[{userId:player.id,position:'Forward'}];
+  for(let n=0;n<4;n++){const u=(await require('./helpers/test-actor.cjs').save(context,'users',{name:'Squad '+n,email:'squad'+n+'@test.local',role:'player',status:'Active'}));squadMembers.push({userId:u.id,position:'Defender'});}
+  // Pre-existing squad fixture; registration tests do not exercise enrollment.
+  const squadFixture=JSON.parse(stored);squadFixture.teams.push({id:'test-squad-fixture',name:'Test Team',captainId:player.id,format:'5v5',capacity:12,members:squadMembers});stored=JSON.stringify(squadFixture);
+  const squadId=store.list('teams').at(-1).id;
+  (await store.join(player.id, "tournaments", cup.id, { teamName: "Test Team", teamId:squadId }));
   assert.equal(store.find("tournaments", cup.id).teams, 1);
-  assert.throws(() => store.remove("users", 1), /administrator/);
-  // Full player cycle: leave, rejoin and prevent double-counting.
+  (await assert.rejects(async () => (await require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("users", 1))), /administrator/));
+  // Players cannot withdraw; an organiser can update an entry without double-counting.
   const membership = store.list("memberships")[0];
-  assert.throws(
-    () => store.leave(owner.id, "memberships", membership.id),
-    /player/,
-  );
-  store.leave(player.id, "memberships", membership.id);
+  (await assert.rejects(
+    async () => (await store.leave(owner.id, "memberships", membership.id)),
+    /disabled/,
+  ));
+  (await assert.rejects(async () => (await store.leave(player.id, "memberships", membership.id)), /disabled/));
+  await auth.login("owner@test.local", "Testowner123!");
+  (await store.save("memberships", { ...membership, status: "Left" }));
   assert.equal(store.find("games", game.id).joined, 0);
-  assert.throws(
-    () => store.leave(player.id, "memberships", membership.id),
-    /inactive/,
-  );
-  store.join(player.id, "games", game.id);
+  (await assert.rejects(
+    async () => (await store.leave(player.id, "memberships", membership.id)),
+    /disabled/,
+  ));
+  await auth.login("player@test.local", "Changedpass123!");
+  (await store.join(player.id, "games", game.id, {position:"Defender",position:"Defender"}));
   assert.equal(store.find("games", game.id).joined, 1);
   assert.equal(store.list("memberships").length, 1);
   const registration = store.list("registrations")[0];
-  store.leave(player.id, "registrations", registration.id);
+  (await assert.rejects(async () => (await store.leave(player.id, "registrations", registration.id)), /disabled/));
+  await auth.login("owner@test.local", "Testowner123!");
+  (await store.save("registrations", { ...registration, status: "Withdrawn" }));
   assert.equal(store.find("tournaments", cup.id).teams, 0);
-  store.join(player.id, "tournaments", cup.id, { teamName: "New Team" });
+  await auth.login("player@test.local", "Changedpass123!");
+  (await store.join(player.id, "tournaments", cup.id, { teamName: "New Team", teamId:squadId }));
   assert.equal(store.find("tournaments", cup.id).teams, 1);
   assert.equal(store.list("registrations").length, 1);
   // Field management keeps edits; deleting an event removes its linked entries.
-  store.save("fields", {
+  (await require('./helpers/test-actor.cjs').save(context,"fields", {
     ...store.find("fields", field.id),
     description: "Updated venue",
     amenities: "Parking",
     photo: "data:image/jpeg;base64,dGVzdA==",
-  });
+  }));
   assert.equal(store.find("fields", field.id).description, "Updated venue");
-  store.remove("games", game.id);
-  assert.equal(store.list("memberships").length, 0);
-  store.remove("tournaments", cup.id);
-  assert.equal(store.list("registrations").length, 0);
-  store.save("bookings", { ...booking, status: "Cancelled" });
-  const replacement = store.book(player.id, field.id, "2100-01-01", "18:00", {
+  await assert.rejects(require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("games", game.id)),/linked history/);
+  assert.equal(store.list("memberships").length, 1);
+  await assert.rejects(require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("tournaments", cup.id)),/linked history/);
+  assert.equal(store.list("registrations").length, 1);
+  await require('./helpers/test-actor.cjs').save(context,"bookings",{...booking,status:"Cancelled"});
+  const replacement = (await store.book(player.id, field.id, "2100-01-01", "18:00", {
     method: "Visa demo",
-  });
+  }));
   assert.equal(replacement.status, "Confirmed");
   assert.equal(replacement.paymentMethod, "Visa (demo)");
   assert.equal(replacement.paymentStatus, "Paid (demo)");
@@ -264,8 +293,8 @@ const store = context.KicksStore,
     replacement.ownerNet,
     Number((replacement.price * 0.9).toFixed(2)),
   );
-  store.remove("bookings", replacement.id);
-  store.remove("bookings", booking.id);
+  await assert.rejects(require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("bookings",replacement.id)),/linked history/);
+  await assert.rejects(require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("bookings",booking.id)),/linked history/);
   // Leave the field for the storage-failure check below.
   // Exercise dashboard menus, ownership and player actions in isolated DOMs.
   function dashboardHarness(account, hash = "") {
@@ -279,6 +308,7 @@ const store = context.KicksStore,
           innerHTML: "",
           hidden: false,
           elements: {},
+          querySelectorAll: () => [],
           classList: { remove() {} },
           addEventListener(name, handler) {
             this[name] = handler;
@@ -296,7 +326,8 @@ const store = context.KicksStore,
       return elements[id];
     }
     const dashboardContext = {
-      KicksStore: store,
+      KicksDialogs: { open: dialog => dialog.showModal() },
+      KicksStore: { ...store, watchActivityClock() {} },
       KicksAuth: {
         ...auth,
         requireRole: (role) => (role === account.role ? account : null),
@@ -330,19 +361,22 @@ const store = context.KicksStore,
     return { elements, events, overview };
   }
   const ownerView = dashboardHarness(owner);
-  assert(!ownerView.elements.dashNav.innerHTML.includes("#bookings"));
-  assert(!ownerView.elements.dashNav.innerHTML.includes("#memberships"));
+  assert(ownerView.elements.dashNav.innerHTML.includes("#bookings"));
+  assert(ownerView.elements.dashNav.innerHTML.includes("#memberships"));
   assert.equal(ownerView.overview.getRecords("fields").length, 1);
-  const otherField = store.save("fields", {
+  const otherField = (await require('./helpers/test-actor.cjs').save(context,"fields", {
     ...field,
     id: undefined,
     name: "Other owner field",
     ownerId: 1,
-  });
+  }));
   assert.equal(ownerView.overview.getRecords("fields").length, 1);
+  const usersView = dashboardHarness(store.find("users", 1), "#users");
+  assert(!usersView.elements.dashboardView.innerHTML.includes('data-delete="users"'));
+  assert(usersView.elements.dashboardView.innerHTML.includes('data-account-access="'));
   const adminView = dashboardHarness(store.find("users", 1));
   assert.equal(adminView.overview.getRecords("fields").length, 2);
-  assert(!adminView.elements.dashNav.innerHTML.includes("#registrations"));
+  assert(adminView.elements.dashNav.innerHTML.includes("#registrations"));
   assert(adminView.elements.dashNav.innerHTML.includes("#bookings"));
   for (const profileAccount of [player, owner, store.find("users", 1)]) {
     const profileView = dashboardHarness(profileAccount, "#profile");
@@ -385,9 +419,14 @@ const store = context.KicksStore,
     ownerEditor.elements.editorFields.innerHTML.includes("fieldPhotoUpload"),
   );
   assert(!ownerEditor.elements.editorFields.innerHTML.includes("edit-rating"));
-  const newGame = store.save("games", { ...game, id: undefined, joined: 0 });
-  const newEntry = store.join(player.id, "games", newGame.id);
+  const newGame = (await require('./helpers/test-actor.cjs').save(context,"games", { ...game, id: undefined, joined: 0,date:"2100-01-03" }));
+  (await assert.rejects(async () => (await store.join(player.id, "games", newGame.id)), /playing position/));
+  (await assert.rejects(async () => (await store.join(player.id, "games", newGame.id, {position:"Striker"})), /playing position/));
+  assert.equal(store.find("games", newGame.id).joined, 0);
+  const newEntry = (await store.join(player.id, "games", newGame.id, {position:"Defender",position:"Defender"}));
+  assert.equal(newEntry.position, "Defender");
   const playerView = dashboardHarness(player, "#memberships");
+  assert(playerView.elements.dashboardView.innerHTML.includes("Defender"));
   playerView.events.click({
     target: {
       closest: () => ({
@@ -395,20 +434,21 @@ const store = context.KicksStore,
       }),
     },
   });
-  playerView.elements.confirmAction.click();
-  assert.equal(store.find("games", newGame.id).joined, 0);
-  assert.equal(store.find("memberships", newEntry.id).status, "Left");
-  store.remove("games", newGame.id);
-  store.remove("fields", otherField.id);
+  assert(!playerView.elements.dashboardView.innerHTML.includes("data-cancel"));
+  assert(!playerView.elements.confirmDialog?.open);
+  assert.equal(store.find("games", newGame.id).joined, 1);
+  assert.equal(store.find("memberships", newEntry.id).status, "Joined");
+  await assert.rejects(require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("games",newGame.id)),/linked history/);
+  await require('./helpers/test-actor.cjs').asAdmin(context,()=>store.remove("fields",otherField.id));
 
   // Transactions fail without changing in-memory data when browser storage is full.
   context.localStorage.setItem = () => {
     throw Error("Quota exceeded");
   };
-  assert.throws(
-    () => store.save("fields", { name: "Unsaved Pitch" }),
+  (await assert.rejects(
+    async () => (await require('./helpers/test-actor.cjs').save(context,"fields", { name: "Unsaved Pitch",ownerId:owner.id,price:25 }, {method:"Visa demo",amount:5})),
     /storage/,
-  );
+  ));
   assert.equal(store.list("fields").length, 1);
 
   // Overview tables show the right kind of information for each role.
@@ -419,6 +459,7 @@ const store = context.KicksStore,
         {
           id: 1,
           title: "Friday Kickabout",
+          durationMinutes: 60,
           fieldId: 1,
           date: "2100-01-01",
           time: "18:00",
@@ -450,10 +491,10 @@ const store = context.KicksStore,
     };
     let html = "";
     const overviewContext = {
-      KicksStore: { escape: (value) => String(value ?? ""), list: () => [] },
+      KicksStore: { ...store, escape: (value) => String(value ?? ""), list: () => [] },
       KicksAuth: { fieldImage: () => "field.jpg" },
       document: {
-        getElementById: () => ({
+        getElementById: () => ({ dataset: {},
           set innerHTML(value) {
             html = value;
           },
@@ -481,12 +522,12 @@ const store = context.KicksStore,
     return html;
   }
   const playerOverview = renderOverview("player");
-  assert(playerOverview.includes("Your upcoming bookings"));
+  assert(playerOverview.includes("Your active bookings"));
   assert(playerOverview.includes("Your activity"));
   assert(playerOverview.includes("booking-donut"));
   assert(playerOverview.includes("KICKS Arena"));
   const ownerOverview = renderOverview("owner");
-  assert(ownerOverview.includes("Upcoming activity by field"));
+  assert(ownerOverview.includes("Activity by field"));
   assert(ownerOverview.includes("Your field activity"));
   assert(ownerOverview.includes("Active bookings"));
   const adminOverview = renderOverview("admin");
@@ -501,3 +542,5 @@ const store = context.KicksStore,
   console.error(error);
   process.exitCode = 1;
 });
+
+})().catch(error => { console.error(error); process.exitCode = 1; });

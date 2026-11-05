@@ -16,20 +16,32 @@
   dialog.addEventListener("close", () => {
     const resolve = waiting;
     waiting = null;
-    if (resolve) resolve(dialog.returnValue === "paid" ? { method: "Visa demo", amount: Number(dialog.dataset.amount) } : null);
+    if (resolve)
+      resolve(
+        dialog.returnValue === "paid"
+          ? { method: "Visa demo", amount: Number(dialog.dataset.amount) }
+          : null,
+      );
   });
-  dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close("cancel"); });
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close("cancel");
+  });
   window.KicksCheckout = {
+    cancel() { if (dialog.open) dialog.close('cancel'); },
     open(amount, description) {
       if (waiting) return Promise.resolve(null);
-      if (!Number.isFinite(Number(amount)) || Number(amount) < 0) return Promise.reject(Error("Invalid payment amount."));
+      if (!Number.isFinite(Number(amount)) || Number(amount) < 0)
+        return Promise.reject(Error("Invalid payment amount."));
       if (Number(amount) === 0) return Promise.resolve({ method: "Free" });
       dialog.querySelector("#checkoutDescription").textContent = description;
-      dialog.querySelector("#checkoutTotal").textContent = Number(amount).toFixed(2) + " JD";
+      dialog.querySelector("#checkoutTotal").textContent =
+        Number(amount).toFixed(2) + " JD";
       dialog.dataset.amount = amount;
       dialog.returnValue = "";
-      dialog.showModal();
-      return new Promise(resolve => { waiting = resolve; });
-    }
+      KicksDialogs.open(dialog);
+      return new Promise((resolve) => {
+        waiting = resolve;
+      });
+    },
   };
 }

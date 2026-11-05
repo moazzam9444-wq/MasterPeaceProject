@@ -49,7 +49,7 @@ function getResults() {
       return secondField.rating - firstField.rating;
     });
   }
-  return results;
+  return window.KicksNearby?.apply("fields", results) || results;
 }
 
 function render() {
@@ -66,7 +66,7 @@ function render() {
   const lastField = page * pageSize;
   const visibleFields = results.slice(firstField, lastField);
   for (const field of visibleFields) {
-    let availability = "Fully booked today";
+    let availability = "Check availability";
     let availabilityClass = "later";
     if (field.now) {
       availability = "Available now";
@@ -74,24 +74,22 @@ function render() {
     } else if (field.today) {
       availability = "Available today";
     }
+    const presentationAmenities = String(field.amenities || '').split(/[,\n]/).map(item => item.trim()).filter(Boolean).slice(0, 2);
+    const featured = visibleFields.indexOf(field) === 0;
+    const fieldHref = 'field-details.html?id=' + encodeURIComponent(field.id);
     fieldCards += `
-      <article class="catalog-card">
-        <div class="catalog-image">
-          <img src="${KicksAuth.fieldImage(field)}" alt="Football pitch at ${KicksStore.escape(field.name)}" loading="lazy">
-          <span class="availability ${availabilityClass}">${availability}</span>
-          <span class="format-badge">${KicksStore.escape(field.type)}</span>
-        </div>
-        <div class="catalog-body">
-          <div class="card-heading">
-            <h3>${KicksStore.escape(field.name)}</h3>
-            <span class="rating"><i class="bi bi-star-fill" aria-hidden="true"></i> ${field.rating.toFixed(1)}</span>
-          </div>
-          <p class="catalog-location"><i class="bi bi-geo-alt" aria-hidden="true"></i> ${KicksStore.escape(field.area)}, ${KicksStore.escape(field.city)}</p>
-          <div class="amenities"><span><i class="bi bi-grid-3x3" aria-hidden="true"></i> Artificial turf</span><span><i class="bi bi-lightbulb" aria-hidden="true"></i> Floodlights</span></div>
-          <div class="card-bottom">
-            <p><strong>${field.price} <small>JD</small></strong><span> / hour</span></p>
-            <a class="view-field" href="field-details.html?id=${field.id}">View field <span aria-hidden="true">↗</span><span class="visually-hidden">: ${KicksStore.escape(field.name)}</span></a>
-          </div>
+      <article class="kx-venue catalog-card${featured ? ' is-featured' : ''}">
+        <a class="kx-venue-image catalog-image" href="${fieldHref}" aria-label="Explore ${KicksStore.escape(field.name)}">
+          <img src="${KicksAuth.fieldImage(field)}" alt="Football pitch at ${KicksStore.escape(field.name)}" loading="${featured ? 'eager' : 'lazy'}" decoding="async">
+          <span class="kx-venue-format">${KicksStore.escape(field.type)}</span>
+          <span class="kx-venue-image-caption">${featured ? 'THE GROUND / IN FOCUS' : 'EXPLORE THE VENUE'} <span aria-hidden="true">&#8599;</span></span>
+        </a>
+        <div class="kx-venue-body catalog-body">
+          <div class="kx-venue-topline"><span class="kx-badge ${availabilityClass ? 'kx-badge--muted' : 'kx-badge--positive'}"><i class="kx-badge-dot" aria-hidden="true"></i>${availability}</span>${field.rating != null && Number.isFinite(Number(field.rating)) ? '<span class="kx-venue-rating"><span aria-hidden="true">&#9733;</span> ' + Number(field.rating).toFixed(1) + '</span>' : ''}</div>
+          <div class="kx-venue-title"><p class="kx-venue-city">${KicksStore.escape(field.city)}</p><h3><a href="${fieldHref}">${KicksStore.escape(field.name)}</a></h3><p class="kx-venue-location catalog-location">${KicksStore.escape(field.area)}, ${KicksStore.escape(field.city)}</p>${window.KicksNearby?.badge("fields",field.id) || ''}</div>
+          ${featured && field.description ? '<p class="kx-venue-intro">' + KicksStore.escape(field.description) + '</p>' : ''}
+          <div class="kx-venue-amenities amenities">${presentationAmenities.map(item => '<span>' + KicksStore.escape(item) + '</span>').join('') || '<span>Facilities not listed</span>'}</div>
+          <footer class="kx-venue-footer"><p><strong>${field.price}</strong><span><b>JOD</b> / hour</span></p><a class="kx-btn kx-btn--ink view-field" href="${fieldHref}" aria-label="Explore venue: ${KicksStore.escape(field.name)}">Explore venue <span aria-hidden="true">&#8599;</span></a></footer>
         </div>
       </article>`;
   }
@@ -161,6 +159,7 @@ filterForm.addEventListener("input", () =>
   filterForm.elements.max.setCustomValidity(""),
 );
 function clearFilters() {
+  window.KicksNearby?.clear(false);
   filterForm.reset();
   filterForm.elements.max.setCustomValidity("");
   applied = {};
@@ -181,7 +180,7 @@ document.querySelector("#searchForm").addEventListener("submit", (event) => {
   render();
   document
     .querySelector("#results")
-    .scrollIntoView({ behavior: "smooth", block: "start" });
+    .scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
 });
 sort.addEventListener("change", () => {
   page = 1;
@@ -194,7 +193,7 @@ pagination.addEventListener("click", (event) => {
   render();
   document
     .querySelector("#results")
-    .scrollIntoView({ behavior: "smooth", block: "start" });
+    .scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
 });
 const toggle = document.querySelector("#filterToggle");
 toggle.addEventListener("click", () => {
@@ -203,3 +202,5 @@ toggle.addEventListener("click", () => {
   document.querySelector("#filterPanel").classList.toggle("is-open", open);
 });
 render();
+
+window.addEventListener("kicks-nearby-change", () => { page = 1; render(); });

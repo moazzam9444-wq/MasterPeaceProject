@@ -23,23 +23,31 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/fields.css" />
-    <link rel="stylesheet" href="../../css/field-details.css?v=accounts-7" />
-    
-    <script src="../../js/admin-account.js?v=restored-1" defer></script>
-<script src="../../js/data-store.js?v=review-20261015" defer></script>
-<script src="../../js/account.js?v=review-20261015" defer></script>
-<script src="../../js/field-details.js?v=readable-nav-1" defer></script>
-    <link rel="stylesheet" href="../../css/creative.css?v=cleanup-1" />
-  <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
-<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
-<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
-<script src="../../js/theme.js?v=readable-nav-1"></script>
+    <script src="../../js/navigation.js?v=1" defer></script>
+<script src="../../js/dialogs.js?v=1" defer></script>
+<script src="../../js/full-demo.js?v=coordinated-writes-1" defer></script><script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/demo-data.js?v=preserve-legacy-3" defer></script>
+<script src="../../js/data-store.js?v=coordinated-writes-1" defer></script>
+<script src="../../js/account.js?v=coordinated-writes-1" defer></script>
+<script src="../../js/field-details.js?v=coordinated-writes-1" defer></script>
+    <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
+<script src="../../js/theme.js?v=premium-1"></script>
 <link rel="stylesheet" href="../../css/footer.css?v=shared-1">
-</head>
-  <body>
+<link rel="stylesheet" href="../../css/discovery.css?v=chat-3">
+<link rel="stylesheet" href="../../css/dialogs.css?v=1">
+<link rel="stylesheet" href="../../css/premium-shell.css?v=1">
+<script src="../../assets/opendesign-football/js/vendor/gsap.min.js" defer></script>
+
+<link rel="stylesheet" href="../../css/kicks-system.css?v=structural-1">
+<link rel="stylesheet" href="../../css/kicks-fields.css?v=structural-1">
+<script src="../../js/venue-presentation.js?v=structural-1" defer></script>
+<link rel="stylesheet" href="../../css/focused-refinement.css?v=1">
+<script src="../../assets/opendesign-football/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../../js/focused-motion.js?v=1" defer></script>
+<link rel="stylesheet" href="../../css/table-pagination.css?v=1"><script src="../../js/table-pagination.js?v=1" defer></script></head>
+  <body class="kx-page kx-venue-page kx-focused">
     <a class="skip-link" href="#fieldContent">Skip to field details</a>
-    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+    <nav class="navbar navbar-expand-xl" aria-label="Main navigation">
       <div class="container">
         <a
           class="navbar-brand d-flex align-items-center gap-2"
@@ -62,205 +70,42 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav mx-auto gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="../../index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                href="fields.html"
-                aria-current="location"
-                >Fields</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../OpenGames/open-games.html"
-                >Open Games</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../Tournaments/tournaments.html"
-                >Tournaments</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../About/about.html">About</a>
-            </li>
-          <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
-</ul>
+          <ul class="navbar-nav mx-auto gap-xl-1"><li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="fields.html">Fields</a></li><li class="nav-item"><a class="nav-link" href="../OpenGames/open-games.html">Open Games</a></li><li class="nav-item"><a class="nav-link" href="../Teams/teams.html">Teams</a></li><li class="nav-item"><a class="nav-link" href="../Challenges/challenges.html">Challenge Me</a></li><li class="nav-item"><a class="nav-link" href="../Tournaments/tournaments.html">Tournaments</a></li><li class="nav-item"><a class="nav-link" href="../About/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="../Contact/contact.html">Contact Us</a></li></ul>
         </div>
       </div>
     </nav>
-    <main class="container detail-page">
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href="../../index.html">Home</a><span aria-hidden="true">/</span
-        ><a href="fields.html">Fields</a><span aria-hidden="true">/</span
-        ><span id="breadcrumbName">Field details</span>
-      </nav>
-      <div id="missingField" class="empty-state" hidden>
-        <h1>Field not found</h1>
-        <p>This field is not in our catalogue.</p>
-        <a class="nav-play" href="fields.html">Explore all fields →</a>
-      </div>
-      <div id="fieldContent" hidden>
-        <header class="detail-heading">
-          <div>
-            <p class="eyebrow">YOUR NEXT HOME GROUND</p>
-            <h1 id="fieldName"></h1>
-            <p class="detail-location">
-              <i class="bi bi-geo-alt" aria-hidden="true"></i>
-              <span id="fieldLocation"></span
-              ><span class="heading-rating"
-                ><i class="bi bi-star-fill" aria-hidden="true"></i>
-                <span id="fieldRating"></span> <small>Rating</small></span
-              >
-            </p>
-          </div>
-          <a href="fields.html" class="back-fields">← All fields</a>
-        </header>
-        
-        <div class="detail-layout">
-          <div class="detail-main">
-            <button
-              id="enlargePhoto"
-              class="pitch-photo"
-              aria-label="Enlarge field photo"
-            >
-              <img id="fieldPhoto" alt="" /><span
-                ><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> View
-                photo</span
-              >
-            </button>
-            <div class="pitch-facts">
-              <div>
-                <i class="bi bi-people" aria-hidden="true"></i
-                ><span>Match format</span><strong id="fieldFormat"></strong>
-              </div>
-              <div>
-                <i class="bi bi-grid-3x3" aria-hidden="true"></i
-                ><span>Playing surface</span><strong>Artificial turf</strong>
-              </div>
-              <div>
-                <i class="bi bi-lightbulb" aria-hidden="true"></i
-                ><span>Evening games</span><strong>Floodlit pitch</strong>
-              </div>
-            </div>
-            <section class="detail-panel">
-              <p class="eyebrow">THE SPACE TO PLAY</p>
-              <h2>About this field</h2>
-              <p id="fieldDescription"></p>
-              <p>
-                Bring your team, pick a time and enjoy the game. Choose an available time below to book your session.
-              </p>
-            </section>
-            <section class="detail-panel">
-              <h2>Everything for your match</h2>
-              <p class="section-caption">
-                Amenities — confirm facilities with the venue before
-                visiting.
-              </p>
-              <div class="amenity-grid"></div>
-            </section>
-            <section class="detail-panel">
-              <h2>Find your way here</h2>
-              <div class="location-card">
-                <div class="location-icon">
-                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
-                </div>
-                <div>
-                  <strong id="mapLocation"></strong>
-                  <p>
-                    Area only. An exact venue address will be added with live
-                    field data.
-                  </p>
-                </div>
-              </div>
-              <a
-                id="mapLink"
-                class="map-link"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Explore this area on Google Maps ↗</a
-              >
-            </section>
-            <section class="detail-panel rules-panel">
-              <h2>Before you play</h2>
-              <ul>
-                <li>Arrive a little early so your match can start on time.</li>
-                <li>Use footwear suitable for artificial turf.</li>
-                <li>Keep the pitch clean and respect other players.</li>
-              </ul>
-              <p>
-                You can manage your booking from your dashboard.
-              </p>
-            </section>
-          </div>
-          <aside class="booking-card" aria-label="Field booking">
-            <p class="eyebrow">MAKE TIME FOR YOUR GAME</p>
-            <div class="booking-price">
-              <strong id="hourlyPrice"></strong
-              ><span>JD <small>/ hour</small></span>
-            </div>
-            <p class="booking-subtitle">Your pitch. Your next match.</p>
-            <form id="bookingForm">
-              <label for="bookingDate">Choose a date</label
-              ><input type="date" id="bookingDate" required />
-              <fieldset>
-                <legend>Choose a time <small>(Amman time)</small></legend>
-                <p class="slot-note">
-                  One-hour slots · shaded slots are unavailable.
-                </p>
-                <div id="timeSlots" class="time-slots"></div>
-              </fieldset>
-              <p
-                id="slotStatus"
-                class="slot-status"
-                role="status"
-                aria-live="polite"
-              ></p>
-              <div class="booking-summary">
-                <div><span>Duration</span><strong>1 hour</strong></div>
-                <div>
-                  <span>Selected time</span><strong id="selectedTime">—</strong>
-                </div>
-                <div class="booking-total">
-                  <span>Your total</span><strong id="bookingTotal"></strong>
-                </div>
-              </div>
-              <button
-                id="bookButton"
-                class="apply-filters"
-                type="submit"
-                disabled
-              >
-                Continue to Visa <span aria-hidden="true">→</span>
-              </button>
-              
-            </form>
-            <div class="booking-help">
-              <strong>Need a team first?</strong
-              ><a href="../OpenGames/open-games.html">Find an open game →</a>
-            </div>
-          </aside>
+    <main id="mainContent" class="kx-venue-main detail-page">
+  <div class="kx-wrap"><nav class="kx-breadcrumbs breadcrumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span aria-hidden="true">/</span><a href="fields.html">Fields</a><span aria-hidden="true">/</span><span id="breadcrumbName">Venue details</span></nav></div>
+  <div id="missingField" class="kx-wrap kx-empty empty-state" hidden><h1 class="kx-h2">This ground isn't available.</h1><p>Explore the current field directory to find your next place to play.</p><a class="kx-btn kx-btn--primary" href="fields.html">Explore fields <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+  <article id="fieldContent" hidden>
+    <div class="kx-wrap">
+      <section class="kx-venue-gallery" aria-label="Venue photograph and detail crops">
+        <div class="kx-venue-cover"><button id="enlargePhoto" class="kx-cover-open pitch-photo" type="button" aria-label="Enlarge venue photograph"><img id="fieldPhoto" alt=""><span class="kx-cover-expand">View full photograph <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button><div class="kx-cover-shade" aria-hidden="true"></div><header class="kx-venue-identity"><p class="kx-kicker">YOUR NEXT HOME GROUND</p><h1 id="fieldName" class="kx-display"></h1><div class="kx-venue-meta"><span><svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 6-7 11-7 11S5 16 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></svg> <span id="fieldLocation"></span></span><span class="kx-venue-grade"><span aria-hidden="true">&#9733;</span> <span id="fieldRating"></span> <small>Venue rating</small></span><span class="kx-badge" id="fieldFormat"></span></div></header></div>
+        <div class="kx-photo-crops"><button type="button" data-kx-photo aria-label="View full venue photograph from detail crop"><img data-kx-photo-crop alt=""><span>Pitch detail <small>Same photograph</small></span></button><button type="button" data-kx-photo aria-label="Enlarge venue photograph from closer crop"><img data-kx-photo-crop alt=""><span>A closer look <small>Same photograph</small></span></button></div>
+      </section>
+      <div class="kx-photo-tools"><p class="kx-photo-note">Venue photograph. Detail tiles show crops of the same image.</p><div class="kx-assistant-slot" data-kx-assistant-slot></div></div>
+      <div class="kx-venue-layout">
+        <aside id="reserve" class="kx-reservation booking-card" aria-label="Field booking"><div class="kx-reservation-head"><p class="kx-kicker">YOUR NEXT HOUR OF FOOTBALL</p><div class="kx-reservation-price"><strong id="hourlyPrice"></strong><div><b>JOD</b><span>per hour</span></div></div><p>A time. A place. Your game.</p></div>
+          <form id="bookingForm"><label for="bookingDate" class="kx-label">01 / CHOOSE YOUR MATCHDAY</label><input class="kx-control" type="date" id="bookingDate" required>
+            <fieldset class="kx-slot-field"><legend class="kx-label">02 / PICK YOUR KICKOFF <small>Amman time</small></legend><p class="kx-hint">One-hour sessions. Shaded times are unavailable.</p><div id="timeSlots" class="kx-time-slots time-slots"></div></fieldset>
+            <p id="slotStatus" class="kx-slot-status slot-status" role="status" aria-live="polite"></p>
+            <div class="kx-booking-summary booking-summary"><div><span>Session length</span><strong>1 hour</strong></div><div><span>Kickoff</span><strong id="selectedTime">&#8212;</strong></div><div class="kx-booking-total booking-total"><span>Your total</span><strong id="bookingTotal">&#8212;</strong></div></div>
+            <button id="bookButton" class="kx-btn kx-btn--primary kx-btn--wide apply-filters" type="submit" disabled>Continue to Visa <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button><p class="kx-payment-caption">Local payment simulation. No real charge.</p>
+          </form><a class="kx-reservation-help" href="../OpenGames/open-games.html">Need teammates first? <span>Find an open game &#8599;</span></a>
+        </aside>
+        <div class="kx-venue-story">
+          <section class="kx-venue-chapter"><p class="kx-kicker">THE GROUND</p><h2 class="kx-h2">Your game<br>belongs here.</h2><p id="fieldDescription" class="kx-venue-description"></p><dl class="kx-ground-facts"><div><dt>Location</dt><dd data-kx-location></dd></div><div><dt>Match format</dt><dd data-kx-format></dd></div><div><dt>Venue owner</dt><dd data-kx-owner></dd></div></dl></section>
+          <section class="kx-venue-chapter"><div class="kx-chapter-heading"><span aria-hidden="true">01</span><div><p class="kx-kicker">WHAT'S ON SITE</p><h2 class="kx-h2">Made for matchday.</h2></div></div><p class="kx-copy">Facilities listed by this venue. Confirm any specific requirements before visiting.</p><div class="kx-amenities amenity-grid"></div></section>
+          <section class="kx-venue-chapter"><div class="kx-chapter-heading"><span aria-hidden="true">02</span><div><p class="kx-kicker">MEET YOU HERE</p><h2 class="kx-h2">Find your ground.</h2></div></div><div class="kx-location-block"><svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 6-7 11-7 11S5 16 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></svg><div><strong id="mapLocation"></strong><p>Area-level location. The map link searches this neighbourhood; an exact venue address is not provided.</p><a id="mapLink" class="kx-link map-link" target="_blank" rel="noopener noreferrer">Explore the area on Google Maps <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div></section>
+          <section class="kx-venue-chapter"><p class="kx-kicker">BEFORE THE WHISTLE</p><h2 class="kx-h2">A few matchday essentials.</h2><ul class="kx-matchday-rules"><li><span aria-hidden="true">01</span>Arrive early, ready to make the most of your hour.</li><li><span aria-hidden="true">02</span>Bring footwear suitable for the venue's playing surface.</li><li><span aria-hidden="true">03</span>Respect the pitch, the players and the next team.</li></ul><p class="kx-hint">Your booking record is available in your existing dashboard.</p></section>
         </div>
-        <section class="more-fields">
-          <div>
-            <p class="eyebrow">KEEP EXPLORING</p>
-            <h2>Another pitch. Same passion.</h2>
-            <p>Find a field that fits your team and your budget.</p>
-          </div>
-          <a class="nav-play" href="fields.html">Browse all fields ↗</a>
-        </section>
       </div>
-      <noscript
-        ><div class="empty-state">
-          <h1>Field details</h1>
-          <p>Enable JavaScript to load the field and its schedule.</p>
-          <a href="fields.html">Back to fields</a>
-        </div></noscript
-      >
-    </main>
+      <section class="kx-next-chapter more-fields"><div><p class="kx-kicker">THE NEXT GROUND AWAITS</p><h2 class="kx-h2">Another pitch.<br>Same passion.</h2></div><a class="kx-btn kx-btn--secondary" href="fields.html">Explore all grounds <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></section>
+    </div>
+    <div class="kx-mobile-reserve" aria-label="Booking shortcut"><div><small data-kx-mobile-label>Per hour</small><strong data-kx-mobile-price></strong></div><a href="#reserve" class="kx-btn kx-btn--primary">Choose your time <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+  </article>
+  <noscript><div class="kx-wrap kx-empty"><h2>Venue details</h2><p>Enable JavaScript to load the field and available schedule.</p><a href="fields.html">Explore fields</a></div></noscript>
+</main>
     <footer class="kicks-footer" aria-label="KICKS footer">
   <div class="kf-inner">
     <div class="kf-grid">
@@ -274,8 +119,8 @@
           <a href="../../index.html">Home</a>
           <a href="../../Pages/Fields/fields.html">Fields</a>
           <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
-          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
-        </nav>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a><a href="../Teams/teams.html">Teams</a>
+        <a href="../Challenges/challenges.html">Challenge Me</a></nav>
       </div>
       <div>
         <h2>Company</h2>
@@ -293,13 +138,13 @@
     <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
   </div>
 </footer>
-    <dialog id="photoDialog" aria-label="Field photo">
+    <dialog class="kx-dialog" id="photoDialog" aria-label="Field photo">
       <form method="dialog">
         <button class="dialog-close" aria-label="Close photo">×</button>
       </form>
-      <img id="largePhoto" alt="" />
+      <img id="largePhoto" alt="" /><p class="kx-photo-note" data-kx-large-photo-note>Venue photograph</p>
     </dialog>
-    <dialog id="paymentDialog" aria-labelledby="paymentDialogTitle">
+    <dialog class="kx-dialog" id="paymentDialog" aria-labelledby="paymentDialogTitle">
       <form method="dialog">
         <button class="dialog-close" aria-label="Close payment">×</button>
       </form>
@@ -310,12 +155,12 @@
         <div><span>Amount due</span><strong id="paymentAmount"></strong></div>
       </div>
       <p class="payment-notice">This is a local demonstration. No card details are collected and no money moves.</p>
-      <div class="payment-actions">
-        <form method="dialog"><button class="payment-cancel">Cancel</button></form>
-        <button id="completeDemoPayment" class="apply-filters" type="button">Simulate Visa payment</button>
+      <div class="payment-actions kx-dialog-actions">
+        <form method="dialog"><button class="payment-cancel kx-btn kx-btn--secondary">Cancel</button></form>
+        <button id="completeDemoPayment" class="apply-filters kx-btn kx-btn--primary kx-btn--wide" type="button">Simulate Visa payment</button>
       </div>
     </dialog>
-    <dialog id="bookingDialog" aria-labelledby="bookingDialogTitle">
+    <dialog class="kx-dialog" id="bookingDialog" aria-labelledby="bookingDialogTitle">
       <form method="dialog">
         <button class="dialog-close" aria-label="Close booking confirmation">
           ×
@@ -329,10 +174,14 @@
       <p id="bookingPreview"></p>
       
       <form method="dialog">
-        <button class="apply-filters">Back to field</button>
+        <button class="apply-filters kx-btn kx-btn--primary kx-btn--wide">Back to field</button>
       </form>
     </dialog>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+<script src="../../js/jordan-places.js?v=1" defer></script>
+<script src="../../js/place-resolver.js?v=1" defer></script>
+<script src="../../js/discovery.js?v=audit-20261102-1" defer></script>
+<script src="../../js/discovery-ui.js?v=audit-20261102-1" defer></script>
 </body>
 </html>

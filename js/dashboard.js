@@ -19,12 +19,11 @@
     users: "Users",
     memberships: role === "player" ? "My games" : "Match players",
     registrations: role === "player" ? "My tournaments" : "Team registrations",
-    discover: "Find your next game",
     profile: "My profile",
     settings: "Site settings",
     revenue: "Revenue",
     feedback: "Feedback",
-    meetings: role === "player" ? "My meetings" : "Meetings",
+    messages: "Messages",
   };
   const viewsByRole = {
     player: [
@@ -32,21 +31,22 @@
       "bookings",
       "memberships",
       "registrations",
-      "meetings",
-      "discover",
+      "messages",
       "profile",
     ],
-    owner: ["overview", "fields", "games", "tournaments", "meetings", "profile"],
+    owner: ["overview", "fields", "bookings", "games", "memberships", "tournaments", "messages", "profile"],
     admin: [
       "overview",
       "fields",
       "bookings",
       "games",
       "tournaments",
+      "memberships",
       "users",
+      "registrations",
       "revenue",
       "feedback",
-      "meetings",
+      "messages",
       "profile",
       "settings",
     ],
@@ -62,9 +62,8 @@
     users: '<circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2m1-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 5"/>',
     profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
     settings: '<path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/>',
-    discover: '<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>'
   };
-  sidebarIcons.meetings = '<rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3"/>';
+  sidebarIcons.messages = '<rect x="3" y="4" width="18" height="14" rx="3"/><path d="m4 6 8 6 8-6M7 18v3l4-3"/>';
   sidebarIcons.memberships = sidebarIcons.games;
   sidebarIcons.registrations = sidebarIcons.tournaments;
   sidebarIcons.revenue = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18m-6 5h3"/>';
@@ -78,16 +77,15 @@
     store.list("users").find((x) => x.id === currentUserId);
   const getOwnedFieldIds = () =>
     store
-      .list("fields")
+      .list("fields", { includeArchived: true })
       .filter((x) => x.ownerId === currentUserId)
       .map((x) => x.id);
-  const getRecord = (kind, id) =>
-    store.list(kind).find((x) => x.id === Number(id));
+  const getRecord = (kind, id) => store.find(kind, id);
   function getVisibleRecords(kind) {
-    let rows = store.list(kind);
+    let rows = store.list(kind).map(record => ({ ...record, ...(store.activityStatus(kind, record) ? { status: store.activityStatus(kind, record) } : {}) }));
     if (role === "admin") return rows;
     if (role === "player")
-      return rows.filter((x) => x.userId === currentUserId);
+      return rows.filter((x) => x.userId === currentUserId || (kind==='registrations' && ['Registered','Completed'].includes(x.status) && (x.roster?.some(m=>m.userId===currentUserId) || (!x.roster && store.list('teams').find(t=>t.id===x.teamId)?.members.some(m=>m.userId===currentUserId)))) || (kind==='bookings' && x.captainIds?.includes(currentUserId)));
     if (kind === "fields")
       return rows.filter((x) => x.ownerId === currentUserId);
     if (kind === "memberships")
@@ -112,6 +110,7 @@
   function renderDashboard() {
     if (!KicksAuth.requireRole(role)) return;
     view = location.hash.slice(1) || "overview";
+    if(view==='meetings'){view='messages';history.replaceState(null,'',location.pathname+location.search+'#messages');}
     if (!views.includes(view)) view = "overview";
     if (view !== "profile") profileEditing = false;
     const u = getCurrentUser();
@@ -152,25 +151,41 @@
         getRecords: getVisibleRecords,
         getRecord: getRecord,
       });
-    } else if (view === "meetings") KicksMeetingUI.render();
+    } else if (view === "messages") KicksDashboardMessages.render();
     else if (view === "feedback") renderFeedback();
     else if (view === "revenue") renderRevenue();
-    else if (view === "discover") renderDiscover();
     else if (view === "profile" || view === "settings")
       renderProfileOrSettings();
     else renderTable(view);
+    decorateDashboardTables();
+  }
+  function decorateDashboardTables() {
+    getElement("dashboardView").querySelectorAll("table").forEach(table => {
+      if (table.classList.contains("reservations-table")) return;
+      table.classList.add("dashboard-table");
+      table.closest(".table-wrap")?.classList.add("dashboard-table-wrap");
+      const headings = [...table.querySelectorAll("thead th")].map(th => {
+        th.scope = "col";
+        return th.textContent.trim();
+      });
+      table.querySelectorAll("tbody tr").forEach(row => [...row.cells].forEach((cell, index) => {
+        if (cell.colSpan === 1) {
+          cell.dataset.label = headings[index] || "";
+          if (headings[index] === "Status" && !cell.children.length) cell.innerHTML = tableBadge(cell.textContent.trim());
+        }
+      }));
+    });
   }
   // كل مصفوفة تحدد الأعمدة المعروضة في جدول واحد.
   const columns = {
-    fields: ["name", "city", "type", "price", "rating", "today"],
-    games: ["title", "fieldId", "date", "time", "joined", "capacity", "price"],
-    tournaments: ["name", "fieldId", "date", "teams", "capacity", "fee"],
-    users: ["name", "email", "role", "city", "status"],
-    bookings: ["userId", "fieldId", "date", "time", "price", "commission", "ownerNet", "paymentMethod", "paymentStatus", "status"],
-    memberships: ["userId", "gameId", "status"],
-    registrations: ["teamName", "userId", "tournamentId", "status"],
+    fields: ["name", "type", "price", "rating", "today"],
+    games: ["title", "schedule", "places", "price", "status"],
+    tournaments: ["name", "schedule", "places", "fee", "status"],
+    users: ["name", "role", "city", "status"],
+    bookings: ["bookingInfo", "schedule", "price", "split", "payment", "status"],
+    memberships: [...(role === "player" ? [] : ["userId"]), "gameId", "position", "schedule", "payment", "status"],
+    registrations: ["tournamentId", "teamName", "schedule", "payment", "status"],
   };
-  if (role === "player") columns.bookings = columns.bookings.filter(key => !["commission", "ownerNet"].includes(key));
   const getFieldLabel = (k) =>
     ({
       fieldId: "Field",
@@ -188,6 +203,12 @@
       ownerNet: "Owner payout (demo)",
       paymentMethod: "Payment method",
       paymentStatus: "Payment status",
+      durationMinutes: "Duration (minutes)",
+      schedule: "Date & time",
+      places: "Participation",
+      payment: "Payment",
+      bookingInfo: "Booking",
+      split: "Revenue split",
       commissionRate: "Booking commission (%)",
       listingFee: "One-time field listing fee (JD)",
     })[k] || k.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
@@ -209,35 +230,84 @@
   }
 
   function renderRowActions(collectionName, record) {
-    if (role !== "player") {
-      return `<button data-edit="${collectionName}" data-id="${record.id}">Edit</button>
-              <button data-delete="${collectionName}" data-id="${record.id}">Delete</button>`;
+    if (collectionName === 'registrations') return record.status === 'Registered' && !store.find('tournaments',record.tournamentId)?.bracket?.started
+      ? `<button class="record-delete" data-withdraw-registration="${record.id}">Withdraw & refund</button>` : '<span class="table-secondary">'+(store.find('tournaments',record.tournamentId)?.bracket?.started ? 'Draw locked' : 'History retained')+'</span>';
+    if(collectionName==='tournaments' && !store.tournamentAccess(record.id).manage)return '';
+    if (collectionName === "memberships") return "";
+    if (role === "player" || (collectionName === "bookings" && role === "owner")) return "";
+    if (collectionName === "users") {
+      const toggle = record.id !== currentUserId && ["Active", "Inactive"].includes(record.status)
+        ? '<button class="' + (record.status === "Active" ? 'record-delete' : 'record-edit') + '" data-account-access="' + record.id + '">' + (record.status === "Active" ? 'Deactivate' : 'Reactivate') + '</button>' : '';
+      return '<button class="record-edit" data-edit="users" data-id="' + record.id + '">' + (record.status === "Pending" ? 'Review request' : 'Edit') + ' <span aria-hidden="true">↗</span></button>' + toggle;
     }
-    const finishedStatuses = ["Cancelled", "Completed", "Left", "Withdrawn"];
-    if (finishedStatuses.includes(record.status)) return "—";
-    const actionLabels = {
-      bookings: "Cancel",
-      memberships: "Leave",
-      registrations: "Withdraw",
-    };
-    return `<button data-cancel="${collectionName}" data-id="${record.id}">${actionLabels[collectionName]}</button>`;
+    return `${collectionName==='tournaments' && role==='admin' && !['Cancelled','Ended'].includes(record.status)?`<button class="record-delete" data-cancel-tournament="${record.id}">Cancel & refund</button>`:''}<button class="record-edit" data-edit="${collectionName}" data-id="${record.id}">${collectionName === "users" && record.status === "Pending" ? "Review request" : "Edit"} <span aria-hidden="true">↗</span></button>
+            <button class="record-delete" data-delete="${collectionName}" data-id="${record.id}">Delete</button>`;
+  }
+  function tableBadge(value) {
+    const text = String(value || "Not recorded");
+    let tone = "neutral";
+    if (["Active", "Confirmed", "Joined", "Registered", "Paid (demo)", "Yes"].includes(text)) tone = "success";
+    if (["Completed", "Ended"].includes(text)) tone = "complete";
+    if (["Pending", "Set duration", "In progress"].includes(text)) tone = "warning";
+    if (["Cancelled", "Withdrawn", "Left", "Inactive", "Archived", "Refunded (demo)"].includes(text)) tone = "muted";
+    return `<span class="table-badge table-badge--${tone}">${escapeHtml(text)}</span>`;
+  }
+  function fieldThumbnail(field) {
+    return KicksAuth.fieldImage(field).replace(/assets\/images\/(field[1-4])\.jpg$/, "assets/images/$1-home.webp");
+  }
+  function renderTableCell(kind, key, record) {
+    const event = kind === "memberships" ? getRecord("games", record.gameId) : kind === "registrations" ? getRecord("tournaments", record.tournamentId) : record;
+    if (key === "schedule") {
+      if (!event?.date) return '<span class="table-secondary">Not scheduled</span>';
+      const date = new Date(event.date + "T12:00:00+03:00");
+      const label = Number.isNaN(date.getTime()) ? event.date : date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Amman" });
+      return `<strong class="table-primary">${escapeHtml(label)}</strong><small class="table-secondary">${escapeHtml(event.time || "")} · Amman${event.durationMinutes ? " · " + escapeHtml(event.durationMinutes) + " min" : ""}</small>${["games", "tournaments"].includes(kind) && !event.durationMinutes ? tableBadge("Set duration") : ""}`;
+    }
+    if (kind === "memberships" && key === "position") return '<span class="table-role">' + escapeHtml(record.position || "Not specified") + '</span>';
+    if (kind === "memberships" && key === "userId") return '<strong class="table-primary">' + escapeHtml(getRecord("users", record.userId)?.name || "Player") + '</strong>';
+    if (key === "status") return tableBadge(record.status);
+    if (key === "today") return tableBadge(record.today ? "Yes" : "No");
+    if (key === "role") return `<span class="table-role">${escapeHtml(record.role === "owner" ? "Field owner" : record.role)}</span>`;
+    if (key === "payment") return `${tableBadge(record.paymentStatus)}<small class="table-secondary">${escapeHtml(record.paymentMethod || "No method recorded")}</small>`;
+    if (key === "durationMinutes") return record.durationMinutes ? `${escapeHtml(record.durationMinutes)} <span class="table-secondary">min</span>` : tableBadge("Set duration");
+    if (key === "places") return `<strong class="table-primary">${Number(record.joined ?? record.teams ?? 0)} <span class="table-secondary">/ ${Number(record.capacity)}</span></strong><small class="table-secondary">${kind === "games" ? "players" : "teams"}</small>`;
+    if (key === "split") return `<strong class="table-primary">KICKS ${Number(record.commission || 0).toFixed(2)} JD</strong><small class="table-secondary">Owner ${Number(record.ownerNet || 0).toFixed(2)} JD</small>`;
+    if (key === "bookingInfo") {
+      const field = getRecord("fields", record.fieldId);
+      const player = getRecord("users", record.userId);
+      return `<div class="table-venue"><img src="${escapeHtml(fieldThumbnail(field))}" alt="" loading="lazy"><div><strong class="table-primary" dir="auto">${escapeHtml(field?.name || "Unavailable field")}</strong><small class="table-secondary">${escapeHtml(player?.name || "Player")} · #${record.id}${record.challengeId ? `<br><a href="../Challenges/challenges.html?id=${record.challengeId}">${escapeHtml(record.teamNames?.join(" vs ") || "Team challenge")} ↗</a>` : ""}</small></div></div>`;
+    }
+    if (["price", "fee", "commission", "ownerNet"].includes(key)) return `<strong class="table-money">${Number(record[key] || 0).toFixed(2)} <small>JD</small></strong>`;
+    if (key === "name" && kind === "users") return `<div class="table-person"><span class="table-initial" aria-hidden="true">${escapeHtml(record.name?.charAt(0) || "?")}</span><div><strong class="table-primary" dir="auto">${escapeHtml(record.name)}</strong><small class="table-secondary">${escapeHtml(record.email)}</small></div></div>`;
+    if (key === "fieldId" || (kind === "fields" && key === "name")) {
+      const field = key === "fieldId" ? getRecord("fields", record.fieldId) : record;
+      return `<div class="table-venue"><img src="${escapeHtml(fieldThumbnail(field))}" alt="" loading="lazy"><div><strong class="table-primary" dir="auto">${escapeHtml(field?.name || "Unavailable field")}</strong><small class="table-secondary">${escapeHtml(field?.city || "")}</small></div></div>`;
+    }
+    if(key==='tournamentId')return `<a class="table-primary" href="../Tournaments/tournament-details.html?id=${record.tournamentId}" dir="auto">${escapeHtml(event?.name||"Tournament")} ↗</a><small class="table-secondary">${escapeHtml(getRecord("fields",event?.fieldId)?.name||"")}</small>`;
+    if (["gameId", "tournamentId"].includes(key)) return `<strong class="table-primary" dir="auto">${escapeHtml(event?.title || event?.name || "Unavailable activity")}</strong><small class="table-secondary">${escapeHtml(getRecord("fields", event?.fieldId)?.name || "")}</small>`;
+    if (["games", "tournaments"].includes(kind) && ["name", "title"].includes(key)) {
+      const field = getRecord("fields", record.fieldId);
+      return `<div class="table-venue"><img src="${escapeHtml(fieldThumbnail(field))}" alt="" loading="lazy"><div><strong class="table-primary" dir="auto">${kind==='tournaments'?`<a href="../Tournaments/tournament-details.html?id=${record.id}">${escapeHtml(record[key])} ↗</a>`:escapeHtml(record[key])}</strong><small class="table-secondary">${escapeHtml(field?.name || "Unavailable field")}</small></div></div>`;
+    }
+    if (["name", "title", "teamName"].includes(key)) return `<strong class="table-primary" dir="auto">${escapeHtml(record[key])}</strong>`;
+    return getCellText(key, record[key]) || '<span class="table-secondary">—</span>';
   }
 
   function renderTableRows(collectionName, records) {
     return records
       .map((record) => {
         const cells = columns[collectionName].map((fieldName) =>
-          getCellText(fieldName, record[fieldName]),
+          renderTableCell(collectionName, fieldName, record),
         );
         const searchText = (
           Object.values(record).join(" ") +
           " " +
-          cells.join(" ")
+          cells.join(" ").replace(/<[^>]*>/g, " ")
         ).toLowerCase();
         return `
         <tr data-search="${escapeHtml(searchText)}">
           ${cells.map((text) => "<td>" + text + "</td>").join("")}
-          <td><div class="row-actions">${renderRowActions(collectionName, record)}</div></td>
+          ${role !== "player" ? `<td><div class="row-actions">${collectionName==='tournaments'?`<a class="dash-btn" href="../Tournaments/tournament-details.html?id=${record.id}">Details & bracket ↗</a>`:''}${renderRowActions(collectionName, record)}</div></td>` : ""}
         </tr>`;
       })
       .join("");
@@ -245,12 +315,14 @@
 
   function filterTableRows(searchText) {
     let visibleCount = 0;
-    const rows = document.querySelectorAll("tr[data-search]");
-    for (const row of rows) {
-      row.hidden = !row.dataset.search.includes(searchText.toLowerCase());
-      if (!row.hidden) visibleCount++;
+    for(const table of document.querySelectorAll('#dashboardView table')){
+      if(window.KicksTablePagination){visibleCount+=KicksTablePagination.filter(table,searchText);}
+      else for(const row of table.querySelectorAll('tr[data-search]')){row.hidden=!row.dataset.search.includes(searchText.toLowerCase());if(!row.hidden)visibleCount++;}
     }
     getElement("emptySearch").hidden = visibleCount > 0;
+    const count = getElement("tableResults");
+    if (count) count.textContent = `${visibleCount} record${visibleCount === 1 ? "" : "s"} shown`;
+    return visibleCount;
   }
 
   function renderFeedback() {
@@ -260,7 +332,7 @@
     for (const item of feedback) {
       rows += `<tr><td>${escapeHtml(item.name)}</td><td><a href="mailto:${escapeHtml(item.email)}">${escapeHtml(item.email)}</a></td><td>${item.rating} / 5</td><td style="min-width:240px;white-space:pre-wrap;overflow-wrap:anywhere">${escapeHtml(item.message)}</td><td>${escapeHtml(item.createdAt.slice(0,10))}</td></tr>`;
     }
-    getElement("dashboardView").innerHTML = `<div class="view-heading"><div><h2>Community feedback</h2><p>${feedback.length} responses saved on this browser. Email delivery is separate.</p></div></div><section class="dash-panel"><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Rating</th><th>Message</th><th>Date</th></tr></thead><tbody>${rows || '<tr><td colspan="5">No feedback yet.</td></tr>'}</tbody></table></div></section>`;
+    getElement("dashboardView").innerHTML = `<div class="view-heading"><div><h2>Community feedback</h2><p>${feedback.length} responses saved on this browser. Email delivery is separate.</p></div></div><section class="dash-panel"><div class="table-wrap"><table class="records-table"><thead><tr><th>Name</th><th>Email</th><th>Rating</th><th>Message</th><th>Date</th></tr></thead><tbody>${rows || '<tr><td colspan="5">No feedback yet.</td></tr>'}</tbody></table></div></section>`;
   }
   function renderRevenue() {
     if (role !== "admin") return;
@@ -280,15 +352,19 @@
     }
     getElement("dashboardView").innerHTML = `<div class="view-heading"><div><h2>Platform revenue</h2><p>Credited to ${escapeHtml(getCurrentUser().name)} · local simulation, no bank transfers.</p></div></div>
       <section class="dash-panel"><h2>Account balance: ${balance.toFixed(2)} JD</h2><p>Booking commissions: ${commissions.toFixed(2)} JD · Field listing fees: ${listingRevenue.toFixed(2)} JD</p><p>Current policy: ${Number(store.settings().commissionRate)}% deducted from the organizer, plus ${Number(store.settings().listingFee).toFixed(2)} JD once when an owner publishes a new field. Refunded payments are excluded from this balance.</p></section>
-      <section class="dash-panel"><h2>Payment history</h2><div class="table-wrap"><table><thead><tr><th>Source</th><th>Paid by</th><th>Date</th><th>Total</th><th>KICKS share</th><th>Organizer net</th><th>Status</th></tr></thead><tbody>${rows || '<tr><td colspan="7">No payments yet.</td></tr>'}</tbody></table></div></section>`;
+      <section class="dash-panel"><h2>Payment history</h2><div class="table-wrap"><table class="records-table"><thead><tr><th>Source</th><th>Paid by</th><th>Date</th><th>Total</th><th>KICKS share</th><th>Organizer net</th><th>Status</th></tr></thead><tbody>${rows || '<tr><td colspan="7">No payments yet.</td></tr>'}</tbody></table></div></section>`;
   }
   function renderTable(collectionName) {
     const records = getVisibleRecords(collectionName);
+    if (["player", "owner"].includes(role) && collectionName === "bookings") {
+      renderBookingsHistory(records);
+      return;
+    }
     const ownerCanAdd =
       role === "owner" &&
-      ["fields", "games", "tournaments"].includes(collectionName);
+      ["fields", "games"].includes(collectionName);
     const canAdd =
-      (role === "admin" && collectionName !== "users") || ownerCanAdd;
+      (role === "admin" && !["users", "memberships", "registrations"].includes(collectionName)) || ownerCanAdd;
     const singularNames = {
       fields: "field",
       games: "game",
@@ -303,19 +379,20 @@
         'data-add="' + collectionName + '"',
       );
     }
-    const tableColumns = role === "player" ? columns[collectionName].filter(key => !["commission", "ownerNet"].includes(key)) : columns[collectionName];
+    const tableColumns = columns[collectionName];
     const headings = tableColumns
-      .map((fieldName) => "<th>" + getFieldLabel(fieldName) + "</th>")
+      .map((fieldName) => "<th>" + (fieldName === "price" ? collectionName === "fields" ? "Price / hour" : collectionName === "games" ? "Player fee" : "Amount" : fieldName === "fee" ? "Team fee" : getFieldLabel(fieldName)) + "</th>")
       .join("");
+    const heading = role === "player" ? collectionName === "memberships" ? "Your match history" : "Your team entries" : "Manage " + labels[collectionName].toLowerCase();
     getElement("dashboardView").innerHTML = `
       <div class="view-heading">
-        <div><h2>${labels[collectionName]}</h2><p>${records.length} records in this workspace</p></div>
+        <div><h2>${heading}</h2><p>${records.length} records${role === "player" ? " · Current and past participation" : ""}${["games", "tournaments"].includes(collectionName) ? " · Set a duration to publish older activities. Ended activities stay here as history." : ""}</p></div>
         ${addButton}
       </div>
-      <section class="dash-panel">
-        <div class="table-tools"><label>Search <input id="tableSearch" type="search" placeholder="Search these records"></label></div>
-        <div class="table-wrap"><table>
-          <thead><tr>${headings}<th>Actions</th></tr></thead>
+      <section class="dash-panel dashboard-records-panel">
+        <div class="table-tools"><label for="tableSearch"><span>Search ${labels[collectionName].toLowerCase()}</span><input id="tableSearch" type="search" placeholder="Search by name, date or status"></label><span id="tableResults" class="table-results" role="status">${records.length} record${records.length === 1 ? "" : "s"}</span></div>
+        <div class="table-wrap"><table class="records-table" aria-label="${labels[collectionName]}">
+          <thead><tr>${headings}${role !== "player" ? "<th>Actions</th>" : ""}</tr></thead>
           <tbody>${renderTableRows(collectionName, records)}</tbody>
         </table></div>
         <p id="emptySearch" class="empty-dashboard" ${records.length ? "hidden" : ""}>No records found.</p>
@@ -323,6 +400,37 @@
     getElement("tableSearch").addEventListener("input", (event) =>
       filterTableRows(event.target.value),
     );
+  }
+  function renderBookingsHistory(records) {
+    const ownerView = role === "owner";
+    const statusStyles = { Confirmed: "confirmed", Pending: "pending", Completed: "completed", Cancelled: "cancelled" };
+    const rows = records.map((booking) => {
+      const field = getRecord("fields", booking.fieldId);
+      const fieldName = field?.name || "Unavailable field";
+      const date = new Date(booking.date + "T12:00:00");
+      const dateLabel = Number.isNaN(date.getTime()) ? booking.date : date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+      const payment = booking.paymentStatus || "Not recorded";
+      const paymentStyle = payment === "Paid (demo)" ? "paid" : payment === "Refunded (demo)" ? "refunded" : "unrecorded";
+      const playerName = ownerView ? getRecord("users", booking.userId)?.name || "Player" : "";
+      const search = Object.values(booking).join(" ") + " " + fieldName + " " + dateLabel + " " + playerName;
+      return `<tr data-search="${escapeHtml(search.toLowerCase())}">
+        <td data-label="Field"><div class="reservation-field"><img src="${escapeHtml(fieldThumbnail(field))}" alt="" loading="lazy"><div><strong dir="auto">${escapeHtml(fieldName)}</strong><small>Booking #${escapeHtml(String(booking.id))}${ownerView ? " · " + escapeHtml(playerName) : ""}</small>${booking.challengeId ? `<small><a href="../Challenges/challenges.html?id=${booking.challengeId}">${escapeHtml(booking.teamNames?.join(" vs ") || "Team match")} ↗</a></small>` : ""}</div></div></td>
+        <td data-label="Date & time"><div class="reservation-schedule"><strong>${escapeHtml(dateLabel)}</strong><small>${escapeHtml(booking.time)} <span>· 1 hour</span></small></div></td>
+        <td data-label="Amount"><strong class="reservation-price">${Number(booking.price || 0).toFixed(2)} <small>JD total</small></strong>${booking.splitPayment?`<small>${ownerView?'Two captain payments':('Your half: '+Number(booking.shares?.find(s=>s.userId===currentUserId)?.amount||0).toFixed(2)+' JD')}</small>`:''}</td>
+        <td data-label="Payment"><div class="reservation-payment"><span class="payment-label payment-label--${paymentStyle}">${escapeHtml(payment)}</span><small>${escapeHtml(booking.splitPayment ? 'Split between both captains' : booking.challengeId ? "Booked by " + (getRecord("users", booking.userId)?.name || "Posting captain") : booking.paymentMethod || "No method recorded")}</small>${booking.splitPayment?`<small>${booking.shares.filter(s=>s.paid).length}/2 halves received${booking.status==='Pending'?' · Not confirmed yet':''}</small>`:''}</div></td>
+        <td data-label="Status"><span class="reservation-status reservation-status--${statusStyles[booking.status] || "pending"}">${escapeHtml(booking.status || "Unknown")}</span></td>
+      </tr>`;
+    }).join("");
+    getElement("dashboardView").innerHTML = `<section class="dash-panel reservations-panel" aria-label="Your bookings">
+      <div class="reservations-heading"><div><p class="reservation-eyebrow">YOUR TIME ON THE PITCH</p><h2>${ownerView ? "Your field bookings" : "Your reservations"}</h2><p>Keep track of current bookings and completed booking history.</p></div><a class="dash-btn" href="${ownerView ? "#fields" : "../Fields/fields.html"}">${ownerView ? "Manage fields" : "Book a field"} <span aria-hidden="true">↗</span></a></div>
+      <div class="reservations-tools"><label class="reservation-search" for="tableSearch"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="visually-hidden">Search your bookings</span><input id="tableSearch" type="search" placeholder="Search by field, date or status"></label><span id="bookingResults" class="reservation-count">${records.length} booking${records.length === 1 ? "" : "s"}</span></div>
+      <div class="table-wrap reservations-table-wrap"><table class="reservations-table" aria-label="Booking history"><thead><tr><th scope="col">Field</th><th scope="col">Date & time</th><th scope="col">Amount</th><th scope="col">Payment</th><th scope="col">Status</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div id="emptySearch" class="reservations-empty" ${records.length ? "hidden" : ""}><h3>No bookings to show</h3><p>${records.length ? "Try a different field name, date or status." : "Your next game starts with the right pitch. Book a field to see it here."}</p></div>
+    </section>`;
+    getElement("tableSearch").addEventListener("input", (event) => {
+      const count = filterTableRows(event.target.value);
+      getElement("bookingResults").textContent = `${count} of ${records.length} booking${records.length === 1 ? "" : "s"}`;
+    });
   }
   const select = (...options) => ({ type: "select", options });
   // وصف حقول النماذج: الاسم، نوع الإدخال، وخيارات القائمة.
@@ -362,6 +470,7 @@
       fieldId: { ref: "fields" },
       date: "date",
       time: "time",
+      durationMinutes: "number",
       joined: "number",
       capacity: "number",
       price: "number",
@@ -372,6 +481,7 @@
       fieldId: { ref: "fields" },
       date: "date",
       time: "time",
+      durationMinutes: "number",
       fee: "number",
       teams: "number",
       capacity: "number",
@@ -384,7 +494,7 @@
       email: "email",
       role: select("player", "owner", "admin"),
       city: "text",
-      status: select("Active", "Inactive"),
+      status: select("Pending", "Active", "Rejected", "Inactive"),
     },
     bookings: {
       userId: { ref: "users", filter: (x) => x.role === "player" },
@@ -397,6 +507,7 @@
     memberships: {
       userId: { ref: "users", filter: (x) => x.role === "player" },
       gameId: { ref: "games" },
+      position: select("Goalkeeper", "Defender", "Midfielder", "Forward"),
       status: select("Joined", "Left"),
     },
     registrations: {
@@ -409,6 +520,7 @@
     },
   };
   function shouldShowField(fieldName) {
+    if (['joined','teams'].includes(fieldName)) return false;
     if (role === "owner" && ["ownerId", "rating"].includes(fieldName))
       return false;
     if (role === "player" && ["userId", "status", "price"].includes(fieldName))
@@ -420,6 +532,13 @@
   function getFieldOptions(definition) {
     if (!definition.ref) return definition.options;
     let records = store.list(definition.ref);
+    if (definition.ref === "fields" && editing?.old?.fieldId) {
+      const previousField = store.find("fields", editing.old.fieldId);
+      if (previousField && !records.some(field => field.id === previousField.id)) records.push({ ...previousField, name: previousField.name + " (archived)" });
+    }
+    if (role === "player" && ["games", "tournaments"].includes(definition.ref)) {
+      records = store.publicActivities(definition.ref).filter(record => Date.parse(record.date + "T" + record.time + ":00+03:00") > Date.now());
+    }
     if (definition.filter) records = records.filter(definition.filter);
     if (role === "owner") {
       if (definition.ref === "fields") {
@@ -459,12 +578,16 @@
     if (inputType === "number") {
       numberRules = 'min="0" step="1"';
       if (fieldName === "rating") numberRules = 'min="0" max="5" step="0.1"';
+      if (fieldName === "durationMinutes") numberRules = 'min="1" step="1"';
     }
-    return `<input id="edit-${fieldName}" name="${fieldName}" type="${inputType}" value="${escapeHtml(value)}" required maxlength="160" ${numberRules}>`;
+    return `<input id="edit-${fieldName}" name="${fieldName}" type="${inputType}" value="${escapeHtml(value)}" ${editing?.kind === "users" && fieldName === "city" ? "" : "required"} maxlength="160" ${numberRules}>`;
   }
 
   // نفس نافذة الإدخال تستخدم للإضافة والتعديل.
   function openEditor(kind, id, defaults = {}) {
+    if(kind==='tournaments'&&!id&&role!=='admin'){showToast('Only an administrator can create a tournament.');return;}
+    if(kind==='registrations' && !id){location.assign(KicksAuth.url('Pages/Tournaments/tournaments.html'));return;}
+
     const old = id ? getRecord(kind, id) : {};
     editing = { kind, old, defaults };
     const initialValues = {
@@ -495,7 +618,7 @@
       fieldsHtml.push(`
         <div class="form-field">
           <label for="edit-${fieldName}">${getFieldLabel(fieldName)}</label>
-          ${inputHtml}
+          ${inputHtml}${fieldName === "durationMinutes" ? '<small>The activity ends and leaves public listings after this many minutes from kickoff (Amman time).</small>' : ""}
         </div>`);
     }
     getElement("editorTitle").textContent =
@@ -503,7 +626,29 @@
     getElement("editorError").textContent = "";
     getElement("editorFields").innerHTML =
       '<div class="form-grid">' + fieldsHtml.join("") + "</div>";
+    if (kind === "users" && role === "admin") {
+      const proof = old.ownershipProof;
+      getElement("editorFields").insertAdjacentHTML("beforeend", '<section class="account-review"><h3>Registration review</h3><p>Requested role: ' + escapeHtml(old.requestedRole || old.role) + '</p><p>Choose the assigned role above. Set status to Active to approve, or Rejected to decline.</p>' + (KicksAuth.validOwnershipProof(proof) ? '<a class="dash-btn secondary" href="' + escapeHtml(proof.data) + '" download="' + escapeHtml(proof.name) + '">Download ownership proof: ' + escapeHtml(proof.name) + '</a>' : '<p>No ownership document submitted.</p>') + '</section>');
+    }
+    if (["games", "tournaments"].includes(kind)) {
+      getElement("editorFields").insertAdjacentHTML("beforeend", '<p id="activityEndPreview" class="activity-end-preview" role="status"></p>');
+      const updateEndPreview = () => {
+        const record = { date: getElement("edit-date").value, time: getElement("edit-time").value, durationMinutes: Number(getElement("edit-durationMinutes").value) };
+        const end = store.endsAt(kind, record);
+        getElement("activityEndPreview").textContent = Number.isFinite(end) ? "Ends " + new Intl.DateTimeFormat("en-GB", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Amman" }).format(new Date(end)) + " · Amman. It will then disappear from public listings." : "Set the start date, kickoff and duration to calculate the end time.";
+      };
+      ["date", "time", "durationMinutes"].forEach(key => getElement("edit-" + key).addEventListener("input", updateEndPreview));
+      updateEndPreview();
+    }
     if (kind === "fields") {
+      getElement("editorFields").insertAdjacentHTML("beforeend", '<div class="field-location-editor"><strong>Location from your area</strong><p>Choose the city and enter the area above. Nearby results use an approximate area location automatically — no coordinates needed. Place data: <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</p><p id="fieldLocationStatus" role="status"></p></div>');
+      const updatePlacePreview = () => {
+        const place = window.KicksPlaces?.resolve({city:getElement("edit-city").value,area:getElement("edit-area").value});
+        getElement("fieldLocationStatus").textContent = place ? (place.precision === "area" ? "Area found: " : "Area not identified; using city estimate: ") + place.label : "This location is not recognized yet. The field can still be saved and found by city.";
+      };
+      getElement("edit-city").addEventListener("change", updatePlacePreview);
+      getElement("edit-area").addEventListener("input", updatePlacePreview);
+      updatePlacePreview();
       editing.photo = old.photo || "";
       editing.readingPhoto = false;
       getElement("editorFields").insertAdjacentHTML(
@@ -570,7 +715,7 @@
         },
       );
     }
-    getElement("editorDialog").showModal();
+    KicksDialogs.open(getElement("editorDialog"));
   }
   function validate(kind, r) {
     if (
@@ -608,13 +753,16 @@
     }
     if (kind === "fields" && r.now) r.today = true;
     if (["games", "tournaments"].includes(kind)) {
+      if (!(store.endsAt(kind, r) > Date.parse(r.date + "T" + r.time + ":00+03:00")))
+        throw Error("Enter the activity duration in minutes so its end time can be calculated.");
       const count = kind === "games" ? "joined" : "teams";
+      r[count] = store.list(kind === 'games' ? 'memberships' : 'registrations').filter(x => x[kind === 'games' ? 'gameId' : 'tournamentId'] === r.id && x.status === (kind === 'games' ? 'Joined' : 'Registered')).length;
       if (r.capacity < 2 || r[count] > r.capacity)
         throw Error(
           "Capacity must be at least 2 and cannot be less than the current entries.",
         );
-      if (kind === "tournaments" && r.capacity !== 8)
-        throw Error("This tournament format uses 8 teams.");
+      if (kind === "tournaments" && (!Number.isInteger(r.capacity) || r.capacity > 64))
+        throw Error("Set a whole-number tournament capacity from 2 to 64 teams.");
       const linked = kind === "games" ? "memberships" : "registrations";
       const fk = kind === "games" ? "gameId" : "tournamentId";
       const active = kind === "games" ? "Joined" : "Registered";
@@ -631,7 +779,7 @@
         .list("users")
         .some(
           (x) =>
-            x.id !== r.id && x.email.toLowerCase() === r.email.toLowerCase(),
+            x.id !== r.id && typeof x.email === "string" && x.email.toLowerCase() === r.email.toLowerCase(),
         )
     )
       throw Error("That email is already used by a account.");
@@ -652,24 +800,22 @@
       throw Error("This field already has a booking at this date and time.");
   }
   // نتحقق أولاً؛ المتجر يحفظ السجل وعدّاد المشاركين معاً.
-  function saveRecord(kind, r, old = {}, payment = null) {
+  async function saveRecord(kind, r, old = {}, payment = null) {
     const signedIn = KicksAuth.requireRole(role);
     if (!signedIn || signedIn.id !== currentUserId) throw Error("Please sign in again.");
     validate(kind, r);
-    if (role === 'player' && ['memberships','registrations'].includes(kind) && ['Left','Withdrawn'].includes(r.status)) {
-      return store.leave(currentUserId, kind, r.id);
-    }
+    if (role === "player" && ["Cancelled", "Left", "Withdrawn"].includes(r.status)) throw Error("Player cancellations are disabled. Contact the organiser.");
     if (role === "player" && kind === "bookings" && !r.id)
-      return store.book(currentUserId, r.fieldId, r.date, r.time, payment);
+      return (await store.book(currentUserId, r.fieldId, r.date, r.time, payment));
     if (role === "player" && kind === "memberships" && r.status === "Joined")
-      return store.join(currentUserId, "games", r.gameId, { payment });
+      return (await store.join(currentUserId, "games", r.gameId, { payment, position: r.position }));
     if (
       role === "player" &&
       kind === "registrations" &&
       r.status === "Registered" &&
       old.status !== "Registered"
     )
-      return store.join(currentUserId, "tournaments", r.tournamentId, { ...r, payment });
+      return (await store.join(currentUserId, "tournaments", r.tournamentId, { ...r, payment }));
     if (role === "player") {
       const event =
         kind === "memberships"
@@ -690,7 +836,7 @@
       )
         throw Error("Choose a future date and time.");
     }
-    return store.save(kind, r, payment);
+    return (await store.save(kind, r, payment, old.id ? old : undefined));
   }
   getElement("editorForm").addEventListener("submit", async (ev) => {
     ev.preventDefault();
@@ -722,7 +868,17 @@
         }
         if (kind === "registrations") r.status = "Registered";
       }
-      if (kind === "fields") r.photo = editing.photo || "";
+      if (kind === "fields") {
+        r.photo = editing.photo || "";
+        if (r.city !== old.city || r.area !== old.area) {
+          r.latitude = null; r.longitude = null;
+        }
+
+      }
+      if (kind === "users" && role === "admin") {
+        if (r.status === "Active" && r.role === "owner" && !KicksAuth.validOwnershipProof(r.ownershipProof) && old.requestedRole) throw Error("An ownership document is required before approving a field owner.");
+        if (["Active", "Rejected"].includes(r.status) && old.status === "Pending") { r.reviewedAt = new Date().toISOString(); r.reviewedBy = currentUserId; }
+      }
       validate(kind, r);
       let payment = null;
       if (kind === "fields" && !r.id && getRecord("users", r.ownerId)?.role === "owner") {
@@ -734,7 +890,7 @@
         payment = await KicksCheckout.open(Number(amount), "Confirm your " + labels[kind]);
         if (!payment) return;
       }
-      saveRecord(kind, r, old, payment);
+      (await saveRecord(kind, r, old, payment));
       getElement("editorDialog").close();
       renderDashboard();
       showToast("Changes saved.");
@@ -748,11 +904,11 @@
     getElement("confirmText").textContent = text;
     getElement("confirmError").textContent = "";
     confirmTask = action;
-    getElement("confirmDialog").showModal();
+    KicksDialogs.open(getElement("confirmDialog"));
   }
-  getElement("confirmAction").addEventListener("click", () => {
+  getElement("confirmAction").addEventListener("click", async () => {
     try {
-      confirmTask();
+      (await confirmTask());
       getElement("confirmDialog").close();
       renderDashboard();
       showToast("Changes saved.");
@@ -767,108 +923,39 @@
     if (b.dataset.close) getElement(b.dataset.close).close();
     if (b.dataset.add) openEditor(b.dataset.add);
     if (b.dataset.edit) openEditor(b.dataset.edit, Number(b.dataset.id));
+    if (b.dataset.cancelTournament || b.dataset.withdrawRegistration) {
+      if (!KicksAuth.requireRole('admin')) return;
+      const kind = b.dataset.cancelTournament ? 'tournaments' : 'registrations';
+      const old = store.find(kind,Number(b.dataset.cancelTournament || b.dataset.withdrawRegistration));
+      if (!old) return;
+      confirmAction(kind === 'tournaments' ? 'Cancel tournament & refund all teams?' : 'Withdraw team & refund?',
+        kind === 'tournaments' ? 'Registration will close, all active team entries will be withdrawn and their demo payments refunded. The draw and financial history will be kept. This cannot be undone.' : 'This team will leave the tournament and its demo payment will be refunded. The entry and receipt will be kept.',
+        () => store.save(kind,{...old,status:kind === 'tournaments' ? 'Cancelled' : 'Withdrawn'},null,old));
+      getElement('confirmAction').textContent = 'Confirm & refund';
+    }
+    if (b.dataset.accountAccess) {
+      if (!KicksAuth.requireRole("admin")) return;
+      const user = store.find("users", Number(b.dataset.accountAccess));
+      if (!user) return;
+      const activate = user.status === "Inactive";
+      confirmAction(activate ? "Reactivate account?" : "Deactivate account?",
+        activate ? user.name + " will be able to log in again." : user.name + " will no longer be able to log in. Their account and records will be kept.",
+        async () => (await KicksAuth.setAccountActive(user.id, activate)));
+      getElement("confirmAction").textContent = activate ? "Reactivate" : "Deactivate";
+    }
     if (b.dataset.delete) {
+      if (b.dataset.delete === "users") return;
       const kind = b.dataset.delete,
         id = Number(b.dataset.id);
       confirmAction(
         "Delete this record?",
-        "This removes this data. Deleting an event also removes its player or team entries.",
-        () => {
-          store.remove(kind, id);
+        "Unlinked records are permanently removed. Records with payment, participation or historical references must be retained.",
+        async () => {
+          (await store.remove(kind, id));
         },
       );
     }
-    if (b.dataset.cancel) {
-      const kind = b.dataset.cancel,
-        id = Number(b.dataset.id),
-        old = getRecord(kind, id);
-      confirmAction(
-        "Update your entry?",
-        "This changes your saved entry.",
-        () =>
-          saveRecord(
-            kind,
-            {
-              ...old,
-              status: {
-                bookings: "Cancelled",
-                memberships: "Left",
-                registrations: "Withdrawn",
-              }[kind],
-            },
-            old,
-          ),
-      );
-    }
-    if (b.dataset.join) {
-      const kind = b.dataset.join,
-        id = Number(b.dataset.id);
-      if (kind === "games") {
-        try {
-          const prior = store
-            .list("memberships")
-            .find((x) => x.userId === currentUserId && x.gameId === id);
-          if (prior?.status === "Joined")
-            throw Error("You already joined this match.");
-          const payment = await KicksCheckout.open(Number(getRecord("games", id).price), getRecord("games", id).title + " · One player entry");
-          if (!payment) return;
-          saveRecord(
-            "memberships",
-            {
-              ...prior,
-              userId: currentUserId,
-              gameId: id,
-              status: "Joined",
-            },
-            prior || {},
-            payment,
-          );
-          renderDashboard();
-          showToast("You joined this match.");
-        } catch (err) {
-          showToast(err.message);
-        }
-      } else
-        openEditor(
-          "registrations",
-          store
-            .list("registrations")
-            .find((x) => x.userId === currentUserId && x.tournamentId === id)
-            ?.id,
-          {
-            userId: currentUserId,
-            tournamentId: id,
-            teamName: "My team",
-            captain: getCurrentUser().name,
-            email: getCurrentUser().email,
-            status: "Registered",
-          },
-        );
-    }
-    if (b.id === "newBooking")
-      openEditor("bookings", null, {
-        userId: currentUserId,
-        status: "Pending",
-      });
   });
-  function renderDiscover() {
-    getElement("dashboardView").innerHTML =
-      `<div class="view-heading"><div><h2>A spot on the pitch is waiting.</h2><p>Try booking, joining and registering with this data.</p></div>${createButton("Book a field +", 'id="newBooking"')}</div><h2>Open games</h2><div class="discover-grid">${store
-        .list("games")
-        .map(
-          (g) =>
-            `<article class="discover-card"><img src="${KicksAuth.fieldImage(getRecord("fields", g.fieldId))}" alt=""><div><h3>${escapeHtml(g.title)}</h3><p>${escapeHtml(g.date)} · ${escapeHtml(g.time)}<br>${g.joined}/${g.capacity} players · ${g.price} JD</p>${createButton("Join game ↗", `data-join="games" data-id="${g.id}" ${g.joined >= g.capacity ? "disabled" : ""}`)}</div></article>`,
-        )
-        .join(
-          "",
-        )}</div><h2>Bring your team</h2><div class="discover-grid">${store
-        .list("tournaments")
-        .map(
-          (t) =>
-            `<article class="discover-card"><div><h3>${escapeHtml(t.name)}</h3><p>${escapeHtml(t.date)} · ${t.teams}/${t.capacity} teams · ${t.fee} JD</p>${createButton("Register team ↗", `data-join="tournaments" data-id="${t.id}" ${t.teams >= t.capacity ? "disabled" : ""}`)}</div></article>`,
-        )
-        .join("")}</div>`;
-  }
   function renderProfileOrSettings() {
     const settings = view === "settings";
     const data = settings ? store.settings() : getCurrentUser();
@@ -973,7 +1060,7 @@
           values.commissionRate = Number(values.commissionRate);
           values.listingFee = Number(values.listingFee);
           if (!Number.isFinite(values.commissionRate) || values.commissionRate < 0 || values.commissionRate > 100 || !Number.isFinite(values.listingFee) || values.listingFee < 0) throw Error("Commission must be 0–100%; listing fee must be zero or more.");
-          store.updateSettings(values);
+          (await store.updateSettings(values));
         } else {
           if (values.name.length < 2) throw Error("Enter your full name.");
           const { currentPassword, newPassword, confirmPassword, ...profile } =
@@ -984,7 +1071,7 @@
             currentPassword || newPassword || confirmPassword
               ? await KicksAuth.passwordChanges(currentPassword, newPassword)
               : {};
-          saveRecord(
+          (await saveRecord(
             "users",
             {
               ...getCurrentUser(),
@@ -993,7 +1080,7 @@
               avatar: selectedAvatar,
             },
             getCurrentUser(),
-          );
+          ));
         }
         if (!settings) profileEditing = false;
         renderDashboard();
@@ -1010,5 +1097,8 @@
     if (!KicksAuth.requireRole(role)) return;
   });
   window.addEventListener("hashchange", renderDashboard);
+  store.watchActivityClock(() => {
+    if (["overview", "games", "tournaments", "bookings", "memberships", "registrations"].includes(view)) renderDashboard();
+  });
   renderDashboard();
 })();

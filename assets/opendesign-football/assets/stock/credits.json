@@ -1,0 +1,110 @@
+[
+  {
+    "id": "hero",
+    "query": "football stadium floodlights night pitch",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/hero.jpg",
+    "alt": "Lively football match with cheering fans in Abu Dhabi stadium at night.",
+    "author": "Eslam Mohammed Abdelmaksoud",
+    "authorUrl": "https://www.pexels.com/@eslames1",
+    "sourceUrl": "https://www.pexels.com/photo/exciting-soccer-match-in-abu-dhabi-stadium-31163019/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "story-pitch",
+    "query": "football pitch stadium turf",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/story-pitch.jpg",
+    "alt": "A view of the empty stands and football pitch at Emirates Stadium, London.",
+    "author": "Huy Phan",
+    "authorUrl": "https://www.pexels.com/@huy-phan-316220",
+    "sourceUrl": "https://www.pexels.com/photo/empty-stands-at-emirates-stadium-in-london-17160700/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "story-team",
+    "query": "soccer team huddle",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/story-team.jpg",
+    "alt": "A soccer team in yellow and black jerseys huddles together on a grassy field, showing unity and teamwork.",
+    "author": "Omar Ramadan",
+    "authorUrl": "https://www.pexels.com/@omar-ramadan-1739260",
+    "sourceUrl": "https://www.pexels.com/photo/soccer-team-in-a-huddle-10719279/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "story-action",
+    "query": "football match action players",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/story-action.jpg",
+    "alt": "Players compete in an intense amateur football match on a sunny day, showcasing dynamic sports action.",
+    "author": "Zsolt Bodnár",
+    "authorUrl": "https://www.pexels.com/@haromhatar",
+    "sourceUrl": "https://www.pexels.com/photo/amateur-football-match-in-action-on-sunny-day-39815030/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "venue-lead",
+    "query": "football field artificial turf at night",
+    "status": "ok",
+    "provider": "pixabay",
+    "path": "football/assets/stock/venue-lead.jpg",
+    "alt": "football pitch, playing field, stadium, grass, artificial turf, game, lawn, soccer, corner, sports, green, nature, sports ground",
+    "author": "congerdesign",
+    "authorUrl": "https://pixabay.com/users/congerdesign-509903/",
+    "sourceUrl": "https://pixabay.com/photos/football-pitch-playing-field-stadium-4994688/",
+    "license": "Pixabay Content License (https://pixabay.com/service/license-summary/)"
+  },
+  {
+    "id": "venue-small-1",
+    "query": "soccer field goalposts",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/venue-small-1.jpg",
+    "alt": "Four soccer balls on an outdoor field near goalposts, ideal for sports themes.",
+    "author": "Anastasia Shuraeva",
+    "authorUrl": "https://www.pexels.com/@anastasia-shuraeva",
+    "sourceUrl": "https://www.pexels.com/photo/soccer-balls-on-soccer-field-9519543/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "venue-small-2",
+    "query": "indoor futsal court",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/venue-small-2.jpg",
+    "alt": "Exciting indoor futsal match with athletes competing on a polished wooden court.",
+    "author": "Franco Monsalvo",
+    "authorUrl": "https://www.pexels.com/@franco-monsalvo-252430633",
+    "sourceUrl": "https://www.pexels.com/photo/dynamic-indoor-futsal-match-in-action-29388472/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "players",
+    "query": "football players group standing together",
+    "status": "ok",
+    "provider": "pexels",
+    "path": "football/assets/stock/players.jpg",
+    "alt": "Football players and referees posing together before a match on an outdoor field.",
+    "author": "Володимир Король",
+    "authorUrl": "https://www.pexels.com/@535150482",
+    "sourceUrl": "https://www.pexels.com/photo/smiling-football-players-posing-on-field-16543124/",
+    "license": "Pexels License (https://www.pexels.com/license/)"
+  },
+  {
+    "id": "tournament",
+    "query": "football trophy stadium floodlights",
+    "status": "ok",
+    "provider": "pixabay",
+    "path": "football/assets/stock/tournament.jpg",
+    "alt": "stadium, sports, fans, arena, soccer, football, audience, crowd, cheering, celebrating, stadium, soccer, soccer, soccer, soccer, soccer, football, football, football, football",
+    "author": "tookapic",
+    "authorUrl": "https://pixabay.com/users/tookapic-1386459/",
+    "sourceUrl": "https://pixabay.com/photos/stadium-sports-fans-arena-soccer-931975/",
+    "license": "Pixabay Content License (https://pixabay.com/service/license-summary/)"
+  }
+]

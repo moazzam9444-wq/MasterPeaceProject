@@ -1,1 +1,11 @@
 .local/
+
+# Local configuration, dependencies and database data/backups.
+.env
+.env.*
+!.env.example
+node_modules/
+*.bak
+*.mdf
+*.ldf
+*.pfx

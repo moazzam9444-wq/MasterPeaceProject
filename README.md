@@ -46,8 +46,9 @@ Finding an available football field, organizing a match, or searching for player
 - Manage field information and booking requests.
 
 **Admin**
-- Review field registration requests.
-- Approve or reject submitted fields.
+- Review signup requests and ownership documents.
+- Approve, reject or deactivate accounts.
+- Create and manage tournaments, team registrations and demo refunds.
 - Manage platform activities.
 
 ---
@@ -105,6 +106,41 @@ KICKS focuses on delivering a modern football-inspired user experience through:
 The project is currently being developed, starting with the frontend using HTML, CSS, and JavaScript.
 
 Backend functionality and database integration are planned for future development stages.
+
+## Database design and SQL
+
+The proposed SQL Server schema matches the current team, booking, open-game,
+split challenge payment, tournament, refund and messaging flows. The frontend
+still stores records in the browser; it is not connected to SQL Server.
+
+- [Interactive ER diagram, schema, table dictionary, SQL and rules](docs/database/database.html)
+- [Standalone SQL Server script](database/KICKS-schema.sql)
+- Source of truth: [database-data.js](docs/database/database-data.js)
+
+The documentation uses only HTML, CSS and JavaScript, with no framework or build
+step. Open `docs/database/database.html` directly, or serve the project locally.
+For the sample environment, install Node.js, run `node scripts/demo-server.cjs`,
+then open `http://127.0.0.1:5501/Pages/Demo/catalogue.html` and initialize an empty
+demo profile through its setup controls. Existing records are not replaced.
+
+After changing the schema source, regenerate the standalone SQL and validate it:
+
+```sh
+node scripts/export-database.cjs
+node tests/database-schema-check.cjs
+```
+
+The SQL creates tables, keys, constraints and indexes in a **new, empty database**.
+It contains no demo accounts, passwords or payment-card data. It is a schema,
+not an import of browser records or an EF Core migration. Backend work will add
+authentication, authorization and transactions for capacity, overlapping
+activities, draw locking, share totals and refunds, as described in the Rules tab.
+
+The current application is a frontend prototype with simulated payments and
+browser-local authentication. Publishing its source on GitHub does not make it
+a production booking or payment service. Local configuration files, database
+backups and QA artifacts are excluded by `.gitignore`; the `.sql` source stays
+included.
 
 ---
 

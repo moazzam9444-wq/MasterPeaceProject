@@ -24,7 +24,7 @@
     return "Scheduled";
   }
 
-  function save(values, id) {
+  function save(values, id) { return store.transaction(tx => {
     const old = id ? store.find("meetings", id) : null;
     if (id && (!old || !canManage(old.tournamentId))) throw Error("You cannot edit this meeting.");
     if (old && state(old) !== "Scheduled" && state(old) !== "Ready to join") throw Error("This meeting is closed.");
@@ -47,7 +47,7 @@
       (row.organizerId === organizerId || row.tournamentId === tournamentId) &&
       start < new Date(row.startsAt).getTime() + row.duration * 60000 && start + duration * 60000 > new Date(row.startsAt).getTime());
     if (overlap) throw Error("This time overlaps another meeting for you or this tournament.");
-    return store.save("meetings", {
+    return tx.save("meetings", {
       id: old?.id,
       tournamentId, title, agenda, duration,
       startsAt: new Date(start).toISOString(),
@@ -55,15 +55,15 @@
       roomId: old && old.tournamentId === tournamentId ? old.roomId : "KICKS" + crypto.randomUUID().replaceAll("-", ""),
       status: "Scheduled", createdAt: old?.createdAt || new Date().toISOString(),
     });
-  }
+  }); }
 
-  function close(id, status) {
+  function close(id, status) { return store.transaction(tx => {
     const meeting = store.find("meetings", id);
     if (!meeting || !canManage(meeting.tournamentId)) throw Error("You cannot manage this meeting.");
     if (!["Cancelled", "Completed"].includes(status)) throw Error("Invalid status.");
     if (["Cancelled", "Completed"].includes(meeting.status)) throw Error("This meeting is already closed.");
-    return store.save("meetings", { ...meeting, status });
-  }
+    return tx.save("meetings", { ...meeting, status });
+  }); }
 
   function visible() {
     return store.list("meetings").filter(row => canAccess(row)).sort((a, b) => {

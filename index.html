@@ -2,354 +2,776 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Kicks Football — Book Floodlit Pitches, Open Games &amp; Tournaments
+    </title>
     <meta
       name="description"
-      content="Book football fields, join open games, and compete in tournaments with KICKS."
+      content="Book floodlit football pitches, join open games and enter tournaments with Kicks Football. Find your pitch, find your people and play for more."
     />
-    <title>KICKS | Football Field Booking</title>
+    <meta name="theme-color" content="#07111F" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307111F'/%3E%3Cpath d='M18 5 10 27' stroke='%23B6FF48' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      rel="stylesheet"
+      rel="preload"
+      href="assets/opendesign-football/assets/fonts/barlow-condensed-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="assets/opendesign-football/assets/fonts/barlow-condensed-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/home.css?v=review-20261015" />
-    <link rel="stylesheet" href="css/creative.css?v=cleanup-1" />
-    <link rel="stylesheet" href="css/components.css?v=cleanup-1" />
+    <link
+      rel="preload"
+      href="assets/opendesign-football/assets/fonts/manrope-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/opendesign-football/assets/stock/hero.jpg"
+      as="image"
+    />
+    <link rel="stylesheet" href="assets/opendesign-football/css/styles.css" />
     <link rel="stylesheet" href="css/account.css?v=accounts-7" />
-    <link rel="stylesheet" href="css/site-polish.css?v=cleanup-1" />
-    <link rel="stylesheet" href="css/home-motion.css?v=scroll-scenes-4" />
-    <link rel="stylesheet" href="css/home-journey.css?v=scroll-scenes-4" />
-    <link rel="stylesheet" href="css/theme.css?v=navbar-3" />
-    <script src="js/theme.js?v=readable-nav-1"></script>
-  <link rel="stylesheet" href="css/footer.css?v=shared-1">
-</head>
-  <body class="home-page">
-    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
-          <img
-            src="assets/logo/kicks-logo.png"
-            alt="KICKS Logo"
-            class="navbar-logo"
-          />
-          <span class="navbar-brand-text">KICKS</span>
+    <link rel="stylesheet" href="css/discovery.css?v=chat-3" />
+    <link rel="stylesheet" href="css/dialogs.css?v=1" />
+    <link rel="stylesheet" href="css/opendesign-home.css?v=1" />
+    <script src="js/navigation.js?v=1" defer></script>
+    <script src="js/theme.js?v=premium-1"></script>
+    <script src="js/dialogs.js?v=1" defer></script>
+    <link rel="stylesheet" href="css/premium-shell.css?v=1" />
+    <link rel="stylesheet" href="css/floodlights-editorial.css?v=1" />
+    <script src="js/visual-motion.js?v=1" defer></script>
+    <script src="js/editorial-home.js?v=1" defer></script>
+    <link rel="stylesheet" href="css/home-kickoff-stack.css?v=1" />
+  <link rel="stylesheet" href="css/home-pitch-editorial.css?v=1" />
+<link rel="stylesheet" href="css/table-pagination.css?v=1"><script src="js/table-pagination.js?v=1" defer></script></head>
+  <body id="top" class="opendesign-home">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Kicks Football home">
+          <span class="brand-slash" aria-hidden="true">/</span>
+          <span class="brand-word">Kicks</span>
+          <span class="brand-sub">Football</span>
         </a>
+
+        <nav id="mainNavbar" class="primary-nav" aria-label="Primary">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="Pages/Fields/fields.html">Fields</a>
+          <a href="Pages/OpenGames/open-games.html">Open games</a>
+          <a href="Pages/Tournaments/tournaments.html">Tournaments</a
+          ><a href="Pages/Teams/teams.html">Teams</a
+          ><a href="Pages/Challenges/challenges.html">Challenges</a>
+          <a href="Pages/Auth/login.html">Log in</a>
+          <a class="btn-nav" href="Pages/Fields/fields.html">
+            Book a field
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </nav>
+
         <button
-          class="navbar-toggler"
+          class="menu-toggle navbar-toggler"
+          id="menu-toggle"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-controls="mobile-menu"
+          aria-label="Open menu"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="menu-toggle-label">Menu</span>
+          <span class="menu-toggle-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
         </button>
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav mx-auto gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link active" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Pages/Fields/fields.html">Fields</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Pages/OpenGames/open-games.html"
-                >Open Games</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Pages/Tournaments/tournaments.html"
-                >Tournaments</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Pages/About/about.html">About</a>
-            </li>
-          <li class="nav-item"><a class="nav-link" href="Pages/Contact/contact.html">Contact Us</a></li>
-</ul>
-          <a href="Pages/Auth/login.html" class="btn btn-success ms-lg-3"
-            >Login</a
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile primary">
+        <a href="index.html">Home <span>01</span></a>
+        <a href="Pages/Fields/fields.html">Fields <span>02</span></a>
+        <a href="Pages/OpenGames/open-games.html">Open games <span>03</span></a>
+        <a href="Pages/Tournaments/tournaments.html"
+          >Tournaments <span>04</span></a
+        >
+        <a href="Pages/Auth/login.html">Log in <span>05</span></a>
+      </nav>
+      <div class="mobile-menu-foot">
+        <a class="btn btn--green" href="Pages/Fields/fields.html">
+          Book a field
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <div class="mobile-menu-socials">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram</a
+          >
+          <a
+            href="https://www.tiktok.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >TikTok</a
+          >
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer"
+            >X</a
           >
         </div>
       </div>
-    </nav>
+    </div>
 
-    <main>
-      <section class="hero" id="home" aria-labelledby="homeTitle">
-        <div class="hero-stage">
-          <div class="hero-background" aria-hidden="true"></div>
-          <canvas id="heroMatchdayCanvas" class="hero-real-shot" aria-hidden="true"></canvas>
-          <div class="hero-overlay" aria-hidden="true"></div>
-          <div class="shot-film-label" aria-hidden="true"><span></span> KICKS / MATCHDAY <small>YOUR GAME. YOUR MOMENT.</small></div>
-          <div class="container hero-container">
-            <div class="hero-content">
-              <p class="hero-label">YOUR GAME. YOUR WAY.</p>
-              <h1 id="homeTitle">BOOK. PLAY.<br /><span>CONNECT.</span></h1>
-              <p class="hero-description">
-                Find football fields, join open games, and compete in tournaments.
+    <main id="main">
+      <section class="hero" aria-labelledby="homeTitle">
+        <div class="hero-media">
+          <img
+            src="assets/opendesign-football/assets/stock/hero.jpg"
+            alt="A packed stadium at night, the pitch glowing under floodlights as fans raise their arms."
+            width="1600"
+            height="1067"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <p class="hero-rail" aria-hidden="true">
+          Under the floodlights / Kicks Football
+        </p>
+
+        <div class="hero-inner shell">
+          <p class="hero-eyebrow">Kicks Football / Pitch booking</p>
+
+          <h1 class="hero-title" id="homeTitle">
+            <span class="hero-line"
+              ><span style="color: white">Book.</span></span
+            >
+            <span class="hero-line"><span class="outline">Play.</span></span>
+            <span class="hero-line"><span class="accent">Connect.</span></span>
+          </h1>
+
+          <div class="hero-row">
+            <div>
+              <p class="hero-sub">
+                Floodlit pitches, open games and real competition. Find your
+                next match in a few taps.
               </p>
-              <div class="hero-buttons">
-                <a class="btn hero-primary-btn" href="Pages/Fields/fields.html"
-                  >Book a Field</a
+              <p class="hero-cities" id="homeCities">
+                Jordan / Everyone’s game
+              </p>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--green" href="Pages/Fields/fields.html">
+                Book a field
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
                 >
-                <a
-                  class="btn hero-secondary-btn"
-                  href="Pages/OpenGames/open-games.html"
-                  >Join a Game</a
+                  <path
+                    d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a class="btn btn--ghost" href="Pages/OpenGames/open-games.html">
+                Join a game
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
                 >
+                  <path
+                    d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <form
+            id="homeSearch"
+            class="search"
+            role="search"
+            aria-label="Find a pitch"
+            action="Pages/Fields/fields.html"
+            method="get"
+            data-search
+          >
+            <div class="search-field">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 17.4s5.3-5.2 5.3-9.2a5.3 5.3 0 1 0-10.6 0c0 4 5.3 9.2 5.3 9.2Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="10"
+                  cy="8.1"
+                  r="1.9"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <div class="search-field-body">
+                <label for="homeLocation">Where</label>
+                <div class="select-wrap">
+                  <select id="homeLocation" name="city">
+                    <option value="">All locations</option>
+                  </select>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m5 8 5 5 5-5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
+
+            <div class="search-field">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3.2"
+                  y="4.6"
+                  width="13.6"
+                  height="12"
+                  rx="1.6"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M3.2 8.2h13.6M7 3.2v2.8M13 3.2v2.8"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <div class="search-field-body">
+                <label for="homeDate">When</label>
+                <input id="homeDate" name="date" type="date" />
+              </div>
+            </div>
+
+            <div class="search-field">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="6.6"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M10 6.2V10l2.7 1.6"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <div class="search-field-body">
+                <label for="homeTime">Kickoff</label>
+                <div class="select-wrap">
+                  <select id="homeTime" name="time">
+                    <option value="">Any time</option>
+                  </select>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m5 8 5 5 5-5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <button class="search-submit" type="submit">
+              Find a pitch
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </form>
+
+          <div class="hero-foot">
+            <p>Floodlit · 5, 7 &amp; 11-a-side · All levels</p>
+            <a class="hero-scroll" href="#how">
+              How it works
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 3.5v12M4.5 10 10 15.5 15.5 10"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
           </div>
-          <div class="matchday-scenes" aria-hidden="true">
-            <div class="matchday-word">MATCHDAY</div>
-            <div class="matchday-photo photo-one"><img src="assets/images/matchday-pitch.webp" alt="" decoding="async" /><span>01 / YOUR PITCH.</span></div>
-            <div class="matchday-photo photo-two"><img src="assets/images/matchday-team.webp" alt="" decoding="async" /><span>02 / YOUR PEOPLE.</span></div>
-            <div class="matchday-photo photo-three"><img src="assets/images/matchday-kickoff.webp" alt="" decoding="async" /><span>03 / YOUR MOMENT.</span></div>
-          </div>
-          <div class="matchday-ending" aria-hidden="true"><img src="assets/images/matchday-pitch.webp" alt="" decoding="async" /></div>
-          <div class="shot-midline" aria-hidden="true"><p>ONE GAME. ENDLESS CONNECTIONS.</p><strong>FIND YOUR<br /><em>PEOPLE.</em></strong></div>
-          <div class="shot-finale" aria-hidden="true" inert>
-            <p class="shot-eyebrow">THE PITCH IS WAITING.</p>
-            <strong>GAME<br />ON<span>.</span></strong>
-            <p>Your next match starts here.</p>
-            <a class="btn hero-primary-btn" href="Pages/Fields/fields.html">Find Your Pitch</a>
-          </div>
-          <div class="shot-hud" hidden>
-            <div class="shot-instruction"><span class="shot-live-dot"></span><span id="shotInstruction">Scroll slowly. Feel the game.</span></div>
-            <div class="shot-progress" aria-hidden="true"><span></span></div>
-            <a href="#about-us">Skip to explore <span aria-hidden="true">↓</span></a>
-          </div>
-          <div class="shot-chapters" aria-hidden="true"><span>01 <b>ARRIVE</b></span><span>02 <b>FEEL IT</b></span><span>03 <b>PLAY</b></span></div>
         </div>
       </section>
 
-      <section
-        class="home-about"
-        id="about-us"
-        aria-labelledby="homeAboutTitle"
-      >
-        <div class="container home-about-layout">
-          <div class="home-about-visual">
-            <img
-              src="assets/images/hero-stadium.png"
-              alt="Football pitch ready for the next match"
-            /><span>MORE THAN A MATCH.</span>
+      <section class="flow kickoff-stack" id="how" aria-labelledby="how-title">
+        <header class="kickoff-heading">
+                <p class="kicker kicker--light">How it works</p>
+                <h2 class="section-title" id="how-title">
+                  Three steps<br />to kickoff.
+                </h2>
+              </header>
+        <div class="kickoff-cards">
+          <article class="kickoff-card" style="--step:0"><div class="kickoff-surface"><figure class="kickoff-image">
+                    <img
+                      src="assets/opendesign-football/assets/stock/venue-lead.jpg"
+                      alt="Fresh white markings on an artificial turf football pitch."
+                      width="1280"
+                      height="846"
+                      loading="lazy"
+                    />
+                  </figure><div class="kickoff-copy">
+                  <span class="kickoff-number">01 / Book</span>
+                  <h3 class="kickoff-title">
+                    Choose your pitch<span class="dot">.</span>
+                  </h3>
+                  <p>
+                    Filter by surface, format and floodlights. Compare what is
+                    free, then book the slot that fits your game.
+                  </p>
+                  <ul class="kickoff-meta">
+                    <li>Surface</li>
+                    <li>Format</li>
+                    <li>Floodlights</li>
+                  </ul>
+
+                </div></div></article>
+          <article class="kickoff-card" style="--step:1"><div class="kickoff-surface"><figure class="kickoff-image">
+                    <img
+                      src="assets/opendesign-football/assets/stock/story-action.jpg"
+                      alt="Players contesting the ball during an amateur football match."
+                      width="1200"
+                      height="800"
+                      loading="lazy"
+                    />
+                  </figure><div class="kickoff-copy">
+                  <span class="kickoff-number">02 / Play</span>
+                  <h3 class="kickoff-title">
+                    Bring your game<span class="dot">.</span>
+                  </h3>
+                  <p>
+                    Show up, warm up, kick off. Your pitch, your squad and every
+                    match detail live in one place.
+                  </p>
+                  <ul class="kickoff-meta">
+                    <li>Squad</li>
+                    <li>Reminders</li>
+                    <li>Match details</li>
+                  </ul>
+
+                </div></div></article>
+          <article class="kickoff-card" style="--step:2"><div class="kickoff-surface"><figure class="kickoff-image">
+                    <img
+                      src="assets/opendesign-football/assets/stock/story-team.jpg"
+                      alt="A football team huddled together on the pitch before kickoff."
+                      width="1200"
+                      height="800"
+                      loading="lazy"
+                    />
+                  </figure><div class="kickoff-copy">
+                  <span class="kickoff-number">03 / Connect</span>
+                  <h3 class="kickoff-title">
+                    Keep the squad<span class="dot">.</span>
+                  </h3>
+                  <p>
+                    Join open games, meet players at your level and turn a
+                    one-off run into a weekly fixture.
+                  </p>
+                  <ul class="kickoff-meta">
+                    <li>Open games</li>
+                    <li>Levels</li>
+                    <li>Teams</li>
+                  </ul>
+
+                </div></div></article>
+        </div>
+      </section>
+
+      <section class="venues" id="fields" aria-labelledby="fieldsTitle">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <div>
+              <p class="kicker">Find your pitch / 01</p>
+              <h2 class="section-title" id="fieldsTitle" data-split>
+                Home turf is closer<br />than you think.
+              </h2>
+            </div>
+            <div class="section-aside">
+              <p class="section-copy">
+                Floodlit, bookable and ready when you are — from full-size turf
+                to indoor courts in the city.
+              </p>
+              <a class="text-link" href="Pages/Fields/fields.html">
+                View all fields
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 14 14 6M7 6h7v7"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
-          <div class="home-about-copy">
-            <p class="eyebrow">01 / THE CONNECTION</p>
-            <h2 id="homeAboutTitle">Football brings us <em>together.</em></h2>
-            <p>
-              Need a pitch? Short a player? Ready for a tournament? Find your
-              next game here and bring your friends.
+
+          <div id="homeSearchResults" class="home-search-results" hidden>
+            <p id="homeSearchStatus" role="status" aria-live="polite"></p>
+            <button type="button" class="text-link" id="homeSearchReset">
+              Clear search ×
+            </button>
+          </div>
+          <div class="venue-grid" id="home-fields-grid"></div>
+          <noscript
+            ><p>
+              Browse
+              <a href="Pages/Fields/fields.html">all football fields</a> to find
+              your next match.
+            </p></noscript
+          >
+
+          <div class="vdemo">
+            <p class="demo-note">
+              Choose a field and confirm your time on its booking page.
             </p>
-            <div class="home-about-values">
-              <span
-                ><i class="bi bi-geo-alt" aria-hidden="true"></i>Local
-                pitches</span
-              ><span
-                ><i class="bi bi-people" aria-hidden="true"></i>New
-                teammates</span
-              ><span
-                ><i class="bi bi-trophy" aria-hidden="true"></i>Team
-                spirit</span
+            <a class="text-link" href="Pages/Fields/fields.html">
+              All fields
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
               >
+                <path
+                  d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="people" id="games" aria-labelledby="people-title">
+        <div class="shell people-grid">
+          <div class="people-media" data-reveal>
+            <img
+              src="assets/opendesign-football/assets/stock/players.jpg"
+              alt="Football players and referees posing together on the pitch before a match."
+              width="1000"
+              height="1333"
+              loading="lazy"
+            />
+            <span class="people-tag">Open games / this week</span>
+          </div>
+
+          <div class="people-content" data-reveal>
+            <p class="kicker">Find your people / 02</p>
+            <h2 class="section-title" id="people-title" data-split>
+              Never short<br />of a teammate.
+            </h2>
+            <p class="section-copy">
+              Join an open game on your own or bring a friend. Turn up, get
+              picked and play — no group-chat admin required.
+            </p>
+
+            <div class="game-list" id="home-open-games-grid"></div>
+
+            <div class="people-actions">
+              <a class="btn btn--dark" href="Pages/OpenGames/open-games.html">
+                Browse open games
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a class="text-link" href="Pages/Teams/teams.html">
+                Or build a team
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 14 14 6M7 6h7v7"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
             </div>
-            <a class="play-link" href="Pages/About/about.html"
-              >More about KICKS <span aria-hidden="true">↗</span></a
-            >
           </div>
         </div>
       </section>
 
-      <div class="creative-band" aria-label="The KICKS way">
-        <div class="container">
-          <span>FIND YOUR PITCH</span
-          ><i class="bi bi-asterisk" aria-hidden="true"></i
-          ><span>MEET YOUR TEAM</span
-          ><i class="bi bi-asterisk" aria-hidden="true"></i
-          ><span>MAKE IT A MATCH</span>
-        </div>
-      </div>
-
-      <section
-        class="featured-fields"
-        id="fields"
-        aria-labelledby="fieldsTitle"
-      >
-        <div class="container">
-          <div class="section-header text-center">
-            <p class="home-section-label">02 / YOUR HOME GROUND</p>
-            <h2 id="fieldsTitle">Find your pitch</h2>
-            <p>Pick a field, grab your friends, and play.</p>
+      <section class="ed-teams" aria-labelledby="edTeamsTitle">
+        <div class="shell">
+          <div class="ed-teams-heading">
+            <div>
+              <p class="kicker">THE CLUBHOUSE</p>
+              <h2 id="edTeamsTitle">
+                A badge. A bond.<br />A team of your own.
+              </h2>
+              <p>
+                Meet the squads in the KICKS community. Find your people, then
+                find your game.
+              </p>
+            </div>
+            <a href="Pages/Teams/teams.html">Explore all teams &#8599;</a>
           </div>
-          <div class="row g-4" id="home-fields-grid"></div>
-          <div class="fields-view-all text-center">
-            <a class="view-all-btn" href="Pages/Fields/fields.html"
-              >View All Fields</a
-            >
-          </div>
+          <div class="ed-club-grid" id="home-team-showcase"></div>
+          <noscript
+            ><p>
+              <a href="Pages/Teams/teams.html">Explore the team directory</a>
+            </p></noscript
+          >
         </div>
       </section>
 
       <section
-        class="open-games-section"
-        id="open-games"
-        aria-labelledby="gamesTitle"
-      >
-        <div class="container">
-          <div class="section-header text-center">
-            <p class="home-section-label">03 / FIND YOUR PEOPLE</p>
-            <h2 id="gamesTitle">Looking for a Game?</h2>
-            <p>Join an open match, meet new players, and get in the game.</p>
-          </div>
-          <div class="row g-4" id="home-open-games-grid"></div>
-          <div class="games-view-all text-center">
-            <a class="view-all-games-btn" href="Pages/OpenGames/open-games.html"
-              >View All Open Games</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="tournaments-section"
+        class="tournaments"
         id="tournaments"
-        aria-labelledby="tournamentsTitle"
+        aria-labelledby="tour-title"
       >
-        <div class="container">
-          <div class="section-header text-center">
-            <p class="home-section-label">04 / CHASE THE WIN</p>
-            <h2 id="tournamentsTitle">Upcoming Tournaments</h2>
-            <p>Build your team, join the competition, and play for the win.</p>
-          </div>
-          <div class="row g-4" id="home-tournaments-grid"></div>
-          <div class="tournaments-view-all text-center">
-            <a
-              class="view-all-tournaments-btn"
-              href="Pages/Tournaments/tournaments.html"
-              >View All Tournaments</a
-            >
-          </div>
-        </div>
-      </section>
+        <div class="shell tour-grid">
+          <div class="tour-copy" data-reveal>
+            <p class="kicker kicker--light">Play for more / 03</p>
+            <h2 class="section-title" id="tour-title" data-split>
+              From Tuesday nights<br />to cup finals.
+            </h2>
+            <p class="section-copy">
+              Go beyond the weekly run. Knockout cups and team pages that keep
+              everyone on the same page.
+            </p>
 
-      <section
-        class="why-kicks-section"
-        id="why-kicks"
-        aria-labelledby="whyTitle"
-      >
-        <div class="container">
-          <div class="section-header text-center">
-            <h2 id="whyTitle">Why Choose KICKS?</h2>
-            <p>Everything you need for a better football experience.</p>
-          </div>
-          <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-              <article class="why-card">
-                <div class="why-icon"><i class="bi bi-calendar-check"></i></div>
-                <h3>Easy Booking</h3>
-                <p>
-                  Find available fields and book your match quickly and easily.
-                </p>
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <article class="why-card">
-                <div class="why-icon"><i class="bi bi-people"></i></div>
-                <h3>Open Games</h3>
-                <p>Join matches, meet new players, and never miss a game.</p>
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <article class="why-card">
-                <div class="why-icon"><i class="bi bi-shield-check"></i></div>
-                <h3>Trusted Fields</h3>
-                <p>
-                  Explore football fields with clear details, prices, and
-                  availability.
-                </p>
-              </article>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <article class="why-card">
-                <div class="why-icon"><i class="bi bi-trophy"></i></div>
-                <h3>Tournaments</h3>
-                <p>
-                  Register your team and compete in exciting football
-                  tournaments.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
+            <ul class="tour-list">
+              <li><span>01</span>Discover published tournaments</li>
+              <li><span>02</span>Register your team for a knockout cup</li>
+              <li><span>03</span>Team profiles, squads and match history</li>
+            </ul>
 
-      <section class="how-it-works-section" id="how-it-works" aria-labelledby="howTitle">
-        <div class="container">
-          <div class="section-header text-center">
-            <h2 id="howTitle">How It Works</h2>
-            <p>Get on the field in just three simple steps.</p>
-          </div>
-          <div class="row g-4">
-            <div class="col-md-4">
-              <article class="step-card">
-                <div class="step-number">1</div>
-                <div class="step-icon"><i class="bi bi-search"></i></div>
-                <h3>Find a Field</h3>
-                <p>
-                  Explore football fields and choose the one that fits your
-                  game.
-                </p>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="step-card">
-                <div class="step-number">2</div>
-                <div class="step-icon"><i class="bi bi-calendar3"></i></div>
-                <h3>Choose Date &amp; Time</h3>
-                <p>Select the day and time that works best for you.</p>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="step-card">
-                <div class="step-number">3</div>
-                <div class="step-icon"><i class="bi bi-check2-circle"></i></div>
-                <h3>Book &amp; Play</h3>
-                <p>Confirm your booking, grab your team, and play.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="final-cta" aria-labelledby="ctaTitle">
-        <div class="container text-center">
-          <div class="cta-content">
-            <p class="cta-label">READY TO PLAY?</p>
-            <h2 id="ctaTitle">Ready for your next match?</h2>
-            <p>Find a field, join a game, and make your next match happen.</p>
-            <div class="cta-buttons">
-              <a class="btn cta-primary-btn" href="Pages/Fields/fields.html"
-                >Book a Field</a
-              ><a
-                class="btn cta-secondary-btn"
-                href="Pages/OpenGames/open-games.html"
-                >Join an Open Game</a
+            <div class="tour-actions">
+              <a
+                class="btn btn--green"
+                href="Pages/Tournaments/tournaments.html"
               >
+                Explore tournaments
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a class="btn btn--ghost" href="Pages/Teams/teams.html">
+                Create a team
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
             </div>
+
+            <svg
+              class="bracket"
+              data-bracket
+              viewBox="0 0 348 252"
+              fill="none"
+              role="img"
+              aria-label="Tournament bracket illustration"
+            >
+              <path
+                d="M6 24h40M6 52h40M6 80h40M6 108h40M6 136h40M6 164h40M6 192h40M6 220h40"
+              />
+              <path d="M46 24v28M46 80v28M46 136v28M46 192v28" />
+              <path d="M46 38h46M46 94h46M46 150h46M46 206h46" />
+              <path d="M92 38v56M92 150v56" />
+              <path d="M92 66h58M92 178h58" />
+              <path d="M150 66v112" />
+              <path d="M150 122h70M220 122h66" />
+              <circle cx="6" cy="24" r="2.4" />
+              <circle cx="6" cy="52" r="2.4" />
+              <circle cx="6" cy="80" r="2.4" />
+              <circle cx="6" cy="108" r="2.4" />
+              <circle cx="6" cy="136" r="2.4" />
+              <circle cx="6" cy="164" r="2.4" />
+              <circle cx="6" cy="192" r="2.4" />
+              <circle cx="6" cy="220" r="2.4" />
+              <circle cx="298" cy="122" r="8" />
+            </svg>
           </div>
+
+          <figure class="tour-media" data-reveal>
+            <img
+              src="assets/opendesign-football/assets/stock/tournament.jpg"
+              alt="A packed football stadium lit by floodlights during a night match."
+              width="1280"
+              height="721"
+              loading="lazy"
+            />
+            <figcaption
+              class="tour-caption"
+              id="home-tournaments-grid"
+            ></figcaption>
+          </figure>
         </div>
       </section>
 
@@ -360,7 +782,9 @@
             <h2 id="faqTitle">
               Got questions?<br /><span>Simple answers.</span>
             </h2>
-            <p>Less guessing. More time on the pitch.</p>
+            <p id="homeAboutDescription">
+              Less guessing. More time on the pitch.
+            </p>
             <a class="play-link" href="Pages/About/about.html"
               >Meet KICKS <span aria-hidden="true">↗</span></a
             >
@@ -402,8 +826,9 @@
                 How do tournament entries work?<span aria-hidden="true">+</span>
               </summary>
               <p>
-                Open a tournament to see its format, entry fee, schedule, and
-                registration details.
+                Create a team and build its squad first. Its captain selects
+                that team on the tournament page; the format and active player
+                count must match before registration.
               </p>
             </details>
             <details>
@@ -420,59 +845,213 @@
           </div>
         </div>
       </section>
+      <section class="closing" aria-labelledby="closing-title">
+        <div class="shell closing-inner" data-reveal>
+          <p class="kicker">Kickoff is waiting</p>
+          <h2 class="closing-title" id="closing-title">
+            Your next match<br /><em>starts here.</em>
+          </h2>
+          <div class="closing-actions">
+            <a class="btn btn--dark" href="Pages/Fields/fields.html">
+              Book a field
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a class="btn btn--ghost" href="Pages/OpenGames/open-games.html">
+              Find an open game
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.5 10h12M10.5 4.5 16 10l-5.5 5.5"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+          <p class="closing-note">Jordan / Everyone’s game</p>
+        </div>
+        <span class="closing-ghost" aria-hidden="true">KICKS</span>
+      </section>
     </main>
 
-    <footer class="kicks-footer" aria-label="KICKS footer">
-  <div class="kf-inner">
-    <div class="kf-grid">
-      <div class="kf-intro">
-        <a class="kf-brand" href="index.html">KICKS</a>
-        <p>Your place to book football fields, join open games, and compete in tournaments.</p>
-      </div>
-      <div>
-        <h2>Explore</h2>
-        <nav aria-label="Footer explore">
-          <a href="index.html">Home</a>
-          <a href="Pages/Fields/fields.html">Fields</a>
-          <a href="Pages/OpenGames/open-games.html">Open Games</a>
-          <a href="Pages/Tournaments/tournaments.html">Tournaments</a>
-        </nav>
-      </div>
-      <div>
-        <h2>Company</h2>
-        <nav aria-label="Footer company">
-          <a href="Pages/Contact/contact.html">Contact Us</a>
-          <a href="Pages/About/about.html">About</a>
-          <a href="index.html#faq">FAQ</a>
-        </nav>
-      </div>
-      <div class="kf-contact">
-        <h2>Get in Touch</h2>
-        <p class="kf-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Jordan</p>
-      </div>
-    </div>
-    <div class="kf-bottom"><p>© 2026 KICKS. All rights reserved.</p></div>
-  </div>
-</footer>
-    <button
-      id="backToTop"
-      class="back-to-top"
-      type="button"
-      aria-label="Back to top"
-    >
-      <i class="bi bi-arrow-up"></i>
-    </button>
+    <footer class="site-footer">
+      <div class="shell">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="brand" href="index.html" aria-label="Kicks Football home">
+              <span class="brand-slash" aria-hidden="true">/</span>
+              <span class="brand-word">Kicks</span>
+              <span class="brand-sub">Football</span>
+            </a>
+            <p id="homeContact" hidden></p>
+            <p class="footer-tagline">
+              <strong>Under the floodlights.</strong> Book pitches, join open
+              games and keep the squad playing — all season long.
+            </p>
+          </div>
 
+          <div class="footer-col">
+            <h3>Play</h3>
+            <a href="Pages/Fields/fields.html">Fields</a>
+            <a href="Pages/OpenGames/open-games.html">Open games</a>
+            <a href="Pages/Tournaments/tournaments.html">Tournaments</a>
+            <a href="Pages/Teams/teams.html">Teams</a>
+          </div>
+
+          <div class="footer-col">
+            <h3>Club</h3>
+            <a href="Pages/About/about.html">About</a>
+            <a href="Pages/Contact/contact.html">Contact</a
+            ><a href="#faq">FAQ</a>
+            <a href="Pages/Challenges/challenges.html">Challenges</a>
+            <a href="Pages/Auth/login.html">Log in</a>
+            <a href="Pages/Auth/register.html">Register</a>
+          </div>
+
+          <div class="footer-col">
+            <h3>Follow</h3>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 11 11 5M6 5h5v5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >TikTok
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 11 11 5M6 5h5v5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer"
+              >X
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 11 11 5M6 5h5v5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <p>&copy; 2026 Kicks Football.</p>
+            <a href="assets/opendesign-football/assets/stock/credits.json"
+              >Photo credits</a
+            >
+            <span>Book. Play. Connect.</span>
+          </div>
+          <a class="footer-toplink" href="#top">
+            Back to top
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M8 13V3M3.5 7.5 8 3l4.5 4.5"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/full-demo.js?v=coordinated-writes-1" defer></script>
     <script src="js/admin-account.js?v=accounts-7" defer></script>
-    <script src="js/data-store.js?v=review-20261015" defer></script>
-    <script src="js/account.js?v=review-20261015" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/home-data.js?v=matchday-1" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/home-matchday.js?v=scroll-scenes-4" defer></script>
-    <script src="js/home-cinema.js?v=scroll-scenes-4" defer></script>
-    <script src="js/site-polish.js?v=cleanup-1" defer></script>
-  </body>
+    <script src="js/demo-data.js?v=preserve-legacy-3" defer></script>
+    <script src="js/data-store.js?v=coordinated-writes-1" defer></script>
+    <script src="js/account.js?v=coordinated-writes-1" defer></script>
+    <script src="js/opendesign-home.js?v=field-occupancy-1" defer></script>
+    <script
+      src="assets/opendesign-football/js/vendor/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="assets/opendesign-football/js/vendor/ScrollTrigger.min.js"
+      defer
+    ></script>
+    <script
+      src="assets/opendesign-football/js/vendor/SplitText.min.js"
+      defer
+    ></script>
+    <script
+      src="assets/opendesign-football/js/vendor/lenis.min.js"
+      defer
+    ></script>
+    <script src="assets/opendesign-football/js/main.js" defer></script>
+    <script src="js/jordan-places.js?v=1" defer></script>
+    <script src="js/place-resolver.js?v=1" defer></script>
+    <script src="js/discovery.js?v=audit-20261102-1" defer></script>
+    <script src="js/discovery-ui.js?v=audit-20261102-1" defer></script>
+    <script src="js/home-kickoff-stack.js?v=1" defer></script>
+  <script src="js/home-pitch-editorial.js?v=1" defer></script>
+</body>
 </html>
-
-

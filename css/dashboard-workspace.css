@@ -1,0 +1,70 @@
+/* Single layout owner for the three dashboard content areas. Shared brand tokens. */
+body[data-dashboard].kx-secondary .kx-ledger-intro .reservations-heading h2{color:var(--kx-text)}
+body[data-dashboard].kx-secondary .kx-ledger-intro :is(.reservations-heading p,#bookingResults){color:var(--kx-muted)}
+body[data-dashboard].kx-secondary .reservation-schedule small span{color:var(--kx-muted);opacity:1}
+body[data-dashboard] #dashboardMain{min-width:0;padding:24px clamp(16px,2.5vw,40px) 48px}
+body[data-dashboard] #dashboardView{display:grid;gap:20px;min-width:0;width:100%;max-width:1520px;margin-inline:auto}
+body[data-dashboard] #dashboardView>.view-heading{margin-bottom:0}
+body[data-dashboard] .dash-top{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--kx-line);gap:18px}
+body[data-dashboard] .dash-top h1{font-size:clamp(30px,3vw,44px);line-height:1.1;margin:0}
+body[data-dashboard] .workspace-overview{display:grid;gap:22px;min-width:0}
+body[data-dashboard] .workspace-intro{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 24px;background:var(--kx-surface);border:1px solid var(--kx-line);border-left:3px solid var(--kx-accent);border-radius:10px;color:var(--kx-text)}
+body[data-dashboard] .workspace-intro h2{font:600 clamp(26px,2.6vw,36px)/1.15 var(--kx-display);margin:3px 0 8px;color:var(--kx-text)}
+body[data-dashboard] .workspace-intro p{margin:0;color:var(--kx-muted);font-size:13px}
+body[data-dashboard] .workspace-intro .workspace-eyebrow{font-size:10px;letter-spacing:.13em;font-weight:700;color:var(--kx-accent)}
+body[data-dashboard] .workspace-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+body[data-dashboard] .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;min-width:0;background:transparent;border:0}
+body[data-dashboard=player] .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+body[data-dashboard] .stat-card{min-width:0;min-height:130px;height:auto;padding:20px;border:1px solid var(--kx-line);border-radius:10px;background:var(--kx-surface);color:var(--kx-text);box-shadow:none}
+body[data-dashboard] .stat-card:before,body[data-dashboard] .stat-card:after{display:none}
+body[data-dashboard] .stat-card strong{font:600 36px/1.2 var(--kx-display);color:var(--kx-text);margin:8px 0}
+body[data-dashboard] .stat-top{gap:10px;align-items:start;white-space:normal}
+body[data-dashboard] .stat-top>span:first-child{font-size:12px;line-height:1.5;letter-spacing:0;text-transform:none}
+body[data-dashboard] .stat-card small{color:var(--kx-muted);font-size:12px}
+body[data-dashboard] .workspace-section-label{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0 -10px}
+body[data-dashboard] .workspace-section-label h2{font:600 22px/1.25 var(--kx-display);margin:0;color:var(--kx-text)}
+body[data-dashboard] .workspace-section-label span{color:var(--kx-muted);font-size:12px}
+body[data-dashboard] .analytics-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;margin:0;align-items:stretch}
+body[data-dashboard] :is(.dash-panel,.analytics-card){min-width:0;padding:20px;margin:0;border:1px solid var(--kx-line);border-radius:10px;background:var(--kx-surface);color:var(--kx-text);box-shadow:none;overflow:hidden}
+body[data-dashboard] .workspace-tables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start;min-width:0}
+body[data-dashboard] .workspace-tables>.dash-columns{display:contents}
+body[data-dashboard] .workspace-tables>.overview-bookings{grid-column:1/-1}
+body[data-dashboard] .panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;min-height:28px}
+body[data-dashboard] .panel-heading h2{font:600 23px/1.2 var(--kx-display);margin:0;color:var(--kx-text)}
+body[data-dashboard] .panel-heading a{font-size:12px;white-space:nowrap;color:var(--kx-accent)}
+body[data-dashboard] .table-wrap{max-width:100%;overflow:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;border:1px solid var(--kx-line);border-radius:7px}
+body[data-dashboard] .table-wrap table{width:100%;border-collapse:collapse;margin:0;table-layout:auto;font-size:12px;min-width:440px}
+body[data-dashboard] .workspace-tables .table-wrap table{min-width:380px}
+body[data-dashboard] table :is(th,td){padding:13px 15px;text-align:left;vertical-align:middle;border:0;border-bottom:1px solid var(--kx-line);line-height:1.6;max-width:320px;overflow-wrap:anywhere;color:var(--kx-text)}
+body[data-dashboard] table th{background:var(--kx-raised);font-size:10px;font-weight:700;letter-spacing:.045em;white-space:nowrap;color:var(--kx-muted)}
+body[data-dashboard] table tbody tr:last-child td{border-bottom:0}
+body[data-dashboard] table tbody tr:nth-child(even){background:color-mix(in srgb,var(--kx-raised) 32%,var(--kx-surface))}
+body[data-dashboard] table tbody tr:hover{background:var(--kx-raised)}
+body[data-dashboard] table small{display:block;font-size:11px;color:var(--kx-muted);margin-top:3px}
+body[data-dashboard] .overview-field-cell{gap:10px;display:flex;align-items:center}
+body[data-dashboard] .overview-field-cell img{width:40px;height:40px;object-fit:cover;border-radius:6px;flex-shrink:0}
+body[data-dashboard] :is(.view-heading,.reservations-heading){display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}
+body[data-dashboard] .view-heading h2{font:600 28px/1.2 var(--kx-display);margin:0 0 6px}
+body[data-dashboard] .view-heading p{color:var(--kx-muted);font-size:12px;line-height:1.7}
+body[data-dashboard] :is(.table-tools,.reservations-tools){display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin:0 0 18px}
+body[data-dashboard] .table-tools label{max-width:450px;flex:1;min-width:180px}
+body[data-dashboard] .table-tools input{width:100%}
+body[data-dashboard] .table-results{font-size:12px;color:var(--kx-muted);white-space:nowrap;padding-bottom:8px}
+body[data-dashboard] .reservations-panel{display:block}
+body[data-dashboard] .kx-ledger-intro{display:block;background:transparent;padding:0;border:0;min-height:0;position:static}
+body[data-dashboard] .reservations-heading{display:flex;min-height:0;padding:0;background:transparent}
+body[data-dashboard] .reservations-heading h2{font:600 28px/1.2 var(--kx-display)}
+body[data-dashboard] .reservations-tools{padding:0;background:transparent;border:0}
+body[data-dashboard] .records-table td:last-child .dash-btn{min-height:34px;padding:7px 10px;margin:3px;font-size:11px;white-space:nowrap}
+body[data-dashboard] #messagesPanel{margin:0;border:1px solid var(--kx-line);border-radius:10px;background:var(--kx-surface);box-shadow:none}
+body[data-dashboard] .messages-heading{padding:22px;border-color:var(--kx-line);background:var(--kx-surface)}
+body[data-dashboard] .messages-heading h2{font:600 30px/1.2 var(--kx-display);color:var(--kx-text)}
+body[data-dashboard] .messages-layout{grid-template-columns:280px minmax(0,1fr);min-height:520px}
+body[data-dashboard] :is(.messages-contacts,.message-history){background:var(--kx-bg);border-color:var(--kx-line)}
+body[data-dashboard] :is(.messages-heading p,.message-contact-copy small,.message-contact-copy>span,.message-compose-label,.messages-welcome p){color:var(--kx-muted)}
+body[data-dashboard] :is(.message-contact,.message-thread-heading,.messages-welcome h3){color:var(--kx-text)}
+body[data-dashboard] .message-contact[aria-pressed=true]{background:var(--kx-raised);border-color:var(--kx-accent);color:var(--kx-text)}
+@media(min-width:1650px){body[data-dashboard] .workspace-tables{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1100px){body[data-dashboard] .workspace-intro{align-items:start;flex-direction:column}body[data-dashboard] .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-dashboard=player] .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){body[data-dashboard] .workspace-tables,body[data-dashboard] .analytics-grid{grid-template-columns:minmax(0,1fr)}body[data-dashboard] .workspace-overview{gap:18px}body[data-dashboard] .messages-layout{grid-template-columns:210px minmax(0,1fr)}body[data-dashboard] .workspace-section-label span{display:none}}
+@media(max-width:560px){body[data-dashboard] #dashboardMain{padding:16px 14px 36px}body[data-dashboard] .stats-grid,body[data-dashboard=player] .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}body[data-dashboard=player] .stat-card:last-child{grid-column:1/-1}body[data-dashboard] .stat-card{padding:14px;min-height:112px}body[data-dashboard] .stat-card strong{font-size:30px}body[data-dashboard] :is(.dash-panel,.analytics-card){padding:14px}body[data-dashboard] .workspace-intro{padding:18px}body[data-dashboard] :is(.view-heading,.reservations-heading){align-items:start;flex-direction:column}body[data-dashboard] .messages-layout{grid-template-columns:minmax(0,1fr)}body[data-dashboard] .messages-contacts{max-height:220px;border-right:0;border-bottom:1px solid var(--kx-line)}body[data-dashboard] .messages-heading{padding:16px;align-items:start}body[data-dashboard] .workspace-actions{gap:8px}body[data-dashboard] .dash-top h1{font-size:32px}}

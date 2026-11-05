@@ -1,18 +1,13 @@
 // Overview cards and tables. Each account only receives its own records.
 {
   const escapeHtml = KicksStore.escape;
+  const activeEvent = (kind, row) => row.status !== "Archived" && Number.isFinite(KicksStore.endsAt(kind, row)) && !KicksStore.hasEnded(kind, row);
 
   // Count useful records for the signed-in account or admin.
   function getStatistics(role, getRecords) {
     const bookings = getRecords("bookings");
-    let bookingValue = 0;
     let platformCommission = 0;
 
-    for (const booking of bookings) {
-      if (["Confirmed", "Completed"].includes(booking.status)) {
-        bookingValue += Number(booking.price || 0);
-      }
-    }
     for (const paid of KicksStore.list("payments")) {
       if (paid.status === "Paid (demo)" && paid.adminId === KicksAuth.current()?.id) platformCommission += Number(paid.commission || 0);
     }
@@ -22,16 +17,14 @@
         { title: "Your bookings", value: bookings.length, note: "All statuses", link: "bookings", icon: "◷" },
         { title: "Games joined", value: getRecords("memberships").filter((row) => row.status === "Joined").length, note: "Active match entries", link: "memberships", icon: "◎" },
         { title: "Team entries", value: getRecords("registrations").filter((row) => row.status === "Registered").length, note: "Active tournament entries", link: "registrations", icon: "◇" },
-        { title: "Booking value", value: bookingValue + " JD", note: "Confirmed + completed", link: "bookings", icon: "↗" },
       ];
 
     if (role === "owner") {
-      const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Amman" });
       return [
         { title: "Your fields", value: getRecords("fields").length, note: "Published pitches", link: "fields", icon: "▦" },
-        { title: "Upcoming matches", value: getRecords("games").filter((row) => row.date >= today).length, note: "Matches you organized", link: "games", icon: "◎" },
+        { title: "Active matches", value: getRecords("games").filter((row) => activeEvent("games", row)).length, note: "Upcoming and in progress", link: "games", icon: "◎" },
         { title: "Players joined", value: getRecords("memberships").filter((row) => row.status === "Joined").length, note: "Across your matches", link: "games", icon: "○" },
-        { title: "Upcoming tournaments", value: getRecords("tournaments").filter((row) => row.date >= today).length, note: "On your pitches", link: "tournaments", icon: "◇" },
+        { title: "Active tournaments", value: getRecords("tournaments").filter((row) => activeEvent("tournaments", row)).length, note: "On your pitches", link: "tournaments", icon: "◇" },
       ];
     }
 
@@ -85,14 +78,12 @@
       return '<p class="empty-dashboard">Add your first field to see its activity here.</p>';
 
     let rows = "";
-    const now = new Date();
-    const today = now.toLocaleDateString("en-CA", { timeZone: "Asia/Amman" });
     for (const field of fields) {
       const activeBookings = getRecords("bookings").filter(
-        (row) => row.fieldId === field.id && ["Pending", "Confirmed"].includes(row.status) && new Date(row.date + "T" + row.time + ":00+03:00") > now,
+        (row) => row.fieldId === field.id && ["Pending", "Confirmed"].includes(row.status) && !KicksStore.hasEnded("bookings", row),
       ).length;
-      const matches = getRecords("games").filter((row) => row.fieldId === field.id && row.date >= today).length;
-      const cups = getRecords("tournaments").filter((row) => row.fieldId === field.id && row.date >= today).length;
+      const matches = getRecords("games").filter((row) => row.fieldId === field.id && activeEvent("games", row)).length;
+      const cups = getRecords("tournaments").filter((row) => row.fieldId === field.id && activeEvent("tournaments", row)).length;
       rows += `<tr>
         <td><strong>${escapeHtml(field.name)}</strong><small class="overview-time">${escapeHtml(field.city)} · ${escapeHtml(field.type)}</small></td>
         <td>${activeBookings}</td><td>${matches}</td><td>${cups}</td>
@@ -123,12 +114,11 @@
   // Show active games and tournament entries for the player or owner.
   function renderEvents(kind, rows, getRecord, label) {
     let content = "";
-    const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Amman" });
     let shown = 0;
     for (const row of rows) {
       if (kind === "memberships" && row.status !== "Joined") continue;
       if (kind === "registrations" && row.status !== "Registered") continue;
-      if (["games", "tournaments"].includes(kind) && row.date < today) continue;
+      if (["games", "tournaments"].includes(kind) && !activeEvent(kind, row)) continue;
       let item = row;
       if (kind === "memberships") item = getRecord("games", row.gameId);
       if (kind === "registrations") item = getRecord("tournaments", row.tournamentId);
@@ -226,24 +216,23 @@
         value: bookings.filter((row) => row.status === status).length,
       }));
     } else if (role === "owner") {
-      chartTitle = "Upcoming activity by field";
+      chartTitle = "Activity by field";
       chartSummary = "Bookings, matches and tournaments on your pitches";
       const fields = getRecords("fields");
-      const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Amman" });
       const fieldActivity = [];
       for (const field of fields) {
         const bookingsAtField = bookings.filter((row) => row.fieldId === field.id && ["Pending", "Confirmed"].includes(row.status)).length;
-        const gamesAtField = getRecords("games").filter((row) => row.fieldId === field.id && row.date >= today).length;
-        const cupsAtField = getRecords("tournaments").filter((row) => row.fieldId === field.id && row.date >= today).length;
+        const gamesAtField = getRecords("games").filter((row) => row.fieldId === field.id && activeEvent("games", row)).length;
+        const cupsAtField = getRecords("tournaments").filter((row) => row.fieldId === field.id && activeEvent("tournaments", row)).length;
         fieldActivity.push({ label: field.name, value: bookingsAtField + gamesAtField + cupsAtField });
       }
       fieldActivity.sort((first, second) => second.value - first.value);
       chartItems = fieldActivity.slice(0, 5);
-      donutTitle = "Upcoming activity";
+      donutTitle = "Active activity";
       donutItems = [
-        { label: "Bookings", value: bookings.filter((row) => ["Pending", "Confirmed"].includes(row.status) && new Date(row.date + "T" + row.time + ":00+03:00") > new Date()).length },
-        { label: "Matches", value: getRecords("games").filter((row) => row.date >= today).length },
-        { label: "Tournaments", value: getRecords("tournaments").filter((row) => row.date >= today).length },
+        { label: "Bookings", value: bookings.filter((row) => ["Pending", "Confirmed"].includes(row.status) && !KicksStore.hasEnded("bookings", row)).length },
+        { label: "Matches", value: getRecords("games").filter((row) => activeEvent("games", row)).length },
+        { label: "Tournaments", value: getRecords("tournaments").filter((row) => activeEvent("tournaments", row)).length },
       ];
     } else {
       chartTitle = "Platform activity";
@@ -274,11 +263,10 @@
     if (role === "player") {
       const upcomingBookings = bookings.filter((booking) => {
         const active = ["Confirmed", "Pending"].includes(booking.status);
-        const date = new Date(booking.date + "T" + booking.time + ":00+03:00");
-        return active && date > new Date();
+        return active && !KicksStore.hasEnded("bookings", booking);
       });
       content = `<section class="dash-panel overview-bookings">
-        <div class="panel-heading"><h2>Your upcoming bookings</h2><a href="#bookings">View all ↗</a></div>
+        <div class="panel-heading"><h2>Your active bookings</h2><a href="#bookings">View all ↗</a></div>
         ${renderBookingsTable(upcomingBookings, getRecord, getUser, false, true)}
       </section>
       <div class="dash-columns">
@@ -316,13 +304,16 @@
       </div>`;
     }
 
-    document.getElementById("dashboardView").innerHTML = `
-      <section class="stats-grid" aria-label="Workspace statistics">${statisticsCards}</section>
-      <div class="analytics-grid">
+    const host=document.getElementById('dashboardView');host.dataset.organized='true';
+    const actions=role==='player'?[['Find a pitch','../Fields/fields.html'],['Messages','#messages']]:role==='owner'?[['Manage fields','#fields'],['Bookings','#bookings']]:[['Accounts','#users'],['Revenue','#revenue']];
+    host.innerHTML = `<div class="workspace-overview">
+      <header class="workspace-intro"><div><p class="workspace-eyebrow">${role==='admin'?'PLATFORM CONTROL':role==='owner'?'VENUE OPERATIONS':'YOUR FOOTBALL WORKSPACE'}</p><h2>${role==='admin'?'Your platform at a glance':role==='owner'?'Your pitches, organised':'Your next match starts here'}</h2><p>${role==='admin'?'Track accounts, reservations and platform activity.':role==='owner'?'Keep your venues and upcoming activity in one place.':'Keep track of bookings, games and your team entries.'}</p></div><div class="workspace-actions">${actions.map(([label,href])=>`<a class="dash-btn secondary" href="${href}">${label} ↗</a>`).join('')}</div></header>
+      <section class="stats-grid${role === "player" ? " stats-grid--player" : ""}" aria-label="Workspace statistics">${statisticsCards}</section>
+      <div class="workspace-section-label"><h2>Activity snapshot</h2><span>Updated from your records</span></div><div class="analytics-grid">
         ${renderBarChart(chartTitle, chartSummary, chartItems)}
         ${renderDonut(donutTitle, donutItems, role === "owner" ? "upcoming" : "total")}
       </div>
-      ${content}`;
+      <div class="workspace-section-label"><h2>${role==='admin'?'Operations desk':role==='owner'?'Venue schedule':'Your activity'}</h2><span>Open a section to manage all records</span></div><div class="workspace-tables">${content}</div></div>`;
   }
 
   window.KicksDashboardOverview = { render: render };

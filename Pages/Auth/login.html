@@ -13,29 +13,47 @@
     />
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/auth.css?v=role-login-1" />
-    <script src="../../js/admin-account.js?v=restored-1" defer></script>
-    <script src="../../js/data-store.js?v=review-20261015" defer></script>
-    <script src="../../js/account.js?v=review-20261015" defer></script>
+    <script src="../../js/navigation.js?v=1" defer></script>
+<script src="../../js/dialogs.js?v=1" defer></script>
+<script src="../../js/full-demo.js?v=coordinated-writes-1" defer></script><script src="../../js/admin-account.js?v=restored-1" defer></script>
+    <script src="../../js/demo-data.js?v=preserve-legacy-3" defer></script>
+<script src="../../js/data-store.js?v=coordinated-writes-1" defer></script>
+    <script src="../../js/account.js?v=coordinated-writes-1" defer></script>
 
-<script src="../../js/auth.js?v=card-turn-2" defer></script>
+<script src="../../js/auth.js?v=compact-upload-1" defer></script>
     <link rel="stylesheet" href="../../css/account.css?v=accounts-7" />
-  <link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
 
 
-<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
-<script src="../../js/theme.js?v=readable-nav-1"></script>
-<link rel="stylesheet" href="../../css/login-style.css?v=navbar-9">
+
+
+<script src="../../js/theme.js?v=premium-1"></script>
+<link rel="stylesheet" href="../../css/login-style.css?v=compact-upload-1">
 <script src="../../js/auth-scene.js?v=1" defer></script>
-</head>
-  <body class="auth-page login-page">
+<link rel="stylesheet" href="../../css/dialogs.css?v=1">
+
+<link rel="stylesheet" href="../../css/premium-shell.css?v=1">
+<script src="../../assets/opendesign-football/js/vendor/gsap.min.js" defer></script>
+
+<script src="../../js/visual-motion.js?v=1" defer></script>
+<link rel="stylesheet" href="../../css/kicks-system.css?v=1">
+<link rel="stylesheet" href="../../css/kicks-secondary.css?v=1">
+<script src="../../js/secondary-presentation.js?v=1" defer></script>
+<link rel="stylesheet" href="../../css/table-pagination.css?v=1"><script src="../../js/table-pagination.js?v=1" defer></script></head>
+  <body class="auth-page login-page kx-page kx-secondary">
     <a class="auth-skip" href="#authForm">Skip to form</a>
     <div class="auth-stadium" aria-hidden="true"></div>
     <header class="auth-top">
       <a class="back-home" href="../../index.html">← Home</a>
     </header>
     <main class="auth-shell">
-<section class="auth-panel" aria-labelledby="formTitle">
-        <div class="form-wrap">
+      <aside class="premium-auth-story" aria-labelledby="authStoryTitle">
+        <img src="../../assets/opendesign-football/assets/stock/hero.jpg" alt="" width="1600" height="1067" fetchpriority="high">
+        <div class="premium-auth-edition">KICKS FOOTBALL / YOUR NEXT MATCH</div>
+        <div><h2 id="authStoryTitle">THE GAME<br> STARTS <span>HERE.</span></h2><p>Your pitch. Your people. Your moment. Make time for the game you love.</p></div>
+        <div class="premium-auth-foot"><span>UNDER THE FLOODLIGHTS.</span><a href="../Fields/fields.html">Find your pitch ↗</a></div>
+      </aside>
+<section class="auth-panel premium-auth-panel" aria-labelledby="formTitle">
+        <div class="form-wrap"><p class="premium-auth-kicker">BOOK. PLAY. CONNECT.</p>
           <a class="auth-card-brand" href="../../index.html" aria-label="KICKS home"><img src="../../assets/logo/kicks-logo.png" alt="" width="50"><span>KICKS</span></a>
           <h1 id="formTitle">Create your account</h1>
           <p class="form-intro" id="formIntro">Welcome back to KICKS.</p>
@@ -136,6 +154,17 @@
               </div>
               <p class="field-error" id="confirmError"></p>
             </div>
+            <div id="ownerProofGroup" class="input-group" hidden>
+              <label for="ownerProof">Field ownership proof / license</label>
+              <div class="proof-upload">
+                <input id="ownerProof" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" aria-describedby="proofHint proofError proofFileName" />
+                <label class="proof-upload-button" for="ownerProof"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4m-4 4 4-4 4 4M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg><span>Attach document</span></label>
+                <span id="proofFileName" class="proof-file-name" aria-live="polite">No document selected</span>
+              </div>
+              <p id="proofHint" class="input-hint">Field license or ownership document · PDF, JPG, PNG or WebP · Max 1 MB.</p>
+              <p id="proofError" class="field-error"></p>
+            </div>
+            <p id="approvalNotice" class="input-hint" hidden>Your request will be reviewed by an admin before you can log in.</p>
             <div id="loginExtras" hidden></div>
             <button id="submitAuth" class="submit-auth" type="submit">
               <span id="submitLabel">Log in as player</span

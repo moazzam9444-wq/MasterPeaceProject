@@ -33,6 +33,10 @@
 .kicks-footer a:focus-visible { outline: 2px solid #a4ebbb; outline-offset: 5px; border-radius: 2px; }
 .kicks-footer .kf-location { display: flex; align-items: center; gap: 8px; }
 .kicks-footer .kf-location svg { width: 17px; height: 17px; color: #9dd6af; flex-shrink: 0; }
+.kicks-footer .kf-map { display: block; position: relative; margin-top: 16px; border-radius: 12px; overflow: hidden; border: 1px solid #547363; }
+.kicks-footer .kf-map iframe { display: block; width: 100%; height: 180px; border: 0; pointer-events: none; }
+.kicks-footer .kf-map span { display: block; padding: 9px 12px; background: #173e2e; color: #fff; font-size: 13px; }
+.kicks-footer .kf-map:focus-visible { outline: 3px solid #9dd6af; outline-offset: 4px; }
 .kicks-footer .kf-bottom { margin-top: 38px; padding-top: 20px; border-top: 1px solid #b9d7c12b; }
 .kicks-footer .kf-bottom p { max-width: none; font-size: 12px; }
 .dash-main > .kicks-footer { margin-top: 36px; border-radius: 18px; }

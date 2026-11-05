@@ -1,0 +1,57 @@
+/* Under the Floodlights: presentation only. Keep page layouts and action hooks. */
+@font-face{font-family:Barlow;src:url('../assets/opendesign-football/assets/fonts/barlow-condensed-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Barlow;src:url('../assets/opendesign-football/assets/fonts/barlow-condensed-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Barlow;src:url('../assets/opendesign-football/assets/fonts/barlow-condensed-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Barlow;src:url('../assets/opendesign-football/assets/fonts/barlow-condensed-800.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:Manrope;src:url('../assets/opendesign-football/assets/fonts/manrope-latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+:root{--fl-navy:#07111f;--fl-lime:#b6ff48;--fl-paper:#f4f7f2;--font-primary:Manrope,Arial,sans-serif;--font-heading:Barlow,Impact,sans-serif;--font-sport:Barlow,Impact,sans-serif;--background-color:var(--fl-paper);--theme-bg:var(--fl-paper);--theme-text:#14251f;--theme-muted:#52635d;--text-primary:#14251f;--text-secondary:#52635d;--primary-color:#168a58;--primary-hover:#107348;--button-color:#168a58;--hero-color:var(--fl-navy);--border-color:#d9e1d8}
+html[data-theme="dark"]{--theme-bg:#07111f;--theme-card:#0e1d2a;--theme-soft:#152938;--theme-line:#30414d;--theme-text:#f4f7f2;--theme-muted:#aab9bd;--background-color:var(--theme-bg);--text-primary:var(--theme-text);--text-secondary:var(--theme-muted);--primary-color:#b6ff48;--primary-hover:#cdff86;--button-color:#168a58}
+body{font-family:var(--font-primary);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.navbar-brand-text,.dash-brand{font-family:var(--font-heading);font-weight:700;letter-spacing:-.015em}
+button,input,select,textarea{font-family:var(--font-primary)}
+::selection{background:var(--fl-lime);color:var(--fl-navy)}
+:focus-visible{outline:3px solid #168a58;outline-offset:4px}
+.navbar,html[data-theme="dark"] .navbar{background:var(--fl-navy);border-bottom:1px solid #ffffff24;color:var(--fl-paper)}
+.navbar .navbar-brand-text,.navbar .nav-link,html[data-theme="dark"] .navbar .navbar-brand-text,html[data-theme="dark"] .navbar .nav-link{color:var(--fl-paper)}
+.navbar .nav-link:hover,.navbar .nav-link.active,html[data-theme="dark"] .navbar .nav-link.active{color:var(--fl-lime)}
+.navbar .navbar-brand-text{font-size:29px;letter-spacing:.04em}
+.navbar .btn-success,.navbar .nav-play{background:var(--fl-lime);border-color:var(--fl-lime);color:var(--fl-navy);border-radius:2px;font-weight:700}
+.navbar .navbar-toggler{background:var(--fl-paper);border-color:var(--fl-paper)}
+:is(.fields-hero,.games-hero,.cup-hero,.about-hero,.contact-hero,.community-hero),.teams-page .community-hero{background-color:var(--fl-navy);color:var(--fl-paper)}
+:is(.fields-hero,.games-hero,.cup-hero,.about-hero,.contact-hero,.community-hero) :is(h1,h2){color:var(--fl-paper)}
+.teams-page .hero h1{font-family:var(--font-heading);font-weight:800;line-height:1.02;text-transform:uppercase}
+.teams-page .hero h1 span,.teams-page .hero .eyebrow{color:var(--fl-lime)}
+:is(.fields-hero,.games-hero,.cup-hero,.about-hero) .eyebrow{color:var(--fl-lime)}
+:is(.catalog-card,.match-card,.cup-card,.field-card,.game-card,.tournament-card,.dash-panel,.stat-card,.detail-panel,.cup-panel,.booking-panel,.filter-panel,.filters-panel,.filters-sidebar,.team-card,.challenge-card){border-radius:3px;box-shadow:none;border-color:var(--theme-line,#d9e1d8)}
+:is(.catalog-card,.match-card,.cup-card,.field-card,.game-card,.tournament-card,.team-card,.challenge-card){border-bottom:3px solid #168a58}
+:is(.btn,.button,.field-btn,.join-game-btn,.tournament-btn){border-radius:2px;font-weight:700}
+.button.primary{background:var(--fl-lime);border-color:var(--fl-lime);color:var(--fl-navy)}
+.dash-sidebar{background:var(--fl-navy);border-right:1px solid #ffffff24}
+.dash-sidebar .dash-brand{color:var(--fl-paper)}
+.dash-sidebar :is(a.active,button.active){border-color:var(--fl-lime)}
+.auth-page .auth-panel{border-radius:3px;border-top:4px solid var(--fl-lime)}
+.auth-page .auth-card-brand span{font-family:var(--font-heading);font-weight:800}
+.kicks-footer,html[data-theme="dark"] .kicks-footer{background:var(--fl-navy);color:var(--fl-paper);border-top:1px solid #ffffff24}
+.kicks-footer :is(h2,h3,.kf-brand){color:var(--fl-paper)}
+.kicks-footer a:hover{color:var(--fl-lime)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Inner pages share the actual OpenDesign football assets, without importing its layout reset. */
+:root{--fl-navy-soft:#0b1a2c;--fl-gutter:clamp(20px,4vw,64px)}
+:is(.fields-hero,.games-hero,.cup-hero){background-image:linear-gradient(90deg,#07111ff2,#07111fb8),url('../assets/opendesign-football/assets/stock/hero.jpg');background-size:cover;background-position:center 58%}
+:is(.fields-hero,.games-hero,.cup-hero,.about-hero,.contact-hero) h1{font-family:var(--font-heading);font-weight:700;text-transform:uppercase;letter-spacing:-.015em;line-height:1.02}
+:is(.eyebrow,.kicker,.dash-eyebrow){letter-spacing:.18em;text-transform:uppercase}
+:is(.btn-success,.auth-submit,.button.primary){background:var(--fl-lime);border-color:var(--fl-lime);color:var(--fl-navy)}
+:is(.btn-success,.auth-submit,.button.primary):hover{background:#cdff86;border-color:#cdff86;color:var(--fl-navy)}
+.navbar :is(.account-login,.nav-play){background:var(--fl-lime);color:var(--fl-navy);border-radius:2px}
+.navbar .theme-toggle{background:var(--fl-navy-soft);border-color:#ffffff29;color:var(--fl-paper);border-radius:2px}
+:is(.catalog-card,.match-card,.cup-card,.team-card,.challenge-card) h3{font-weight:700;letter-spacing:-.015em}
+.auth-page .auth-stadium{background-image:linear-gradient(90deg,#07111fb8,#07111f66),url('../assets/opendesign-football/assets/stock/hero.jpg')}
+.dash-sidebar .side-label{color:#aab9bd;letter-spacing:.18em}
+.dash-sidebar :is(a.active,button.active){color:var(--fl-lime)}
+:is(.fields-hero,.games-hero,.cup-hero) h1 span{color:var(--fl-lime)}
+:is(.fields-hero,.games-hero,.cup-hero) .eyebrow{color:var(--fl-lime)}
+.auth-page .auth-panel #formTitle{font-family:var(--font-heading);font-weight:700;text-transform:uppercase}
+.auth-page .auth-panel .submit-auth{background:var(--fl-lime);border:1px solid var(--fl-lime);border-radius:2px;color:var(--fl-navy);box-shadow:none}
+.auth-page .auth-panel .submit-auth:hover:not(:disabled){background:#cdff86;color:var(--fl-navy)}
+.auth-page .auth-panel::before{background:var(--fl-lime)}

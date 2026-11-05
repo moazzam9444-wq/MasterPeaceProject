@@ -654,3 +654,5 @@ progress::-moz-progress-bar {
     transform: translateY(0);
   }
 }
+
+.cup-registration #teamSelect{width:100%;padding:12px;border:1px solid var(--border-color);border-radius:6px;background:var(--surface-color);color:var(--text-primary)}.cup-registration #teamRosterHint{font-size:12px;line-height:1.7}.cup-registration input[readonly]{opacity:.8}.cup-registration a{font-size:12px;color:var(--primary-color);display:inline-block;margin-bottom:14px}

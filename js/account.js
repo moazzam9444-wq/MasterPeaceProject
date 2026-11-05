@@ -121,6 +121,9 @@
     );
     return bytesToHex(hash);
   }
+  function validOwnershipProof(proof) {
+    return !!proof && typeof proof.name === "string" && proof.name.length > 0 && proof.name.length <= 200 && Number.isInteger(proof.size) && proof.size > 0 && proof.size <= 1048576 && typeof proof.data === "string" && /^data:(application\/pdf|image\/(jpeg|png|webp));base64,[A-Za-z0-9+/]+={0,2}$/.test(proof.data) && proof.data.length <= 1400000;
+  }
   async function register(details) {
     if (!["player", "owner"].includes(details.role))
       throw new Error("Administrator accounts cannot be created here.");
@@ -135,41 +138,59 @@
       throw new Error(
         "Enter your full name, a valid email and a password with at least 8 characters including a letter and a number.",
       );
-    if (store.list("users").some((user) => user.email.toLowerCase() === email))
+    if (store.list("users").some((user) => typeof user.email === "string" && user.email.toLowerCase() === email))
       throw new Error("An account already uses this email. Sign in instead.");
+    if (details.role === "owner" && !validOwnershipProof(details.ownershipProof))
+      throw Error("Upload a valid field license or ownership document (PDF or image, up to 1 MB).");
     const salt = bytesToHex(crypto.getRandomValues(new Uint8Array(16)));
     const passwordHash = await hashPassword(details.password, salt);
     // كلمات المرور الأصلية لا تحفظ في المتصفح.
-    if (store.list("users").some((user) => user.email.toLowerCase() === email))
+    return store.transaction(tx => {
+    if (tx.list("users").some((user) => typeof user.email === "string" && user.email.toLowerCase() === email))
       throw new Error("This email is already registered.");
-    const account = store.save("users", {
+    const account = tx.save("users", {
       name: details.name.trim(),
       email,
       role: details.role,
       city: "",
-      status: "Active",
+      status: "Pending",
+      requestedRole: details.role,
+      ownershipProof: details.role === "owner" ? details.ownershipProof : null,
+      submittedAt: new Date().toISOString(),
       salt,
       passwordHash,
       avatar: "",
     });
-    remember(account);
-    return current();
+    const { passwordHash: hiddenHash, salt: hiddenSalt, ...request } = account;
+    return request;
+    });
   }
   async function login(email, password) {
     const account = store
       .list("users")
-      .find((user) => user.email.toLowerCase() === email.trim().toLowerCase());
+      .find((user) => typeof user.email === "string" && user.email.toLowerCase() === email.trim().toLowerCase());
     if (
       !account ||
-      account.status !== "Active" ||
       !account.passwordHash
     )
       throw new Error("Email or password is incorrect.");
     const passwordHash = await hashPassword(password, account.salt);
     if (passwordHash !== account.passwordHash)
       throw new Error("Email or password is incorrect.");
+    if (account.status === "Pending") throw Error("Your registration is awaiting administrator approval.");
+    if (account.status === "Rejected") throw Error("Your registration was rejected. Contact KICKS for assistance.");
+    if (account.status !== "Active") throw Error("Your account is inactive. Contact KICKS.");
     remember(account);
     return current();
+  }
+  async function setAccountActive(id, active) {
+    const admin = requireRole("admin");
+    if (!admin) throw Error("Administrator access is required.");
+    const user = store.find("users", Number(id));
+    if (!user) throw Error("Account no longer exists.");
+    if (user.id === admin.id) throw Error("You cannot deactivate your own administrator account.");
+    if (!["Active", "Inactive"].includes(user.status)) throw Error("Review this registration request before changing account access.");
+    return (await store.save("users", {...user, status: active ? "Active" : "Inactive"}));
   }
   async function passwordChanges(currentPassword, newPassword) {
     const profile = current();
@@ -185,7 +206,7 @@
     if (returnTo && account.role === "player") {
       try {
         const target = new URL(returnTo, siteRoot);
-        const publicPages = ["index.html", "Pages/Fields/fields.html", "Pages/Fields/field-details.html", "Pages/OpenGames/open-games.html", "Pages/OpenGames/game-details.html", "Pages/Tournaments/tournaments.html", "Pages/Tournaments/tournament-details.html", "Pages/Meetings/meeting.html"];
+        const publicPages = ["index.html", "Pages/Fields/fields.html", "Pages/Fields/field-details.html", "Pages/OpenGames/open-games.html", "Pages/OpenGames/game-details.html", "Pages/Tournaments/tournaments.html", "Pages/Tournaments/tournament-details.html", "Pages/Meetings/meeting.html", "Pages/Teams/teams.html", "Pages/Challenges/challenges.html"];
         if (publicPages.some(path => target.origin === siteRoot.origin && target.pathname === new URL(path, siteRoot).pathname)) {
           location.assign(target.href);
           return;
@@ -264,6 +285,8 @@
     requirePlayer,
     requireRole,
     register,
+    validOwnershipProof,
+    setAccountActive,
     login,
     afterLogin,
     passwordChanges,

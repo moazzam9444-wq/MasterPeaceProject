@@ -21,7 +21,8 @@
     }
     document.getElementById("dashboardView").innerHTML = `<div id="meetingBoard"><div class="view-heading"><div><h2>${organiser ? "Bring the captains together" : "Your team, in the loop"}</h2><p>Discuss the draw, match rules and tournament arrangements.</p></div>${organiser ? '<button type="button" class="meeting-primary" data-meeting-new>Schedule meeting</button>' : ""}</div>
       <p class="meeting-note">Times are shown in Amman time. Rooms open 15 minutes before the meeting. Meeting records are saved on this browser.</p>
-      <p id="meetingNotice" role="status"></p><div class="meeting-grid">${cards || '<section class="dash-panel meeting-empty"><h3>No meetings yet</h3><p>' + (organiser ? 'Schedule a briefing for the captains in one of your tournaments.' : 'Meetings for tournaments you have registered a team in will appear here.') + '</p></section>'}</div></div>`;
+      <p id="meetingNotice" role="status"></p><div class="meeting-grid">${cards || '<section class="dash-panel meeting-empty"><h3>No meetings yet</h3><p>' + (organiser ? 'Schedule a briefing for the captains in one of your tournaments.' : 'Meetings for tournaments you have registered a team in will appear here.') + '</p></section>'}</div><section id="messagesPanel" class="messages-panel" aria-label="Direct messages"></section></div>`;
+    window.KicksMessages?.render();
   }
 
   function openEditor(id) {
@@ -60,7 +61,7 @@
     document.body.append(dialog);
     dialog.querySelector("[data-meeting-dismiss]").onclick = () => dialog.close();
     dialog.addEventListener("close", () => dialog.remove(), { once: true });
-    dialog.querySelector("form").onsubmit = event => {
+    dialog.querySelector("form").onsubmit = async event => {
       event.preventDefault();
       const values = {};
       for (const [name, value] of new FormData(event.target)) {
@@ -68,13 +69,13 @@
       }
       values.startsAt = values.start + ":00+03:00";
       try {
-        meetings.save(values, old?.id);
+        (await meetings.save(values, old?.id));
         dialog.close();
         render();
         document.getElementById("meetingNotice").textContent = "Meeting saved. Registered captains can view it on this browser.";
       } catch (error) { dialog.querySelector("#meetingError").textContent = error.message; }
     };
-    dialog.showModal();
+    KicksDialogs.open(dialog);
   }
 
   document.addEventListener("click", event => {
@@ -91,15 +92,16 @@
       dialog.innerHTML = `<h2>${status === "Cancelled" ? "Cancel this meeting?" : "Mark this meeting completed?"}</h2><p>${status === "Cancelled" ? "Captains will no longer be able to join from KICKS." : "This closes the KICKS entry. It does not end an ongoing Jitsi call for everyone."}</p><div class="meeting-actions"><button class="meeting-secondary" data-keep>Keep meeting</button><button class="meeting-primary" data-confirm>Confirm</button></div><p role="alert"></p>`;
       document.body.append(dialog);
       dialog.querySelector("[data-keep]").onclick = () => dialog.close();
-      dialog.querySelector("[data-confirm]").onclick = () => {
-        try { meetings.close(Number(button.dataset.meetingClose), status); dialog.close(); render(); }
+      dialog.querySelector("[data-confirm]").onclick = async () => {
+        try { (await meetings.close(Number(button.dataset.meetingClose), status)); dialog.close(); render(); }
         catch (error) { dialog.querySelector('[role="alert"]').textContent = error.message; }
       };
       dialog.addEventListener("close", () => dialog.remove(), { once: true });
-      dialog.showModal();
+      KicksDialogs.open(dialog);
     }
   });
   function refresh() {
+    if (document.activeElement?.closest("#messagesPanel")) return;
     if (document.getElementById("meetingBoard") && !document.querySelector(".meeting-dialog[open]")) render();
   }
   window.addEventListener("storage", refresh);

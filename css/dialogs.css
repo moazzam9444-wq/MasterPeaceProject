@@ -1,0 +1,30 @@
+/* Shared viewport, focus and action layout across all native dialogs. */
+html:has(dialog[open]),body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}
+html:has(dialog[open]){scrollbar-gutter:stable}
+body dialog{box-sizing:border-box;margin:auto;max-width:calc(100vw - 32px);max-height:calc(100dvh - 40px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;border:1px solid var(--theme-line,#dce7df);background:var(--theme-card,#fff);color:var(--theme-text,#173a29);border-radius:20px;box-shadow:0 24px 90px #08201838}
+body dialog::backdrop{background:#0a2117a6;backdrop-filter:blur(4px)}
+body dialog :is(h2,h3,p,strong,label){overflow-wrap:anywhere}
+body dialog :is(input,select,textarea){max-width:100%;min-width:0}
+body dialog :is(.modal-actions,.editor-actions,.checkout-actions,.meeting-actions){display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
+body dialog :is(.modal-actions,.editor-actions,.checkout-actions) button{white-space:normal;min-height:42px}
+body dialog :is(.modal-heading,.dialog-header,.meeting-dialog-heading){gap:16px;align-items:flex-start}
+body dialog :is(.modal-heading,.dialog-header,.meeting-dialog-heading){position:sticky;top:0;z-index:2;background:var(--theme-card,#fff);padding-block:6px}
+body dialog :is(.icon-button,.dialog-close,.checkout-close,.dialog-header>button,[data-meeting-dismiss]){flex-shrink:0;min-width:36px;min-height:36px}
+body:has(dialog[open]) :is(.kicks-chat,.kicks-assistant-launcher,.theme-toggle,.demo-lab-link){visibility:hidden;pointer-events:none}
+body dialog :focus-visible{outline:2px solid #29894f;outline-offset:3px}
+body dialog :is(.error,.editor-error,[role=alert]):empty{display:none}
+body :is(#confirm-dialog,#confirmDialog,#cancel-dialog){width:min(480px,calc(100vw - 32px));padding:28px}
+body :is(#confirm-dialog,#confirmDialog,#cancel-dialog) h2{font-size:clamp(25px,5vw,30px);line-height:1.25;margin:0 0 14px}
+body :is(#confirm-dialog,#confirmDialog,#cancel-dialog) p{font-size:14px;line-height:1.75;margin-bottom:20px}
+body dialog.team-dialog{padding:0}
+body dialog:has(#meetingForm){width:min(620px,calc(100vw - 32px))}
+@media(max-width:600px){
+ body dialog{max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);border-radius:16px;padding:22px 18px}
+ body dialog :is(.form-grid,.editor-fields){grid-template-columns:minmax(0,1fr)}
+ body dialog :is(.form-grid,.editor-fields)>*{grid-column:1!important;min-width:0}
+ body dialog :is(.modal-actions,.editor-actions,.checkout-actions){margin-top:22px}
+ body dialog :is(.modal-actions,.editor-actions,.checkout-actions)>button{flex:1 1 120px;justify-content:center}
+ body dialog :is(input,select,textarea){font-size:16px}
+ body dialog :is(.match-summary){grid-template-columns:repeat(2,minmax(0,1fr))}
+ body dialog :is(.detail-tabs){gap:16px;overflow-x:auto;white-space:nowrap}
+}

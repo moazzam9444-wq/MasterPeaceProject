@@ -1,0 +1,266 @@
+/* Fields and Player only. No homepage or other-page selectors. */
+body.kx-focused .kx-wrap {width:min(1240px,calc(100% - 64px))}
+
+/* Discovery: a short editorial introduction and two useful venues per row. */
+.kx-focused .kx-finder-head {min-height:0;padding-block:26px 44px}
+.kx-focused .kx-finder-copy {width:80%;max-width:920px;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:10px 28px;align-items:end}
+.kx-focused .kx-finder-copy .kx-kicker {grid-column:1/-1}
+.kx-focused .kx-finder-copy h1 {grid-column:1;grid-row:2/4}
+.kx-focused .kx-finder-copy>p:not(.kx-kicker),.kx-focused .kx-finder-explore {grid-column:2}
+.kx-focused .kx-finder-copy h1 {font-size:clamp(52px,4.6vw,66px);line-height:.94}
+.kx-focused .kx-finder-copy .kx-kicker {margin-bottom:12px}
+.kx-focused .kx-finder-copy>p:not(.kx-kicker) {margin:0;line-height:1.65}
+.kx-focused .kx-finder-explore {margin-top:0;min-height:30px}
+.kx-focused .kx-finder-visual>span {bottom:42px;right:24px}
+.kx-focused .kx-search-rail {margin-top:-24px}
+.kx-focused .kx-search-command {min-height:0;padding:14px 18px;gap:16px}
+.kx-focused .kx-search-command input {font-size:15px}
+.kx-focused .kx-search-command .kx-btn {min-height:44px;padding:10px 20px}
+.kx-focused .kx-refine-heading {padding-block:18px 10px}
+.kx-focused .kx-refine-heading>p {font-size:18px}
+.kx-focused .kx-refine-heading #filterToggle {display:inline-flex}
+.kx-focused .kx-filter-panel {display:none}
+.kx-focused .kx-filter-panel.is-open {display:block}
+.kx-focused .kx-grounds {padding-top:22px}
+.kx-focused .kx-grounds .catalog-intro {margin-bottom:8px;gap:18px;align-items:center}
+.kx-focused .kx-grounds .catalog-intro h2 {font-size:28px;line-height:1.05}
+.kx-focused .kx-grounds .catalog-intro .kx-copy {margin:0;font-size:11px}
+.kx-focused .kx-filter-panel {padding:14px 0}
+.kx-focused .kx-filter-layout {gap:16px}
+.kx-focused .kx-filter-actions {margin-top:12px}
+.kx-focused .kx-results-tools {padding-block:16px;gap:12px}
+.kx-focused #activeFilters {font-size:11px;margin:4px 0 0;line-height:1.5}
+.kx-focused .kx-ground-grid {grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;align-items:stretch}
+.kx-focused .kx-venue {grid-column:span 6;grid-template-columns:minmax(140px,.72fr) minmax(0,1.35fr);min-height:0;border-radius:5px}
+.kx-focused .kx-venue.is-featured {grid-column:span 7;grid-template-columns:minmax(160px,.85fr) minmax(0,1.2fr);min-height:0}
+.kx-focused .kx-venue:nth-child(2) {grid-column:span 5}
+.kx-focused .kx-venue-body,.kx-focused .kx-venue.is-featured .kx-venue-body {padding:18px}
+.kx-focused .kx-venue-topline {margin-bottom:14px;gap:8px}
+.kx-focused .kx-venue-title h3,.kx-focused .kx-venue.is-featured .kx-venue-title h3 {font-size:29px;line-height:1.03}
+.kx-focused .kx-venue-city {margin-bottom:7px;font-size:9px}
+.kx-focused .kx-venue-location {margin-top:9px;font-size:11px;line-height:1.6}
+.kx-focused .kx-venue-intro {display:none}
+.kx-focused .kx-venue-amenities {margin:14px 0;gap:6px 12px;font-size:11px}
+.kx-focused .kx-venue-footer {padding-top:12px;gap:10px}
+.kx-focused .kx-venue-footer p>strong {font-size:32px}
+.kx-focused .kx-venue-footer .kx-btn {padding:10px 12px;min-height:42px;font-size:10px;gap:8px}
+.kx-focused .kx-venue-format {top:12px;left:12px}
+.kx-focused .kx-venue-image-caption {bottom:14px;left:14px;right:14px;font-size:8px}
+.kx-focused .kx-results-bottom {padding-block:20px}
+.kx-focused .kx-next-chapter {padding:28px 0 36px;margin-top:20px;gap:24px}
+.kx-focused .kx-next-chapter h2 {font-size:34px;line-height:1}
+
+/* Detail: reservation starts beside the photograph, rather than below it. */
+.kx-focused #fieldContent>.kx-wrap {
+  display:grid;grid-template-columns:minmax(0,1fr) 348px;gap:14px 28px;
+  grid-template-areas:'gallery reserve' 'tools reserve' 'story reserve' 'next next';align-items:start;
+}
+.kx-focused .kx-venue-gallery {grid-area:gallery;grid-template-columns:3.5fr 1fr;gap:8px}
+.kx-focused .kx-venue-cover {min-height:320px;border-radius:5px}
+.kx-focused .kx-venue-identity {left:24px;right:24px;bottom:24px}
+.kx-focused .kx-venue-identity h1 {font-size:clamp(36px,3.6vw,50px);line-height:1}
+.kx-focused .kx-venue-identity .kx-kicker {margin-bottom:10px}
+.kx-focused .kx-venue-meta {margin-top:16px;gap:8px 14px}
+.kx-focused .kx-photo-crops {gap:8px}
+.kx-focused .kx-photo-crops button>span {padding:12px;font-size:18px}
+.kx-focused .kx-photo-tools {grid-area:tools;margin-top:0;gap:12px;align-items:start}
+.kx-focused .kx-photo-note {font-size:10px}
+.kx-focused .kx-venue-layout {display:contents}
+.kx-focused .kx-venue-story {grid-area:story}
+.kx-focused .kx-next-chapter {grid-area:next}
+.kx-focused .kx-reservation {grid-area:reserve;top:96px;padding:20px;border-radius:5px}
+.kx-focused .kx-reservation.is-too-tall {position:static}
+.kx-focused .kx-reservation-head {padding-bottom:14px;margin-bottom:16px}
+.kx-focused .kx-reservation-head .kx-kicker {margin-bottom:12px}
+.kx-focused .kx-reservation-price>strong {font-size:48px}
+.kx-focused .kx-reservation-head>p:last-child {margin-top:10px}
+.kx-focused .kx-reservation #bookingDate {margin-bottom:16px;min-height:42px}
+.kx-focused .kx-slot-field .kx-hint {margin-bottom:10px;line-height:1.5}
+.kx-focused .kx-time-slots {gap:6px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.kx-focused .kx-time-slots span {min-height:34px;padding:6px;font-size:11px}
+.kx-focused .kx-slot-status {margin-top:10px}
+.kx-focused .kx-booking-summary {padding:14px 0;margin-top:14px;gap:8px}
+.kx-focused .kx-booking-summary .kx-booking-total {margin-top:2px}
+.kx-focused .kx-reservation-help {margin-top:14px;padding-top:12px}
+.kx-focused .kx-venue-chapter {padding-block:24px;margin-bottom:0}
+.kx-focused .kx-venue-chapter:first-child {padding-top:14px}
+.kx-focused .kx-venue-chapter h2 {font-size:32px;line-height:1.05}
+.kx-focused .kx-ground-facts {margin-top:18px;gap:16px}
+.kx-focused .kx-mobile-reserve {padding-block:10px}
+
+/* Personal dashboard: no empty KPI cell, stretched activity columns or tall masthead. */
+.kx-focused[data-dashboard=player] {--kx-rail:208px}
+.kx-focused .dash-main {padding:18px 26px 40px}
+.kx-focused .dash-sidebar {padding:18px 12px;gap:14px}
+.kx-focused .dash-brand {font-size:27px}
+.kx-focused .dash-brand img {width:30px;height:30px}
+.kx-focused .sidebar-profile {padding:12px 9px;gap:9px}
+.kx-focused .sidebar-profile .sidebar-initial {width:30px;height:30px;flex-basis:30px}
+.kx-focused #dashNav a {padding:9px 10px;min-height:36px;gap:9px}
+.kx-focused #dashNav a[data-kx-group=account] {margin-top:4px}
+.kx-focused .kx-dashboard-toolbar {padding-bottom:10px;min-height:30px}
+.kx-focused .dash-top {padding:16px 0;margin-bottom:8px;gap:18px}
+.kx-focused .dash-top h1 {font-size:34px;line-height:1.05}
+.kx-focused .dash-eyebrow {margin-bottom:6px}
+.kx-focused .avatar-link>span {width:34px;height:34px}
+.kx-focused .kx-workspace-overview {grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:18px;margin-bottom:20px;align-items:start}
+.kx-focused .kx-workspace-lead {padding:18px 20px;min-height:0;gap:10px}
+.kx-focused .kx-workspace-label {margin:0;font-size:9px}
+.kx-focused .kx-workspace-title {font-size:36px;line-height:.96;margin:0}
+.kx-focused .kx-workspace-links {gap:10px 20px}
+.kx-focused .kx-workspace-links a {font-size:11px;padding-bottom:4px}
+.kx-focused .stats-grid {grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.kx-focused .stat-card {padding:18px 14px;min-height:0;gap:10px;justify-content:space-between}
+.kx-focused .stat-card strong {font-size:36px}
+.kx-focused .stat-top {font-size:11px}
+.kx-focused .stat-card small {font-size:11px;line-height:1.5}
+.kx-focused[data-dashboard=player] .kx-player-activity {grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:start}
+.kx-focused[data-dashboard=player] .kx-player-activity .dash-columns {gap:14px}
+.kx-focused .dash-panel,.kx-focused .analytics-card {padding:18px;margin-bottom:16px}
+.kx-focused .panel-heading {padding-bottom:12px;margin-bottom:14px;gap:12px}
+.kx-focused .panel-heading h2 {font-size:25px;line-height:1.1}
+.kx-focused table th {padding:11px 10px;font-size:9px}
+.kx-focused table td {padding:12px 10px;line-height:1.6}
+.kx-focused .overview-field-cell img {width:34px;height:34px}
+.kx-focused .analytics-grid {gap:18px;margin-bottom:18px;align-items:start}
+.kx-focused .booking-chart {height:180px}
+.kx-focused .booking-donut {width:128px;height:128px;flex-basis:128px}
+.kx-focused .booking-donut>div {width:92px;height:92px}
+.kx-focused .profile-view {padding:0}
+.kx-focused .profile-view-heading {min-height:0;padding:24px;gap:22px}
+.kx-focused .profile-view-heading h2 {font-size:36px}
+.kx-focused .profile-view-avatar {width:72px;height:72px}
+.kx-focused .profile-details-grid {padding:24px;gap:18px}
+.kx-focused .profile-view-actions {padding:0 24px 24px}
+.kx-focused .profile-view-actions>p,.kx-focused .reservation-schedule small>span {color:var(--kx-muted)}
+.kx-focused .reservation-schedule small>span {opacity:1}
+.kx-focused .dash-skip {background:var(--kx-surface);color:var(--kx-text);border:1px solid var(--kx-line)}
+.kx-focused .profile-avatar-editor {padding:22px}
+.kx-focused .reservations-panel {padding:0;grid-template-columns:220px minmax(0,1fr)}
+.kx-focused .kx-ledger-intro {padding:20px;gap:24px}
+.kx-focused .kx-ledger-intro .reservations-heading {gap:20px}
+.kx-focused .kx-ledger-intro .reservations-heading h2 {font-size:34px}
+.kx-focused .reservations-panel>.table-wrap {padding:18px}
+.kx-focused .reservation-field img {width:44px;height:44px;flex-basis:44px}
+.kx-focused .view-heading {padding-bottom:16px;margin-bottom:20px}
+.kx-focused .view-heading h2 {font-size:30px}
+.kx-focused dialog {padding:24px}
+.kx-focused dialog h2 {font-size:34px}
+
+/* One motion owner for the focused views. Static content stays visible if JS fails. */
+.kx-focused .section-enter,.kx-focused #dashboardView>:first-child,.kx-focused.kx-nav-open .dash-sidebar {animation:none}
+.kx-focused .stat-card {position:relative}
+.kx-focused .kf-count-layer {position:absolute;pointer-events:none;color:var(--kx-text);font:inherit;white-space:nowrap}
+.kx-focused :is(.kx-btn,.dash-btn,.kx-dashboard-menu) {transition:background .18s,border-color .18s,translate .18s}
+.kx-focused :is(.kx-btn,.dash-btn,.kx-dashboard-menu):active:not(:disabled) {translate:0 1px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .kx-focused .kx-venue {transition:translate .25s,border-color .25s,box-shadow .25s}
+  .kx-focused .kx-venue:hover {translate:0 -3px}
+  .kx-focused .kx-venue-image img {transition:transform .6s var(--kx-ease)}
+  .kx-focused .kx-venue:hover .kx-venue-image img {transform:scale(1.035)}
+  .kx-focused #dashNav a {transition:background .2s,color .2s,border-color .2s}
+}
+@media(max-width:1100px) {
+  .kx-focused .kx-venue.is-featured,.kx-focused .kx-venue:nth-child(2),.kx-focused .kx-venue {grid-column:span 6}
+  .kx-focused .kx-venue.is-featured {grid-template-columns:minmax(140px,.8fr) minmax(0,1.2fr)}
+  .kx-focused .kx-venue-title h3,.kx-focused .kx-venue.is-featured .kx-venue-title h3 {font-size:27px}
+  .kx-focused .kx-workspace-overview {grid-template-columns:minmax(0,1fr)}
+  .kx-focused .kx-workspace-lead {display:grid;grid-template-columns:1fr auto;align-items:end;gap:12px}
+  .kx-focused .kx-workspace-label {grid-column:1/-1}
+  .kx-focused .kx-workspace-title {font-size:38px}
+  .kx-focused .stat-card {padding:16px;gap:10px}
+  .kx-focused .stat-card strong {font-size:36px}
+  .kx-focused .stat-card small {font-size:10px}
+  .kx-focused[data-dashboard=player] .kx-player-activity {grid-template-columns:minmax(0,1fr)}
+  .kx-focused .reservations-panel {grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:980px) {
+  .kx-focused #fieldContent>.kx-wrap {grid-template-columns:minmax(0,1fr);grid-template-areas:'gallery' 'tools' 'reserve' 'story' 'next';gap:16px}
+  .kx-focused .kx-venue-cover {min-height:300px}
+  .kx-focused .kx-reservation {position:static}
+  .kx-focused .kx-time-slots {grid-template-columns:repeat(5,minmax(0,1fr))}
+  .kx-focused .kx-time-slots span {min-height:42px}
+}
+@media(max-width:767px) {
+  body.kx-focused .kx-wrap {width:calc(100% - 36px)}
+  .kx-focused .kx-finder-head {padding-block:28px 42px}
+  .kx-focused .kx-finder-copy {width:100%;max-width:570px;display:block}
+  .kx-focused .kx-finder-copy h1 {font-size:clamp(44px,8.8vw,64px)}
+  .kx-focused .kx-finder-copy>p:not(.kx-kicker) {font-size:12px;max-width:38ch;margin-top:12px}
+  .kx-focused .kx-search-command {padding:14px;gap:12px;flex-wrap:wrap}
+  .kx-focused .kx-search-command input {font-size:14px}
+  .kx-focused .kx-search-command .kx-btn {min-height:44px}
+  .kx-focused .kx-filter-layout {gap:16px}
+  .kx-focused .kx-results-tools {padding-block:14px}
+  .kx-focused .kx-results-tools {display:grid;grid-template-columns:44px minmax(0,1fr) minmax(140px,1fr);gap:8px;align-items:center}
+  .kx-focused .kx-results-tools>div:first-child {grid-column:1/-1;width:auto;margin-bottom:4px}
+  .kx-focused .kx-results-tools .kx-assistant-slot {min-width:0}
+  .kx-focused .kx-results-tools .kx-assistant-slot .kicks-assistant-launcher {width:44px;height:44px;min-height:44px;padding:0;font-size:0;justify-content:center;gap:0}
+  .kx-focused .kx-results-tools .kx-assistant-slot .kicks-assistant-launcher>span {font-size:22px}
+  .kx-focused .kx-results-tools .catalogue-nearby {min-width:0}
+  .kx-focused .kx-results-tools .catalogue-nearby-button {width:100%;min-height:44px}
+  .kx-focused .kx-sort {width:100%;min-width:0}
+  .kx-focused .kx-sort select {width:100%;min-width:0;font-size:12px;padding:10px 8px}
+  .kx-focused .kx-ground-grid {gap:16px;grid-template-columns:minmax(0,1fr)}
+  .kx-focused .kx-venue,.kx-focused .kx-venue.is-featured,.kx-focused .kx-venue:nth-child(2) {grid-column:auto;grid-template-columns:minmax(0,1fr);min-height:0}
+  .kx-focused .kx-venue-image {height:auto;aspect-ratio:2.25;min-height:0}
+  .kx-focused .kx-venue-body,.kx-focused .kx-venue.is-featured .kx-venue-body {padding:16px}
+  .kx-focused .kx-venue-title h3,.kx-focused .kx-venue.is-featured .kx-venue-title h3 {font-size:28px}
+  .kx-focused .kx-venue-topline {margin-bottom:10px}
+  .kx-focused .kx-venue-location {margin-top:8px}
+  .kx-focused .kx-grounds .catalog-intro {align-items:start}
+  .kx-focused .kx-grounds .catalog-intro .kx-copy {margin-top:10px}
+  .kx-focused .kx-venue-amenities {margin:12px 0}
+  .kx-focused .kx-next-chapter {padding-block:24px;gap:18px}
+  .kx-focused .kx-next-chapter h2 {font-size:30px}
+  .kx-focused .kx-venue-gallery {grid-template-columns:1fr}
+  .kx-focused .kx-venue-cover {min-height:260px}
+  .kx-focused .kx-venue-identity {left:20px;right:20px;bottom:20px}
+  .kx-focused .kx-venue-identity h1 {font-size:36px}
+  .kx-focused .kx-photo-crops {display:flex;height:64px}
+  .kx-focused .kx-photo-crops button {flex:1}
+  .kx-focused .kx-photo-crops button>span {font-size:16px;padding:8px 12px}
+  .kx-focused .kx-photo-crops small {margin-top:2px}
+  .kx-focused .kx-photo-tools {flex-wrap:wrap}
+  .kx-focused .kx-time-slots {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .kx-focused .kx-time-slots span {min-height:44px}
+  .kx-focused .kx-venue-chapter {padding-block:20px}
+  .kx-focused .dash-main {padding:14px 18px 32px}
+  .kx-focused .kx-dashboard-toolbar {padding-bottom:10px}
+  .kx-focused .kx-dashboard-menu {padding:10px 12px;min-height:40px}
+  .kx-focused .dash-top {padding:14px 0;margin-bottom:4px}
+  .kx-focused .dash-top h1 {font-size:30px}
+  .kx-focused .dash-eyebrow {font-size:8px}
+  .kx-focused .kx-workspace-overview {gap:14px;margin-bottom:16px}
+  .kx-focused .kx-workspace-lead {padding:18px;display:flex;align-items:start;gap:12px}
+  .kx-focused .kx-workspace-title {font-size:36px}
+  .kx-focused .stats-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kx-focused .stat-card {padding:14px 12px;gap:12px}
+  .kx-focused .stat-top {font-size:11px}
+  .kx-focused .stat-card strong {font-size:34px}
+  .kx-focused .stat-card small {font-size:10px}
+  .kx-focused .dash-panel,.kx-focused .analytics-card {padding:16px;margin-bottom:14px}
+  .kx-focused .profile-view,.kx-focused .reservations-panel {padding:0}
+  .kx-focused .panel-heading h2 {font-size:24px}
+  .kx-focused table td {padding:9px 0}
+  .kx-focused .kx-ledger-intro {padding:20px}
+  .kx-focused .reservations-panel>.table-wrap {padding:16px}
+}
+@media(max-width:360px) {
+  .kx-focused .kx-finder-copy h1 {font-size:44px}
+  .kx-focused .kx-venue-identity h1 {font-size:32px}
+  .kx-focused .kx-venue-identity .kx-kicker {font-size:8px}
+  .kx-focused .kx-venue-meta {font-size:10px;gap:8px}
+  .kx-focused .kx-workspace-title {font-size:32px}
+  .kx-focused .stat-card {padding:12px 10px}
+  .kx-focused .kx-time-slots {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kx-focused .kx-results-tools {grid-template-columns:44px minmax(0,1fr)}
+  .kx-focused .kx-sort {grid-column:1/-1;justify-content:space-between}
+  .kx-focused .kx-sort .kx-label {display:block}
+  .kx-focused .kx-sort select {width:170px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .kx-focused *, .kx-focused *::before, .kx-focused *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .kx-focused .kx-venue:hover {translate:none}
+  .kx-focused .kx-venue:hover img {transform:none}
+}

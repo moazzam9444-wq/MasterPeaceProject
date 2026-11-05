@@ -1,0 +1,2936 @@
+/* Isolated secondary-page reconstruction. Never loaded by index.html. */
+.kx-secondary {
+  background:var(--kx-bg);
+  color:var(--kx-text);
+  font-family:var(--kx-body);
+  --text:var(--kx-text);
+  --muted:var(--kx-muted);
+  --surface:var(--kx-surface);
+  --border:var(--kx-line);
+  --green:var(--kx-accent);
+  --lime:var(--kx-lime)
+}
+.kx-secondary main {
+  min-width:0
+}
+.kx-secondary :where(h1,h2,h3,h4) {
+  font-family:var(--kx-display);
+  letter-spacing:-.025em;
+  text-wrap:balance
+}
+.kx-secondary :where(input,select,textarea) {
+  max-width:100%;
+  color:var(--kx-text);
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:3px
+}
+.kx-secondary :where(input,select) {
+  min-height:46px
+}
+.kx-secondary :where(button,a,input,textarea,select):focus-visible {
+  outline:3px solid var(--kx-accent);
+  outline-offset:4px
+}
+.kx-secondary [hidden] {
+  display:none!important
+}
+.kx-secondary :where(button,.button,.dash-btn) {
+  border-radius:3px
+}
+.kx-secondary :where(.empty-state,.empty-dashboard,.empty) {
+  border:1px dashed var(--kx-line);
+  border-radius:3px;
+  padding:40px;
+  color:var(--kx-muted);
+  background:var(--kx-surface)
+}
+.kx-secondary :where(.section-heading,.catalog-intro,.view-heading) {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:32px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--kx-line);
+  margin-bottom:32px
+}
+.kx-secondary :where(.section-heading,.catalog-intro) h2 {
+  font-size:clamp(40px,5vw,76px);
+  line-height:.98
+}
+.kx-secondary :where(.directory,.games-section,.cups-section) {
+  padding-block:64px 90px
+}
+.kx-secondary :where(.game-filters,.cup-filters,#filters) {
+  border-radius:4px;
+  border:1px solid var(--kx-line);
+  background:var(--kx-surface);
+  padding:22px;
+  box-shadow:none;
+  gap:16px
+}
+.kx-secondary :where(.directory-tabs,[role=tablist]) {
+  border-bottom:1px solid var(--kx-line);
+  gap:8px
+}
+.kx-secondary :where([role=tab],.directory-tabs button) {
+  border-radius:0;
+  background:transparent;
+  color:var(--kx-muted);
+  border:0;
+  border-bottom:3px solid transparent;
+  padding:16px 22px
+}
+.kx-secondary [role=tab][aria-selected=true] {
+  color:var(--kx-text);
+  border-bottom-color:var(--kx-accent);
+  background:transparent
+}
+/* Fixtures: kickoff rail + identity + occupancy. */
+.kx-secondary .games-grid {
+  display:flex;
+  flex-direction:column;
+  gap:16px
+}
+.kx-secondary .match-card {
+  display:grid;
+  grid-template-columns:150px 180px minmax(0,1fr);
+  border:1px solid var(--kx-line);
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--kx-surface);
+  min-height:210px;
+  box-shadow:none
+}
+.kx-kickoff-rail {
+  display:flex;
+  align-items:center;
+  padding:24px;
+  background:var(--kx-night);
+  color:#eff6ee;
+  border-right:4px solid var(--kx-lime)
+}
+.kx-kickoff-rail .match-schedule {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding:0;
+  border:0;
+  color:inherit;
+  font-size:14px
+}
+.kx-kickoff-rail .match-schedule span:last-child {
+  font:600 42px/1 var(--kx-display);
+  color:var(--kx-lime)
+}
+.kx-secondary .match-image {
+  height:auto;
+  min-height:210px;
+  position:relative
+}
+.kx-secondary .match-image img {
+  height:100%;
+  width:100%;
+  object-fit:cover
+}
+.kx-secondary .match-format {
+  bottom:12px;
+  left:12px;
+  top:auto
+}
+.kx-secondary .match-badge {
+  font-size:9px;
+  left:12px;
+  top:12px;
+  max-width:calc(100% - 24px)
+}
+.kx-secondary .match-body {
+  padding:24px;
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(150px,1fr);
+  gap:18px 28px;
+  align-items:center
+}
+.kx-match-identity h3 {
+  font-size:34px;
+  line-height:1;
+  margin:8px 0 12px
+}
+.kx-match-identity .match-level {
+  font-size:9px;
+  letter-spacing:.15em
+}
+.kx-match-identity .match-location {
+  font-size:12px;
+  color:var(--kx-muted);
+  margin:0
+}
+.kx-match-capacity {
+  align-self:center
+}
+.kx-match-capacity .match-players {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:12px
+}
+.kx-match-capacity progress {
+  margin-top:16px;
+  height:4px;
+  accent-color:var(--kx-accent);
+  width:100%
+}
+.kx-secondary .match-bottom {
+  grid-column:1/-1;
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid var(--kx-line);
+  padding-top:14px;
+  margin:0
+}
+.kx-secondary .match-bottom a {
+  background:var(--kx-text);
+  color:var(--kx-bg);
+  padding:12px 18px;
+  border-radius:2px
+}
+.kx-secondary .games-hero {
+  background:#0b1721;
+  color:#f2f5ef;
+  padding-block:72px
+}
+.kx-secondary .games-hero-layout {
+  grid-template-columns:1.15fr .85fr;
+  gap:64px
+}
+.kx-secondary .games-hero h1 {
+  font-size:clamp(72px,8vw,118px);
+  line-height:.86
+}
+.kx-secondary .hero-spotlight {
+  border-radius:4px;
+  transform:none;
+  box-shadow:none
+}
+.kx-secondary .games-hero-benefits {
+  border-top:1px solid #42505b;
+  padding-top:20px
+}
+.kx-secondary .spotlight-sticker {
+  display:none
+}
+/* Clubs: vertical crest rail and a scouting sheet. */
+.kx-secondary .team-grid,.kx-secondary .teams-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px
+}
+.kx-secondary .team-card {
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:none
+}
+.kx-club-identity {
+  grid-row:1/3;
+  background:var(--kx-night);
+  color:#f2f5ef;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:40px;
+  padding:24px;
+  position:relative;
+  border-top:5px solid var(--kx-lime)
+}
+.kx-club-identity:after {
+  content:'';
+  position:absolute;
+  inset:20px;
+  border:1px solid #ffffff16;
+  pointer-events:none
+}
+.kx-club-identity .team-card-top {
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  align-items:start;
+  gap:18px
+}
+.kx-club-identity .badge {
+  width:66px;
+  height:76px;
+  border-radius:0 0 24px 24px;
+  background:#ffffff12;
+  color:var(--kx-lime)
+}
+.kx-secondary .team-card .team-name {
+  font-size:34px;
+  color:#f2f5ef;
+  line-height:1.02;
+  margin:0
+}
+.kx-secondary .team-card-body {
+  padding:26px;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}
+.kx-club-facts {
+  border-bottom:1px solid var(--kx-line);
+  padding-bottom:16px
+}
+.kx-secondary .team-bio {
+  font-size:13px;
+  line-height:1.8;
+  min-height:0;
+  margin:0
+}
+.kx-secondary .team-schedule {
+  font-size:12px
+}
+.kx-secondary .squad-bar {
+  margin-top:auto;
+  gap:10px;
+  flex-wrap:wrap
+}
+.kx-secondary .team-card .needed {
+  grid-column:2;
+  background:var(--kx-raised);
+  border:0;
+  border-top:1px solid var(--kx-line);
+  padding:16px 26px;
+  font-size:11px
+}
+.kx-secondary .team-tags .tag {
+  border-radius:2px;
+  background:var(--kx-raised);
+  color:var(--kx-muted);
+  font-size:10px
+}
+.kx-secondary .profile-link {
+  font-size:12px;
+  color:var(--kx-accent)
+}
+/* Competitions: landscape poster and edition rail. */
+.kx-secondary .cup-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:32px
+}
+.kx-secondary .cup-card {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow:none
+}
+.kx-competition-rail {
+  grid-column:1/-1;
+  background:var(--kx-night);
+  color:#eff6ee;
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px
+}
+.kx-competition-label {
+  font:700 10px/1.5 var(--kx-body);
+  letter-spacing:.15em;
+  color:var(--kx-lime)
+}
+.kx-competition-rail .cup-card-date {
+  margin:0;
+  padding:0;
+  border:0;
+  color:#eff6ee;
+  font-size:11px
+}
+.kx-secondary .cup-card-image {
+  height:auto;
+  min-height:340px
+}
+.kx-secondary .cup-card-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.kx-secondary .cup-card-body {
+  padding:24px;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:16px
+}
+.kx-competition-identity h3 {
+  font-size:38px;
+  line-height:1;
+  margin:10px 0
+}
+.kx-secondary .cup-card-location {
+  font-size:11px
+}
+.kx-secondary .cup-card-prize {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  background:var(--kx-raised);
+  border-radius:0;
+  padding:14px;
+  font-size:12px
+}
+.kx-secondary .cup-card progress {
+  height:4px;
+  width:100%;
+  accent-color:var(--kx-accent)
+}
+.kx-secondary .cup-card-bottom {
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid var(--kx-line);
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap
+}
+.kx-secondary .cup-card-bottom a {
+  font-size:12px;
+  color:var(--kx-accent)
+}
+.kx-secondary .challenge-grid {
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}
+.kx-secondary .challenge-card {
+  display:grid;
+  grid-template-columns:1.3fr 1fr .8fr;
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-left:4px solid var(--kx-accent);
+  border-radius:3px;
+  overflow:hidden;
+  padding:0;
+  box-shadow:none
+}
+.kx-secondary .challenge-top {
+  padding:28px;
+  background:var(--kx-raised);
+  display:flex;
+  position:relative;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap
+}
+.kx-secondary .challenge-top h3 {
+  font-size:31px;
+  line-height:1.05
+}
+.kx-versus-mark {
+  font:700 60px/1 var(--kx-display);
+  opacity:.12;
+  margin-left:auto;
+  pointer-events:none
+}
+.kx-secondary .challenge-card .match-info {
+  padding:28px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  font-size:12px
+}
+.kx-secondary .challenge-bottom {
+  border:0;
+  border-left:1px solid var(--kx-line);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:start;
+  justify-content:space-between;
+  gap:22px
+}
+.kx-secondary .challenge-bottom p {
+  font-size:12px
+}
+.kx-secondary .community-hero {
+  background:#0a1621;
+  color:#f3f6ed;
+  overflow:hidden
+}
+.kx-secondary .community-hero .hero {
+  padding-block:80px;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:64px;
+  align-items:center
+}
+.kx-secondary .community-hero h1 {
+  font-size:clamp(72px,8vw,120px);
+  line-height:.88
+}
+.kx-secondary .community-hero .hero-photo {
+  border-radius:0;
+  transform:none;
+  min-height:400px;
+  clip-path:polygon(9% 0,100% 0,91% 100%,0 100%)
+}
+.kx-secondary .community-hero .hero-photo img {
+  height:100%;
+  width:100%;
+  object-fit:cover
+}
+.kx-secondary .hero-foot {
+  border-top:1px solid #43505c;
+  padding-top:22px
+}
+.kx-secondary .photo-index {
+  display:none
+}
+/* Immersive details. All original controls remain mounted. */
+.kx-secondary .game-detail-layout,.kx-secondary .cup-detail-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 360px;
+  gap:36px;
+  align-items:start
+}
+.kx-secondary .games-detail,.kx-secondary .cup-detail {
+  padding-top:36px;
+  padding-bottom:80px
+}
+.kx-match-hero,.kx-cup-hero {
+  position:relative;
+  overflow:hidden;
+  margin-bottom:32px;
+  background:var(--kx-night);
+  min-height:360px
+}
+.kx-match-hero .game-detail-image,.kx-cup-hero .cup-cover {
+  width:100%;
+  height:440px;
+  object-fit:cover;
+  border-radius:0;
+  margin:0
+}
+.kx-cup-hero .cup-cover img {
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.kx-match-hero:after,.kx-cup-hero:after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent,#06111ee8);
+  pointer-events:none
+}
+.kx-match-hero-copy,.kx-cup-hero-copy {
+  position:absolute;
+  z-index:1;
+  bottom:32px;
+  left:32px;
+  right:32px;
+  color:#fff
+}
+.kx-match-hero-copy h1,.kx-cup-hero-copy h1 {
+  font-size:clamp(48px,6vw,82px);
+  line-height:.95;
+  color:#fff;
+  margin:0
+}
+.kx-secondary .game-info-panel,.kx-secondary .cup-panel {
+  background:var(--kx-surface);
+  border:0;
+  border-top:1px solid var(--kx-line);
+  border-radius:0;
+  padding:28px 0;
+  margin-bottom:20px
+}
+.kx-secondary .game-info-panel h2,.kx-secondary .cup-panel h2 {
+  font-size:32px
+}
+.kx-secondary .join-card,.kx-secondary .cup-registration {
+  background:var(--kx-night);
+  color:#edf4ee;
+  border:1px solid #384852;
+  border-top:5px solid var(--kx-lime);
+  border-radius:4px;
+  position:sticky;
+  top:110px;
+  padding:28px
+}
+.kx-secondary .join-card :where(h2,h3,p,strong,span,label),.kx-secondary .cup-registration :where(h2,h3,p,strong,span,label) {
+  color:inherit
+}
+.kx-secondary .join-card button,.kx-secondary .cup-registration button {
+  background:var(--kx-lime);
+  color:#0b1721;
+  border-radius:2px
+}
+.kx-secondary .cup-facts,.kx-secondary .match-facts {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px
+}
+.kx-secondary .cup-facts>*,.kx-secondary .match-facts>* {
+  border-bottom:1px solid var(--kx-line);
+  padding-bottom:18px
+}
+.kx-secondary .tournament-bracket {
+  border-radius:4px;
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  padding:28px;
+  overflow:auto
+}
+.kx-secondary .bracket-match {
+  border-radius:2px
+}
+.kx-secondary dialog {
+  max-width:min(1000px,calc(100vw - 32px));
+  max-height:90dvh;
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  border:1px solid var(--kx-line);
+  border-radius:5px;
+  padding:32px;
+  box-shadow:0 24px 100px #0005
+}
+.kx-secondary dialog::backdrop {
+  background:#03111bd9;
+  backdrop-filter:blur(8px)
+}
+.kx-secondary dialog :where(h2,h3) {
+  font-family:var(--kx-display)
+}
+.kx-secondary dialog h2 {
+  font-size:42px
+}
+.kx-secondary :where(.detail-header,.detail-hero,.team-detail-hero,.challenge-detail-hero) {
+  background:var(--kx-night);
+  color:#f1f6ee;
+  padding:36px;
+  border-radius:0;
+  border-top:5px solid var(--kx-lime)
+}
+.kx-secondary .roster-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:var(--kx-line)
+}
+.kx-secondary .roster-card {
+  border:0;
+  border-radius:0;
+  background:var(--kx-surface);
+  padding:24px
+}
+.kx-secondary .booking-box {
+  border-radius:2px;
+  border-left:4px solid var(--kx-accent);
+  background:var(--kx-raised)
+}
+.kx-secondary .meeting-main {
+  max-width:1280px;
+  padding:48px 32px 80px;
+  margin:auto
+}
+.kx-secondary .meeting-room-header {
+  background:var(--kx-night);
+  color:#f3f7f0;
+  padding:48px;
+  border-radius:3px;
+  border-left:6px solid var(--kx-lime)
+}
+.kx-secondary .meeting-room-header h1 {
+  font-size:clamp(44px,6vw,80px);
+  line-height:.98;
+  color:inherit
+}
+.kx-secondary .meeting-room-grid {
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:24px
+}
+.kx-secondary .meeting-room-panel {
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  background:var(--kx-surface);
+  padding:30px
+}
+.kx-secondary .meeting-grid {
+  display:flex;
+  flex-direction:column;
+  gap:16px
+}
+.kx-secondary .meeting-card {
+  display:grid;
+  grid-template-columns:140px 1fr auto;
+  gap:24px;
+  align-items:center;
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  background:var(--kx-surface);
+  padding:26px;
+  border-left:4px solid var(--kx-accent)
+}
+.kx-secondary .meeting-card h3 {
+  font-size:30px;
+  margin:0 0 10px
+}
+.kx-secondary .meeting-card p {
+  font-size:12px
+}
+.kx-secondary .meeting-status {
+  border-radius:2px;
+  font-size:10px
+}
+/* Workspace architecture. */
+.kx-secondary[data-dashboard] {
+  --kx-rail:244px
+}
+.kx-secondary .dash-layout {
+  display:grid;
+  grid-template-columns:var(--kx-rail) minmax(0,1fr);
+  min-height:100vh
+}
+.kx-secondary .dash-sidebar {
+  position:sticky;
+  top:0;
+  height:100dvh;
+  width:auto;
+  background:#091520;
+  color:#e9f0e9;
+  padding:28px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  overflow-y:auto;
+  border-right:1px solid #2b3b45
+}
+.kx-secondary .dash-brand {
+  padding:0 10px;
+  font:700 30px/1 var(--kx-display);
+  color:#f5f8ef
+}
+.kx-secondary .dash-brand img {
+  width:36px;
+  height:36px;
+  object-fit:contain
+}
+.kx-secondary .side-label {
+  font-size:9px;
+  letter-spacing:.18em;
+  color:#9aacb8;
+  padding:0 10px;
+  margin:0
+}
+.kx-secondary .sidebar-profile {
+  display:flex;
+  position:static;
+  margin:0;
+  padding:18px 10px;
+  background:#142531;
+  border:1px solid #30434f;
+  border-radius:3px;
+  color:#eff6ed
+}
+.kx-secondary .sidebar-profile img,.kx-secondary .sidebar-profile .sidebar-avatar {
+  width:40px;
+  height:40px;
+  border-radius:50%
+}
+.kx-secondary .sidebar-profile strong {
+  font-size:12px
+}
+.kx-secondary #dashNav {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  overflow:visible
+}
+.kx-secondary #dashNav a {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:0;
+  border-left:3px solid transparent;
+  border-radius:2px;
+  font-size:12px;
+  color:#acbcc5;
+  background:transparent;
+  text-decoration:none
+}
+.kx-secondary #dashNav a:hover {
+  color:#fff;
+  background:#192c38
+}
+.kx-secondary #dashNav a[aria-current=page] {
+  color:#c5ff4f;
+  background:#223726;
+  border-left-color:#c5ff4f
+}
+.kx-secondary #dashNav a[data-kx-group=account] {
+  border-top:1px solid #263a46;
+  margin-top:8px
+}
+.kx-secondary .side-bottom {
+  position:static;
+  margin-top:auto;
+  padding:18px 10px 0;
+  border-top:1px solid #2b3f4b;
+  background:transparent;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px
+}
+.kx-secondary .side-bottom>strong,.kx-secondary .side-bottom>p,.kx-secondary .side-dot {
+  display:none
+}
+.kx-secondary .side-bottom a,.kx-secondary .side-bottom button {
+  font-size:10px;
+  color:#b0c0c8
+}
+.kx-secondary .dash-main {
+  margin:0;
+  width:auto;
+  max-width:none;
+  padding:28px 40px 70px;
+  min-width:0;
+  background:var(--kx-bg)
+}
+.kx-dashboard-toolbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--kx-line);
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--kx-muted)
+}
+.kx-dashboard-menu {
+  display:none;
+  background:var(--kx-text);
+  color:var(--kx-bg);
+  padding:12px;
+  border:0
+}
+.kx-secondary .dash-top {
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:center;
+  border:0;
+  padding:30px 0;
+  margin:0 0 12px
+}
+.kx-secondary .dash-top h1 {
+  font-size:clamp(36px,4vw,54px);
+  line-height:1
+}
+.kx-secondary .dash-eyebrow {
+  font-size:9px;
+  letter-spacing:.16em;
+  color:var(--kx-muted)
+}
+.kx-secondary .avatar-link {
+  padding:0;
+  background:transparent;
+  border:0;
+  font-size:12px;
+  color:var(--kx-text)
+}
+.kx-secondary .avatar-link>span {
+  width:40px;
+  height:40px;
+  background:var(--kx-raised);
+  border:1px solid var(--kx-line);
+  color:var(--kx-text)
+}
+.kx-workspace-overview {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:28px;
+  margin-bottom:32px
+}
+.kx-workspace-lead {
+  padding:36px;
+  min-height:300px;
+  background:#0a1924;
+  color:#edf6ee;
+  border-radius:3px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden
+}
+.kx-workspace-label {
+  font-size:9px;
+  letter-spacing:.18em;
+  color:#b8ff4b;
+  position:relative;
+  z-index:1
+}
+.kx-workspace-title {
+  font-size:clamp(40px,4.5vw,70px);
+  line-height:.94;
+  white-space:pre-line;
+  color:#edf6ee;
+  position:relative;
+  z-index:1
+}
+.kx-workspace-links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 24px;
+  position:relative;
+  z-index:1
+}
+.kx-workspace-links a {
+  color:#c5ff4f;
+  font-size:12px;
+  text-decoration:none;
+  border-bottom:1px solid #8baf44;
+  padding-bottom:6px
+}
+.kx-secondary .stats-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  background:var(--kx-line);
+  border:1px solid var(--kx-line);
+  margin:0;
+  border-radius:3px;
+  overflow:hidden
+}
+.kx-secondary .stat-card {
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  padding:26px;
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  min-height:148px
+}
+.kx-secondary .stat-card strong {
+  font:600 50px/1 var(--kx-display);
+  color:var(--kx-text)
+}
+.kx-secondary .stat-top {
+  font-size:11px
+}
+.kx-secondary .stat-card small {
+  font-size:10px;
+  color:var(--kx-muted)
+}
+.kx-secondary .stat-icon {
+  display:none
+}
+.kx-secondary .dash-panel {
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  box-shadow:none;
+  padding:28px;
+  margin-bottom:24px;
+  min-width:0
+}
+.kx-secondary .panel-heading {
+  border-bottom:1px solid var(--kx-line);
+  padding-bottom:18px;
+  margin-bottom:22px;
+  gap:18px
+}
+.kx-secondary .panel-heading h2 {
+  font-size:30px
+}
+.kx-secondary .panel-heading a {
+  font-size:11px;
+  color:var(--kx-accent)
+}
+.kx-secondary .analytics-grid {
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:24px;
+  margin:0 0 28px
+}
+.kx-secondary .analytics-card {
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  background:var(--kx-surface);
+  box-shadow:none;
+  min-width:0;
+  padding:28px
+}
+.kx-secondary .dash-columns {
+  gap:24px;
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.kx-secondary .table-wrap {
+  max-width:100%;
+  overflow:auto;
+  border-radius:0;
+  border:0
+}
+.kx-secondary table {
+  width:100%;
+  font-size:12px;
+  color:var(--kx-text)
+}
+.kx-secondary table th {
+  background:var(--kx-raised);
+  color:var(--kx-muted);
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  padding:16px;
+  border-bottom:1px solid var(--kx-line)
+}
+.kx-secondary table td {
+  padding:18px 16px;
+  border-bottom:1px solid var(--kx-line);
+  background:var(--kx-surface);
+  vertical-align:middle
+}
+.kx-secondary table tr:hover td {
+  background:var(--kx-raised)
+}
+.kx-secondary table td strong {
+  font-size:12px
+}
+.kx-secondary .status-pill {
+  border-radius:2px;
+  font-size:9px;
+  letter-spacing:.03em
+}
+.kx-secondary .dash-btn {
+  background:var(--kx-accent);
+  color:var(--kx-accent-ink);
+  border:1px solid transparent;
+  padding:12px 17px;
+  font-size:11px
+}
+.kx-secondary .dash-btn.secondary {
+  border-color:var(--kx-line);
+  color:var(--kx-text);
+  background:var(--kx-surface)
+}
+.kx-secondary .view-heading h2 {
+  font-size:36px
+}
+.kx-secondary .profile-card {
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  overflow:hidden
+}
+.kx-secondary .profile-cover {
+  background:#0b1c27;
+  border-radius:0;
+  height:160px
+}
+.kx-secondary .profile-grid {
+  grid-template-columns:1fr 1.7fr;
+  gap:28px
+}
+.kx-secondary .profile-detail {
+  border-radius:0;
+  border-bottom:1px solid var(--kx-line)
+}
+/* Player: a personal touchline feature, followed by activity. */
+.kx-secondary[data-dashboard=player] .kx-workspace-lead:before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#071521ee,#07152155),url('../assets/images/field3.jpg') center/cover;
+  opacity:.7
+}
+.kx-secondary[data-dashboard=player] .kx-player-activity {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:24px
+}
+.kx-secondary[data-dashboard=player] .kx-player-activity .dash-columns {
+  display:flex;
+  flex-direction:column;
+  gap:0
+}
+.kx-secondary[data-dashboard=player] .kx-player-activity .overview-bookings {
+  border-top:4px solid var(--kx-accent)
+}
+.kx-secondary[data-dashboard=player] .overview-event {
+  border-left:2px solid var(--kx-line);
+  border-radius:0;
+  padding:20px 22px;
+  margin-left:8px;
+  background:transparent;
+  border-bottom:1px solid var(--kx-line)
+}
+/* Owner: operations masthead and venue desk alongside field analytics. */
+.kx-secondary[data-dashboard=owner] .kx-workspace-overview {
+  grid-template-columns:1fr
+}
+.kx-secondary[data-dashboard=owner] .kx-workspace-lead {
+  min-height:220px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:20px;
+  border-left:6px solid var(--kx-lime)
+}
+.kx-secondary[data-dashboard=owner] .kx-workspace-label {
+  grid-column:1/-1
+}
+.kx-secondary[data-dashboard=owner] .kx-workspace-title {
+  font-size:58px
+}
+.kx-secondary[data-dashboard=owner] .kx-workspace-links {
+  align-self:end
+}
+.kx-secondary[data-dashboard=owner] .stats-grid {
+  grid-template-columns:repeat(4,minmax(0,1fr))
+}
+.kx-secondary[data-dashboard=owner] .kx-owner-operations {
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:24px
+}
+.kx-secondary[data-dashboard=owner] .kx-owner-operations .analytics-grid {
+  display:flex;
+  flex-direction:column
+}
+.kx-secondary[data-dashboard=owner] .kx-owner-operations .analytics-card {
+  margin:0
+}
+.kx-secondary[data-dashboard=owner] .overview-bookings {
+  border-top:4px solid var(--kx-accent)
+}
+/* Admin: compact control masthead and dense oversight desk. */
+.kx-secondary[data-dashboard=admin] {
+  --kx-rail:224px
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-overview {
+  grid-template-columns:1fr
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-lead {
+  min-height:160px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:10px;
+  background:var(--kx-text);
+  color:var(--kx-bg);
+  padding:28px
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-label {
+  grid-column:1/-1;
+  color:var(--kx-bg)
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-title {
+  font-size:44px;
+  color:var(--kx-bg);
+  white-space:normal
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-links {
+  align-self:end
+}
+.kx-secondary[data-dashboard=admin] .kx-workspace-links a {
+  color:var(--kx-bg);
+  border-color:var(--kx-muted)
+}
+.kx-secondary[data-dashboard=admin] .stats-grid {
+  grid-template-columns:repeat(4,minmax(0,1fr))
+}
+.kx-secondary[data-dashboard=admin] .stat-card {
+  min-height:125px;
+  padding:20px
+}
+.kx-admin-control {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px
+}
+.kx-admin-control>.analytics-grid,.kx-admin-control>.dash-columns {
+  display:flex;
+  flex-direction:column;
+  gap:24px
+}
+.kx-admin-control .dash-panel {
+  margin:0
+}
+.kx-secondary[data-dashboard=admin] table td {
+  padding:14px
+}
+.kx-secondary[data-dashboard=admin] .dash-top h1 {
+  font-size:38px
+}
+/* Authentication membership desk. */
+.kx-secondary.login-page .auth-shell {
+  max-width:1440px;
+  margin:36px auto 70px;
+  display:grid;
+  grid-template-columns:1fr 1.05fr;
+  min-height:800px;
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:4px;
+  overflow:hidden
+}
+.kx-secondary .premium-auth-story {
+  grid-column:2;
+  grid-row:1;
+  border-radius:0;
+  position:relative;
+  min-height:700px;
+  clip-path:none
+}
+.kx-secondary .premium-auth-story h2 {
+  font-size:clamp(65px,6vw,100px);
+  line-height:.88
+}
+.kx-secondary .premium-auth-story img {
+  filter:saturate(.6)
+}
+.kx-secondary .premium-auth-panel {
+  grid-column:1;
+  grid-row:1;
+  padding:60px;
+  align-self:center;
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  width:auto
+}
+.kx-secondary .form-wrap {
+  max-width:460px;
+  margin:auto;
+  width:100%
+}
+.kx-secondary #formTitle {
+  font:600 64px/.96 var(--kx-display);
+  letter-spacing:-.02em;
+  color:var(--kx-text);
+  margin:22px 0
+}
+.kx-secondary .auth-card-brand {
+  display:none
+}
+.kx-secondary .premium-auth-kicker {
+  border-left:3px solid var(--kx-accent);
+  padding-left:12px;
+  letter-spacing:.14em;
+  font-size:9px;
+  color:var(--kx-accent)
+}
+.kx-secondary #authForm {
+  border-top:1px solid var(--kx-line);
+  padding-top:26px;
+  margin-top:28px
+}
+.kx-secondary .role-options {
+  gap:0;
+  border:1px solid var(--kx-line);
+  border-radius:2px;
+  overflow:hidden
+}
+.kx-secondary .role-options label span {
+  border:0;
+  border-radius:0;
+  padding:15px
+}
+.kx-secondary .input-group {
+  margin-bottom:22px
+}
+.kx-secondary .input-group label {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+  margin-bottom:10px
+}
+.kx-secondary .input-group input {
+  min-height:52px;
+  border-radius:2px;
+  background:var(--kx-bg);
+  color:var(--kx-text);
+  border-color:var(--kx-line)
+}
+.kx-secondary .submit-auth {
+  background:var(--kx-text);
+  color:var(--kx-bg);
+  border-radius:2px;
+  min-height:54px
+}
+.kx-secondary .password-toggle {
+  border-radius:2px;
+  color:var(--kx-accent)
+}
+.kx-secondary .about-grid {
+  grid-template-columns:1.3fr .7fr;
+  gap:80px
+}
+.kx-secondary .about-hero {
+  background:#091823;
+  color:#eff5ec;
+  padding-block:90px
+}
+.kx-secondary .about-hero h1 {
+  font-size:clamp(70px,8vw,120px);
+  line-height:.9;
+  color:inherit
+}
+.kx-secondary .about-playbook {
+  border:1px solid #49606d;
+  border-radius:0;
+  background:#142936;
+  color:#edf6ec;
+  transform:none
+}
+.kx-secondary .about-hero :is(.eyebrow,#aboutDescription){color:#bdd2c7}
+.kx-secondary .about-playbook :is(.playbook-heading,.playbook-step strong){color:#edf6ec}
+.kx-secondary .about-playbook :is(.playbook-step small,.playbook-step>span,.playbook-step i){color:#bdd2c7}
+.kx-secondary .contact-intro :is(.contact-eyebrow,.contact-heading>p){color:#bdd2c7}
+.kx-secondary .contact-method small{color:var(--kx-muted)}
+.kx-secondary .contact-method span>span{color:var(--kx-muted)}
+html:not([data-theme=dark]) .kx-secondary .about-values article>span{color:#156c43}
+html:not([data-theme=dark]) .kx-secondary :is(.contact-note p,.feedback-layout>div>p:not(.contact-eyebrow),.feedback-local-note,.feedback-actions small){color:#4c6254}
+html:not([data-theme=dark]) .kx-secondary .feedback-rating label>span:first-of-type{color:#4c6254}
+.kx-secondary .role-options label span strong{color:inherit}
+.kx-secondary .role-options input:not(:checked)+span{color:var(--kx-text)}
+.kx-secondary .role-options input:checked+span{background:var(--kx-surface);color:var(--kx-text)}
+.kx-secondary .cup-registration #teamSelect{background:var(--kx-surface);color:var(--kx-text);border-color:var(--kx-line)}
+html[data-theme=dark] .kx-secondary :is(.about-story,.about-contact) .eyebrow{color:var(--kx-accent)}
+html[data-theme=dark] .kx-secondary :is(.story-grid p,.feedback-actions small){color:var(--kx-muted)}
+.kx-secondary .story-grid {
+  grid-template-columns:.8fr 1.2fr;
+  gap:72px
+}
+.kx-secondary .about-values {
+  display:flex;
+  flex-direction:column;
+  gap:0
+}
+.kx-secondary .about-values article {
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:12px 32px;
+  border:0;
+  border-top:1px solid var(--kx-line);
+  border-radius:0;
+  padding:30px 0;
+  background:transparent
+}
+.kx-secondary .about-values article p {
+  grid-column:2
+}
+.kx-secondary .about-values h3 {
+  font-size:36px
+}
+.kx-secondary .contact-intro {
+  background:#091823;
+  color:#f0f5ed;
+  padding-block:80px
+}
+.kx-secondary .contact-heading h1 {
+  font-size:clamp(70px,9vw,128px);
+  line-height:.9;
+  color:inherit
+}
+.kx-secondary .contact-layout {
+  grid-template-columns:1.4fr .6fr;
+  gap:40px
+}
+.kx-secondary .founder-card {
+  display:grid;
+  grid-template-columns:.8fr 1fr;
+  border-radius:3px;
+  border:1px solid var(--kx-line);
+  overflow:hidden
+}
+.kx-secondary .founder-photo {
+  height:100%;
+  min-height:360px
+}
+.kx-secondary .founder-photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.kx-secondary .founder-copy {
+  padding:32px;
+  background:var(--kx-surface)
+}
+.kx-secondary .contact-details {
+  border:0;
+  border-left:1px solid var(--kx-line);
+  border-radius:0;
+  padding:30px;
+  background:var(--kx-surface)
+}
+.kx-secondary .feedback-layout {
+  grid-template-columns:.8fr 1.2fr;
+  gap:80px
+}
+.kx-secondary .feedback-layout h2 {
+  font-size:64px;
+  line-height:.95
+}
+.kx-secondary .feedback-form {
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  padding:32px
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .kx-secondary :where(.match-card,.team-card,.cup-card,.challenge-card) {
+    transition:translate .25s,border-color .25s
+  }
+  .kx-secondary :where(.match-card,.team-card,.cup-card,.challenge-card):hover {
+    translate:0 -3px;
+    border-color:var(--kx-accent)
+  }
+  .kx-secondary dialog[open] {
+    animation:kx-dialog-in .2s ease-out
+  }
+  @keyframes kx-dialog-in {
+    from {
+      opacity:.6;
+      transform:translateY(12px)
+    }
+    to {
+      opacity:1;
+      transform:none
+    }
+  }
+}
+@media(max-width:1200px) {
+  .kx-secondary .dash-main {
+    padding:24px
+  }
+  .kx-secondary[data-dashboard] {
+    --kx-rail:210px
+  }
+  .kx-secondary .match-card {
+    grid-template-columns:125px 140px minmax(0,1fr)
+  }
+  .kx-secondary .match-body {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .match-bottom {
+    grid-column:auto
+  }
+  .kx-secondary .team-card {
+    grid-template-columns:135px 1fr
+  }
+  .kx-club-identity {
+    padding:20px
+  }
+  .kx-secondary .cup-grid {
+    gap:20px
+  }
+  .kx-secondary .cup-card {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .cup-card-image {
+    height:220px;
+    min-height:0
+  }
+  .kx-secondary .cup-card-body {
+    gap:16px
+  }
+  .kx-secondary[data-dashboard=player] .kx-player-activity,.kx-secondary[data-dashboard=owner] .kx-owner-operations {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .games-hero-layout {
+    gap:32px
+  }
+  .kx-secondary .game-detail-layout,.kx-secondary .cup-detail-layout {
+    grid-template-columns:minmax(0,1fr) 310px;
+    gap:24px
+  }
+  .kx-secondary .contact-layout {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .contact-details {
+    border-left:0;
+    border-top:1px solid var(--kx-line)
+  }
+}
+@media(max-width:1024px) {
+  .kx-secondary .team-grid,.kx-secondary .teams-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .challenge-card {
+    grid-template-columns:1fr 1fr
+  }
+  .kx-secondary .challenge-bottom {
+    grid-column:1/-1;
+    flex-direction:row;
+    align-items:center;
+    border:0;
+    border-top:1px solid var(--kx-line)
+  }
+  .kx-secondary .kx-workspace-overview {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .stats-grid {
+    grid-template-columns:repeat(4,minmax(0,1fr))
+  }
+  .kx-secondary .stat-card {
+    padding:20px;
+    min-height:130px
+  }
+  .kx-secondary .stat-card strong {
+    font-size:40px
+  }
+  .kx-secondary .stat-top {
+    font-size:10px
+  }
+  .kx-admin-control {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .analytics-grid {
+    grid-template-columns:1fr 1fr
+  }
+  .kx-secondary .premium-auth-panel {
+    padding:36px
+  }
+  .kx-secondary .about-grid,.kx-secondary .story-grid,.kx-secondary .feedback-layout {
+    gap:32px
+  }
+  .kx-secondary .community-hero .hero {
+    gap:32px
+  }
+  .kx-secondary .community-hero .hero-photo {
+    min-height:340px
+  }
+  .kx-secondary .games-hero h1 {
+    font-size:80px
+  }
+}
+@media(max-width:900px) {
+  .kx-secondary .dash-layout {
+    display:block
+  }
+  .kx-secondary .dash-sidebar {
+    display:none;
+    height:auto;
+    max-height:70dvh;
+    position:relative;
+    width:100%;
+    border:0
+  }
+  .kx-secondary.kx-nav-open .dash-sidebar {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px
+  }
+  .kx-secondary .dash-sidebar #dashNav {
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr))
+  }
+  .kx-secondary .side-bottom {
+    grid-column:1/-1
+  }
+  .kx-secondary .side-label {
+    display:none
+  }
+  .kx-dashboard-menu {
+    display:block
+  }
+  .kx-secondary .dash-main {
+    padding:20px
+  }
+  .kx-secondary .sidebar-profile {
+    align-self:center
+  }
+  .kx-secondary .dash-brand {
+    align-self:center
+  }
+  .kx-secondary .community-hero .hero {
+    padding-block:48px
+  }
+  .kx-secondary .game-detail-layout,.kx-secondary .cup-detail-layout {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .join-card,.kx-secondary .cup-registration {
+    position:static
+  }
+  .kx-secondary .games-hero-layout {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .spotlight-wrap {
+    max-width:100%
+  }
+  .kx-secondary .hero-spotlight {
+    display:grid;
+    grid-template-columns:1fr 1fr
+  }
+  .kx-secondary .spotlight-photo {
+    height:100%
+  }
+  .kx-secondary .games-hero h1 {
+    font-size:100px
+  }
+  .kx-secondary .about-grid,.kx-secondary .story-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary.login-page .auth-shell {
+    margin:24px;
+    grid-template-columns:1fr
+  }
+  .kx-secondary .premium-auth-story {
+    grid-row:1;
+    grid-column:1;
+    min-height:320px;
+    padding:32px
+  }
+  .kx-secondary .premium-auth-panel {
+    grid-row:2;
+    grid-column:1
+  }
+  .kx-secondary .premium-auth-story h2 {
+    font-size:70px
+  }
+  .kx-secondary .premium-auth-foot {
+    display:none
+  }
+  .kx-secondary .premium-auth-edition {
+    position:relative;
+    top:auto;
+    left:auto;
+    margin-bottom:30px
+  }
+}
+@media(max-width:767px) {
+  .kx-secondary .match-card {
+    grid-template-columns:90px minmax(0,1fr)
+  }
+  .kx-secondary .match-image {
+    display:none
+  }
+  .kx-kickoff-rail {
+    padding:18px 12px
+  }
+  .kx-kickoff-rail .match-schedule {
+    font-size:11px
+  }
+  .kx-kickoff-rail .match-schedule span:last-child {
+    font-size:31px
+  }
+  .kx-secondary .match-body {
+    padding:22px 18px;
+    gap:18px
+  }
+  .kx-match-identity h3 {
+    font-size:30px
+  }
+  .kx-match-capacity .match-players {
+    flex-direction:row;
+    flex-wrap:wrap
+  }
+  .kx-secondary .match-bottom {
+    flex-wrap:wrap;
+    gap:12px
+  }
+  .kx-secondary .match-bottom a {
+    padding:10px 12px
+  }
+  .kx-secondary .cup-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .cup-card {
+    grid-template-columns:.7fr 1fr
+  }
+  .kx-secondary .cup-card-image {
+    height:100%;
+    min-height:320px
+  }
+  .kx-secondary .cup-card-body {
+    padding:20px
+  }
+  .kx-competition-identity h3 {
+    font-size:32px
+  }
+  .kx-secondary .community-hero .hero {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .community-hero h1 {
+    font-size:80px
+  }
+  .kx-secondary .community-hero .hero-photo {
+    min-height:0;
+    height:230px;
+    clip-path:none
+  }
+  .kx-secondary .challenge-card {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .challenge-card .match-info {
+    padding:22px
+  }
+  .kx-secondary .challenge-top {
+    padding:22px
+  }
+  .kx-secondary .challenge-bottom {
+    padding:22px;
+    grid-column:auto
+  }
+  .kx-secondary .meeting-card {
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:22px
+  }
+  .kx-secondary .meeting-main {
+    padding:30px 18px
+  }
+  .kx-secondary .meeting-room-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .meeting-room-header {
+    padding:28px
+  }
+  .kx-secondary .section-heading,.kx-secondary .catalog-intro,.kx-secondary .view-heading {
+    align-items:start;
+    flex-direction:column;
+    gap:18px
+  }
+  .kx-secondary .dash-columns,.kx-secondary .analytics-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .stats-grid,.kx-secondary[data-dashboard=owner] .stats-grid,.kx-secondary[data-dashboard=admin] .stats-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .kx-secondary .kx-workspace-lead,.kx-secondary[data-dashboard=owner] .kx-workspace-lead,.kx-secondary[data-dashboard=admin] .kx-workspace-lead {
+    display:flex;
+    padding:28px;
+    min-height:270px
+  }
+  .kx-secondary .kx-workspace-title,.kx-secondary[data-dashboard=owner] .kx-workspace-title,.kx-secondary[data-dashboard=admin] .kx-workspace-title {
+    font-size:48px
+  }
+  .kx-secondary .dash-top {
+    padding-block:24px;
+    align-items:start
+  }
+  .kx-secondary .dash-top h1 {
+    font-size:38px
+  }
+  .kx-secondary .avatar-link>div {
+    display:none
+  }
+  .kx-secondary .dash-panel,.kx-secondary .analytics-card {
+    padding:22px
+  }
+  .kx-secondary .dash-panel h2 {
+    font-size:28px
+  }
+  .kx-secondary[data-dashboard=player] .kx-player-activity {
+    gap:0
+  }
+  .kx-secondary .dash-sidebar #dashNav {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .kx-secondary .kx-workspace-overview {
+    gap:20px
+  }
+  .kx-secondary .join-card,.kx-secondary .cup-registration {
+    padding:24px
+  }
+  .kx-match-hero .game-detail-image,.kx-cup-hero .cup-cover {
+    height:340px
+  }
+  .kx-match-hero-copy,.kx-cup-hero-copy {
+    left:22px;
+    right:22px;
+    bottom:24px
+  }
+  .kx-secondary .cup-facts,.kx-secondary .match-facts {
+    gap:16px
+  }
+  .kx-secondary dialog {
+    padding:22px;
+    max-width:calc(100vw - 20px)
+  }
+  .kx-secondary .roster-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .kx-secondary .feedback-layout {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .founder-card {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .founder-photo {
+    min-height:0;
+    height:330px
+  }
+  .kx-secondary .about-hero,.kx-secondary .contact-intro {
+    padding-block:50px
+  }
+  .kx-secondary .about-values article {
+    grid-template-columns:40px 1fr;
+    gap:12px
+  }
+  .kx-secondary .games-hero {
+    padding-block:48px
+  }
+  .kx-secondary .games-hero h1 {
+    font-size:80px
+  }
+  .kx-secondary .hero-spotlight {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .spotlight-photo {
+    height:230px
+  }
+  .kx-secondary .game-filters,.kx-secondary .cup-filters {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .kx-secondary .profile-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .profile-detail {
+    overflow-wrap:anywhere
+  }
+  .kx-secondary table :where(button,a) {
+    white-space:nowrap
+  }
+  .kx-secondary .table-wrap table {
+    min-width:620px
+  }
+}
+@media(max-width:420px) {
+  .kx-secondary .team-card {
+    grid-template-columns:105px minmax(0,1fr)
+  }
+  .kx-club-identity {
+    padding:16px 12px;
+    gap:24px
+  }
+  .kx-secondary .team-card .team-name {
+    font-size:27px
+  }
+  .kx-secondary .team-card-body {
+    padding:18px 14px;
+    gap:14px
+  }
+  .kx-secondary .team-card .needed {
+    padding:14px;
+    grid-column:1/-1
+  }
+  .kx-secondary .team-card .team-tags {
+    gap:4px;
+    flex-wrap:wrap
+  }
+  .kx-secondary .squad-bar {
+    flex-direction:column;
+    align-items:start
+  }
+  .kx-secondary .team-bio {
+    font-size:12px
+  }
+  .kx-club-identity .recruit-status {
+    font-size:9px;
+    white-space:normal
+  }
+  .kx-secondary .cup-card {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .cup-card-image {
+    height:190px;
+    min-height:0
+  }
+  .kx-competition-rail {
+    padding:16px;
+    gap:10px;
+    flex-wrap:wrap
+  }
+  .kx-secondary .dash-main {
+    padding:16px
+  }
+  .kx-secondary .dash-sidebar {
+    padding:18px 14px
+  }
+  .kx-secondary .dash-sidebar #dashNav {
+    gap:2px
+  }
+  .kx-secondary #dashNav a {
+    padding:10px;
+    font-size:11px
+  }
+  .kx-secondary .stat-card {
+    padding:18px 14px
+  }
+  .kx-secondary .panel-heading {
+    flex-wrap:wrap
+  }
+  .kx-secondary.login-page .auth-shell {
+    margin:12px;
+    border-radius:2px
+  }
+  .kx-secondary .premium-auth-panel {
+    padding:30px 22px
+  }
+  .kx-secondary .premium-auth-story {
+    min-height:280px;
+    padding:24px
+  }
+  .kx-secondary .premium-auth-story h2 {
+    font-size:62px
+  }
+  .kx-secondary #formTitle {
+    font-size:52px
+  }
+  .kx-secondary .challenge-bottom {
+    flex-wrap:wrap
+  }
+  .kx-secondary .game-filters,.kx-secondary .cup-filters {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .roster-grid {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .feedback-form {
+    padding:22px
+  }
+  .kx-secondary .founder-copy {
+    padding:24px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .kx-secondary * {
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important
+  }
+  .kx-secondary :where(.match-card,.team-card,.cup-card,.challenge-card):hover {
+    translate:none
+  }
+}
+/* Explicit composition ownership over retained legacy component styles. */
+.kx-secondary .section-heading h2,.kx-secondary .catalog-intro h2 {
+  font:600 clamp(40px,5vw,76px)/.98 var(--kx-display);
+  color:var(--kx-text)
+}
+.kx-secondary .team-card-body,.kx-secondary .cup-card-body,.kx-secondary .match-body {
+  background:var(--kx-surface);
+  color:var(--kx-text)
+}
+.kx-secondary .kx-kickoff-rail .match-schedule span {
+  background:none;
+  border:0;
+  color:#e6eee9;
+  padding:0;
+  display:block;
+  box-shadow:none;
+  border-radius:0
+}
+.kx-secondary .kx-kickoff-rail .match-schedule span:last-child {
+  font:600 42px/1 var(--kx-display);
+  color:var(--kx-lime)
+}
+.kx-secondary .kx-kickoff-rail i {
+  font-size:13px;
+  margin-right:5px;
+  display:inline-block;
+  width:auto;
+  height:auto
+}
+.kx-secondary .kx-match-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px
+}
+.kx-secondary .kx-match-tags>span {
+  position:static;
+  padding:4px 7px;
+  font-size:9px;
+  background:var(--kx-raised);
+  color:var(--kx-text);
+  border:1px solid var(--kx-line);
+  border-radius:2px;
+  max-width:100%
+}
+.kx-secondary #filters,.kx-secondary .directory-tabs {
+  background:var(--kx-surface);
+  border-color:var(--kx-line);
+  border-radius:3px
+}
+.kx-secondary #filters :is(input,select) {
+  background:var(--kx-bg);
+  color:var(--kx-text);
+  border:1px solid var(--kx-line);
+  border-radius:2px
+}
+.kx-secondary .directory-tabs button[aria-selected=true] {
+  color:var(--kx-accent);
+  border:0;
+  border-bottom:3px solid var(--kx-accent);
+  border-radius:0;
+  background:transparent
+}
+@media(max-width:767px) {
+  .kx-secondary .kx-kickoff-rail .match-schedule span:last-child {
+    font-size:31px
+  }
+}
+.kx-secondary .kx-competition-rail .cup-card-date span {
+  background:transparent;
+  border:0;
+  padding:0;
+  color:#eef5ed;
+  font-size:11px;
+  border-radius:0
+}
+.kx-secondary .kx-competition-rail i {
+  font-size:12px
+}
+.kx-secondary .kx-assistant-tools {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 0
+}
+.kx-secondary .kx-assistant-tools .kicks-assistant-launcher {
+  position:static;
+  inset:auto;
+  transform:none;
+  box-shadow:none;
+  border:1px solid var(--kx-line);
+  border-radius:2px;
+  min-height:40px;
+  padding:9px 13px;
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  font-size:10px
+}
+.kx-secondary .cup-card-bottom a {
+  background:var(--kx-text);
+  color:var(--kx-bg);
+  padding:12px;
+  border-radius:2px;
+  text-decoration:none
+}
+.kx-secondary :is(.kx-player-activity,.kx-owner-operations,.kx-admin-control,.kx-workspace-overview,.dash-columns,.analytics-grid)>* {
+  min-width:0;
+  max-width:100%
+}
+.kx-secondary .kx-player-activity {
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)
+}
+@media(max-width:1200px) {
+  .kx-secondary[data-dashboard=player] .kx-player-activity,.kx-secondary[data-dashboard=owner] .kx-owner-operations {
+    grid-template-columns:minmax(0,1fr)
+  }
+}
+.kx-secondary .dash-btn {
+  color:var(--kx-bg)
+}
+.kx-secondary #dashNav a .sidebar-link-label {
+  width:auto;
+  min-width:0;
+  flex:1;
+  font:500 12px/1.5 var(--kx-body);
+  color:inherit;
+  white-space:normal
+}
+.kx-secondary #dashNav a .sidebar-icon {
+  flex:0 0 24px;
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  background:transparent;
+  color:inherit
+}
+.kx-secondary .sidebar-icon svg {
+  width:18px;
+  height:18px
+}
+.kx-secondary .sidebar-profile {
+  align-items:center;
+  gap:12px;
+  text-decoration:none
+}
+.kx-secondary .sidebar-profile>span {
+  min-width:0;
+  flex:1
+}
+.kx-secondary .sidebar-profile :is(strong,small) {
+  display:block;
+  overflow-wrap:anywhere
+}
+.kx-secondary .sidebar-profile small {
+  font-size:10px;
+  color:#b9cbd2
+}
+.kx-secondary .sidebar-profile .sidebar-avatar {
+  display:grid;
+  place-items:center;
+  flex:0 0 36px;
+  height:36px;
+  border-radius:50%;
+  background:#c6f0da;
+  color:#143728;
+  font-size:13px
+}
+.kx-secondary .profile-view {
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  padding:0;
+  overflow:hidden
+}
+.kx-secondary .profile-view-heading {
+  grid-row:1/3;
+  display:flex;
+  align-items:start;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:32px;
+  background:var(--kx-night);
+  color:#edf5ee;
+  padding:40px;
+  margin:0;
+  min-height:400px
+}
+.kx-secondary .profile-view-heading h2 {
+  font:600 52px/1 var(--kx-display);
+  color:#edf5ee
+}
+.kx-secondary .profile-view-heading p {
+  color:#b0c4cd
+}
+.kx-secondary .profile-view-avatar {
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:3px solid var(--kx-lime)
+}
+.kx-secondary .profile-details-grid {
+  padding:36px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px
+}
+.kx-secondary .profile-view-actions {
+  padding:0 36px 36px;
+  display:flex;
+  gap:22px;
+  justify-content:space-between;
+  flex-wrap:wrap
+}
+.kx-secondary .profile-detail {
+  padding:0 0 20px;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--kx-line);
+  min-width:0
+}
+.kx-secondary .profile-detail strong {
+  color:var(--kx-text);
+  font-size:13px;
+  overflow-wrap:anywhere
+}
+.kx-secondary .profile-detail span {
+  font-size:10px;
+  color:var(--kx-muted)
+}
+.kx-secondary .profile-form {
+  display:grid;
+  grid-template-columns:.7fr 1.3fr;
+  gap:30px
+}
+.kx-secondary .profile-avatar-editor {
+  grid-row:1/4;
+  display:flex;
+  flex-direction:column;
+  align-items:start;
+  background:var(--kx-raised);
+  padding:30px;
+  border-radius:3px
+}
+.kx-secondary .profile-form>.form-grid {
+  grid-column:2
+}
+.kx-secondary .password-settings {
+  grid-column:2;
+  border:1px solid var(--kx-line);
+  padding:24px
+}
+.kx-secondary .profile-edit-actions,.kx-secondary #personalError {
+  grid-column:2
+}
+@media(max-width:767px) {
+  .kx-secondary .profile-view,.kx-secondary .profile-form {
+    grid-template-columns:minmax(0,1fr)
+  }
+  .kx-secondary .profile-view-heading {
+    grid-row:auto;
+    min-height:250px;
+    padding:28px
+  }
+  .kx-secondary .profile-details-grid {
+    padding:28px;
+    grid-template-columns:1fr
+  }
+  .kx-secondary .profile-view-actions {
+    padding:0 28px 28px
+  }
+  .kx-secondary .profile-form>:is(.form-grid,.password-settings,.profile-edit-actions,#personalError) {
+    grid-column:1
+  }
+  .kx-secondary .profile-avatar-editor {
+    grid-row:auto
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) {
+    min-width:0;
+    display:block
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) thead {
+    display:none
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) tbody {
+    display:block
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) tr {
+    display:block;
+    border-bottom:1px solid var(--kx-line);
+    padding:14px 0
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) td {
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    width:100%;
+    padding:9px 0;
+    border:0;
+    flex-wrap:wrap
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) td:before {
+    content:attr(data-label);
+    font:600 10px/1.5 var(--kx-body);
+    color:var(--kx-muted)
+  }
+  .kx-secondary[data-dashboard=player] :is(.dashboard-table,.reservations-table) td[colspan]:before {
+    display:none
+  }
+}
+.kx-secondary .kx-club-masthead {
+  position:relative;
+  background:var(--kx-night);
+  color:#eff6ee;
+  padding:24px;
+  border-top:5px solid var(--kx-lime)
+}
+.kx-secondary .kx-club-masthead .detail-header {
+  background:transparent;
+  border:0;
+  padding:28px 12px 12px;
+  margin:0
+}
+.kx-secondary .kx-detail-close {
+  position:absolute;
+  right:12px;
+  top:12px;
+  color:#edf5ed;
+  background:#ffffff14;
+  border:1px solid #ffffff44;
+  z-index:2
+}
+.kx-secondary .detail-header :is(h2,.team-meta,.city,.detail-headline) {
+  color:#f0f5ec
+}
+.kx-secondary .detail-header .badge {
+  margin-top:0;
+  border:1px solid #7a9c7a;
+  border-radius:0 0 24px 24px;
+  color:var(--kx-lime);
+  background:#ffffff0d
+}
+.kx-secondary .kx-match-brief {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  padding:28px;
+  margin-bottom:28px;
+  background:var(--kx-raised);
+  border-bottom:1px solid var(--kx-line)
+}
+.kx-secondary .kx-match-brief>div {
+  border-bottom:1px solid var(--kx-line);
+  padding-bottom:16px
+}
+.kx-secondary .kx-match-brief small {
+  display:block;
+  font-size:9px;
+  color:var(--kx-muted)
+}
+.kx-secondary .kx-match-brief strong {
+  font-size:13px;
+  color:var(--kx-text)
+}
+.kx-secondary .roster-list {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px
+}
+.kx-secondary .player-row {
+  padding:20px;
+  border:1px solid var(--kx-line);
+  border-radius:2px;
+  background:var(--kx-surface);
+  flex-wrap:wrap;
+  min-width:0
+}
+.kx-secondary .player-info {
+  min-width:0
+}
+.kx-secondary .player-info strong {
+  overflow-wrap:anywhere
+}
+.kx-secondary .detail-layout {
+  grid-template-columns:1.3fr .7fr;
+  gap:28px
+}
+.kx-secondary .recruit-box {
+  border-radius:2px;
+  background:var(--kx-raised);
+  border:1px solid var(--kx-line);
+  border-top:4px solid var(--kx-accent)
+}
+.kx-secondary .meeting-room-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  gap:24px
+}
+.kx-secondary .meeting-stage {
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  border-radius:3px;
+  min-width:0
+}
+html[dir=rtl] .kx-secondary main {
+  max-width:1320px;
+  margin:auto;
+  padding:48px 32px
+}
+html[dir=rtl] .kx-secondary .intro {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:24px 48px;
+  padding:48px;
+  background:var(--kx-night);
+  color:#eef5eb;
+  border-right:5px solid var(--kx-lime)
+}
+html[dir=rtl] .kx-secondary .intro h1 {
+  grid-row:1/4;
+  font-family:var(--kx-body);
+  font-size:clamp(32px,5vw,64px);
+  line-height:1.4;
+  color:inherit
+}
+html[dir=rtl] .kx-secondary .accounts {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px
+}
+html[dir=rtl] .kx-secondary .card {
+  border:1px solid var(--kx-line);
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  border-radius:2px;
+  padding:26px
+}
+html[dir=rtl] .kx-secondary .card h3 {
+  font-family:var(--kx-body);
+  font-size:20px
+}
+html[dir=rtl] .kx-secondary :is(.toolbar,.steps) {
+  background:var(--kx-surface);
+  border:1px solid var(--kx-line);
+  padding:28px;
+  border-radius:2px;
+  color:var(--kx-text)
+}
+@media(max-width:767px) {
+  .kx-secondary .detail-layout,.kx-secondary .meeting-room-layout {
+    grid-template-columns:minmax(0,1fr)
+  }
+  .kx-secondary .roster-list {
+    grid-template-columns:1fr
+  }
+  .kx-secondary .kx-match-brief {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    padding:20px;
+    gap:18px
+  }
+  .kx-secondary .detail-header {
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    align-items:start
+  }
+  .kx-secondary .detail-headline {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:start
+  }
+  html[dir=rtl] .kx-secondary .intro {
+    grid-template-columns:minmax(0,1fr);
+    padding:26px
+  }
+  html[dir=rtl] .kx-secondary .intro h1 {
+    grid-row:auto
+  }
+  html[dir=rtl] .kx-secondary .accounts {
+    grid-template-columns:minmax(0,1fr)
+  }
+  html[dir=rtl] .kx-secondary main {
+    padding:28px 16px
+  }
+}
+.kx-secondary .stat-top span {
+  color:var(--kx-muted)
+}
+.kx-secondary .dash-panel :is(.chart-summary strong,.chart-legend strong,.booking-donut strong) {
+  color:var(--kx-text)
+}
+.kx-secondary .dash-panel :is(.chart-summary>span,.chart-month,.chart-bar>span,.chart-legend,.overview-time,.chart-empty) {
+  color:var(--kx-muted)
+}
+.kx-secondary .chart-month {
+  background:transparent
+}
+.kx-secondary .booking-donut>div {
+  background:var(--kx-surface);
+  color:var(--kx-text)
+}
+.kx-secondary .chart-live {
+  background:var(--kx-raised);
+  color:var(--kx-accent);
+  border-radius:2px
+}
+.kx-secondary .booking-chart {
+  background-image:linear-gradient(var(--kx-line) 1px,transparent 1px)
+}
+.kx-secondary .kicks-checkout {
+  max-width:min(480px,calc(100vw - 24px));
+  padding:30px
+}
+.kx-secondary .checkout-card {
+  border-radius:3px;
+  background:#112936;
+  border:1px solid #3d5665;
+  box-shadow:none
+}
+.kx-secondary .checkout-card:before {
+  display:none
+}
+.kx-secondary .checkout-card-number {
+  letter-spacing:.1em
+}
+.kx-secondary .checkout-submit {
+  border-radius:2px;
+  background:var(--kx-accent);
+  color:var(--kx-bg)
+}
+.kx-secondary .sidebar-profile .sidebar-initial {
+  flex:0 0 36px;
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#d0efd9;
+  color:#163c2a;
+  font-size:13px
+}
+.kx-secondary .sidebar-profile>span:not(.sidebar-initial) {
+  flex:1;
+  min-width:0
+}
+.kx-secondary .sidebar-profile strong {
+  font-size:11px;
+  line-height:1.6;
+  white-space:normal
+}
+.kx-secondary[data-dashboard] #dashNav a[aria-current] :is(.sidebar-link-label,.sidebar-icon) {
+  color:#c5ff4f
+}
+.kx-secondary[data-dashboard] #dashNav a[aria-current]::after {
+  display:none
+}
+.kx-secondary.login-page .auth-shell {
+  width:min(1440px,calc(100% - 64px))
+}
+.kx-secondary .contact-heading>* {
+  min-width:0;
+  max-width:100%
+}
+.kx-secondary .contact-heading h1 {
+  overflow-wrap:anywhere
+}
+.kx-secondary .contact-heading h1 em {
+  white-space:normal
+}
+@media(max-width:900px) {
+  .kx-secondary.login-page .auth-shell {
+    width:calc(100% - 48px)
+  }
+}
+@media(max-width:767px) {
+  .kx-secondary .contact-heading h1 {
+    font-size:clamp(56px,12vw,90px)
+  }
+}
+@media(max-width:420px) {
+  .kx-secondary.login-page .auth-shell {
+    width:calc(100% - 24px)
+  }
+}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference) {
+  .kx-secondary.kx-nav-open .dash-sidebar {
+    animation:kx-workspace-in .22s ease-out
+  }
+  @keyframes kx-workspace-in {
+    from {
+      opacity:.6;
+      transform:translateY(-8px)
+    }
+    to {
+      opacity:1;
+      transform:none
+    }
+  }
+}
+.kx-secondary .games-hero :is(h1,h2),.kx-secondary .community-hero h1,.kx-secondary .cup-hero h1 {
+  color:#f0f5eb
+}
+.kx-secondary .games-kicker,.kx-secondary .games-hero h1 span,.kx-secondary .cup-hero h1 span {
+  color:#c1ff4d
+}
+.kx-secondary .games-hero :is(.games-hero-description,.games-hero-benefits,.games-hero-benefits span,.games-hero-caption) {
+  color:#bbcbd1
+}
+.kx-secondary .cup-hero {
+  background:#0a1722;
+  color:#eef5ec;
+  padding-block:70px
+}
+.kx-secondary .cup-hero h1 {
+  font:600 clamp(72px,8vw,116px)/.9 var(--kx-display)
+}
+.kx-secondary .cup-hero :is(p,.cup-hero-benefits,.cup-hero-benefits span) {
+  color:#bbcbd1
+}
+.kx-secondary .cup-hero .eyebrow {
+  color:var(--kx-lime)
+}
+.kx-secondary .avatars .avatar {
+  background:var(--kx-raised);
+  color:var(--kx-accent);
+  border:1px solid var(--kx-line)
+}
+.kx-secondary .needed b {
+  color:var(--kx-text)
+}
+.kx-secondary :is(.game-filters,.cup-filters) :is(input,select) {
+  background:var(--kx-bg);
+  color:var(--kx-text);
+  border-color:var(--kx-line);
+  border-radius:2px
+}
+.kx-secondary input:is([type=checkbox],[type=radio]) {
+  min-height:0;
+  accent-color:var(--kx-accent)
+}
+.kx-secondary .kx-competition-rail .cup-card-date {
+  background:transparent;
+  color:#eef5ed;
+  border:0;
+  box-shadow:none
+}
+.kx-secondary .cup-format {
+  background:#f2f5ef;
+  color:#12222b
+}
+.kx-secondary :is(.catalog-intro,.section-heading) .eyebrow {
+  color:var(--kx-accent)
+}
+.kx-secondary :is(.results-toolbar,.sort-control,.results-bar) :is(p,label) {
+  color:var(--kx-muted)
+}
+.kx-secondary .cup-card-prize :is(small,strong) {
+  color:var(--kx-muted)
+}
+.kx-secondary :is(.reset-games,[data-clear-cups]) {
+  color:var(--kx-accent)
+}
+.kx-secondary #accountRole,.kx-secondary .chart-legend li>span:nth-child(2),.kx-secondary .booking-donut>div>span {
+  color:var(--kx-muted)
+}
+.kx-secondary .status-pill.muted {
+  background:var(--kx-raised);
+  color:var(--kx-muted)
+}
+.kx-secondary .kx-versus-mark {
+  color:var(--kx-muted);
+  opacity:1;
+  font-size:42px
+}
+.kx-secondary .hero-spotlight .spotlight-body {
+  background:var(--kx-surface);
+  color:var(--kx-text)
+}
+.kx-secondary .hero-spotlight .spotlight-body h2,.kx-secondary .spotlight-bottom p strong {
+  color:var(--kx-text)
+}
+.kx-secondary .spotlight-team p span {
+  color:var(--kx-muted)
+}
+.kx-secondary .spotlight-caption {
+  color:#beced2
+}
+.kx-secondary .kx-kickoff-rail .match-schedule {
+  background:transparent;
+  box-shadow:none;
+  border:0;
+  border-radius:0
+}
+.kx-secondary .match-body .match-level,.kx-secondary .cup-card-body .cup-level {
+  color:var(--kx-accent)
+}
+.kx-secondary .cup-card-location,.kx-secondary .cup-card-bottom p span {
+  color:var(--kx-muted)
+}
+.kx-secondary .fields-cta p {
+  color:#40594b
+}
+.kx-secondary .spotlight-body :is(.spotlight-date,.spotlight-location),.kx-secondary .spotlight-bottom p span {
+  color:var(--kx-muted)
+}
+.kx-secondary .spotlight-team {
+  background:var(--kx-raised);
+  color:var(--kx-text)
+}
+.kx-secondary .spotlight-team p strong {
+  color:var(--kx-text)
+}
+.kx-secondary .match-players>strong {
+  color:var(--kx-accent)
+}
+.kx-secondary .fields-cta {
+  background:var(--kx-raised);
+  color:var(--kx-text);
+  border:1px solid var(--kx-line);
+  border-radius:3px
+}
+.kx-secondary .fields-cta h2 {
+  color:var(--kx-text)
+}
+.kx-secondary .fields-cta p {
+  color:var(--kx-muted)
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .kx-secondary :is(.match-image,.cup-card-image) {
+    overflow:hidden
+  }
+  .kx-secondary :is(.match-image,.cup-card-image) img {
+    transition:transform .6s var(--kx-ease)
+  }
+  .kx-secondary .match-card:hover .match-image img,.kx-secondary .cup-card:hover .cup-card-image img {
+    transform:scale(1.035)
+  }
+}
+@media(prefers-reduced-motion:no-preference) {
+  .kx-secondary #dashboardView>:first-child {
+    animation:kx-view-in .22s ease-out
+  }
+  @keyframes kx-view-in {
+    from {
+      opacity:.7;
+      translate:0 6px
+    }
+    to {
+      opacity:1;
+      translate:none
+    }
+  }
+}
+.kx-secondary .kx-registration-jump {
+  display:none;
+  color:var(--kx-lime);
+  font-size:11px;
+  font-weight:700;
+  text-decoration:none;
+  border-bottom:1px solid #8eb441;
+  padding-bottom:6px;
+  width:max-content;
+  max-width:100%;
+  margin-top:18px
+}
+.kx-secondary :is(.join-card,.cup-registration) {
+  scroll-margin-top:100px
+}
+@media(max-width:900px) {
+  .kx-secondary .kx-registration-jump {
+    display:block
+  }
+}
+.kx-secondary .join-card .game-position-options label>span {
+  background:#1b303d;
+  color:#edf4eb;
+  border:1px solid #435965;
+  border-radius:2px
+}
+.kx-secondary .join-card .game-position-options input:checked+span {
+  background:var(--kx-lime);
+  color:var(--kx-night);
+  border-color:var(--kx-lime)
+}
+.kx-secondary .join-card .game-position-picker legend {
+  color:#edf4eb
+}
+.kx-secondary .join-card .game-position-picker>p {
+  color:#b7c8d0
+}
+.kx-secondary .join-card .game-position-options b {
+  background:#435966;
+  color:#edf4eb;
+  border-radius:2px
+}
+/* Detail information and bracket surfaces own their complete palette. */
+.kx-secondary :is(.breadcrumbs,.cup-breadcrumb) a,.kx-secondary :is(#gameFieldLink,#cupFieldLink) {
+  color:var(--kx-accent)
+}
+.kx-secondary :is(#gameDetailContent,#cupContent)>.eyebrow {
+  color:var(--kx-accent)
+}
+.kx-secondary .match-facts>div,.kx-secondary .cup-facts>div {
+  background:var(--kx-raised);
+  border:1px solid var(--kx-line);
+  border-radius:2px;
+  padding:20px
+}
+.kx-secondary :is(.match-facts,.cup-facts)>div>strong {
+  color:var(--kx-text)
+}
+.kx-secondary :is(.match-facts,.cup-facts)>div>span {
+  color:var(--kx-muted)
+}
+.kx-secondary .join-card :is(#joinPlayers,.other-games) {
+  color:#c4d4dc
+}
+.kx-secondary .join-card #joinStatus {
+  color:var(--kx-lime)
+}
+.kx-secondary :is(#cupLocation,#cupSystem),.kx-secondary .cup-panel :is(p,li) {
+  color:var(--kx-muted)
+}
+.kx-secondary .cup-prize {
+  background:var(--kx-raised);
+  border-radius:2px
+}
+.kx-secondary .cup-prize span {
+  color:var(--kx-muted)
+}
+.kx-secondary .cup-registration :is(#cupAvailability,#cupTeamCount) {
+  color:#d3e4d2
+}
+.kx-secondary #registeredTeamList a {
+  color:var(--kx-accent);
+  text-decoration:underline
+}
+.kx-secondary .support-note a {
+  text-decoration:underline
+}
+.kx-secondary dialog .button.primary {
+  background:var(--kx-lime);
+  color:var(--kx-night)
+}
+.kx-secondary .hero-formats {
+  background:var(--kx-night);
+  color:var(--kx-lime)
+}
+.kx-secondary .tournament-bracket {
+  background:var(--kx-surface);
+  color:var(--kx-text)
+}
+.kx-secondary .bracket-heading h2 {
+  color:var(--kx-text)
+}
+.kx-secondary .bracket-eyebrow {
+  color:var(--kx-accent)
+}
+.kx-secondary :is(.bracket-heading p:last-child,.bracket-help,.bracket-round>h3 small,.bracket-match-label,.bracket-seed,.bracket-drop small,.bracket-drop strong,.bracket-empty,.bracket-trophy small) {
+  color:var(--kx-muted)
+}
+.kx-secondary .bracket-toolbar {
+  background:var(--kx-raised);
+  color:var(--kx-text);
+  border:1px solid var(--kx-line);
+  border-radius:2px
+}
+.kx-secondary .bracket-match {
+  background:var(--kx-raised);
+  color:var(--kx-text);
+  border-color:var(--kx-line);
+  box-shadow:none
+}
+.kx-secondary .bracket-team {
+  background:var(--kx-surface);
+  color:var(--kx-text);
+  border-color:var(--kx-line);
+  border-radius:2px
+}
+.kx-secondary .bracket-team.is-empty {
+  color:var(--kx-muted);
+  background:var(--kx-surface)
+}
+.kx-secondary .bracket-team.is-winner,.kx-secondary .bracket-drop.has-winner {
+  background:var(--kx-positive-bg);
+  border-color:var(--kx-accent)
+}
+.kx-secondary .bracket-team.is-winner strong,.kx-secondary .bracket-drop.has-winner strong {
+  color:var(--kx-positive)
+}
+.kx-secondary .bracket-drop {
+  border-color:var(--kx-line);
+  border-radius:2px
+}
+/* Booking ledger: a dedicated transaction desk, not an overview card. */
+.kx-secondary .reservations-panel {
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  padding:0;
+  overflow:hidden;
+  gap:0
+}
+.kx-secondary .kx-ledger-intro {
+  padding:28px;
+  background:var(--kx-night);
+  color:#ecf4eb;
+  border-right:1px solid var(--kx-line);
+  display:flex;
+  flex-direction:column;
+  gap:40px
+}
+.kx-secondary .kx-ledger-intro .reservations-heading {
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  align-items:start;
+  padding:0
+}
+.kx-secondary .kx-ledger-intro .reservations-heading h2 {
+  font:600 42px/1 var(--kx-display);
+  color:#f1f6ec
+}
+.kx-secondary .kx-ledger-intro .reservations-heading p {
+  color:#b4c8d0;
+  font-size:12px
+}
+.kx-secondary .kx-ledger-intro .reservations-tools {
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:16px;
+  margin:0;
+  padding:0
+}
+.kx-secondary .kx-ledger-intro .reservation-search {
+  width:100%;
+  max-width:100%;
+  border:1px solid #445c69;
+  border-radius:2px;
+  background:#172d3b;
+  padding:12px;
+  min-width:0
+}
+.kx-secondary .kx-ledger-intro .reservation-search input {
+  min-width:0;
+  width:100%;
+  padding:0;
+  background:transparent;
+  color:#eef4ec;
+  font-size:11px
+}
+.kx-secondary .kx-ledger-intro .reservation-search input::placeholder {
+  color:#b5c8d0
+}
+.kx-secondary .kx-ledger-intro .reservation-count {
+  color:#c3d6dc
+}
+.kx-secondary .reservations-panel>.table-wrap {
+  padding:24px;
+  min-width:0
+}
+.kx-secondary .reservations-panel>.reservations-empty {
+  grid-column:2;
+  padding:32px
+}
+.kx-secondary .reservations-table .reservation-field a {
+  color:var(--kx-accent)
+}
+@media(max-width:1024px) {
+  .kx-secondary .reservations-panel {
+    grid-template-columns:minmax(0,1fr)
+  }
+  .kx-secondary .kx-ledger-intro {
+    border-right:0;
+    border-bottom:1px solid var(--kx-line)
+  }
+  .kx-secondary .kx-ledger-intro .reservations-heading {
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between
+  }
+  .kx-secondary .reservations-panel>.reservations-empty {
+    grid-column:1
+  }
+}
+@media(max-width:767px) {
+  .kx-secondary .reservations-panel>.table-wrap {
+    padding:20px
+  }
+  .kx-secondary .kx-ledger-intro {
+    padding:24px
+  }
+  .kx-secondary[data-dashboard=player] .reservations-table td[data-label=Field]:before {
+    display:none
+  }
+}
+
+.kx-secondary .reservation-field{min-width:0;max-width:100%;gap:14px}.kx-secondary .reservation-field>div{min-width:0;flex:1}.kx-secondary .reservation-field strong{white-space:normal;overflow-wrap:anywhere}.kx-secondary .reservation-field img{flex:0 0 56px;width:56px;height:56px}
+@media(max-width:767px){.kx-secondary .reservations-panel .kx-ledger-intro{gap:22px}.kx-secondary .kx-ledger-intro .reservations-heading{gap:18px}.kx-secondary .kx-ledger-intro .reservations-heading h2{font-size:34px}}
+
+.kx-secondary .kx-cup-hero .cup-cover>span { display:none; }
+
+/* Audit: reset actions must retain contrast over their actual filled surface. */
+.kx-secondary .apply-filters[data-clear-cups],.kx-secondary .empty-state .reset-games {display:inline-flex;align-items:center;justify-content:center;width:auto;min-height:44px;max-width:100%;padding:12px 20px;margin-top:16px;background:#b6ff48;color:#102019;border:1px solid #81b638;font:700 12px/1.4 var(--kx-body);border-radius:4px;white-space:normal;}
+.kx-secondary .apply-filters[data-clear-cups]:hover,.kx-secondary .empty-state .reset-games:hover {background:#cbff7e;color:#102019;}
+.kx-secondary :is([data-clear-cups],.reset-games):not(.apply-filters) {color:var(--kx-text);}
+.kx-secondary :is([data-clear-cups],.reset-games):focus-visible {outline:3px solid #518324;outline-offset:3px;}
+.kx-secondary #contactTitle em {color:#b6ff48;}
+
+html[data-theme="dark"] .kx-secondary :is(.about-story,.about-roles,.about-contact) h2 {color:var(--kx-text);}
+
+html[data-theme="dark"] .kx-secondary .about-values p {color:var(--kx-muted);}
+html[data-theme="dark"] .kx-secondary .about-values span {color:#b6ff48;}
+@media(max-width:767px){.kx-secondary .about-values article{grid-template-columns:minmax(0,1fr);gap:12px;}.kx-secondary .about-values article p{grid-column:auto;}.kx-secondary .about-values article h3{margin:0;line-height:1.15;}.kx-secondary .about-values article>span{display:block;}}

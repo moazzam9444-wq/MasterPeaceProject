@@ -1,0 +1,14 @@
+table>tbody>tr[hidden]{display:none!important}
+.kicks-table-pagination{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 0 0;margin:0;border:0;min-width:0;color:var(--kx-text,var(--theme-text,#173a29));font:500 12px/1.6 var(--kx-body,'Segoe UI',Arial,sans-serif)}
+.kicks-table-pagination[hidden],.kicks-table-pagination [hidden]{display:none!important}
+.table-page-summary{color:var(--kx-muted,var(--theme-muted,#617267));font-variant-numeric:tabular-nums}
+.table-page-buttons{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.kicks-table-pagination button{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:38px;width:auto;margin:0;padding:8px 12px;border:1px solid var(--kx-line,var(--theme-line,#c8d2c6));border-radius:6px;background:var(--kx-surface,var(--theme-card,#fff));color:var(--kx-text,var(--theme-text,#173a29));font:inherit;text-transform:none;letter-spacing:0;cursor:pointer;box-shadow:none;white-space:nowrap;touch-action:manipulation}
+.kicks-table-pagination button:hover:not(:disabled){border-color:var(--kx-accent,#245e3a);background:var(--kx-raised,#e9eee6)}
+.kicks-table-pagination button[aria-current=page]{background:var(--kx-accent,#245e3a);border-color:var(--kx-accent,#245e3a);color:var(--kx-surface,#fff);font-weight:700}
+html[data-theme=dark] .kicks-table-pagination button[aria-current=page]{color:var(--kx-night,#07111f)}
+.kicks-table-pagination button:disabled{opacity:.4;cursor:not-allowed}
+.kicks-table-pagination button:focus-visible{outline:3px solid var(--kx-accent,#245e3a);outline-offset:3px}
+.table-page-gap{padding:0 3px;color:var(--kx-muted,#617267)}
+@media(max-width:560px){.kicks-table-pagination{align-items:start;flex-direction:column;gap:10px}.table-page-buttons{justify-content:flex-start;gap:4px}.kicks-table-pagination button{min-width:34px;min-height:40px;padding:7px 9px}}
+@media print{table>tbody>tr[hidden]{display:table-row!important}.kicks-table-pagination{display:none!important}}

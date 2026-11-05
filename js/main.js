@@ -18,7 +18,7 @@
     sections.forEach((section) => {
       if (section.getBoundingClientRect().top <= 160) current = section.id;
     });
-    links.forEach((link) => {
+    links.filter(link=>link.hash && link.pathname===location.pathname).forEach((link) => {
       const active = link.hash === `#${current}`;
       link.classList.toggle("active", active);
       if (active) link.setAttribute("aria-current", "location");

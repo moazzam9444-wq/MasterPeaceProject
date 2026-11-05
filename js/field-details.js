@@ -2,7 +2,7 @@
 (() => {
   const fields = KicksStore.list("fields");
   const fieldId = new URLSearchParams(location.search).get("id");
-  const field = fields.find((item) => String(item.id) === fieldId);
+  let field = fields.find((item) => String(item.id) === fieldId);
   const select = (id) => document.getElementById(id);
   if (!field) {
     select("missingField").hidden = false;
@@ -70,13 +70,7 @@
       return false;
     if (dateInput.value === now.date && (!field.today || hour <= now.hour))
       return false;
-    return !KicksStore.list("bookings").some(
-      (booking) =>
-        booking.fieldId === field.id &&
-        booking.date === dateInput.value &&
-        Number(booking.time.slice(0, 2)) === hour &&
-        ["Pending", "Confirmed"].includes(booking.status),
-    );
+    return KicksStore.isFieldSlotAvailable(field.id, dateInput.value, `${String(hour).padStart(2, "0")}:00`);
   }
   function updateSummary() {
     const chosen = selectedHour !== null;
@@ -139,9 +133,9 @@
       return;
     }
     select("paymentAmount").textContent = `${field.price} JD`;
-    select("paymentDialog").showModal();
+    KicksDialogs.open(select("paymentDialog"));
   });
-  select("completeDemoPayment").addEventListener("click", () => {
+  select("completeDemoPayment").addEventListener("click", async () => {
     const account = KicksAuth.current();
     if (!account || selectedHour === null || !available(selectedHour)) {
       select("paymentDialog").close();
@@ -152,13 +146,13 @@
       return;
     }
     try {
-      KicksStore.book(
+      (await KicksStore.book(
         account.id,
         field.id,
         dateInput.value,
         String(selectedHour).padStart(2, "0") + ":00",
         { method: "Visa demo", amount: Number(field.price) },
-      );
+      ));
     } catch (error) {
       select("paymentDialog").close();
       renderSlots();
@@ -172,15 +166,37 @@
     }).format(new Date(`${dateInput.value}T12:00:00+03:00`));
     select("bookingPreview").textContent =
       `${field.name} · ${date} · ${String(selectedHour).padStart(2, "0")}:00–${String(selectedHour + 1).padStart(2, "0")}:00 (Amman) · Total: ${field.price} JD.`;
-    select("bookingDialog").showModal();
+    KicksDialogs.open(select("bookingDialog"));
     renderSlots();
   });
   select("enlargePhoto").addEventListener("click", () =>
-    select("photoDialog").showModal(),
+    KicksDialogs.open(select("photoDialog")),
   );
   for (const id of ["bookingDialog", "photoDialog", "paymentDialog"])
     select(id).addEventListener("click", (event) => {
       if (event.target === select(id)) select(id).close();
     });
+  function refreshVenue() {
+    const latest = KicksStore.list("fields").find(item => String(item.id) === fieldId);
+    if (!latest) {
+      select("fieldContent").hidden = true;
+      select("missingField").hidden = false;
+      if (select("paymentDialog").open) select("paymentDialog").close();
+      return;
+    }
+    const changed = Number(latest.price) !== Number(field.price) || latest.today !== field.today;
+    field = latest;
+    if (!changed) return;
+    select("hourlyPrice").textContent = field.price;
+    if (select("paymentDialog").open) {
+      select("paymentDialog").close();
+      KicksAuth.notify("The venue price or availability changed. Review the updated details and choose your time again.");
+    }
+    renderSlots();
+  }
+  window.addEventListener("storage", event => { if (event.key === "kicks-data-v2" || event.key === null) refreshVenue(); });
+  window.addEventListener("kicks-data-change", refreshVenue);
+  window.addEventListener("pageshow", refreshVenue);
+  window.addEventListener("focus", refreshVenue);
   renderSlots();
 })();

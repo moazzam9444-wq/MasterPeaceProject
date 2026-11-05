@@ -56,3 +56,7 @@ input:hover,select:hover,textarea:hover{border-color:#9cbea8}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+@media(min-width:1200px) and (max-width:1399px){.navbar-expand-xl .navbar-nav{gap:0!important}.navbar-expand-xl .navbar-nav .nav-link{padding-inline:9px!important;font-size:14px}}
+
+/* Shared header geometry across every public page. */
+.navbar>.container{max-width:1224px!important;width:calc(100% - 48px);padding-inline:0}.navbar .navbar-nav{align-items:center}@media(max-width:1199.98px){.navbar .navbar-nav{align-items:stretch}.navbar .navbar-collapse{padding-block:12px}.navbar .navbar-account{margin-top:8px}}@media(max-width:575px){.navbar>.container{width:calc(100% - 32px)}}

@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=require(process.env.KICKS_PLAYWRIGHT_PATH||'C:/Users/USER/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'),{login}=require('./helpers/browser-fixtures.cjs');let browser;
+(async()=>{
+ const base=process.env.KICKS_TEST_URL||'http://127.0.0.1:5502';browser=await chromium.launch({channel:'msedge',headless:true});const ctx=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ await ctx.addInitScript(d=>{if(!localStorage.getItem('kicks-data-v2'))localStorage.setItem('kicks-data-v2',JSON.stringify(d));},JSON.parse(fs.readFileSync('.local/data-audit/demo-fixture.json','utf8')));
+ await p.goto(base+'/index.html');await login(p,'sample101@kicks.example.test');await p.goto(base+'/Pages/Dashboard/owner.html#tournaments');assert.equal(await p.locator('[data-add=tournaments]').count(),0);
+ await login(p,'sample100@kicks.example.test');await p.goto(base+'/Pages/Dashboard/admin.html#tournaments');await p.locator('[data-add=tournaments]').click();
+ for(const [key,value] of Object.entries({name:'Admin platform UI cup',fieldId:'1001',date:'2100-02-01',time:'14:00',durationMinutes:'180',fee:'20',capacity:'4',prize:'Demo trophy',system:'Single elimination',level:'Intermediate'})){const input=p.locator('#edit-'+key);if(await input.evaluate(el=>el.tagName==='SELECT'))await input.selectOption(value);else await input.fill(value);}
+ await p.locator('#editorForm button').filter({hasText:'Save changes'}).click();await p.locator('#editorDialog').waitFor({state:'hidden'});
+ const cup=await p.evaluate(()=>KicksStore.list('tournaments').find(c=>c.name==='Admin platform UI cup'));assert.equal(cup.createdBy,100);
+ await login(p,'sample200@kicks.example.test');await p.goto(base+'/Pages/Tournaments/tournament-details.html?id='+cup.id);await p.locator('#teamSubmit').click();await p.locator('.checkout-pay').click();await p.waitForFunction(id=>KicksStore.list('registrations').some(r=>r.tournamentId===id),cup.id);
+ const receipt=await p.evaluate(id=>{const r=KicksStore.list('registrations').find(r=>r.tournamentId===id);return KicksStore.list('payments').find(p=>p.collection==='registrations'&&p.recordId===r.id);},cup.id);assert.equal(receipt.amount,20);assert.equal(receipt.commission,20);assert.equal(receipt.ownerNet,0);assert.equal(receipt.adminId,100);
+ await login(p,'sample100@kicks.example.test');await p.goto(base+'/Pages/Dashboard/admin.html#revenue');assert.match(await p.locator('#dashboardView').innerText(),/Tournament/);assert.deepEqual(errors,[]);
+ console.log('PASS: owner has no creation action, admin creates via original form, captain registers/pays, full fee reaches admin ledger and revenue view.');
+})().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();});

@@ -1,5 +1,4 @@
-// دليل الملف: نماذج الدخول والتسجيل: قراءة المدخلات، التحقق، ثم استدعاء account.js.
-// فحص المدخلات وتسجيل الحساب المحلي ثم الانتقال حسب الدور.
+
 (() => {
   const getElement = (id) => document.getElementById(id);
   let registering = location.pathname.endsWith("/register.html");
@@ -31,7 +30,18 @@
     getElement("switchCopy").querySelector("a").href = (registering ? "login.html" : "register.html") + location.search;
     updateRole();
   }
+  function updateProofName() {
+    const file = getElement("ownerProof").files[0];
+    getElement("proofFileName").textContent = file ? file.name : "No document selected";
+    getElement("proofFileName").title = file ? file.name : "";
+  }
+  getElement("ownerProof").addEventListener("change", updateProofName);
   function updateRole() {
+    updateProofName();
+    const needsProof = registering && form.elements.role.value === "owner";
+    getElement("ownerProofGroup").hidden = !needsProof;
+    getElement("ownerProof").required = needsProof;
+    getElement("approvalNotice").hidden = !registering;
     getElement("formTitle").textContent =
       registering ? "Create account" : "Log in";
     getElement("formIntro").textContent = registering
@@ -132,6 +142,7 @@
     email: "emailError",
     password: "passwordError",
     confirmPassword: "confirmError",
+    ownerProof: "proofError",
   };
   function error(id, message) {
     getElement(errors[id]).textContent = message;
@@ -172,6 +183,8 @@
         getElement("confirmPassword").value !== password)
     )
       fail("confirmPassword", "Your passwords must match.");
+    const proofFile = getElement("ownerProof").files[0];
+    if (registering && form.elements.role.value === "owner" && (!proofFile || !["application/pdf", "image/jpeg", "image/png", "image/webp"].includes(proofFile.type) || proofFile.size <= 0 || proofFile.size > 1048576)) fail("ownerProof", "Upload a PDF, JPG, PNG or WebP document up to 1 MB.");
     if (invalid.length) {
       getElement("formStatus").textContent = "Check the highlighted fields.";
       getElement(invalid[0]).focus();
@@ -185,7 +198,18 @@
     try {
       let account;
       if (registering) {
+        let ownershipProof = null;
+        if (form.elements.role.value === "owner") {
+          const data = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(Error("Could not read the document. Please select it again."));
+            reader.readAsDataURL(proofFile);
+          });
+          ownershipProof = {name: proofFile.name, size: proofFile.size, data};
+        }
         account = await KicksAuth.register({
+          ownershipProof,
           name: getElement("fullName").value,
           email: getElement("email").value,
           password: password,
@@ -199,7 +223,12 @@
       }
       getElement("password").value = "";
       getElement("confirmPassword").value = "";
-      KicksAuth.afterLogin(account);
+      if (registering) {
+        form.reset();
+        updateRole();
+        getElement("formStatus").textContent = "Request submitted. An administrator will review your information and assign your account role. You can log in once approved.";
+        button.disabled = false;
+      } else KicksAuth.afterLogin(account);
     } catch (error) {
       getElement("formStatus").textContent = error.message;
       button.disabled = false;

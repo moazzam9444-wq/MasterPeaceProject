@@ -11,91 +11,69 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/fields.css">
-    
-<script src="../../js/admin-account.js?v=restored-1" defer></script>
-<script src="../../js/data-store.js?v=review-20261015" defer></script>
-<script src="../../js/account.js?v=review-20261015" defer></script>
-<script src="../../js/fields.js?v=readable-nav-1" defer></script>
-<link rel="stylesheet" href="../../css/creative.css?v=cleanup-1">
+    <script src="../../js/navigation.js?v=1" defer></script>
+<script src="../../js/dialogs.js?v=1" defer></script>
+<script src="../../js/full-demo.js?v=coordinated-writes-1" defer></script><script src="../../js/admin-account.js?v=restored-1" defer></script>
+<script src="../../js/demo-data.js?v=preserve-legacy-3" defer></script>
+<script src="../../js/data-store.js?v=coordinated-writes-1" defer></script>
+<script src="../../js/account.js?v=coordinated-writes-1" defer></script>
+<script src="../../js/fields.js?v=structural-1" defer></script>
 <link rel="stylesheet" href="../../css/account.css?v=accounts-7">
-<link rel="stylesheet" href="../../css/site-polish.css?v=cleanup-1">
-<link rel="stylesheet" href="../../css/theme.css?v=navbar-3">
-<script src="../../js/theme.js?v=readable-nav-1"></script>
+<script src="../../js/theme.js?v=premium-1"></script>
 <link rel="stylesheet" href="../../css/footer.css?v=shared-1">
-</head>
-<body>
+<link rel="stylesheet" href="../../css/discovery.css?v=compact-toolbar-4">
+<link rel="stylesheet" href="../../css/dialogs.css?v=1">
+<link rel="stylesheet" href="../../css/premium-shell.css?v=1">
+<script src="../../assets/opendesign-football/js/vendor/gsap.min.js" defer></script>
+
+<link rel="stylesheet" href="../../css/kicks-system.css?v=structural-1">
+<link rel="stylesheet" href="../../css/kicks-fields.css?v=structural-1">
+<script src="../../js/venue-presentation.js?v=structural-1" defer></script>
+<link rel="stylesheet" href="../../css/focused-refinement.css?v=1">
+<script src="../../assets/opendesign-football/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="../../js/focused-motion.js?v=1" defer></script>
+<link rel="stylesheet" href="../../css/table-pagination.css?v=1"><script src="../../js/table-pagination.js?v=1" defer></script></head>
+<body class="kx-page kx-fields-page kx-focused">
 <a class="skip-link" href="#results">Skip to fields</a>
-<nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+<nav class="navbar navbar-expand-xl" aria-label="Main navigation">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="../../index.html"><img src="../../assets/logo/kicks-logo.png" alt="" class="navbar-logo"><span class="navbar-brand-text">KICKS</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav mx-auto gap-lg-2">
-                <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="fields.html" aria-current="page">Fields</a></li>
-                <li class="nav-item"><a class="nav-link" href="../OpenGames/open-games.html">Open Games</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Tournaments/tournaments.html">Tournaments</a></li>
-                <li class="nav-item"><a class="nav-link" href="../About/about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="../../Pages/Contact/contact.html">Contact Us</a></li>
-</ul>
+            <ul class="navbar-nav mx-auto gap-xl-1"><li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="fields.html">Fields</a></li><li class="nav-item"><a class="nav-link" href="../OpenGames/open-games.html">Open Games</a></li><li class="nav-item"><a class="nav-link" href="../Teams/teams.html">Teams</a></li><li class="nav-item"><a class="nav-link" href="../Challenges/challenges.html">Challenge Me</a></li><li class="nav-item"><a class="nav-link" href="../Tournaments/tournaments.html">Tournaments</a></li><li class="nav-item"><a class="nav-link" href="../About/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="../Contact/contact.html">Contact Us</a></li></ul>
         </div>
     </div>
 </nav>
-<main>
-    <section class="fields-hero">
-        <div class="pitch-art" aria-hidden="true"><div></div></div>
-        <div class="container hero-inner">
-            <p class="eyebrow"><span></span> YOUR NEXT MATCH STARTS HERE</p>
-            <h1>Find your <span>perfect field.</span></h1>
-            <p class="hero-copy">Your team. Your city. Your pitch.<br>Discover a great place to play and make the next match happen.</p>
-            <form id="searchForm" class="field-search" role="search">
-                <i class="bi bi-search" aria-hidden="true"></i>
-                <label for="fieldSearch" class="visually-hidden">Search field name or location</label>
-                <input type="search" id="fieldSearch" placeholder="Search by field name or location…" autocomplete="off">
-                <button type="submit">Find a field <span aria-hidden="true">→</span></button>
-            </form>
-            <div class="hero-tags"><span><i class="bi bi-geo-alt" aria-hidden="true"></i> Pitches across Jordan</span><span><i class="bi bi-people" aria-hidden="true"></i> 5v5, 6v6 &amp; 7v7</span><span><i class="bi bi-sun" aria-hidden="true"></i> Play your way</span></div>
-        </div>
-    </section>
-    <section class="catalog-section container" aria-label="Field catalogue">
-        <div class="catalog-intro"><div><p class="eyebrow">FIND YOUR HOME GROUND</p><h2>A pitch for every team.</h2></div><p>From a quick kickabout to your weekly rivalry.<br>Find the space that fits your game.</p></div>
-        
-        <button id="filterToggle" class="filter-toggle" aria-expanded="false" aria-controls="filterPanel"><i class="bi bi-sliders" aria-hidden="true"></i> Show / hide filters</button>
-        <div class="catalog-layout">
-            <aside id="filterPanel" class="filter-panel" aria-label="Filter fields">
-                <div class="filter-heading"><h2><i class="bi bi-sliders" aria-hidden="true"></i> Filters</h2><button type="button" class="text-button" data-clear>Reset</button></div>
-                <form id="filterForm">
-                    <div class="filter-group"><label for="location">Location</label><select id="location" name="location"><option value="">All locations</option><option>Amman</option>
-<option>Irbid</option>
-<option>Zarqa</option>
-<option>Ajloun</option>
-<option>Jerash</option>
-<option>Mafraq</option>
-<option>Balqa</option>
-<option>Madaba</option>
-<option>Karak</option>
-<option>Tafilah</option>
-<option>Ma'an</option>
-<option>Aqaba</option></select></div>
-                    <fieldset class="filter-group"><legend>Field type</legend><div class="type-options"><label><input type="radio" name="type" value="" checked><span>All</span></label><label><input type="radio" name="type" value="5v5"><span>5v5</span></label><label><input type="radio" name="type" value="6v6"><span>6v6</span></label><label><input type="radio" name="type" value="7v7"><span>7v7</span></label></div></fieldset>
-                    <fieldset class="filter-group"><legend>Price per hour <small>(JD)</small></legend><div class="price-inputs"><div><label for="minPrice">Min</label><input id="minPrice" name="min" type="number" min="0" step="1" placeholder="0"></div><span aria-hidden="true">–</span><div><label for="maxPrice">Max</label><input id="maxPrice" name="max" type="number" min="0" step="1" placeholder="Any"></div></div></fieldset>
-                    <fieldset class="filter-group"><legend>Availability</legend><label class="check-option"><input type="checkbox" name="now" value="yes"> Available now</label><label class="check-option"><input type="checkbox" name="today" value="yes"> Available today</label></fieldset>
-                    <fieldset class="filter-group"><legend>Minimum rating</legend><label class="check-option"><input type="radio" name="rating" value="" checked> Any rating</label><label class="check-option"><input type="radio" name="rating" value="4"> <span class="star">★</span> 4 stars &amp; up</label><label class="check-option"><input type="radio" name="rating" value="3"> <span class="star">★</span> 3 stars &amp; up</label></fieldset>
-                    <button type="submit" class="apply-filters">Apply filters <span aria-hidden="true">→</span></button><button type="button" class="clear-filters" data-clear>Clear all filters</button>
-                </form>
-                <div class="filter-tip"><i class="bi bi-people" aria-hidden="true"></i><strong>One player short?</strong><p>Find your next team in an open game.</p><a href="../OpenGames/open-games.html">Explore open games →</a></div>
-            </aside>
-            <div id="results" class="results">
-                <div class="results-toolbar"><div role="status" aria-live="polite"><h2 id="resultsCount"></h2><p id="activeFilters"></p></div><div class="sort-control"><label for="sortFields">Sort by</label><select id="sortFields"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Top rated</option></select></div></div>
-                <div id="fieldGrid" class="field-grid"></div>
-                <div id="emptyState" class="empty-state" hidden><i class="bi bi-search" aria-hidden="true"></i><h3>No fields found</h3><p>Try another location, a wider price range, or a different name.</p><button type="button" class="apply-filters" data-clear>Clear search &amp; filters</button></div>
-                <noscript><p>Enable JavaScript to explore the catalogue and use filters.</p></noscript>
-                <div class="results-bottom"><p id="resultsRange"></p><nav id="pagination" class="pagination-controls" aria-label="Field results pages"></nav></div>
-            </div>
-        </div>
-    </section>
-    <section class="fields-cta container"><div class="cta-icon"><i class="bi bi-people" aria-hidden="true"></i></div><div><p class="eyebrow">MORE THAN A PITCH</p><h2>Got the energy. Need a team?</h2><p>Meet new players and find your next match with KICKS.</p></div><a href="../OpenGames/open-games.html">Explore open games <span aria-hidden="true">↗</span></a></section>
+<main id="mainContent" class="kx-fields-main">
+  <section class="kx-finder-hero" aria-labelledby="fieldsTitle">
+    <div class="kx-finder-visual" aria-hidden="true"><img src="../../assets/opendesign-football/assets/stock/hero.jpg" alt=""><span>THE FLOODLIGHTS ARE CALLING.</span></div>
+    <div class="kx-wrap kx-finder-head"><div class="kx-finder-copy"><p class="kx-kicker">KICKS / VENUE DISCOVERY</p><h1 id="fieldsTitle" class="kx-display">YOUR GAME.<br><em>YOUR GROUND.</em></h1><p>Good football starts with the right place.<br>Find a pitch. Bring your people. Make it a match.</p><a href="#results" class="kx-finder-explore">Explore the grounds <span aria-hidden="true">&#8595;</span></a></div></div>
+  </section>
+  <section class="kx-wrap kx-search-rail" aria-label="Find and filter fields">
+    <form id="searchForm" class="kx-search-command" role="search"><svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><div><label for="fieldSearch" class="kx-label">WHERE'S YOUR NEXT GAME?</label><input type="search" id="fieldSearch" placeholder="A field, a neighbourhood, your city..." autocomplete="off"></div><button class="kx-btn kx-btn--primary" type="submit">Find my ground <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></form>
+    <div class="kx-refine-heading"><p>Find your fit.</p><button id="filterToggle" class="kx-btn kx-btn--secondary kx-btn--small filter-toggle" aria-expanded="false" aria-controls="filterPanel" type="button"><svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 17h18"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></svg> Refine search</button></div>
+    <section id="filterPanel" class="kx-filter-panel filter-panel" aria-label="Filter fields"><form id="filterForm">
+      <div class="kx-filter-layout">
+        <div><label class="kx-label" for="location">CITY</label><select class="kx-control" id="location" name="location"><option value="">All locations</option><option>Amman</option><option>Irbid</option><option>Zarqa</option><option>Ajloun</option><option>Jerash</option><option>Mafraq</option><option>Balqa</option><option>Madaba</option><option>Karak</option><option>Tafilah</option><option>Ma'an</option><option>Aqaba</option></select></div>
+        <fieldset><legend class="kx-label">YOUR FORMAT</legend><div class="kx-type-options type-options"><label class="kx-choice"><input type="radio" name="type" value="" checked><span>All</span></label><label class="kx-choice"><input type="radio" name="type" value="5v5"><span>5v5</span></label><label class="kx-choice"><input type="radio" name="type" value="6v6"><span>6v6</span></label><label class="kx-choice"><input type="radio" name="type" value="7v7"><span>7v7</span></label></div></fieldset>
+        <fieldset><legend class="kx-label">PRICE / HOUR <small>JOD</small></legend><div class="kx-price-range"><label><span class="kx-sr-only">Minimum price</span><input class="kx-control" id="minPrice" name="min" type="number" min="0" step="1" placeholder="Min"></label><span aria-hidden="true">&#8212;</span><label><span class="kx-sr-only">Maximum price</span><input class="kx-control" id="maxPrice" name="max" type="number" min="0" step="1" placeholder="Max"></label></div></fieldset>
+        <fieldset><legend class="kx-label">WHEN YOU PLAY</legend><label class="kx-check"><input type="checkbox" name="now" value="yes">Available now</label><label class="kx-check"><input type="checkbox" name="today" value="yes">Available today</label></fieldset>
+        <fieldset><legend class="kx-label">VENUE RATING</legend><label class="kx-check"><input type="radio" name="rating" value="" checked>Any rating</label><label class="kx-check"><input type="radio" name="rating" value="4">4 stars &amp; up</label><label class="kx-check"><input type="radio" name="rating" value="3">3 stars &amp; up</label></fieldset>
+      </div>
+      <div class="kx-filter-actions"><p>Space for your team. A price that fits.</p><div><button type="button" class="kx-link clear-filters" data-clear>Clear filters</button><button type="submit" class="kx-btn kx-btn--ink kx-btn--small apply-filters">Apply filters <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></div></div>
+    </form></section>
+  </section>
+  <section class="kx-wrap kx-grounds" aria-labelledby="groundsTitle">
+    <header class="kx-split-heading catalog-intro"><div><h2 id="groundsTitle" class="kx-h2">Find your next ground.</h2></div><p class="kx-copy">Real pitches. Your next match.</p></header>
+    <div id="results" class="kx-results results">
+      <div class="kx-results-tools results-toolbar"><div role="status" aria-live="polite"><h2 id="resultsCount"></h2><p id="activeFilters"></p></div><div class="kx-assistant-slot" data-kx-assistant-slot></div><div class="kx-sort sort-control"><label for="sortFields" class="kx-label">SORT GROUNDS</label><select id="sortFields" class="kx-control" aria-label="Sort grounds"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Top rated</option></select></div></div>
+      <div id="fieldGrid" class="kx-ground-grid field-grid"></div>
+      <div id="emptyState" class="kx-empty empty-state" hidden><svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><h3>No grounds found.</h3><p>Try another city, a wider price range or a different field name.</p><button type="button" class="kx-btn kx-btn--primary apply-filters" data-clear>Clear search &amp; filters <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button></div>
+      <div class="kx-results-bottom"><p id="resultsRange"></p><nav id="pagination" class="kx-pagination pagination-controls" aria-label="Field results pages"></nav></div>
+    </div>
+  </section>
+  <section class="kx-wrap kx-next-chapter"><div><p class="kx-kicker">MAKE IT A MATCH</p><h2 class="kx-h2">The pitch is ready.<br>Find your people.</h2></div><a class="kx-btn kx-btn--secondary" href="../OpenGames/open-games.html">Explore open games <svg class="kx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></section>
+  <noscript><div class="kx-wrap kx-empty"><h2>Find a field</h2><p>Enable JavaScript to load the venue catalogue and filters.</p></div></noscript>
 </main>
 <footer class="kicks-footer" aria-label="KICKS footer">
   <div class="kf-inner">
@@ -110,8 +88,8 @@
           <a href="../../index.html">Home</a>
           <a href="../../Pages/Fields/fields.html">Fields</a>
           <a href="../../Pages/OpenGames/open-games.html">Open Games</a>
-          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a>
-        </nav>
+          <a href="../../Pages/Tournaments/tournaments.html">Tournaments</a><a href="../Teams/teams.html">Teams</a>
+        <a href="../Challenges/challenges.html">Challenge Me</a></nav>
       </div>
       <div>
         <h2>Company</h2>
@@ -132,6 +110,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/site-polish.js?v=cleanup-1" defer></script>
+<script src="../../js/jordan-places.js?v=1" defer></script>
+<script src="../../js/place-resolver.js?v=1" defer></script>
+<script src="../../js/discovery.js?v=audit-20261102-1" defer></script>
+<script src="../../js/nearby-catalogue.js?v=toolbar-2" defer></script>
+<script src="../../js/discovery-ui.js?v=audit-20261102-1" defer></script>
 </body>
 </html>
 

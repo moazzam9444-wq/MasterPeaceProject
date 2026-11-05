@@ -9,7 +9,7 @@
     form.elements.email.value = account.email;
   }
   form.addEventListener("input", () => { status.textContent = ""; emailLink.hidden = true; });
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", async event => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     try {
@@ -17,7 +17,7 @@
       for (const [name, value] of new FormData(form)) {
         details[name] = value;
       }
-      const saved = KicksStore.submitFeedback(details);
+      const saved = (await KicksStore.submitFeedback(details));
       const body = `Name: ${saved.name}\nEmail: ${saved.email}\nRating: ${saved.rating}/5\n\n${saved.message}`;
       emailLink.href = "mailto:moazzam9444@gmail.com?subject=" + encodeURIComponent("KICKS feedback from " + saved.name) + "&body=" + encodeURIComponent(body);
       emailLink.hidden = false;

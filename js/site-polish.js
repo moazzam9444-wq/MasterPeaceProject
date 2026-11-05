@@ -1,5 +1,24 @@
 // حالة النافبار وحركة ظهور المحتوى، بدون تغيير بيانات الموقع.
 {
+  const footerContact = document.querySelector(".kicks-footer .kf-contact");
+  if (footerContact) {
+    const mapLink = document.createElement("a");
+    mapLink.className = "kf-map";
+    mapLink.href = "https://maps.app.goo.gl/87KajJagX7zL1oVd9";
+    mapLink.target = "_blank";
+    mapLink.rel = "noopener noreferrer";
+    mapLink.setAttribute("aria-label", "Open our location in Google Maps");
+    const map = document.createElement("iframe");
+    map.src = "https://www.google.com/maps?q=32.4900128,35.8843048&z=16&output=embed";
+    map.title = "KICKS location map";
+    map.loading = "lazy";
+    map.referrerPolicy = "no-referrer-when-downgrade";
+    map.tabIndex = -1;
+    const caption = document.createElement("span");
+    caption.textContent = "Open in Google Maps ↗";
+    mapLink.append(map, caption);
+    footerContact.append(mapLink);
+  }
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const navbar = document.querySelector(".navbar");
   let framePending = false;

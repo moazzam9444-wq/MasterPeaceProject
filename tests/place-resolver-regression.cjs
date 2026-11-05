@@ -1,0 +1,11 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const context={window:{}};vm.createContext(context);for(const file of ['js/jordan-places.js','js/place-resolver.js'])vm.runInContext(fs.readFileSync(file,'utf8'),context);
+const resolver=context.window.KicksPlaces;
+let place=resolver.resolve({city:'Amman',area:'الجبيهة'});assert(place);assert.equal(place.precision,'area');assert(place.latitude>31&&place.latitude<33);
+place=resolver.resolve({city:'Irbid',area:'unrecognized-local-area'});assert.equal(place.precision,'city');assert(place.latitude>32.5);
+assert.equal(resolver.resolve({city:'unknown',area:'unknown'}),null);
+for(const city of ['Amman','Irbid','Zarqa','Ajloun','Jerash','Mafraq','Balqa','Madaba','Karak','Tafilah',"Ma'an",'Aqaba'])assert(resolver.resolve({city,area:''}),city);
+context.KicksStore={list:()=>[{id:1,name:'Area field',city:'Amman',area:'الجبيهة',price:20,type:'5v5'}],publicActivities:()=>[]};vm.runInContext(fs.readFileSync('js/discovery.js','utf8'),context);
+let results=context.window.KicksDiscovery.search({}, {latitude:32.01,longitude:35.898});assert.equal(results.results.length,1);assert.equal(results.results[0].precision,'area');
+results=context.window.KicksDiscovery.search({}, {latitude:29.5,longitude:35});assert.equal(results.results.length,0);
+console.log('PASS: offline Arabic area lookup, city fallback, all supported cities and 15 km radius without manual coordinates.');

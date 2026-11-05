@@ -1,0 +1,46 @@
+/* Homepage Hero overlay only; the existing Hero's layout and controls are untouched. */
+.opendesign-home .hero .hero-halftone {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  width:48%;
+  z-index:2;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .45s ease-out;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 34%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 34%,#000 100%);
+}
+.opendesign-home .hero .hero-halftone[data-status=ready] {opacity:.94}
+.opendesign-home .hero .hero-halftone canvas {
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.opendesign-home .hero .hero-halftone::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,#07111f44,transparent 28%,#07111f22 72%,#07111fcc);
+}
+@media(max-width:1100px) {
+  .opendesign-home .hero .hero-halftone {width:50%}
+  .opendesign-home .hero .hero-halftone[data-status=ready] {opacity:.8}
+}
+@media(max-width:767px) {
+  .opendesign-home .hero .hero-halftone {
+    width:50%;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 50%);
+    mask-image:linear-gradient(90deg,transparent,#000 50%);
+  }
+  .opendesign-home .hero .hero-halftone[data-status=ready] {opacity:.5}
+}
+@media(prefers-reduced-motion:reduce) {
+  .opendesign-home .hero .hero-halftone {transition:none}
+}

@@ -2,6 +2,15 @@
 // كروت الهوم تأتي من الملاعب والأحداث المنشورة فقط.
 {
   const store = KicksStore;
+  const settings = store.settings();
+  const aboutTitle = document.getElementById("homeAboutTitle");
+  const aboutDescription = document.getElementById("homeAboutDescription");
+  if (aboutTitle && typeof settings.title === "string" && settings.title.trim() && aboutTitle.textContent !== settings.title) {
+    aboutTitle.textContent = settings.title;
+  }
+  if (aboutDescription && typeof settings.description === "string" && settings.description.trim()) {
+    aboutDescription.textContent = settings.description;
+  }
   const escapeHtml = store.escape;
   const fields = store.list("fields");
   function fieldCard(field) {
@@ -24,6 +33,7 @@
     const spots = game.capacity - game.joined;
     let status = "Full";
     if (spots > 0) status = "Open";
+    if (new Date(game.date + "T" + game.time + ":00+03:00") <= new Date()) status = "In progress";
     return `
     <div class="col-lg-4 col-md-6"><article class="game-card">
       <div class="game-card-header"><span class="game-status">${status}</span><span class="game-date">${escapeHtml(game.date)}</span></div>
@@ -40,6 +50,7 @@
     });
     let status = "Full";
     if (cup.teams < cup.capacity) status = "Registration open";
+    if (new Date(cup.date + "T" + cup.time + ":00+03:00") <= new Date()) status = "In progress";
     return `
     <div class="col-lg-4 col-md-6"><article class="tournament-card">
       <div class="tournament-top"><div class="tournament-icon"><i class="bi bi-trophy" aria-hidden="true"></i></div><span class="tournament-status">${status}</span></div>
@@ -52,40 +63,37 @@
     </article></div>`;
   }
   // نختار الأحداث القادمة، ثم نعرض أول ثلاثة منها فقط.
-  const upcomingGames = [];
-  for (const game of store.list("games")) {
-    const kickoff = new Date(game.date + "T" + game.time + ":00+03:00");
-    if (kickoff > new Date()) upcomingGames.push(game);
-  }
-  const upcomingTournaments = [];
-  for (const cup of store.list("tournaments")) {
-    const kickoff = new Date(cup.date + "T" + cup.time + ":00+03:00");
-    if (kickoff > new Date()) upcomingTournaments.push(cup);
-  }
+  function renderHighlights() {
+    const byStart = (a, b) => (a.date + a.time).localeCompare(b.date + b.time);
+    const upcomingGames = store.publicActivities("games").sort(byStart);
+    const upcomingTournaments = store.publicActivities("tournaments").sort(byStart);
 
-  // كل قائمة تجمع HTML الكروت ثم تعرضه مرة واحدة.
-  let fieldCards = "";
-  for (const field of fields.slice(0, 4)) fieldCards += fieldCard(field);
-  if (!fieldCards)
-    fieldCards =
-      '<p class="home-empty">No fields published yet. Check back soon.</p>';
-  document.getElementById("home-fields-grid").innerHTML = fieldCards;
+    // كل قائمة تجمع HTML الكروت ثم تعرضه مرة واحدة.
+    let fieldCards = "";
+    for (const field of fields.slice(0, 4)) fieldCards += fieldCard(field);
+    if (!fieldCards)
+      fieldCards =
+        '<p class="home-empty">No fields published yet. Check back soon.</p>';
+    document.getElementById("home-fields-grid").innerHTML = fieldCards;
 
-  let gameCards = "";
-  for (const game of upcomingGames.slice(0, 3)) gameCards += gameCard(game);
-  if (!gameCards)
-    gameCards = '<p class="home-empty">No upcoming games yet.</p>';
-  document.getElementById("home-open-games-grid").innerHTML = gameCards;
+    let gameCards = "";
+    for (const game of upcomingGames.slice(0, 3)) gameCards += gameCard(game);
+    if (!gameCards)
+      gameCards = '<p class="home-empty">No active or upcoming games yet.</p>';
+    document.getElementById("home-open-games-grid").innerHTML = gameCards;
 
-  let tournamentCards = "";
-  for (const cup of upcomingTournaments.slice(0, 3))
-    tournamentCards += tournamentCard(cup);
-  if (!tournamentCards)
-    tournamentCards = '<p class="home-empty">No upcoming tournaments yet.</p>';
-  document.getElementById("home-tournaments-grid").innerHTML = tournamentCards;
-  const contact = document.getElementById("homeContact");
-  if (contact && store.settings().contact) {
-    contact.textContent = store.settings().contact;
-    contact.hidden = false;
+    let tournamentCards = "";
+    for (const cup of upcomingTournaments.slice(0, 3))
+      tournamentCards += tournamentCard(cup);
+    if (!tournamentCards)
+      tournamentCards = '<p class="home-empty">No active or upcoming tournaments yet.</p>';
+    document.getElementById("home-tournaments-grid").innerHTML = tournamentCards;
+    const contact = document.getElementById("homeContact");
+    if (contact && store.settings().contact) {
+      contact.textContent = store.settings().contact;
+      contact.hidden = false;
+    }
   }
+  renderHighlights();
+  store.watchActivityClock(renderHighlights);
 }

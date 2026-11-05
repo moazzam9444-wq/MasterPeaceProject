@@ -30,3 +30,11 @@
 .faq-list details p{font-size:13px;line-height:1.9;color:#596e61;margin:16px 35px 0 0;max-width:520px}
 @media(max-width:767px){.faq-layout{grid-template-columns:1fr}.faq-layout{gap:38px}.kicks-faq{padding:60px 0}}
 @media(prefers-reduced-motion:reduce){.play-link span,.faq-list summary span,.home-page .hero-buttons .btn{transition:none}}
+
+/* Home navigation calls to action share one complete button target. */
+.home-page .play-link{padding:12px 20px;min-height:48px;gap:14px;border:1px solid #15803d;border-radius:10px;background:#15803d;color:#fff;justify-content:center;align-self:flex-start;transition:background .2s,border-color .2s}
+.home-page .play-link span{width:auto;height:auto;border:0;border-radius:0;color:inherit}
+.home-page .play-link:hover{background:#166534;border-color:#166534;color:#fff}
+html[data-theme="dark"] .home-page .play-link{background:#15803d;border-color:#4ade80;color:#fff}
+html[data-theme="dark"] .home-page .play-link:hover{background:#166534;color:#fff}
+@media(prefers-reduced-motion:reduce){.home-page .play-link{transition:none}}

@@ -96,3 +96,35 @@ html[data-theme="dark"] .login-page .input-group input{background:#0e241bf0;bord
 html[data-theme="dark"] .login-page .input-hint{color:#aac3b4}
 html[data-theme="dark"] .login-page .role-options input:checked+span{background:#d7ebdc;border-color:#d7ebdc;color:#1c5330;box-shadow:0 3px 10px #0002}
 @media(max-width:600px){.login-page .auth-top{padding-left:24px}.login-page .auth-stadium{transform-origin:65% 50%}}
+
+.register-page :is(#ownerProofGroup,#approvalNotice){grid-column:1/-1}
+
+/* Compact registration and accessible document picker. */
+.register-page .auth-shell{padding-top:76px;padding-bottom:24px}
+.register-page .auth-panel{max-width:490px;padding:22px 28px 20px;border-radius:22px}
+.register-page .auth-card-brand{margin-bottom:10px}
+.register-page .auth-card-brand span{font-size:29px}
+.register-page .auth-card-brand img{width:40px}
+.register-page #formTitle{font-size:30px;margin-bottom:4px}
+.register-page .form-intro{font-size:12px;margin-bottom:16px}
+.register-page .role-fieldset{margin-bottom:16px}
+.register-page .role-options label>span{padding:12px 10px}
+.register-page .input-group{margin-bottom:10px}
+.register-page .input-group input{min-height:42px;padding-top:10px;padding-bottom:10px}
+.register-page .input-hint{font-size:11px;line-height:1.5;margin-top:6px;margin-bottom:0}
+.register-page #ownerProofGroup{margin-top:3px;margin-bottom:12px}
+.login-page .proof-upload{position:relative;display:flex;align-items:center;gap:12px;padding:10px;border:1px dashed #abcbb7;border-radius:12px;background:#edf6ef80;min-width:0}
+.login-page .proof-upload input[type="file"]{position:absolute;width:1px;height:1px;padding:0;min-height:0;opacity:0;overflow:hidden}
+.login-page .input-group .proof-upload-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;margin:0;padding:10px 12px;border:1px solid #c5decd;border-radius:8px;background:#fff;color:#19613a;font-size:11px;font-weight:600;cursor:pointer}
+.login-page .proof-upload-button:hover{background:#e2f1e7;border-color:#80b294}
+.login-page .proof-upload:focus-within{outline:3px solid #4baf7760;outline-offset:3px}
+.proof-file-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:#617469}
+.register-page #approvalNotice{margin:0 0 14px;padding:10px 12px;background:#eaf2ed;border-radius:8px;color:#526d5d;line-height:1.5}
+.register-page .submit-auth{min-height:43px;margin-top:0}
+.register-page .switch-copy{margin-top:14px;padding-top:14px}
+.register-page .form-status:empty{display:none}
+html[data-theme="dark"] .login-page .proof-upload{background:#132d20;border-color:#426d52}
+html[data-theme="dark"] .login-page .input-group .proof-upload-button{background:#214632;border-color:#4b785b;color:#d5f1df}
+html[data-theme="dark"] .proof-file-name{color:#b6cdbf}
+html[data-theme="dark"] .register-page #approvalNotice{background:#203c2b;color:#b6cdbf}
+@media(max-width:600px){.register-page .auth-shell{padding:76px 16px 24px}.register-page .auth-panel{padding:22px 20px}.register-page #formTitle{font-size:28px}.login-page .proof-upload{gap:8px;padding:8px}.login-page .input-group .proof-upload-button{padding:10px;font-size:11px}}

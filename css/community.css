@@ -1,0 +1,200 @@
+/* Teams and Challenge Me share the catalogue pages' scale and KICKS identity. */
+.teams-page{--bg:var(--theme-bg,#f8faf9);--white:var(--theme-card,#fff);--line:var(--theme-line,#dce7df);--text:var(--text-primary,#0f172a);--muted:var(--theme-muted,#64748b);background:var(--bg);color:var(--text)}
+.teams-page .shell{width:calc(100% - 48px);max-width:1296px;margin-inline:auto}
+.teams-page .community-hero{background:#11271d;color:#fff;overflow:hidden}
+.teams-page .community-hero .hero{grid-template-columns:1.15fr 1fr;gap:72px;align-items:center;min-height:0;margin-block:0;padding-block:60px;background:none;border-radius:0;overflow:visible}
+.teams-page .hero-copy{padding:0;min-width:0}
+.teams-page .hero .eyebrow{font-size:10px;letter-spacing:2px;color:#86efac;margin-bottom:22px}
+.teams-page .hero h1{font:500 clamp(44px,4.6vw,66px)/1.13 var(--font-heading);letter-spacing:-1.2px;margin-bottom:24px}
+.teams-page .hero h1>span{color:#86efac}
+.teams-page .hero-description{font-size:14px;line-height:1.9;max-width:460px;margin-bottom:28px;color:#b8cfc0}
+.teams-page .hero-actions{gap:24px}
+.teams-page .button{font-size:12px;min-height:46px;padding:13px 20px;border-radius:8px;gap:12px;font-weight:600}
+.teams-page .hero .primary{background:#15803d;border:1px solid #15803d;color:#fff}
+.teams-page .hero .primary:hover{background:#166534;border-color:#166534}
+.teams-page .hero .text-link{color:#d7e9dd;font-size:12px}
+.teams-page .hero-foot{display:flex;max-width:none;font-size:10px;gap:9px;margin-top:28px;padding-top:19px;border-color:#aac9b126;flex-wrap:wrap;color:#a3bfae}
+.teams-page .hero-formats{margin-left:auto;letter-spacing:1px;font-size:9px;color:#86efac}
+.teams-page .hero-photo{height:352px;min-height:0;border-radius:18px;border:1px solid #b4d4bf26;box-shadow:0 16px 45px #0002}
+.teams-page .hero-photo img{object-position:center 46%}
+.teams-page .hero-photo:after{background:linear-gradient(0deg,#071b14e6,transparent 70%)}
+.teams-page .photo-label{top:22px;left:24px;font-size:8px;padding:8px 10px;background:#0d251b7d;border:1px solid #c8e3d13b;border-radius:30px;backdrop-filter:blur(8px)}
+.teams-page .photo-caption{left:28px;bottom:43px;font-size:30px;line-height:1.2;font-weight:500}
+.teams-page .photo-index{left:28px;bottom:20px;font-size:8px}
+.challenges-page .hero-photo img{object-position:center 45%}
+
+/* Comfortable catalogue controls, consistent with Fields and Tournaments. */
+.teams-page .directory{padding-block:46px 64px}
+.teams-page .section-heading{align-items:center;gap:28px;margin-bottom:26px}
+.teams-page .section-heading .eyebrow{font-size:10px;letter-spacing:1.8px;margin-bottom:13px}
+.teams-page .section-heading h2{font:500 clamp(30px,3vw,38px)/1.2 var(--font-heading);color:var(--text)}
+.teams-page .section-heading>p{font-size:12px;line-height:1.8;max-width:295px;color:var(--muted)}
+.teams-page .directory-tabs{display:flex;gap:4px;width:fit-content;max-width:100%;padding:5px;background:var(--theme-soft,#edf6ef);border:1px solid var(--line);border-radius:12px;margin-bottom:24px;overflow-x:auto;scrollbar-width:thin}
+.teams-page .directory-tabs button{border:1px solid transparent;border-radius:8px;padding:10px 18px;min-height:42px;white-space:nowrap;font-size:12px;gap:8px;color:var(--muted);flex-shrink:0}
+.teams-page .directory-tabs [aria-selected=true]{background:var(--white);color:var(--green);border-color:var(--line);box-shadow:0 2px 6px #163c2909}
+.teams-page .directory-tabs button span{padding:1px 6px;background:var(--theme-soft);font-size:10px;min-width:20px;color:var(--muted)}
+.teams-page .filters{grid-template-columns:minmax(220px,2fr) repeat(3,minmax(110px,1fr)) auto;align-items:end;gap:16px;padding:22px;border-radius:16px;border-color:var(--line);box-shadow:0 4px 16px #173c2903;background:var(--white)}
+.teams-page .filters>label{gap:8px;min-width:0;position:relative}
+.teams-page .filters label>span:not(.sr-only){font-size:11px;font-weight:500;color:var(--text)}
+.teams-page .filters :is(select,input[type=search],input[type=date]){font-size:12px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--text);min-height:42px;padding:9px 11px;width:100%;line-height:1.5}
+.teams-page .filters :is(select,input):focus{border-color:#509a6b;outline:2px solid #509a6b25;outline-offset:1px}
+.teams-page .filters .search{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:0;border:0}
+.teams-page .filters .search svg{position:absolute;bottom:13px;left:12px;width:16px;height:16px;pointer-events:none}
+.teams-page .filters .search input{padding-left:36px}
+.teams-page .filters .open-filter{min-height:42px;align-items:center;gap:8px;padding-bottom:1px}
+.teams-page .filters .open-filter span{font-size:11px;font-weight:400}
+.teams-page .filters input[type=checkbox]{width:15px;height:15px;flex-shrink:0}
+.teams-page .challenge-filters{grid-template-columns:minmax(240px,1.8fr) repeat(3,minmax(140px,1fr))}
+.teams-page .results-bar{font-size:12px;padding-block:24px 20px;gap:16px;flex-wrap:wrap}
+.teams-page #result-count{font-weight:500;color:var(--text)}
+.teams-page .results-bar>label{font-size:11px;gap:10px}
+.teams-page .results-bar select{font-size:11px;background:var(--white);border:1px solid var(--line);border-radius:7px;padding:9px 10px;max-width:160px;color:var(--text);min-height:38px}
+.teams-page .reset-button{font-size:11px;text-underline-offset:3px}
+
+/* Squad cards: club identity, clear hierarchy and a real roster indicator. */
+.teams-page .team-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.teams-page .team-card{border-radius:18px;display:flex;flex-direction:column;background:var(--white);border-color:var(--line);box-shadow:var(--surface-shadow);isolation:isolate}
+.teams-page .team-card-top{padding:24px;min-height:118px;background:linear-gradient(120deg,var(--badge-bg,#e1eee2),var(--white));border-bottom:1px solid var(--line);gap:12px}
+.teams-page .team-card-top .badge{width:56px;height:64px;font-size:23px;filter:drop-shadow(0 5px 9px #153a2920)}
+.teams-page .recruit-status{border:1px solid #c5dfcb;border-radius:30px;font-size:10px;padding:5px 9px;white-space:nowrap;background:#f1faf0;color:#28723e;gap:6px}
+.teams-page .recruit-status.closed{background:var(--white);color:var(--muted);border-color:var(--line)}
+.teams-page .team-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.teams-page .team-name{font-size:28px;line-height:1.25;margin-bottom:10px}
+.teams-page .team-meta{font-size:12px;line-height:1.6}
+.teams-page .team-meta svg{height:14px;width:14px}
+.teams-page .team-tags{gap:7px;margin-block:16px 13px}
+.teams-page .tag{font-size:10px;padding:4px 8px;border-radius:5px;background:var(--theme-soft);border-color:var(--line);color:var(--muted)}
+.teams-page .team-bio{font-size:12px;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:66px;margin-bottom:16px}
+.teams-page .team-schedule{font-size:11px;line-height:1.6;padding:0;border:0;margin-bottom:20px;color:var(--muted)}
+.teams-page .squad-progress{height:4px;border-radius:4px;background:var(--theme-soft);overflow:hidden;margin-top:auto;margin-bottom:17px}
+.teams-page .squad-progress span{height:100%;display:block;border-radius:inherit;background:#4e9561}
+.teams-page .squad-bar{padding-top:0;border-top:0;gap:12px;flex-wrap:wrap}
+.teams-page .squad-bar .count{font-size:11px}
+.teams-page .avatars .avatar{width:27px;height:27px;font-size:9px;border-color:var(--white)}
+.teams-page .profile-link{font-size:12px;font-weight:600;min-height:36px;gap:9px;color:var(--green)}
+.teams-page .needed{background:var(--white);padding:14px 24px;font-size:11px;border-top:1px solid var(--line);color:var(--muted);line-height:1.7}
+.teams-page .team-card.is-mine:before{z-index:1;font-size:8px;border-radius:0 0 0 8px;padding:5px 10px;background:#1d5939;color:#e0f3e7;letter-spacing:1px}
+
+/* Match cards use the same surface and spacing as the squad directory. */
+.teams-page .challenge-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.teams-page .challenge-card{border-radius:18px;border-color:var(--line);background:var(--white);box-shadow:var(--surface-shadow);display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s}
+.teams-page .challenge-top{padding:24px;gap:16px;border-bottom:1px solid var(--line);background:linear-gradient(115deg,var(--theme-soft),var(--white));align-items:center;flex-wrap:wrap}
+.teams-page .challenge-top>div{flex:1;min-width:140px}
+.teams-page .challenge-top .badge{width:48px;height:56px}
+.teams-page .challenge-top h3{font-size:27px;margin-bottom:5px}
+.teams-page .challenge-top small{font-size:11px;line-height:1.6}
+.teams-page .match-status{font-size:10px;line-height:1.4;padding:6px 10px;border-radius:30px;margin-left:auto}
+.teams-page .match-info{gap:18px 24px;padding:24px;flex:1}
+.teams-page .match-info>div{font-size:12px;gap:10px;line-height:1.6;min-width:0}
+.teams-page .match-info svg{width:17px;height:17px;color:#5c8970}
+.teams-page .challenge-bottom{padding:15px 24px;background:var(--white);gap:16px}
+.teams-page .challenge-bottom p{font-size:11px;color:var(--muted)}
+.teams-page .challenge-bottom p:before{content:'Pitch cost · ';color:var(--muted)}
+.teams-page .board-note{padding:16px 20px;background:var(--theme-soft);border:1px solid var(--line);border-radius:12px;font-size:12px;margin-top:28px;line-height:1.8}
+.teams-page .empty{border:1px dashed #c4d7ca;background:var(--white);border-radius:18px;padding:52px 24px}
+.teams-page .empty>svg{width:42px;height:42px;padding:9px;box-sizing:content-box;background:var(--theme-soft);border-radius:16px;margin-bottom:20px;color:var(--green)}
+.teams-page .empty h3{font:500 28px/1.3 var(--font-heading);margin-bottom:12px}
+.teams-page .empty p{font-size:13px;line-height:1.9;max-width:460px;margin:0 auto 24px;color:var(--muted)}
+.teams-page .empty .button{font-size:12px}
+.teams-page .workspace-note{border-radius:14px;padding:20px 24px;font-size:13px}
+
+/* Detail and request surfaces follow the same card language. */
+.teams-page .detail-cover{background:linear-gradient(125deg,#123b27,#226540);height:98px}
+.teams-page .detail-content{padding:0 30px 30px}
+.teams-page .detail-header{padding-inline:30px}
+.teams-page .detail-headline h2{font-size:34px}
+.teams-page .detail-tabs button{font-size:12px;min-height:48px}
+.teams-page :is(.about-copy,.modal-intro,.request-note){font-size:13px;line-height:1.85}
+.teams-page :is(.recruit-box,.player-row,.request-item,.my-request,.match-summary,.booking-box){border-radius:12px}
+.teams-page .player-row{padding:15px}
+.teams-page .player-row strong{font-size:12px}
+.teams-page .player-row small{font-size:11px}
+.teams-page .remove-player{font-size:11px;min-height:32px;padding:5px 8px}
+.teams-page .match-summary{gap:18px;padding:20px}
+.teams-page .match-summary small{font-size:10px;margin-bottom:5px}
+.teams-page .match-summary strong{font-size:13px}
+.teams-page .matchup{padding-block:10px}
+.teams-page .booking-box{background:var(--theme-soft);border-color:var(--line)}
+.teams-page .booking-box p{font-size:13px;line-height:1.8}
+.teams-page .request-item .request-actions{flex-wrap:wrap}
+.teams-page .toast:not([hidden]){display:block;opacity:1;font-size:12px;border-radius:12px}
+
+@media(hover:hover) and (pointer:fine){
+ .teams-page :is(.team-card,.challenge-card):hover{border-color:#9ccbae;box-shadow:0 12px 32px #173c2910;transform:none}
+ .teams-page .profile-link:hover{color:#166534;text-decoration:underline;text-underline-offset:4px}
+}
+html[data-theme=dark] .teams-page{--bg:var(--theme-bg);--white:var(--theme-card);--line:var(--theme-line);--text:var(--theme-text);--muted:var(--theme-muted)}
+html[data-theme=dark] .teams-page :is(.team-card-top,.challenge-top){background:linear-gradient(115deg,#213a2b,var(--white))}
+html[data-theme=dark] .teams-page .recruit-status{background:#213e29;color:#a6ecb8;border-color:#375e41}
+html[data-theme=dark] .teams-page :is(.profile-link,.directory-tabs [aria-selected=true],.section-heading .eyebrow){color:#86efac}
+html[data-theme=dark] .teams-page .empty{border-color:#3d5b47}
+
+@media(min-width:1600px){.teams-page .community-hero .hero{gap:100px;padding-block:68px}}
+@media(max-width:1100px){
+ .teams-page .community-hero .hero{gap:36px;grid-template-columns:1.1fr 1fr;padding-block:44px}
+ .teams-page .hero h1{font-size:48px}
+ .teams-page .hero-photo{height:330px}
+ .teams-page .hero-actions{gap:18px}
+ .teams-page .filters{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .teams-page .filters .search{grid-column:span 2}
+ .teams-page .filters .open-filter{grid-column:auto}
+ .teams-page .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .teams-page .hero-formats{margin-left:0}
+}
+@media(max-width:767px){
+ .teams-page .community-hero .hero{display:flex;flex-direction:column;align-items:stretch;gap:30px;padding-block:36px}
+ .teams-page .hero h1{font-size:48px;letter-spacing:-.8px;line-height:1.14}
+ .teams-page .hero-description{font-size:13px;max-width:460px;margin-bottom:23px}
+ .teams-page .hero .eyebrow{font-size:9px;margin-bottom:18px}
+ .teams-page .hero-foot{margin-top:24px;display:flex}
+ .teams-page .hero-photo{height:260px;min-height:0;width:100%;border-radius:14px}
+ .teams-page .hero-photo img{object-position:center 40%}
+ .teams-page .photo-caption{font-size:26px;left:22px}
+ .teams-page .photo-label{left:20px;top:20px;font-size:7px}
+ .teams-page .photo-index{left:22px}
+ .teams-page .directory{padding-block:32px 44px}
+ .teams-page .section-heading{display:block;margin-bottom:22px}
+ .teams-page .section-heading h2{font-size:32px}
+ .teams-page .section-heading>p{max-width:none;text-align:left;margin-top:12px;font-size:12px}
+ .teams-page .directory-tabs{width:100%;gap:2px;padding:4px}
+ .teams-page .directory-tabs button{padding:9px 12px;font-size:11px;flex-grow:1;justify-content:center;gap:6px}
+ .teams-page .filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;padding:18px;border-radius:14px}
+ .teams-page .filters .search{grid-column:1/-1}
+ .teams-page .filters label:nth-child(4){grid-column:auto}
+ .teams-page .filters .open-filter{grid-column:auto;grid-row:auto;min-height:42px;padding-bottom:0}
+ .teams-page .filters :is(select,input[type=search],input[type=date]){font-size:16px;padding-block:8px}
+ .teams-page .filters .open-filter span{font-size:10px}
+ .teams-page .results-bar{padding-block:20px 16px;font-size:11px;gap:10px}
+ .teams-page .results-bar>label{font-size:10px}
+ .teams-page .results-bar select{max-width:132px;font-size:10px;padding-inline:7px}
+ .teams-page :is(.team-grid,.challenge-grid){grid-template-columns:minmax(0,1fr);gap:20px}
+ .teams-page .team-card-top{padding:20px 22px;min-height:106px}
+ .teams-page .team-card-body{padding:22px}
+ .teams-page .needed{padding-inline:22px}
+ .teams-page .team-bio{min-height:0}
+ .teams-page .challenge-top{padding:22px;gap:12px}
+ .teams-page .challenge-top>div{min-width:110px}
+ .teams-page .challenge-top h3{font-size:25px}
+ .teams-page .challenge-top .match-status{font-size:9px;padding:5px 8px}
+ .teams-page .match-info{padding:22px;gap:16px 12px}
+ .teams-page .match-info>div{font-size:11px;gap:8px}
+ .teams-page .challenge-bottom{padding:14px 22px}
+ .teams-page .board-note{font-size:11px;padding:15px 18px}
+ .teams-page .empty{padding:38px 20px}
+ .teams-page .empty h3{font-size:25px}
+ .teams-page .empty p{font-size:12px}
+ .teams-page .detail-header{padding-inline:22px}
+ .teams-page .detail-content{padding:0 22px 24px}
+ .teams-page .detail-headline h2{font-size:30px}
+ .teams-page .match-summary{padding:16px;gap:14px}
+}
+@media(max-width:575px){.teams-page .shell{width:calc(100% - 32px)}}
+@media(max-width:359px){
+ .teams-page .hero h1{font-size:41px}
+ .teams-page .hero-actions{gap:16px}.teams-page .hero-actions .button{padding-inline:15px}
+ .teams-page .hero .text-link{font-size:11px}
+ .teams-page .directory-tabs button{font-size:10px;padding-inline:8px}
+ .teams-page .directory-tabs button span{font-size:9px;min-width:17px}
+ .teams-page .challenge-top .match-status{margin-left:60px}
+ .teams-page .challenge-bottom{gap:8px;flex-wrap:wrap}
+}
